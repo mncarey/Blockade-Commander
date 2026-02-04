@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
  * Author: [Ruffner, Kaylie]
@@ -11,8 +12,9 @@ public class MainMenuManager: MonoBehaviour
     public static MainMenuManager _;
     [SerializeField] private bool _debugMode;
     public enum MainMenuButtons { play, howtoplay, tutorial, quit };
+    [SerializeField] private int switchScene;
 
-
+    // this void will let the developers know if there is an error when it comes to the mainmenumanager
     public void Awake()
     {
        if (_ == null)
@@ -22,14 +24,33 @@ public class MainMenuManager: MonoBehaviour
 
        else
         {
-            Debug.LogError("There are more than one MainMenuManager's in this scene.");
+            Debug.Log("There are more than one MainMenuManager's in this scene.");
         }
     }
 
-    // this void focuses on a debug log that will show when the player "clicks on a button"
+    // this void focuses on when the user actually clicks on the button
     public void MainMenuButtonClicked(MainMenuButtons buttonClicked)
     {
         Debug.Log("Button Clicked: " + buttonClicked.ToString());
+        switch (buttonClicked)
+        {
+            // this works on the buttons that are implimented and have the quit button functional
+            case MainMenuButtons.play:
+                ButtonClicked();
+                break;
+            case MainMenuButtons.tutorial:
+                ButtonClicked();
+                break;
+            case MainMenuButtons.howtoplay:
+                ButtonClicked();
+                break;
+            case MainMenuButtons.quit:
+                QuitGame();
+                break;
+            default:
+                Debug.Log("Button clicked was not implimented into the MainMenuManager");
+                break;
+        }
     }
 
 
@@ -40,5 +61,21 @@ public class MainMenuManager: MonoBehaviour
         {
             Debug.Log(message);
         }
+    }
+
+    // this void switches the scene when the player clicks on the button
+    public void ButtonClicked()
+    {
+        SceneManager.LoadScene(switchScene);
+    }
+
+    // this void works on the quit button, where if you hit quit in editor it exits out of playmode
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
     }
 }
