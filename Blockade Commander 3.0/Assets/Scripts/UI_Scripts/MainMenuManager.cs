@@ -11,7 +11,7 @@ public class MainMenuManager: MonoBehaviour
 {
     public static MainMenuManager _;
     [SerializeField] private bool _debugMode;
-    public enum MainMenuButtons { play, howtoplay, tutorial, quit };
+    public enum MainMenuButtons { play, howtoplay, tutorial, quit, back };
     [SerializeField] private int switchScene;
 
     // this void will let the developers know if there is an error when it comes to the mainmenumanager
@@ -46,6 +46,9 @@ public class MainMenuManager: MonoBehaviour
                 break;
             case MainMenuButtons.quit:
                 QuitGame();
+                break;
+            case MainMenuButtons.back:
+                ButtonClicked();
                 break;
             default:
                 Debug.Log("Button clicked was not implimented into the MainMenuManager");
