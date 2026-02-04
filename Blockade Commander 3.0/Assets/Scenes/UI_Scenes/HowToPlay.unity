@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 498640700}
   - component: {fileID: 498640699}
   - component: {fileID: 498640702}
+  - component: {fileID: 498640703}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -501,16 +502,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 498640702}
-        m_TargetAssemblyTypeName: MainMenuButtons, Assembly-CSharp
+      - m_Target: {fileID: 498640703}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ButtonClicked
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: _MainScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &498640700
@@ -564,6 +565,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuButtons
   _buttonType: 0
+--- !u!114 &498640703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498640697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a7eed520bbcae47a4feb72d1c95018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
+  _debugMode: 0
+  sceneName: _MainScene
 --- !u!1 &510894554
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +592,7 @@ GameObject:
   - component: {fileID: 510894557}
   - component: {fileID: 510894556}
   - component: {fileID: 510894559}
+  - component: {fileID: 510894560}
   m_Layer: 5
   m_Name: TutorialButton
   m_TagString: Untagged
@@ -648,16 +664,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 510894559}
-        m_TargetAssemblyTypeName: MainMenuButtons, Assembly-CSharp
+      - m_Target: {fileID: 510894560}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ButtonClicked
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: HowToPlay
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &510894557
@@ -711,6 +727,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuButtons
   _buttonType: 2
+--- !u!114 &510894560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510894554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a7eed520bbcae47a4feb72d1c95018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
+  _debugMode: 0
+  sceneName: HowToPlay
 --- !u!1 &548939101
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &560343033
 Transform:
   m_ObjectHideFlags: 0
@@ -787,7 +817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   _debugMode: 0
-  switchScene: 2
+  sceneName: 
 --- !u!1 &617724417
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,6 +968,7 @@ GameObject:
   - component: {fileID: 657484457}
   - component: {fileID: 657484456}
   - component: {fileID: 657484459}
+  - component: {fileID: 657484460}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1009,16 +1040,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 657484459}
-        m_TargetAssemblyTypeName: MainMenuButtons, Assembly-CSharp
+      - m_Target: {fileID: 657484460}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ButtonClicked
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &657484457
@@ -1072,6 +1103,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuButtons
   _buttonType: 4
+--- !u!114 &657484460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657484454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a7eed520bbcae47a4feb72d1c95018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
+  _debugMode: 0
+  sceneName: MainMenu
 --- !u!1 &878004182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1562758087
 Transform:
   m_ObjectHideFlags: 0
@@ -1712,7 +1757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   _debugMode: 0
-  switchScene: 3
+  sceneName: 
 --- !u!1 &1791300754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1791300755
 Transform:
   m_ObjectHideFlags: 0
@@ -1758,7 +1803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   _debugMode: 0
-  switchScene: 0
+  sceneName: 
 --- !u!1 &2054472101
 GameObject:
   m_ObjectHideFlags: 0
