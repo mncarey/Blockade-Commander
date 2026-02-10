@@ -13,18 +13,27 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public Vector2 spawnAreaMax;
     private Vector3 randomSpawn;
 
+    private void Start()
+    {
+        Debug.Log("spawning wave");
+        SpawnEnemy();
+    }
     void Update()
     {
+        /*
+        if (Keyboard.current == null) return;
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame)// <-- temporary trigger for spawning waves
         {
             Debug.Log("spawning wave");
-            SpawnEnemy(4);
+            SpawnEnemy();
         }
+        */
     }
 
-    private void SpawnEnemy(int amount)
+    private void SpawnEnemy()
     {
-        for(int i = 0; i<= spawnPoints.Length-1; i++)
+        for(int i = 0; i< spawnPoints.Length; i++)
         {
             Instantiate(BasicEnemy, spawnPoints[i].position, Quaternion.identity);
         }    

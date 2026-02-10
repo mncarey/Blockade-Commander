@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class BasicEnemySpawner : MonoBehaviour
 {
-
     public GameObject BasicEnemy;
+    public int lives = 5;
 
     void Update()
     {
@@ -15,4 +15,6 @@ public class BasicEnemySpawner : MonoBehaviour
     {
         Instantiate(BasicEnemy, gameObject.transform.position, Quaternion.identity);
     }
+
+  
 }
