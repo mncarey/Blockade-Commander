@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +6,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 {
 
     public GameObject BasicEnemy;
-    // public Transform[] spawnPoints; <- for setting specific spawn points
+    public Transform[] spawnPoints; //<- for setting specific spawn points
 
     //random points
     public Vector2 spawnAreaMin;
@@ -16,17 +17,17 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)// <-- temporary trigger for spawning waves
         {
+            Debug.Log("spawning wave");
             SpawnEnemy(4);
         }
     }
 
     private void SpawnEnemy(int amount)
     {
-        for(int i = 0; i <= amount; i++)
+        for(int i = 0; i<= spawnPoints.Length-1; i++)
         {
-            randomSpawn = new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x), 0f, Random.Range(spawnAreaMin.y, spawnAreaMax.y));
-
-        }
-        Instantiate(BasicEnemy, gameObject.transform.position, Quaternion.identity);
+            Instantiate(BasicEnemy, spawnPoints[i].position, Quaternion.identity);
+        }    
+        
     }
 }

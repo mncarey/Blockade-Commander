@@ -8,10 +8,7 @@ public class BasicEnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
             SpawnEnemy();
-        }
     }
 
     private void SpawnEnemy()
