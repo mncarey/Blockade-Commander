@@ -10,11 +10,11 @@ public class BasicEnemySpawner : MonoBehaviour
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            spawnEnemy();
+            SpawnEnemy();
         }
     }
 
-    private void spawnEnemy()
+    private void SpawnEnemy()
     {
         Instantiate(BasicEnemy, gameObject.transform.position, Quaternion.identity);
     }
