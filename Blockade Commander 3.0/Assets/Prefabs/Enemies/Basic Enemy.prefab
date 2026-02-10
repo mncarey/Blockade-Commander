@@ -126,9 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d90fc0fa6f7be49b01ecaaf8f122c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  target: {fileID: 9121383692821210392, guid: 51d01ff9fc6c65a4294eaa17d29969c1, type: 3}
+  reachDistance: 5
   speed: 5
   lives: 5
+  dmg: 0
 --- !u!54 &-1295710016464887516
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,5 +155,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 1
