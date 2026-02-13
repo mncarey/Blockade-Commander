@@ -13,13 +13,27 @@ public class BasicEnemy : MonoBehaviour
     //public Transform target2;
     public float speed = 5;
     public int lives = 5;
+    public int maxLives = 5;
     public int dmg = 0;
 
+    Rigidbody rb;
+
+    [SerializeField] FloatingHealthBar healthBar;
+
+
     private Coroutine damageRoutine;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        healthBar.UpdateHealthBar(lives, maxLives);
+        
         target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
         target2 = GameObject.FindWithTag("EnemyTarget2")?.transform;
 
@@ -39,6 +53,7 @@ public class BasicEnemy : MonoBehaviour
     private void takeDamage()
     {
         lives--;
+        healthBar.UpdateHealthBar(lives, maxLives);
         if (lives <= 0)
         {
             Destroy(gameObject);
