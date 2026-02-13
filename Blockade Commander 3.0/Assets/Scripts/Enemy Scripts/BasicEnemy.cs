@@ -8,6 +8,8 @@ public class BasicEnemy : MonoBehaviour
     private Transform target2;
     private Transform currentTarget;
 
+    private TauntTower tauntRef;
+
     public float reachDistance = 5;
 
     //public Transform target2;
@@ -49,6 +51,7 @@ public class BasicEnemy : MonoBehaviour
     {
         if (other.gameObject.tag == "killZone")
         {
+            Debug.Log("Trying to kill guys");
             damageRoutine = StartCoroutine(DamageOverTime());
         }
     }
@@ -66,6 +69,7 @@ public class BasicEnemy : MonoBehaviour
         while (true)
         {
             takeDamage();
+            tauntRef.takeDamage();
             yield return new WaitForSeconds(1f);
         }
     }
