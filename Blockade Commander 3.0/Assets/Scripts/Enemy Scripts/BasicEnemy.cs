@@ -45,7 +45,6 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentTarget == null) return;
         if(target1 == null)
         {
             currentTarget = target2;
@@ -84,7 +83,7 @@ public class BasicEnemy : MonoBehaviour
         while (true)
         {
             takeDamage();
-            tauntRef.takeDamage();
+            //tauntRef.takeDamage();
             yield return new WaitForSeconds(1f);
         }
     }
