@@ -1,16 +1,26 @@
+using System.Xml.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public InputAction clickToPlace;
+    private Vector2 placeObject;
+
+    private void Update()
     {
-        
+        //placeObject = clickToPlace.ReadValue<Vector2>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        clickToPlace.Enable();
     }
+
+    private void OnDisable()
+    {
+        clickToPlace.Disable();
+    }
+
 }
