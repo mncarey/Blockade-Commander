@@ -45,11 +45,22 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target1 == null)
+        target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
+
+        if(target1 != null)
+        {
+            currentTarget = target1;
+        }
+        else
         {
             currentTarget = target2;
         }
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
+        if(currentTarget != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, 
+               currentTarget.position, speed * Time.deltaTime);//move towards the target
+        }
+           
     }
     private void takeDamage()
     {

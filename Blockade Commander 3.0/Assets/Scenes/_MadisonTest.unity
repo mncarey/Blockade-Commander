@@ -119,82 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &34853888
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_Name
-      value: Taunt Tower
-      objectReference: {fileID: 0}
-    - target: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_TagString
-      value: EnemyTarget1
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -12.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 13.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 801364719886892258, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2024115345918257486, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12.846062
-      objectReference: {fileID: 0}
-    - target: {fileID: 2024115345918257486, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.8074205
-      objectReference: {fileID: 0}
-    - target: {fileID: 2024115345918257486, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 12.846062
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1386969887}
-  m_SourcePrefab: {fileID: 100100000, guid: a31de307f69ed2643b67e53974784c77, type: 3}
 --- !u!1 &251182447
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,24 +449,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1386969882 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
-  m_PrefabInstance: {fileID: 34853888}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1386969887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386969882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 278bf870501369b499e59df4a9739e16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TauntTower
-  health: 10
 --- !u!1 &1387743111
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1016,6 @@ SceneRoots:
   - {fileID: 251182451}
   - {fileID: 2443564012968297349}
   - {fileID: 3958722071918102126}
-  - {fileID: 34853888}
   - {fileID: 862603328}
   - {fileID: 1825051938}
   - {fileID: 1470738890}
