@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 
 public class fortSlot : MonoBehaviour
 {
-
+    public TMP_Text fortDescrptionName;
+    public TMP_Text fortDescriptionText;
+    public string fortDescription;
     //====== FORT DATA =======//
-    public string fortName;
+    
     public Sprite fortSprite;
 
     public FortMenuController slotContainerRef;
@@ -16,7 +18,7 @@ public class fortSlot : MonoBehaviour
 
     //====== FORT SLOT ======//
 
-    [SerializeField] private Image fortImage;
+    
 
 
     public GameObject selectedShader;
@@ -25,6 +27,14 @@ public class fortSlot : MonoBehaviour
     private Toggle toggle;
     
     private bool wasOn = false;
+
+    public string content = "This is the Content of this Fortification";
+
+
+    [SerializeField] private FortImageDisplay fortImageDisplay;
+    [SerializeField] private Sprite newSprite;
+
+    private string fortName; 
   void Awake()
     {
         
@@ -39,6 +49,11 @@ public class fortSlot : MonoBehaviour
             
             
         }
+        fortName = gameObject.name;       
+        fortImageDisplay = FindObjectOfType<FortImageDisplay>();
+        
+        
+        
     }
 
     void Update()
@@ -49,7 +64,7 @@ public class fortSlot : MonoBehaviour
         //if wasOn is false, it does not attempt this again.
         if (wasOn && !toggle.isOn)
         {
-            Debug.Log("Deselected " + this.name);
+            //Debug.Log("Deselected " + this.name);
             selectedShader.SetActive(false);
             wasOn = false;
         }
@@ -57,8 +72,10 @@ public class fortSlot : MonoBehaviour
     
     void Start()
     {
+        Transform child = transform.Find("FortImage");
+        //Image childImage = child.GetComponent<Image>();
         
-        
+
     }
     
     
@@ -82,6 +99,8 @@ public class fortSlot : MonoBehaviour
             wasOn = true;
             //turns this toggle back on
             toggle.isOn = true;
+            fortImageDisplay.ChangeImage(newSprite, fortName, content);
+            //set the display image to the image associated with this object
            
         }
 
