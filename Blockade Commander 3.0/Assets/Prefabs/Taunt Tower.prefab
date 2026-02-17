@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4516869416938376027}
   - component: {fileID: 6213731352394361335}
   - component: {fileID: 171880964747513111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Taunt Tower
   m_TagString: EnemyTarget1
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8240602116388656063}
   - component: {fileID: 9137562500050724768}
   - component: {fileID: 4703518979640001131}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Kill Zone (1)
   m_TagString: killZone
   m_Icon: {fileID: 0}

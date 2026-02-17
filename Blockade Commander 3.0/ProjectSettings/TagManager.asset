@@ -8,6 +8,8 @@ TagManager:
   - killZone
   - EnemyTarget1
   - EnemyTarget2
+  - wall
+  - PlaceableObject
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - PlaceableObjects
   - 
   - 
   - 

@@ -607,14 +607,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42375c28567577b468ab54612d3e0802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacingScript
-  objectToPlace: {fileID: 668786706655728692, guid: 51bde2604d821a34e97192407d93c93d, type: 3}
+  objectToPlace: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
   mainCamera: {fileID: 1898142472}
-  groundLayer:
+  layerMask:
     serializedVersion: 2
     m_Bits: 64
-  placeableObjectsLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!23 &1470738888
 MeshRenderer:
   m_ObjectHideFlags: 0
