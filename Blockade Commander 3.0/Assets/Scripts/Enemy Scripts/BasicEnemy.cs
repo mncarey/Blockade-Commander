@@ -18,6 +18,8 @@ public class BasicEnemy : MonoBehaviour
     public int maxLives = 5;
     public int dmg = 0;
 
+    public int goldValue;
+    public int killValue;
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
@@ -40,6 +42,8 @@ public class BasicEnemy : MonoBehaviour
         target2 = GameObject.FindWithTag("EnemyTarget2")?.transform;
 
         currentTarget = target1;
+
+        
     }
 
     // Update is called once per frame
