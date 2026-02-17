@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: b31e9ec49127fa74ab92fa91f830a265
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fortDescrptionName: {instanceID: 0}
+  - fortDescriptionText: {instanceID: 0}
+  - fortSprite: {instanceID: 0}
+  - slotContainerRef: {instanceID: 0}
+  - fortReference: {instanceID: 0}
+  - selectedShader: {instanceID: 0}
+  - lightHouse: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
+  - fortImageDisplay: {instanceID: 0}
+  - newSprite: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

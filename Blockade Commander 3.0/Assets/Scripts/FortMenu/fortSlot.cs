@@ -28,11 +28,21 @@ public class fortSlot : MonoBehaviour
     
     private bool wasOn = false;
 
-    public string content = "This is the Content of this Fortification";
+    public string content;
 
+    private GameObject currentFort;
+    [SerializeField] private GameObject lightHouse;
+    //[SerializeField] private GameObject cannon;
+    //[SerializeField] private GameObject mortar;
+    //[SerializeField] private GameObject wall;
 
     [SerializeField] private FortImageDisplay fortImageDisplay;
     [SerializeField] private Sprite newSprite;
+
+    private string lighthouseText = "A primarily defensive fortification that forces enemies to attack it if they are within range";
+    private string cannonText = "A medium range and damage fortification that assaults enemy ships with a quick rate of fire";
+    private string mortarText = "A long range heavy damage fortification, which cannot attack enemies that get too close, low rate of fire";
+    //private string wallText = "A wall, simple as";
 
     private string fortName; 
   void Awake()
@@ -53,6 +63,31 @@ public class fortSlot : MonoBehaviour
         fortImageDisplay = FindObjectOfType<FortImageDisplay>();
         
         
+        if(fortName == "Lighthouse")
+        {
+            content = lighthouseText;
+            currentFort = lightHouse;
+            Debug.Log("This is " + currentFort.name);
+            
+        }
+        if(fortName == "Cannon")
+        {
+            content = cannonText;
+            //currentFort = cannon;
+            //Debug.Log(currentFort.name);
+        }
+        if(fortName == "Mortar")
+        {
+            content = mortarText;
+            //currentFort = mortar;
+            //Debug.Log(currentFort.name);
+        }
+        if(fortName == "Wall")
+        {
+            //content = wallText;
+            //currentFort = wall;
+            //Debug.Log(currentFort.name);
+        }
         
     }
 
