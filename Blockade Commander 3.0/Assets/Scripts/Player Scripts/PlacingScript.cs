@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlacingScript : MonoBehaviour
 {
-    public GameObject objectToPlace;
-
+    public GameObject objectToPlace;//asigned in inspector? dont sign in inspector?
+    //want to create a bool that allows the player to even place an object or not
     public Camera mainCamera;
 
     public LayerMask groundLayer;
@@ -18,7 +18,14 @@ public class PlacingScript : MonoBehaviour
 
     //implementing outline feature
     Outline outline;
- 
+
+    //public GameObject TauntTower;
+
+    public void SetCurrentFort(GameObject fort)
+    {
+        objectToPlace = fort;
+    }
+
     // Update is called once per frame
     void Update()
     {

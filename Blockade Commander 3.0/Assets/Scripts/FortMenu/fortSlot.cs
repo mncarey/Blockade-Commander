@@ -5,22 +5,8 @@ using UnityEngine.EventSystems;
 
 public class fortSlot : MonoBehaviour
 {
-    public TMP_Text fortDescrptionName;
-    public TMP_Text fortDescriptionText;
-    public string fortDescription;
-    //====== FORT DATA =======//
     
-    public Sprite fortSprite;
-
-    public FortMenuController slotContainerRef;
-    public GameObject fortReference;
-    
-
     //====== FORT SLOT ======//
-
-    
-
-
     public GameObject selectedShader;
     public bool thisFortSelected;
 
@@ -30,7 +16,7 @@ public class fortSlot : MonoBehaviour
 
     public string content;
 
-    private GameObject currentFort;
+    public GameObject currentFort;
     [SerializeField] private GameObject lightHouse;
     //[SerializeField] private GameObject cannon;
     //[SerializeField] private GameObject mortar;
@@ -44,11 +30,15 @@ public class fortSlot : MonoBehaviour
     private string mortarText = "A long range heavy damage fortification, which cannot attack enemies that get too close, low rate of fire";
     //private string wallText = "A wall, simple as";
 
-    private string fortName; 
+    private string fortName;
+
+    //placing script
+    private PlacingScript placeRef;
+    
   void Awake()
     {
-        
-        
+
+        placeRef = FindObjectOfType<PlacingScript>();
         
         toggle = GetComponent<Toggle>();
         if (toggle != null)
@@ -68,7 +58,7 @@ public class fortSlot : MonoBehaviour
             content = lighthouseText;
             currentFort = lightHouse;
             Debug.Log("This is " + currentFort.name);
-            
+
         }
         if(fortName == "Cannon")
         {
@@ -122,6 +112,7 @@ public class fortSlot : MonoBehaviour
     //  3.When the user clicks on another toggle, isOn is turned off, but it does not trigger this event.
     public void OnIsOnChanged(bool isOn)
     {
+
         if (isOn && !wasOn)
         {
             
@@ -136,7 +127,9 @@ public class fortSlot : MonoBehaviour
             toggle.isOn = true;
             fortImageDisplay.ChangeImage(newSprite, fortName, content);
             //set the display image to the image associated with this object
-           
+
+            placeRef.SetCurrentFort(currentFort);
+
         }
 
         

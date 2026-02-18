@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: newSprite
       value: 
       objectReference: {fileID: 21300000, guid: b7adbcd4bca7b3e48b9d2a518b686b27, type: 3}
+    - target: {fileID: 3210962472567317898, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
+      propertyPath: currentFort
+      value: 
+      objectReference: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
     - target: {fileID: 4954059165687698478, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
       propertyPath: m_Type
       value: 0
