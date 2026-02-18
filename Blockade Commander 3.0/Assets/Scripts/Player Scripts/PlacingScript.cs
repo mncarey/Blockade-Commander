@@ -19,8 +19,26 @@ public class PlacingScript : MonoBehaviour
     //implementing outline feature
     Outline outline;
 
-    //public GameObject TauntTower;
+    bool GetPointerDown(out Vector2 screenPosition)
+    {
+        screenPosition = default;
 
+        //Mouse
+        if(Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            screenPosition = Mouse.current.position.ReadValue();
+            return true;
+        }
+
+        //Touch
+        if(Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+        {
+            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            return true;
+        }
+
+        return false;
+    }
     public void SetCurrentFort(GameObject fort)
     {
         objectToPlace = fort;
@@ -29,6 +47,7 @@ public class PlacingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, groundLayer)){
             transform.position = raycastHit.point;
@@ -78,8 +97,8 @@ public class PlacingScript : MonoBehaviour
         {
             Instantiate(objectToPlace, gameObject.transform.position, Quaternion.identity);
         }
-          
 
+          
     }   
 
 }
