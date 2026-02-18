@@ -167,15 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31e9ec49127fa74ab92fa91f830a265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  fortDescrptionName: {fileID: 0}
-  fortDescriptionText: {fileID: 0}
-  fortDescription: 
-  fortSprite: {fileID: 0}
-  slotContainerRef: {fileID: 0}
-  fortReference: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
   selectedShader: {fileID: 8804234149613236992}
   thisFortSelected: 0
   content: 
+  currentFort: {fileID: 3873198909658866281, guid: c74cafe79f3176d43a19e6891ff212cb, type: 3}
   lightHouse: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
   fortImageDisplay: {fileID: 0}
   newSprite: {fileID: 0}
