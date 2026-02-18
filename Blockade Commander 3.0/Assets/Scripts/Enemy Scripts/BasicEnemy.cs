@@ -8,37 +8,68 @@ public class BasicEnemy : MonoBehaviour
     private Transform target2;
     private Transform currentTarget;
 
+    private TauntTower tauntRef;
+
     public float reachDistance = 5;
 
     //public Transform target2;
     public float speed = 5;
     public int lives = 5;
+    public int maxLives = 5;
     public int dmg = 0;
 
+    public int goldValue;
+    public int killValue;
+    Rigidbody rb;
+
+    [SerializeField] FloatingHealthBar healthBar;
+
+
     private Coroutine damageRoutine;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        healthBar.UpdateHealthBar(lives, maxLives);
+        
         target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
         target2 = GameObject.FindWithTag("EnemyTarget2")?.transform;
 
         currentTarget = target1;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentTarget == null) return;
-        if(target1 == null)
+        target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
+
+        if(target1 != null)
+        {
+            currentTarget = target1;
+        }
+        else
         {
             currentTarget = target2;
         }
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
+        if(currentTarget != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, 
+               currentTarget.position, speed * Time.deltaTime);//move towards the target
+        }
+           
     }
     private void takeDamage()
     {
         lives--;
+        healthBar.UpdateHealthBar(lives, maxLives);
         if (lives <= 0)
         {
             Destroy(gameObject);
@@ -49,6 +80,7 @@ public class BasicEnemy : MonoBehaviour
     {
         if (other.gameObject.tag == "killZone")
         {
+            Debug.Log("Trying to kill guys");
             damageRoutine = StartCoroutine(DamageOverTime());
         }
     }
@@ -66,6 +98,7 @@ public class BasicEnemy : MonoBehaviour
         while (true)
         {
             takeDamage();
+            //tauntRef.takeDamage();
             yield return new WaitForSeconds(1f);
         }
     }
