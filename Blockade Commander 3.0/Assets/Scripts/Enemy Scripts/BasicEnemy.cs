@@ -18,14 +18,16 @@ public class BasicEnemy : MonoBehaviour
     public int maxLives = 5;
     public int dmg = 0;
 
-    public int goldValue;
-    public int killValue;
+    private int goldValue = 10;
+    private int killValue = 1;
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
 
 
     private Coroutine damageRoutine;
+
+    
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class BasicEnemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+       
         healthBar.UpdateHealthBar(lives, maxLives);
         
         target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
@@ -66,12 +69,16 @@ public class BasicEnemy : MonoBehaviour
         }
            
     }
-    private void takeDamage()
+    public void takeDamage()
     {
         lives--;
         healthBar.UpdateHealthBar(lives, maxLives);
         if (lives <= 0)
         {
+            Debug.Log("Enemy goldValue is: " + goldValue);
+            ResourceUI.instance.UpdateGold(goldValue);
+            ResourceUI.instance.UpdateKills(killValue);
+            
             Destroy(gameObject);
         }
     }
