@@ -80,7 +80,7 @@ public class BasicEnemy : MonoBehaviour
     {
         if (other.gameObject.tag == "killZone")
         {
-            Debug.Log("Trying to kill guys");
+            //Debug.Log("Trying to kill guys");
             damageRoutine = StartCoroutine(DamageOverTime());
         }
     }
