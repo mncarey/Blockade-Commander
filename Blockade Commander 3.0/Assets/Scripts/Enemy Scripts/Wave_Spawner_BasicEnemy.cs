@@ -36,6 +36,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         for(int i = 0; i< spawnPoints.Length; i++)
         {
             Instantiate(BasicEnemy, spawnPoints[i].position, Quaternion.identity);
+        
         }    
         
     }

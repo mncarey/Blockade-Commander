@@ -24,7 +24,7 @@ public class MainMenuManager: MonoBehaviour
 
        else
         {
-            Debug.Log("There are more than one MainMenuManager's in this scene.");
+           // Debug.Log("There are more than one MainMenuManager's in this scene.");
         }
     }
 
@@ -58,17 +58,18 @@ public class MainMenuManager: MonoBehaviour
 
 
     // this void will show the debug message if it is called.
-    private void DebugMessage(string message)
-    {
-        if (_debugMode)
-        {
-            Debug.Log(message);
-        }
-    }
+  //  private void DebugMessage(string message)
+   // {
+      //  if (_debugMode)
+     //   {
+        //    Debug.Log(message);
+      //  }
+   // }
 
     // this void switches the scene when the player clicks on the button
     public void ButtonClicked(string sceneName)
     {
+        Debug.Log("Button Clicked");
         SceneManager.LoadScene(sceneName);
     }
 
