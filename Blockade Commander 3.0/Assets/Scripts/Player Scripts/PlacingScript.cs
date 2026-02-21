@@ -19,8 +19,26 @@ public class PlacingScript : MonoBehaviour
     //implementing outline feature
     Outline outline;
 
-    //public GameObject TauntTower;
+    bool GetPointerDown(out Vector2 screenPosition)
+    {
+        screenPosition = default;
 
+        //Mouse
+        if(Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            screenPosition = Mouse.current.position.ReadValue();
+            return true;
+        }
+
+        //Touch
+        if(Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+        {
+            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            return true;
+        }
+
+        return false;
+    }
     public void SetCurrentFort(GameObject fort)
     {
         objectToPlace = fort;
@@ -29,16 +47,30 @@ public class PlacingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
         Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        //touch screen
+        Ray touchRay = mainCamera.ScreenPointToRay(Touchscreen.current.position.ReadValue());
+
+        //touch screen
+        Vector2 screenPosition;
+
         if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, groundLayer)){
             transform.position = raycastHit.point;
             placeToSpawn = transform.position;
-            
         }
 
-        if (Physics.Raycast(ray, out RaycastHit placeableHit, float.MaxValue, placeableObjectsLayer))
+        //touch screen
+        if(Physics.Raycast(touchRay, out RaycastHit raycastHit1, float.MaxValue, groundLayer))
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            transform.position = raycastHit1.point;
+            placeToSpawn = transform.position;
+        }
+
+        if (Physics.Raycast(ray, out RaycastHit placeableHit, float.MaxValue, placeableObjectsLayer) || Physics.Raycast(touchRay, out placeableHit, float.MaxValue, placeableObjectsLayer))
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame || Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
             {
                 //check to find a double click/tap first
                 if (Time.time - lastClickTime <= doubleClickTime)
@@ -78,8 +110,17 @@ public class PlacingScript : MonoBehaviour
         {
             Instantiate(objectToPlace, gameObject.transform.position, Quaternion.identity);
         }
-          
 
+        if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+        {
+            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();//set screenPosition
+
+            touchRay = mainCamera.ScreenPointToRay(screenPosition);// create a raycast for screenPosition
+
+            Instantiate(objectToPlace, gameObject.transform.position, Quaternion.identity);//gotta change position
+        }
+
+          
     }   
 
 }
