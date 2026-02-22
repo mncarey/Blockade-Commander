@@ -104,8 +104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatingHealthBar
   slider: {fileID: 247732137831497505}
   camera: {fileID: 0}
-  target: {fileID: 0}
-  offset: {x: 0, y: 2, z: 0}
 --- !u!1 &4623797514507133546
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +449,8 @@ MonoBehaviour:
   lives: 5
   maxLives: 5
   dmg: 0
+  goldValue: 0
+  killValue: 0
   healthBar: {fileID: 0}
 --- !u!54 &-1295710016464887516
 Rigidbody:

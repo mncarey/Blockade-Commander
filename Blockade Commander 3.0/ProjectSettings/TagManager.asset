@@ -10,6 +10,7 @@ TagManager:
   - EnemyTarget2
   - wall
   - PlaceableObject
+  - wallZone
   layers:
   - Default
   - TransparentFX
