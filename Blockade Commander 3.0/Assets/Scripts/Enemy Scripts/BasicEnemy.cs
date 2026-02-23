@@ -9,6 +9,7 @@ public class BasicEnemy : MonoBehaviour
     private Transform currentTarget;
 
     private TauntTower tauntRef;
+    private Wall wallRef;
 
     public float reachDistance = 5;
 
@@ -75,9 +76,9 @@ public class BasicEnemy : MonoBehaviour
         healthBar.UpdateHealthBar(lives, maxLives);
         if (lives <= 0)
         {
-            Debug.Log("Enemy goldValue is: " + goldValue);
-            ResourceUI.instance.UpdateGold(goldValue);
-            ResourceUI.instance.UpdateKills(killValue);
+           Debug.Log("Enemy goldValue is: " + goldValue);
+           ResourceUI.instance.UpdateGold(goldValue);
+           ResourceUI.instance.UpdateKills(killValue);
             
             Destroy(gameObject);
         }
@@ -87,8 +88,31 @@ public class BasicEnemy : MonoBehaviour
     {
         if (other.gameObject.tag == "killZone")
         {
+            Debug.Log("Taunt Zone");
+            tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
+            if (tauntRef != null)
+            {
+                Debug.Log("KILL TAUNT!");
+                tauntRef.takeDamage();
+            }
+
             //Debug.Log("Trying to kill guys");
             damageRoutine = StartCoroutine(DamageOverTime());
+            
+        }
+
+        if(other.gameObject.tag == "wallZone")
+        {
+            Debug.Log("wallZone");
+            wallRef = other.gameObject.GetComponentInParent<Wall>();
+
+            if (wallRef != null)
+            {
+                Debug.Log("trying to kill baddies");
+                wallRef.takeDamage();
+                damageRoutine = StartCoroutine(DamageOverTime());
+            }
+            
         }
     }
 
@@ -96,7 +120,12 @@ public class BasicEnemy : MonoBehaviour
     {
         if(other.gameObject.tag == "killZone")
         {
-            StopCoroutine(damageRoutine);
+            if(damageRoutine != null)
+            {
+                StopCoroutine(damageRoutine);
+
+            }
+            
         }
     }
 
@@ -109,4 +138,14 @@ public class BasicEnemy : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
+
+    private IEnumerator DamageWallRoutine()
+    {
+        while (true)
+        {
+            wallRef.takeDamage();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
 }
