@@ -928,7 +928,7 @@
                     "path": "<Pen>/tip",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": ";Keyboard&Mouse;Touch",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
