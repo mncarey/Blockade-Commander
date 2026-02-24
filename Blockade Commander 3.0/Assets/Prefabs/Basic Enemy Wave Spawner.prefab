@@ -119,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 4374299456252702303}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.14809, y: 2.3465, z: 7.32833}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wave_Spawner_BasicEnemy
   BasicEnemy: {fileID: 6675815945920939828, guid: 7eb78eebed848a148b79e891727c765d, type: 3}
+  Brigantine: {fileID: 2099700355507827545, guid: 52a9cd8b08062d84d9d2da0c68f6a0c8, type: 3}
+  Galleon: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
+  Sloop: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
   spawnPoints:
   - {fileID: 6964722564209043053}
   - {fileID: 7955647076739138035}

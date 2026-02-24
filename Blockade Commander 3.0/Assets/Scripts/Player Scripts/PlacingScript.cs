@@ -3,124 +3,139 @@ using UnityEngine.InputSystem;
 
 public class PlacingScript : MonoBehaviour
 {
-    public GameObject objectToPlace;//asigned in inspector? dont sign in inspector?
-    //want to create a bool that allows the player to even place an object or not
+
+
+    public GameObject objectToPlace;
     public Camera mainCamera;
 
+    //---- Layer Selections ----//
     public LayerMask groundLayer;
     public LayerMask placeableObjectsLayer;
 
-    private Vector3 placeToSpawn;
-
-    //implementing double click/tap to rotate
-    private float doubleClickTime = 0.3f;
+    
+    public float doubleClickTime = 0.3f;
     private float lastClickTime;
 
-    //implementing outline feature
-    Outline outline;
+    //---- Fortification Placement Restriction ----//
+    private int currentPlaced = 1;
+    public int maxPlaced = 4;
+    private bool canPlace => currentPlaced <= maxPlaced;
+    public bool removalToggle = false;
 
-    bool GetPointerDown(out Vector2 screenPosition)
+    //---- Outline ----//
+    private Outline currentOutline;
+    
+    //---- Input Action References ----//
+    private PlayerInput playerInput;
+    private InputAction clickAction;
+    private InputAction pointAction;
+
+    private void Awake()
     {
-        screenPosition = default;
-
-        //Mouse
-        if(Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            screenPosition = Mouse.current.position.ReadValue();
-            return true;
-        }
-
-        //Touch
-        if(Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
-        {
-            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            return true;
-        }
-
-        return false;
-    }
-    public void SetCurrentFort(GameObject fort)
-    {
-        objectToPlace = fort;
+        playerInput = GetComponent<PlayerInput>();
+        
+        //Input action link
+        clickAction = playerInput.actions["Click"];
+        pointAction = playerInput.actions["Point"];
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-     
-        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        
+        clickAction.performed += OnClickPerformed;
+    }
 
-        //touch screen
-        Ray touchRay = mainCamera.ScreenPointToRay(Touchscreen.current.position.ReadValue());
+    private void OnDisable()
+    {
+        
+        clickAction.performed -= OnClickPerformed;
+    }
 
-        //touch screen
-        Vector2 screenPosition;
+    //Update checks for changes based on information received from the Input Action events
+    private void Update()
+    {
+        //Checks the position of the mouse
+        UpdatePreviewPosition();
+        //Checks the outline function if applicable
+        UpdateOutlineHover();
+    }
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, groundLayer)){
-            transform.position = raycastHit.point;
-            placeToSpawn = transform.position;
-        }
 
-        //touch screen
-        if(Physics.Raycast(touchRay, out RaycastHit raycastHit1, float.MaxValue, groundLayer))
+    private void UpdatePreviewPosition()
+    {
+        Vector2 mousePos = pointAction.ReadValue<Vector2>();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, groundLayer))
         {
-            transform.position = raycastHit1.point;
-            placeToSpawn = transform.position;
+            transform.position = hit.point;
         }
+    }
 
-        if (Physics.Raycast(ray, out RaycastHit placeableHit, float.MaxValue, placeableObjectsLayer) || Physics.Raycast(touchRay, out placeableHit, float.MaxValue, placeableObjectsLayer))
+    private void UpdateOutlineHover()
+    {
+        Vector2 mousePos = pointAction.ReadValue<Vector2>();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+
+        //If the preview is on the placable object layer
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame || Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+            if (hit.transform.TryGetComponent(out Outline foundOutline))
             {
-                //check to find a double click/tap first
-                if (Time.time - lastClickTime <= doubleClickTime)
+                if (currentOutline != foundOutline)
                 {
-                    placeableHit.transform.Rotate(0f, 90f, 0f); //rotate object 90 degrees on y
+                    
+                    currentOutline?.OutlineBoolFunc(false);
+                    currentOutline = foundOutline;
+                    currentOutline.OutlineBoolFunc(true);
                 }
-
-                lastClickTime = Time.time;//click time resets
-                return;//dont also place a new object
-            }
-
-            if(placeableHit.transform.TryGetComponent(out Outline outline))//trying to check whether or not it has the Outline component
-            {
-                if(this.outline != outline)
-                {
-                    this.outline?.OutlineBoolFunc(false);//disable outline on previous object, if it exists
-                }
-
-                //override old outline with current outline on object
-                this.outline = outline;
-                outline.OutlineBoolFunc(true);
-            }
-            else
-            {
-                this.outline?.OutlineBoolFunc(false);
-                this.outline = default;
             }
         }
         else
         {
-            //if there is no object to be outlined, disable outline
-            outline?.OutlineBoolFunc(false);
-            outline = default;
+            currentOutline?.OutlineBoolFunc(false);
+            currentOutline = null;
         }
+    }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+    // Listener which runs when you tap or click
+    private void OnClickPerformed(InputAction.CallbackContext context)
+    {
+        Vector2 mousePos = pointAction.ReadValue<Vector2>();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+        if(removalToggle == false)
         {
-            Instantiate(objectToPlace, gameObject.transform.position, Quaternion.identity);
-        }
+            // Check for Rotation/Interaction via the object layer
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+            {
+                //Double Click to Rotate
+                if (Time.time - lastClickTime <= doubleClickTime)
+                {
+                    hit.transform.Rotate(0f, 90f, 0f);
+                }
 
-        if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+                lastClickTime = Time.time;
+
+                return;
+            }
+
+            // Check for Placement on the ground layer
+            if (canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
+            {
+                Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
+                currentPlaced++;
+
+            }
+
+            lastClickTime = Time.time;
+        }
+        else
         {
-            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();//set screenPosition
-
-            touchRay = mainCamera.ScreenPointToRay(screenPosition);// create a raycast for screenPosition
-
-            Instantiate(objectToPlace, gameObject.transform.position, Quaternion.identity);//gotta change position
+            // If remove toggle is true, click on a fortification to remove it
+            Debug.Log("remove");
         }
+        
+    }
 
-          
-    }   
-
+    public void SetCurrentFort(GameObject fort) => objectToPlace = fort;
 }
