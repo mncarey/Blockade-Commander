@@ -18,32 +18,38 @@ public class CameraPanning : MonoBehaviour
 
     void Update()
     {
+        // moves the camera in the left direction 
         if (moveLeft)
             transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
+        // moves the camera in the right direction
         if (moveRight)
             transform.position += Vector3.right * moveSpeed * Time.deltaTime;
 
-        // Clamp position so it stays within bounds
+        // clamp position so it stays within bounds and gets the position minX maxX and stops moving
         float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 
+    // starts moving left and makes it true
     public void StartMoveLeft()
     {
         moveLeft = true;
     }
 
+     // stops moving left and makes it false
     public void StopMoveLeft()
     {
         moveLeft = false;
     }
 
+    // starts moving right and makes it true
     public void StartMoveRight()
     {
         moveRight = true;
     }
 
+    // stops moving right and makes it false
     public void StopMoveRight()
     {
         moveRight = false;
