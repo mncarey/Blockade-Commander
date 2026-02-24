@@ -32,7 +32,6 @@ public class PlacingScript : MonoBehaviour
 
     private void Awake()
     {
-        removalToggle = true;
         playerInput = GetComponent<PlayerInput>();
         
         //Input action link
@@ -106,7 +105,6 @@ public class PlacingScript : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
         if(removalToggle == false)
         {
-            //Debug.Log("Remove False");
             // Check for Rotation/Interaction via the object layer
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
             {
@@ -131,23 +129,15 @@ public class PlacingScript : MonoBehaviour
 
             lastClickTime = Time.time;
         }
-        if(removalToggle == true)
+        else
         {
-            //Debug.Log("Remove True");
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
             {
-                // If remove toggle is true, click on a fortification to remove it
-                Debug.Log(currentPlaced);
                 Destroy(hit.collider.gameObject);
                 currentPlaced--;
 
-                
-
                 return;
             }
-        }
-        {
-            
         }
         
     }
