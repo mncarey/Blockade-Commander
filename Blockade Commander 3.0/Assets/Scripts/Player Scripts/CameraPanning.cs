@@ -63,7 +63,7 @@ public class CameraPanning : MonoBehaviour
 
     private Vector3 GetWorldPosition(Vector2 screenPos)
     {
-        // Prevent invalid screen positions
+        // prevents invalid screen positions
         if (float.IsInfinity(screenPos.x) || float.IsInfinity(screenPos.y) ||
             float.IsNaN(screenPos.x) || float.IsNaN(screenPos.y))
         {
