@@ -129,10 +129,22 @@ public class PlacingScript : MonoBehaviour
 
             lastClickTime = Time.time;
         }
-        else
+        if(removalToggle == true)
         {
-            // If remove toggle is true, click on a fortification to remove it
-            Debug.Log("remove");
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+            {
+                // If remove toggle is true, click on a fortification to remove it
+                Debug.Log(currentPlaced);
+                Destroy(hit.collider.gameObject);
+                currentPlaced--;
+
+                
+
+                return;
+            }
+        }
+        {
+            
         }
         
     }
