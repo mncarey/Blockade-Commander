@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlacingScript : MonoBehaviour
 {
 
-
+    public StartWaveButton startWaveButton;
     public GameObject objectToPlace;
     public Camera mainCamera;
 
@@ -17,9 +17,9 @@ public class PlacingScript : MonoBehaviour
     private float lastClickTime;
 
     //---- Fortification Placement Restriction ----//
-    private int currentPlaced = 1;
+    public int currentPlaced = 1;
     public int maxPlaced = 4;
-    private bool canPlace => currentPlaced <= maxPlaced;
+    public bool canPlace => currentPlaced <= maxPlaced;
     public bool removalToggle = false;
 
     //---- Outline ----//
@@ -58,6 +58,14 @@ public class PlacingScript : MonoBehaviour
         UpdatePreviewPosition();
         //Checks the outline function if applicable
         UpdateOutlineHover();
+
+        //start wave
+        startWaveButton.gameObject.SetActive(!canPlace);
+
+        if (startWaveButton.isClicked)
+        {
+            startWaveButton.gameObject.SetActive(false);
+        }
     }
 
 

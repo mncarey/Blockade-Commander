@@ -7,17 +7,23 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
     public GameObject BasicEnemy;
     public Transform[] spawnPoints; //<- for setting specific spawn points
+    public StartWaveButton startWaveRef;
 
     //random points
     public Vector2 spawnAreaMin;
     public Vector2 spawnAreaMax;
     private Vector3 randomSpawn;
 
+    private bool canSpawn = false;
+
     private void Start()
     {
+        /*
         Debug.Log("spawning wave");
         SpawnEnemy();
+        */
     }
+
     void Update()
     {
         /*
@@ -29,9 +35,10 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             SpawnEnemy();
         }
         */
+        
     }
 
-    private void SpawnEnemy()
+    public void SpawnEnemy()
     {
         for(int i = 0; i< spawnPoints.Length; i++)
         {

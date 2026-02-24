@@ -15,11 +15,7 @@ public class FortImageDisplay : MonoBehaviour
 
     private void Awake()
     {
-        
-            
         uiImage = GetComponent<Image>();
-        
-        
     }
     void Start()
     {

@@ -60,8 +60,5 @@ public class FortButtonPress : MonoBehaviour
         {
             placingScript.removalToggle = false;
         }
-       
-
-
     }
 }

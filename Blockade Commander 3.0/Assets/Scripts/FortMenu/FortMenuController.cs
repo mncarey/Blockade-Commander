@@ -23,7 +23,6 @@ public class FortMenuController : MonoBehaviour
     {
         for (int i = 0; i < slotContainer.transform.childCount; i++)
         {
-
             GameObject slot = slotContainer.transform.GetChild(i).gameObject;
             Debug.Log(slot.name);
         }
