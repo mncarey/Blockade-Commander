@@ -7,8 +7,7 @@ using static UnityEditor.PlayerSettings;
 
 public class BasicEnemy : MonoBehaviour
 {
-    private Transform target1;
-    private Transform target2;
+    
     private Transform currentTarget;
 
     private TauntTower tauntRef;
@@ -48,8 +47,8 @@ public class BasicEnemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     
-    //After that set priority
-    //Taunt tower if within x units
+    
+    //If this is within taunt field - set taunt as priority target
     //everything else if taunt tower is not in range
 
     //then if this enemy is within "range" of the fortification - set speed to 0 - execute damage towards the fortification
@@ -73,14 +72,14 @@ public class BasicEnemy : MonoBehaviour
 
         targets = targets.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).ToList();
 
-        //Debug.Log("The closest fortification is " + targets[0].name);
+       
         
 
         //---- Set Current Target to Closest ----//
         if(targets.Count > 0 && targets[0]  != null)
         {
             currentTarget = targets[0].transform;
-            //Debug.Log(gameObject.name + " is targeting " + currentTarget.name);
+            
         }
 
         
@@ -90,10 +89,19 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
+
+        if (currentTarget == null)
+        {
+            //If this is within taunt field - set that as current target
+
+            //If not, continue as normal
+            FindNewTarget();
+            return;
+
+        }
 
         
-        if(currentTarget != null)
+        if (currentTarget != null)
         {
             
 
@@ -101,6 +109,43 @@ public class BasicEnemy : MonoBehaviour
             currentTarget.position, speed * Time.deltaTime);//move towards the target
         }
            
+    }
+
+    private void FindNewTarget()
+    {
+        //remove all null references
+        targets.RemoveAll(t => t == null);
+
+        //Find all new references if there are fortifications within the scene
+        GameObject[] targetTag = GameObject.FindGameObjectsWithTag("Fortification");
+        
+        //If there are no targets left
+        if (targetTag.Length == 0)
+        {
+            currentTarget = null;
+            return;
+        }
+
+        //Collect a collection of targetTag, for each object within targetTag and checks all not null
+        //Checks if there is a taunt tower component attached
+        //Adds to a list
+        var tauntTowers = targetTag.Where(obj => obj != null && obj.GetComponent<TauntTower>() != null).ToList();
+
+        //If there are taunt towers
+        if (tauntTowers.Count > 0)
+        {
+            //Set priority target to taunt tower
+            currentTarget = tauntTowers.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).First().transform;
+            //Debug.Log(gameObject.name + " priority targeting Taunt Tower");
+        }
+        else
+        {
+            //target closest target
+            currentTarget = targetTag.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).First().transform;
+            Debug.Log(gameObject.name + " targeting closest fortification");
+        }
+        
+
     }
 
     public void takeDamage()
@@ -111,7 +156,7 @@ public class BasicEnemy : MonoBehaviour
         {
             Destroy(gameObject);
 
-           Debug.Log("Enemy goldValue is: " + goldValue);
+           //Debug.Log("Enemy goldValue is: " + goldValue);
            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
         }
@@ -119,9 +164,22 @@ public class BasicEnemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        //if this enters the taunt range of a taunt tower
+        if (other.gameObject.CompareTag("Taunt Range"))
+        {
+            if(other.transform.parent != null)
+            {
+                //set this game object as current target
+                currentTarget = other.transform;
+                Debug.Log("Within Taunt Range");
+            }
+            
+
+        }
         if (other.gameObject.tag == "killZone")
         {
-            Debug.Log("ENTER killZone");
+            //Debug.Log("ENTER killZone");
             //taunt tower taking damage
             tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
             if (tauntRef != null && damageTauntRoutine == null /* && tower is within range of enemy*/)

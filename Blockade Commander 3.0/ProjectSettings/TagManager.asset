@@ -12,6 +12,7 @@ TagManager:
   - PlaceableObject
   - wallZone
   - Fortification
+  - Taunt Range
   layers:
   - Default
   - TransparentFX
