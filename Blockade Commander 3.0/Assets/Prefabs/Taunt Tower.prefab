@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1661011353626702095}
   m_Layer: 7
   m_Name: Taunt Tower
-  m_TagString: EnemyTarget1
+  m_TagString: Fortification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TauntTower
   health: 10
   maxLives: 10
+  isDed: 0
   healthBar: {fileID: 0}
 --- !u!1 &1272214838274675648
 GameObject:

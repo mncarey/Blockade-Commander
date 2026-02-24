@@ -1,6 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEditor.PlayerSettings;
 
 public class BasicEnemy : MonoBehaviour
 {
@@ -30,7 +33,11 @@ public class BasicEnemy : MonoBehaviour
     private Coroutine damageTauntRoutine;
 
     private bool isTakingDamage;
+
     
+    
+    //List to hold the fortifications within the scene
+    public List<GameObject> targets = new List<GameObject>();
 
     private void Awake()
     {
@@ -39,15 +46,45 @@ public class BasicEnemy : MonoBehaviour
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    
+    //After that set priority
+    //Taunt tower if within x units
+    //everything else if taunt tower is not in range
+
+    //then if this enemy is within "range" of the fortification - set speed to 0 - execute damage towards the fortification
+
+    //when the fortification health reaches 0 set next target
+    //set speed back to default
+
+    //This should keep going until enemies are defeated
     void Start()
     {
        
         healthBar.UpdateHealthBar(lives, maxLives);
-        
-        target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
-        target2 = GameObject.FindWithTag("EnemyTarget2")?.transform;
 
-        currentTarget = target1;
+        //---- Get Targets For Attack Info ----//
+        //Finds objects in scene with this tag
+        GameObject[] targetTag = GameObject.FindGameObjectsWithTag("Fortification");
+        //add game objects tagged "fortification" to the target list
+        targets.AddRange(targetTag);
+
+        //---- Get transform information and figure out relative distance, then add to list ----//
+
+        targets = targets.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).ToList();
+
+        //Debug.Log("The closest fortification is " + targets[0].name);
+        
+
+        //---- Set Current Target to Closest ----//
+        if(targets.Count > 0 && targets[0]  != null)
+        {
+            currentTarget = targets[0].transform;
+            //Debug.Log(gameObject.name + " is targeting " + currentTarget.name);
+        }
+
+        
+        
     }
 
     // Update is called once per frame
@@ -55,16 +92,11 @@ public class BasicEnemy : MonoBehaviour
     {
         target1 = GameObject.FindWithTag("EnemyTarget1")?.transform;
 
-        if(target1 != null)
-        {
-            currentTarget = target1;
-        }
-        else
-        {
-            currentTarget = target2;
-        }
+        
         if(currentTarget != null)
         {
+            
+
             transform.position = Vector3.MoveTowards(transform.position, 
             currentTarget.position, speed * Time.deltaTime);//move towards the target
         }
@@ -92,7 +124,7 @@ public class BasicEnemy : MonoBehaviour
             Debug.Log("ENTER killZone");
             //taunt tower taking damage
             tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
-            if (tauntRef != null && damageTauntRoutine == null)
+            if (tauntRef != null && damageTauntRoutine == null /* && tower is within range of enemy*/)
             {
                 damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
             }
