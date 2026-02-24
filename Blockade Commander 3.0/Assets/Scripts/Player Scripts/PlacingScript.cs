@@ -131,8 +131,13 @@ public class PlacingScript : MonoBehaviour
         }
         else
         {
-            // If remove toggle is true, click on a fortification to remove it
-            Debug.Log("remove");
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+            {
+                Destroy(hit.collider.gameObject);
+                currentPlaced--;
+
+                return;
+            }
         }
         
     }
