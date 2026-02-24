@@ -1,11 +1,13 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 
 public class TauntTower : MonoBehaviour
 {
     public int health = 10;
     public int maxLives = 10;
+    public bool isDed = false;
 
     Rigidbody rb;
 
@@ -34,7 +36,12 @@ public class TauntTower : MonoBehaviour
         healthBar.UpdateHealthBar(health, maxLives);
         if (health <= 0)
         {
-            Destroy(gameObject);
+            isDed = true;
+            Debug.Log("this tower is dead");
+            if (gameObject != null)
+            {
+                Destroy(gameObject); 
+            }
         }
     }
 
