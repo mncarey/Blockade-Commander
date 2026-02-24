@@ -34,11 +34,14 @@ public class Wall : MonoBehaviour
         }
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         if (gameObject.CompareTag("BasicEnemy"))
         {
+            //found enemy
             Debug.Log("Enemy collided");
+           
             damageRoutine = StartCoroutine(DamageOverTime());
         }
     }
@@ -49,7 +52,7 @@ public class Wall : MonoBehaviour
         {
             if (damageRoutine != null)
             {
-                StopCoroutine(damageRoutine);
+                StopCoroutine(damageRoutine);   
                 damageRoutine = null;
             }
         }
@@ -63,4 +66,5 @@ public class Wall : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
+    */
 }
