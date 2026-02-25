@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 281654893409207208}
   - component: {fileID: 247732137831497505}
   - component: {fileID: 5828581557076998452}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Health Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 6613663969661912631}
   - component: {fileID: 8996532276946809055}
   - component: {fileID: 2968585141061418330}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3529134623787399916}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 1140924002984103193}
   - component: {fileID: 4628164586495529466}
   - component: {fileID: 4064742636865479349}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 2183293943499635327}
   - component: {fileID: 6251001642291643144}
   - component: {fileID: -1295710016464887516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Basic Enemy
   m_TagString: BasicEnemy
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -444,11 +444,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d90fc0fa6f7be49b01ecaaf8f122c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  reachDistance: 5
   speed: 5
-  lives: 5
-  maxLives: 5
+  currentSpeed: 0
+  attackSpeed: 0
+  lives: 20
+  maxLives: 20
   dmg: 0
+  reachDistance: 5
   healthBar: {fileID: 0}
   targets: []
 --- !u!54 &-1295710016464887516
@@ -489,7 +491,7 @@ GameObject:
   - component: {fileID: 105580416091025964}
   - component: {fileID: 6715477343148972884}
   - component: {fileID: 476279618020135335}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

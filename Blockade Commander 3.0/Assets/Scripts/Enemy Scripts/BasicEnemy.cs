@@ -57,7 +57,7 @@ public class BasicEnemy : MonoBehaviour
     //This should keep going until enemies are defeated
     void Start()
     {
-       
+        Debug.Log("Time scale: " + Time.timeScale);
         healthBar.UpdateHealthBar(lives, maxLives);
         currentSpeed = speed;
         //---- Get Targets For Attack Info ----//
@@ -85,7 +85,7 @@ public class BasicEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         if (currentTarget == null)
@@ -101,10 +101,20 @@ public class BasicEnemy : MonoBehaviour
         
         if (currentTarget != null)
         {
-            
+            Debug.Log(currentTarget.position);
 
-            transform.position = Vector3.MoveTowards(transform.position, 
-            currentTarget.position, currentSpeed * Time.deltaTime);//move towards the target
+            Vector3 direction = (currentTarget.position - rb.position).normalized;
+            Debug.Log(direction);
+            Vector3 moveVelocity = direction * currentSpeed;
+            Debug.Log(moveVelocity);
+            // Preserve gravity (Y velocity)
+            rb.linearVelocity = new Vector3(
+                moveVelocity.x,
+                rb.linearVelocity.y,
+                moveVelocity.z
+            );
+            Debug.Log(rb.linearVelocity);
+            // transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, currentSpeed * Time.deltaTime);//move towards the target
         }
         
            
@@ -172,7 +182,7 @@ public class BasicEnemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-
+        Debug.Log("Triggered");
         //if this enters the taunt range of a taunt tower
         if (other.gameObject.CompareTag("Taunt Range"))
         {
