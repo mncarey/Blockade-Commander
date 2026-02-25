@@ -4176,6 +4176,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: FortificationMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 5486698629270847668, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 018b96699c470d44bafac85bc8758d0a, type: 3}
     - target: {fileID: 7145126175257850502, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1490.6078
