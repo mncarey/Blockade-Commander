@@ -446,10 +446,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
   reachDistance: 5
   speed: 5
-  lives: 20
-  maxLives: 20
+  lives: 5
+  maxLives: 5
   dmg: 0
   healthBar: {fileID: 0}
+  targets: []
 --- !u!54 &-1295710016464887516
 Rigidbody:
   m_ObjectHideFlags: 0
