@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5263075808891839719}
   m_Layer: 7
   m_Name: Wall
-  m_TagString: PlaceableObject
+  m_TagString: Fortification
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

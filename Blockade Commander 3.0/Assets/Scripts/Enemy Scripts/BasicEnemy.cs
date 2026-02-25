@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 using static UnityEditor.PlayerSettings;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements.Experimental;
+using UnityEngine.InputSystem;
 
 public class BasicEnemy : MonoBehaviour
 {
@@ -87,33 +88,35 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        Debug.Log("currentTarget " + currentTarget);
         if (currentTarget == null)
         {
             //If this is within taunt field - set that as current target
 
             //If not, continue as normal
+            rb.linearVelocity = Vector3.zero;
             FindNewTarget();
-            return;
+            
+            
 
         }
 
         
-        if (currentTarget != null)
+        else
         {
-            Debug.Log(currentTarget.position);
+            //Debug.Log("Current Target Position: " + currentTarget.position);
 
             Vector3 direction = (currentTarget.position - rb.position).normalized;
-            Debug.Log(direction);
+            //Debug.Log("Direction: " + direction);
             Vector3 moveVelocity = direction * currentSpeed;
-            Debug.Log(moveVelocity);
+            //Debug.Log("Velocity " + moveVelocity);
             // Preserve gravity (Y velocity)
             rb.linearVelocity = new Vector3(
                 moveVelocity.x,
                 rb.linearVelocity.y,
                 moveVelocity.z
             );
-            Debug.Log(rb.linearVelocity);
+            //Debug.Log("RB linear Velocity: " + rb.linearVelocity);
             // transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, currentSpeed * Time.deltaTime);//move towards the target
         }
         
@@ -182,7 +185,7 @@ public class BasicEnemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
+        Debug.Log("Triggered: " + other?.gameObject?.tag);
         //if this enters the taunt range of a taunt tower
         if (other.gameObject.CompareTag("Taunt Range"))
         {
@@ -199,7 +202,7 @@ public class BasicEnemy : MonoBehaviour
         {
 
             //taunt tower taking damage
-            currentSpeed = attackSpeed;
+            rb.linearVelocity = Vector3.zero;
             tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
             if (tauntRef != null && damageTauntRoutine == null /* && tower is within range of enemy*/)
             {
@@ -285,7 +288,7 @@ public class BasicEnemy : MonoBehaviour
                 takeDamage();
                 yield return new WaitForSeconds(1f);
         }
-        currentSpeed = speed;
+        
         damageEnemyRoutine = null;
     }
 

@@ -39,7 +39,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         */
         if (enemiesAlive <= 0)
         {
-            Debug.Log("Wave Complete!");
+            //Debug.Log("Wave Complete!");
         }
     }
 
