@@ -9,6 +9,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public Transform[] spawnPoints; //<- for setting specific spawn points
     public StartWaveButton startWaveRef;
     public GameObject enemyDefeatPopup;
+    public GameObject enemyWinPopup;
 
     //random points
     public Vector2 spawnAreaMin;
@@ -67,6 +68,11 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             Debug.Log("Wave Complete!");
             enemyDefeatPopup.gameObject.SetActive(true);
         }
+        
+    }
+
+    public void PlayerDied()
+    {
         
     }
 

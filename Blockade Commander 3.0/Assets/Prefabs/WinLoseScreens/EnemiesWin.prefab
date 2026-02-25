@@ -263,7 +263,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enemies Defeated!!:D
+  m_text: Enemies Win:(
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -25.948479, y: 0, z: -16.417038, w: 0}
+  m_margin: {x: -13.7955475, y: 0, z: -0.32040408, w: -19.47168}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -345,8 +345,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6463400058209844155}
   m_Layer: 0
-  m_Name: Enemies Defeated Popup
-  m_TagString: EnemiesDefeated
+  m_Name: EnemiesWin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 8271066923082112122}
   - component: {fileID: 8349788969332893754}
   m_Layer: 5
-  m_Name: Enemies Defeated Panel
+  m_Name: Enemies Win Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
