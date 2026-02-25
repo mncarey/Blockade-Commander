@@ -13,6 +13,8 @@ TagManager:
   - wallZone
   - Fortification
   - Taunt Range
+  - EnemiesDefeated
+  - FortificationMenu
   layers:
   - Default
   - TransparentFX

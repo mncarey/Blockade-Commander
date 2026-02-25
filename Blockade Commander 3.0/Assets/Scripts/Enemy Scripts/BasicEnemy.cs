@@ -173,16 +173,12 @@ public class BasicEnemy : MonoBehaviour
            //Debug.Log("Enemy goldValue is: " + goldValue);
            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
+
+            waveSpawnerRef.EnemyDied();
         }
     }
 
-    private void OnDestroy()
-    {
-        if(waveSpawnerRef != null)
-        {
-            waveSpawnerRef.enemiesAlive--;
-        }
-    }
+   
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Triggered: " + other?.gameObject?.tag);
