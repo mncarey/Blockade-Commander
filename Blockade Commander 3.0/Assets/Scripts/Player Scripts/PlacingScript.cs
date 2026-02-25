@@ -17,10 +17,11 @@ public class PlacingScript : MonoBehaviour
     private float lastClickTime;
 
     //---- Fortification Placement Restriction ----//
-    public int currentPlaced = 1;
+    public int currentPlaced = 0;
     public int maxPlaced = 4;
     public bool canPlace => currentPlaced <= maxPlaced;
     public bool removalToggle = false;
+    public bool startPlaceState = false;
 
     //---- Outline ----//
     private Outline currentOutline;
@@ -111,41 +112,49 @@ public class PlacingScript : MonoBehaviour
     {
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
-        if(removalToggle == false)
+        if(startPlaceState == false)
         {
-            // Check for Rotation/Interaction via the object layer
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
-            {
-                //Double Click to Rotate
-                if (Time.time - lastClickTime <= doubleClickTime)
-                {
-                    hit.transform.Rotate(0f, 90f, 0f);
-                }
-
-                lastClickTime = Time.time;
-
-                return;
-            }
-
-            // Check for Placement on the ground layer
-            if (canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
-            {
-                Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
-                currentPlaced++;
-
-            }
-
-            lastClickTime = Time.time;
+            Debug.Log("can't place");
         }
         else
         {
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+            if (removalToggle == false)
             {
-                Destroy(hit.collider.gameObject);
-                currentPlaced--;
+                // Check for Rotation/Interaction via the object layer
+                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+                {
+                    //Double Click to Rotate
+                    if (Time.time - lastClickTime <= doubleClickTime)
+                    {
+                        hit.transform.Rotate(0f, 90f, 0f);
+                    }
 
-                return;
+                    lastClickTime = Time.time;
+
+                    return;
+                }
+
+                // Check for Placement on the ground layer
+                if (canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
+                {
+                    Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
+                    currentPlaced++;
+
+                }
+
+                lastClickTime = Time.time;
             }
+            else
+            {
+                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+                {
+                    Destroy(hit.collider.gameObject);
+                    currentPlaced--;
+
+                    return;
+                }
+            }
+            Debug.Log("Current Placed: " + currentPlaced);
         }
         
     }

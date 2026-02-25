@@ -33,7 +33,7 @@ public class FortButtonPress : MonoBehaviour
 
     public void IWasClicked()
     {
-        Debug.Log("Clicked");
+        
         FortMenuRef.SetActive(true);
         FortExitRef.SetActive(true);
         FortRemoveRef.SetActive(true);
@@ -47,6 +47,7 @@ public class FortButtonPress : MonoBehaviour
         FortMenuRef.SetActive(false);
         FortRemoveRef.SetActive(false);
         FortButtonRef.SetActive(true);
+        placingScript.startPlaceState = false;
     }
 
     //When clicked, this will toggle the ability to place fortifications off and turn on the ability to remove them

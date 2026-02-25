@@ -128,7 +128,9 @@ public class fortSlot : MonoBehaviour
             fortImageDisplay.ChangeImage(newSprite, fortName, content);
             //set the display image to the image associated with this object
 
+            placeRef.startPlaceState = true;
             placeRef.SetCurrentFort(currentFort);
+
 
         }
 
