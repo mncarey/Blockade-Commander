@@ -19,7 +19,7 @@ public class PlacingScript : MonoBehaviour
     //---- Fortification Placement Restriction ----//
     public int currentPlaced = 0;
     public int maxPlaced = 4;
-    public bool canPlace => currentPlaced <= maxPlaced;
+    public bool canPlace => currentPlaced < maxPlaced;
     public bool removalToggle = false;
     public bool startPlaceState = false;
 
@@ -112,6 +112,9 @@ public class PlacingScript : MonoBehaviour
     {
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
+
+        if (!context.performed) return;
+
         if(startPlaceState == false)
         {
             Debug.Log("can't place");
@@ -146,15 +149,30 @@ public class PlacingScript : MonoBehaviour
             }
             else
             {
-                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
-                {
-                    Destroy(hit.collider.gameObject);
-                    currentPlaced--;
+                if(Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+{
+                    // Find the highest object in the hierarchy that belongs to this prefab
+                    GameObject objectToRemove = hit.collider.transform.root.gameObject;
 
+                    
+                    //Check to make sure that it is what we want to remove using the tag "Fortification"
+                    if (objectToRemove.CompareTag("Fortification"))
+                    {
+                        // Disable all colliders on the object immediately to stop further raycasts
+                        foreach (var col in objectToRemove.GetComponentsInChildren<Collider>())
+                        {
+                            col.enabled = false;
+                        }
+
+                        Destroy(objectToRemove);
+                        currentPlaced--;
+
+                        Debug.Log($"Removed {objectToRemove.name}. Remaining: {currentPlaced}");
+                    }
                     return;
                 }
             }
-            Debug.Log("Current Placed: " + currentPlaced);
+            
         }
         
     }
