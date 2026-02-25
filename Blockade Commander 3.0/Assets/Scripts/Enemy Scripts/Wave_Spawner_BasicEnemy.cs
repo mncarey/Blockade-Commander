@@ -37,25 +37,35 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             SpawnEnemy();
         }
         */
+        if (enemiesAlive <= 0)
+        {
+            Debug.Log("Wave Complete!");
+        }
     }
 
     public void SpawnEnemy()
     {
         for(int i = 0; i< spawnPoints.Length; i++)
         {
-            Instantiate(BasicEnemy, spawnPoints[i].position, Quaternion.identity);
+            GameObject enemy = Instantiate(BasicEnemy, spawnPoints[i].position, Quaternion.identity);
             enemiesAlive++;
+
+            enemy.GetComponent<BasicEnemy>().waveSpawnerRef = this;
         }     
     }
 
     public void EnemyDied()
     {
+        /*
         enemiesAlive--;
 
         if (enemiesAlive <= 0)
         {
             Debug.Log("Wave Complete!");
         }
+        */
     }
+
+    
 
 }

@@ -14,7 +14,7 @@ public class BasicEnemy : MonoBehaviour
 
     private TauntTower tauntRef;
     private Wall wallRef;
-
+    public Wave_Spawner_BasicEnemy waveSpawnerRef;
     
 
     //---- Enemy Basic Var ----//
@@ -156,13 +156,20 @@ public class BasicEnemy : MonoBehaviour
         if (lives <= 0)
         {
             Destroy(gameObject);
-
+           
            //Debug.Log("Enemy goldValue is: " + goldValue);
            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
         }
     }
 
+    private void OnDestroy()
+    {
+        if(waveSpawnerRef != null)
+        {
+            waveSpawnerRef.enemiesAlive--;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
 
