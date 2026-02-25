@@ -444,11 +444,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d90fc0fa6f7be49b01ecaaf8f122c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
+  waveSpawnerRef: {fileID: 0}
   speed: 5
   currentSpeed: 0
   attackSpeed: 0
-  lives: 20
-  maxLives: 20
+  lives: 5
+  maxLives: 5
   dmg: 0
   reachDistance: 5
   healthBar: {fileID: 0}

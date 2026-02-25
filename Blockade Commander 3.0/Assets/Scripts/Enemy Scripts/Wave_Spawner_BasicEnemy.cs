@@ -8,6 +8,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public GameObject BasicEnemy;
     public Transform[] spawnPoints; //<- for setting specific spawn points
     public StartWaveButton startWaveRef;
+    public GameObject enemyDefeatPopup;
 
     //random points
     public Vector2 spawnAreaMin;
@@ -36,11 +37,13 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             Debug.Log("spawning wave");
             SpawnEnemy();
         }
-        */
+        
         if (enemiesAlive <= 0)
         {
-            //Debug.Log("Wave Complete!");
+            Debug.Log("Wave Complete!");
+            enemyDefeatPopup.gameObject.SetActive(true);
         }
+        */
     }
 
     public void SpawnEnemy()
@@ -56,16 +59,26 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
     public void EnemyDied()
     {
-        /*
+        
         enemiesAlive--;
 
         if (enemiesAlive <= 0)
         {
             Debug.Log("Wave Complete!");
+            enemyDefeatPopup.gameObject.SetActive(true);
         }
-        */
+        
     }
 
-    
+    public void ClearFortifications()
+    {
+        GameObject[] forts = GameObject.FindGameObjectsWithTag("Fortification");
 
+        foreach (GameObject fort in forts)
+        {
+            Destroy(fort);
+        }
+
+        Debug.Log("All fortifications destroyed.");
+    }
 }
