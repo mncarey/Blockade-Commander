@@ -20,7 +20,10 @@ public class StartWaveButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (placingScriptRef.currentPlaced == 4)
+        {
+            gameObject.SetActive(true);
+        }
     }
 
     public void IWasClicked()
@@ -44,6 +47,8 @@ public class StartWaveButton : MonoBehaviour
         spawnEnemyRef.SpawnEnemy();
 
         isClicked = true;
+
+        
 
     }
 }

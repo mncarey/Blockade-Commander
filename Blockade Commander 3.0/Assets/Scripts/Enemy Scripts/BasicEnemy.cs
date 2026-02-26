@@ -16,6 +16,7 @@ public class BasicEnemy : MonoBehaviour
     private TauntTower tauntRef;
     private Wall wallRef;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
+    //public GameObject playerRef;
     
 
     //---- Enemy Basic Var ----//
@@ -99,8 +100,6 @@ public class BasicEnemy : MonoBehaviour
             //If not, continue as normal
             rb.linearVelocity = Vector3.zero;
             FindNewTarget();
-            
-            
 
         }
 
@@ -130,7 +129,8 @@ public class BasicEnemy : MonoBehaviour
         //If there are no targets left
         if (targetTag.Length == 0)
         {
-            currentTarget = null;
+            GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
+            currentTarget = playerRef.transform;
             speed = 0;
             return;
         }
@@ -234,6 +234,8 @@ public class BasicEnemy : MonoBehaviour
                 damageWallRoutine = StartCoroutine(DamageWallRoutine());
             }
         }
+
+        
     }
 
     private void OnTriggerExit(Collider other)

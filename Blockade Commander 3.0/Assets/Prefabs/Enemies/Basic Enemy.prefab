@@ -445,6 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
   waveSpawnerRef: {fileID: 0}
+  playerRef: {fileID: 2618640847772804475, guid: 51d01ff9fc6c65a4294eaa17d29969c1, type: 3}
   speed: 5
   currentSpeed: 0
   attackSpeed: 0

@@ -1,0 +1,72 @@
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem.Processors;
+
+public class PlayerFortress : MonoBehaviour
+{
+    public int health = 10;
+    public int maxLives = 10;
+    public bool isDed = false;
+
+    Rigidbody rb;
+
+    [SerializeField] FloatingHealthBar healthBar;
+
+    private Coroutine damageRoutine;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+    }
+
+    void Start()
+    {
+        healthBar.UpdateHealthBar(health, maxLives);
+    }
+    private void Update()
+    {
+
+    }
+
+    public void takeDamage()
+    {
+        health--;
+        healthBar.UpdateHealthBar(health, maxLives);
+        if (health <= 0)
+        {
+            if (gameObject != null)
+            {
+                Destroy(gameObject);
+                isDed = true;
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "BasicEnemy")
+        {
+            damageRoutine = StartCoroutine(DamageOverTime());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "BasicEnemy")
+        {
+            StopCoroutine(damageRoutine);
+        }
+    }
+
+    private IEnumerator DamageOverTime()
+    {
+        while (true)
+        {
+            takeDamage();
+            //tauntRef.takeDamage();
+            yield return new WaitForSeconds(1f);
+        }
+    }
+}
