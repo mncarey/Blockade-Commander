@@ -122,7 +122,6 @@ MonoBehaviour:
   exitFortMenuRef: {fileID: 0}
   fortRemoveRef: {fileID: 0}
   placingScriptRef: {fileID: 0}
-  playerRef: {fileID: 0}
 --- !u!1 &3255007432513170640
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +346,7 @@ GameObject:
   - component: {fileID: 6463400058209844155}
   m_Layer: 0
   m_Name: EnemiesWin
-  m_TagString: EnemiesWin
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,7 +622,6 @@ MonoBehaviour:
   fortRemoveRef: {fileID: 0}
   spawnEnemyRef: {fileID: 0}
   placingScriptRef: {fileID: 0}
-  player: {fileID: 0}
   isClicked: 0
 --- !u!1 &8744591895867651865
 GameObject:

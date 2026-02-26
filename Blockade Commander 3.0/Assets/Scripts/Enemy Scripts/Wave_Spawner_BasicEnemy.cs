@@ -99,16 +99,4 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
         Debug.Log("All fortifications destroyed.");
     }
-
-    public void ClearEnemies()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("BasicEnemy");
-
-        foreach (GameObject enemy in enemies)
-        {
-            Destroy(enemy);
-        }
-
-        Debug.Log("All enemies destroyed.");
-    }
 }

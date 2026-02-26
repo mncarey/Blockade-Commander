@@ -9,8 +9,6 @@ public class PlayerFortress : MonoBehaviour
     public int maxLives = 10;
     public bool isDed = false;
 
-    public GameObject enemiesWinPopupRef;
-
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
@@ -26,8 +24,6 @@ public class PlayerFortress : MonoBehaviour
     void Start()
     {
         healthBar.UpdateHealthBar(health, maxLives);
-        //enemiesWinPopupRef = GameObject.FindGameObjectWithTag("EnemiesWin");
-
     }
     private void Update()
     {
@@ -40,15 +36,10 @@ public class PlayerFortress : MonoBehaviour
         healthBar.UpdateHealthBar(health, maxLives);
         if (health <= 0)
         {
-            StopCoroutine(damageRoutine);
-            Debug.Log("DELCAN HELP");
-            enemiesWinPopupRef.SetActive(true);
-            //Destroy(gameObject);
-
             if (gameObject != null)
             {
-                
-                
+                Destroy(gameObject);
+                isDed = true;
             }
         }
     }
@@ -65,26 +56,17 @@ public class PlayerFortress : MonoBehaviour
     {
         if (other.gameObject.tag == "BasicEnemy")
         {
-           StopCoroutine(damageRoutine);
+            StopCoroutine(damageRoutine);
         }
-    }
-
-    public void Heal()
-    {
-        healthBar.UpdateHealthBar(health, maxLives);
-        damageRoutine = null;
     }
 
     private IEnumerator DamageOverTime()
     {
-        while (health>0)
+        while (true)
         {
             takeDamage();
             //tauntRef.takeDamage();
             yield return new WaitForSeconds(1f);
         }
-
-        damageRoutine = null;
-        //reset player health
     }
 }
