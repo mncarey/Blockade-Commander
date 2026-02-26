@@ -11,6 +11,12 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public GameObject enemyDefeatPopup;
     public GameObject enemyWinPopup;
 
+
+    public GameObject sloopRef;
+    public GameObject brigRef;
+    public GameObject gallRef;
+    private GameObject[] enemyPrefabs;
+
     //random points
     public Vector2 spawnAreaMin;
     public Vector2 spawnAreaMax;
@@ -22,6 +28,10 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
     private void Start()
     {
+        enemyPrefabs = new GameObject[3];
+        enemyPrefabs[0] = sloopRef;
+        enemyPrefabs[1] = brigRef;
+        enemyPrefabs[2] = gallRef;
         /*
         Debug.Log("spawning wave");
         SpawnEnemy();
@@ -51,7 +61,9 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     {
         for(int i = 0; i< spawnPoints.Length; i++)
         {
-            GameObject enemy = Instantiate(BasicEnemy, spawnPoints[i].position, Quaternion.identity);
+            int randomIndex = Random.Range(0, enemyPrefabs.Length);
+            GameObject randomEnemy = enemyPrefabs[randomIndex];
+            GameObject enemy = Instantiate(randomEnemy, spawnPoints[i].position, Quaternion.identity);
             enemiesAlive++;
 
             enemy.GetComponent<BasicEnemy>().waveSpawnerRef = this;

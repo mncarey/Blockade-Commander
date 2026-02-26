@@ -142,16 +142,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wave_Spawner_BasicEnemy
   BasicEnemy: {fileID: 6675815945920939828, guid: 7eb78eebed848a148b79e891727c765d, type: 3}
-  Brigantine: {fileID: 2099700355507827545, guid: 52a9cd8b08062d84d9d2da0c68f6a0c8, type: 3}
-  Galleon: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
-  Sloop: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
   spawnPoints:
   - {fileID: 6964722564209043053}
   - {fileID: 7955647076739138035}
   - {fileID: 1076735101788940842}
   - {fileID: 3340374652752288087}
+  startWaveRef: {fileID: 0}
+  enemyDefeatPopup: {fileID: 0}
+  sloopRef: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
+  brigRef: {fileID: 2099700355507827545, guid: 52a9cd8b08062d84d9d2da0c68f6a0c8, type: 3}
+  gallRef: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
   spawnAreaMin: {x: 2, y: 2}
   spawnAreaMax: {x: 4, y: 4}
+  enemiesAlive: 0
 --- !u!1 &7633278426375279458
 GameObject:
   m_ObjectHideFlags: 0
