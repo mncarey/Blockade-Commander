@@ -10,20 +10,30 @@ public class StartWaveButton : MonoBehaviour
     public Wave_Spawner_BasicEnemy spawnEnemyRef;
     public PlacingScript placingScriptRef;
 
+    public GameObject player;
+
     public bool isClicked = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        placingScriptRef = FindObjectOfType<PlacingScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (placingScriptRef.currentPlaced == 4)
+        if (placingScriptRef.currentPlaced > 0)
         {
             gameObject.SetActive(true);
         }
+        /*
+        if(player == null)
+        {
+            player.SetActive(true);
+        }
+        */
     }
 
     public void IWasClicked()
