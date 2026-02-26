@@ -18,7 +18,7 @@ public class fortSlot : MonoBehaviour
 
     public GameObject currentFort;
     [SerializeField] private GameObject lightHouse;
-    //[SerializeField] private GameObject cannon;
+    [SerializeField] private GameObject cannon;
     //[SerializeField] private GameObject mortar;
     [SerializeField] private GameObject wall;
 
@@ -63,7 +63,7 @@ public class fortSlot : MonoBehaviour
         if(fortName == "Cannon")
         {
             content = cannonText;
-            //currentFort = cannon;
+            currentFort = cannon;
             //Debug.Log(currentFort.name);
         }
         if(fortName == "Mortar")
