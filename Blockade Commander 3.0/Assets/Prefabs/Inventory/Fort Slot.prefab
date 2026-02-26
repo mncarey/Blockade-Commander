@@ -172,6 +172,7 @@ MonoBehaviour:
   content: 
   currentFort: {fileID: 3873198909658866281, guid: c74cafe79f3176d43a19e6891ff212cb, type: 3}
   lightHouse: {fileID: 533170299791803583, guid: a31de307f69ed2643b67e53974784c77, type: 3}
+  cannon: {fileID: 533170299791803583, guid: 4c9068210ab045c479a8fb73eb46541b, type: 3}
   wall: {fileID: 668786706655728692, guid: 51bde2604d821a34e97192407d93c93d, type: 3}
   fortImageDisplay: {fileID: 0}
   newSprite: {fileID: 0}

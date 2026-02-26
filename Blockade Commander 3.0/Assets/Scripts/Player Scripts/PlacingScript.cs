@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.EventSystems;
 public class PlacingScript : MonoBehaviour
 {
 
@@ -110,6 +110,7 @@ public class PlacingScript : MonoBehaviour
     // Listener which runs when you tap or click
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
 
