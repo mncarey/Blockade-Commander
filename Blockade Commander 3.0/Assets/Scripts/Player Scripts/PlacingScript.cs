@@ -63,10 +63,12 @@ public class PlacingScript : MonoBehaviour
         //start wave
         startWaveButton.gameObject.SetActive(!canPlace);
 
+        /*
         if (startWaveButton.isClicked)
         {
             startWaveButton.gameObject.SetActive(false);
         }
+        */
     }
 
 
