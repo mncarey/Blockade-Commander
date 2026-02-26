@@ -15,7 +15,7 @@ TagManager:
   - Taunt Range
   - EnemiesDefeated
   - FortificationMenu
-  - Damage Range
+  - EnemiesWin
   layers:
   - Default
   - TransparentFX
