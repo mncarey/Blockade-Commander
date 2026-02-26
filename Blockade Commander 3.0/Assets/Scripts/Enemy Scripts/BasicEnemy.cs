@@ -92,7 +92,7 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per 0.02 seconds or 50 per second
     void FixedUpdate()
     {
-        Debug.Log("currentTarget " + currentTarget);
+        
         if (currentTarget == null)
         {
             //If this is within taunt field - set that as current target
@@ -176,7 +176,7 @@ public class BasicEnemy : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered: " + other?.gameObject?.tag);
+        //Debug.Log("Triggered: " + other?.gameObject?.tag);
         //if this enters the taunt range of a taunt tower
         if (other.gameObject.CompareTag("Taunt Range"))
         {
@@ -188,6 +188,17 @@ public class BasicEnemy : MonoBehaviour
             }
             
 
+        }
+        if (other.gameObject.tag == "Damage Range")
+        {
+            if (damageEnemyRoutine == null)
+            {
+                
+                isTakingDamage = true;
+                damageEnemyRoutine = StartCoroutine(DamageOverTime());
+                
+
+            }
         }
         if (other.gameObject.tag == "killZone")
         {
@@ -234,6 +245,7 @@ public class BasicEnemy : MonoBehaviour
                 damageWallRoutine = StartCoroutine(DamageWallRoutine());
             }
         }
+        
 
         
     }
@@ -275,7 +287,7 @@ public class BasicEnemy : MonoBehaviour
 
     private IEnumerator DamageOverTime()
     {
-        while (isTakingDamage && tauntRef != null)
+        while (isTakingDamage)
         {
             Debug.Log("Damage enemy double");
                 takeDamage();
