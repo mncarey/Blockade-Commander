@@ -33,6 +33,7 @@ public class BasicEnemy : MonoBehaviour
 
     [SerializeField] FloatingHealthBar healthBar;
 
+    //---- Coroutines ----//
     private Coroutine damageEnemyRoutine;
     private Coroutine damageWallRoutine;
     private Coroutine damageTauntRoutine;
@@ -61,6 +62,8 @@ public class BasicEnemy : MonoBehaviour
         Debug.Log("Time scale: " + Time.timeScale);
         healthBar.UpdateHealthBar(lives, maxLives);
         currentSpeed = speed;
+        
+        
         //---- Get Targets For Attack Info ----//
         //Finds objects in scene with this tag
         GameObject[] targetTag = GameObject.FindGameObjectsWithTag("Fortification");
@@ -85,7 +88,7 @@ public class BasicEnemy : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // Update is called once per 0.02 seconds or 50 per second
     void FixedUpdate()
     {
         Debug.Log("currentTarget " + currentTarget);
@@ -104,20 +107,12 @@ public class BasicEnemy : MonoBehaviour
         
         else
         {
-            //Debug.Log("Current Target Position: " + currentTarget.position);
+            
 
-            Vector3 direction = (currentTarget.position - rb.position).normalized;
-            //Debug.Log("Direction: " + direction);
-            Vector3 moveVelocity = direction * currentSpeed;
-            //Debug.Log("Velocity " + moveVelocity);
-            // Preserve gravity (Y velocity)
-            rb.linearVelocity = new Vector3(
-                moveVelocity.x,
-                rb.linearVelocity.y,
-                moveVelocity.z
-            );
-            //Debug.Log("RB linear Velocity: " + rb.linearVelocity);
-            // transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, currentSpeed * Time.deltaTime);//move towards the target
+            Vector3 direction = (currentTarget.position - rb.position).normalized;           
+            Vector3 moveVelocity = direction * currentSpeed;            
+            rb.linearVelocity = new Vector3(moveVelocity.x,rb.linearVelocity.y,moveVelocity.z);
+            
         }
         
            

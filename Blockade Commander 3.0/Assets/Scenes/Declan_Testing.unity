@@ -172,6 +172,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6717212767143272393, guid: 27a96231b4f436d4b8f446e5c770a444, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -64.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7635741194923836134, guid: 27a96231b4f436d4b8f446e5c770a444, type: 3}
       propertyPath: m_Name
       value: TerrainBase
@@ -531,11 +535,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 95
+      value: 74.9
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 39.64
+      value: 28.9
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.z
@@ -681,8 +685,8 @@ Transform:
   m_GameObject: {fileID: 751404813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.8, y: 34.6535, z: 17.971952}
-  m_LocalScale: {x: 2.796, y: 2.796, z: 2.796}
+  m_LocalPosition: {x: 95.8, y: 26.7, z: 17.971952}
+  m_LocalScale: {x: 12.216843, y: 12.216843, z: 12.216843}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
