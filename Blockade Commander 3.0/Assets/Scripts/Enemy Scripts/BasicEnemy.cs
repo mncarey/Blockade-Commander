@@ -129,8 +129,13 @@ public class BasicEnemy : MonoBehaviour
         //If there are no targets left
         if (targetTag.Length == 0)
         {
+            currentTarget = null;
             GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
-            currentTarget = playerRef.transform;
+            if(playerRef != null)
+            {
+                currentTarget = playerRef.transform;
+            }
+            
             speed = 0;
             return;
         }
@@ -163,13 +168,14 @@ public class BasicEnemy : MonoBehaviour
         healthBar.UpdateHealthBar(lives, maxLives);
         if (lives <= 0)
         {
-            Destroy(gameObject);
+            
            
            //Debug.Log("Enemy goldValue is: " + goldValue);
            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
 
             waveSpawnerRef.EnemyDied();
+            Destroy(gameObject);
         }
     }
 

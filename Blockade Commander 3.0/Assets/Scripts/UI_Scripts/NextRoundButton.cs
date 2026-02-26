@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NextWaveButton : MonoBehaviour
+public class NextRoundButton : MonoBehaviour
 {
     public GameObject enemiesDefeatedPopup;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
@@ -10,11 +10,12 @@ public class NextWaveButton : MonoBehaviour
     public GameObject fortRemoveRef;
 
     public PlacingScript placingScriptRef;
+    public PlayerFortress playerRef;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerRef = FindObjectOfType<PlayerFortress>();
     }
 
     // Update is called once per frame
@@ -25,10 +26,19 @@ public class NextWaveButton : MonoBehaviour
 
     public void IWasClicked()
     {
-        Debug.Log("ButtonClicked");
+        playerRef.health = 10;
+        playerRef.isDed = false;
+        playerRef.Heal();
+
+        placingScriptRef.currentPlaced = 0;
+        waveSpawnerRef.ClearEnemies();
+        
+
         enemiesDefeatedPopup.SetActive(false);
 
         waveSpawnerRef.ClearFortifications();
+        
+        
 
         fortButtonRef.SetActive(true);
         if (fortMenuRef != null)
@@ -44,7 +54,13 @@ public class NextWaveButton : MonoBehaviour
             fortRemoveRef.SetActive(true);
         }
 
-        //reset fortifications to place
-        placingScriptRef.currentPlaced = 0;
+        /*
+            Vector3 position = new Vector3(139f, 37f, 11f);
+            playerRef.gameObject.SetActive(true);
+            //spawn player
+            Debug.Log("DECLAN");
+            Instantiate(playerRef.gameObject, position, Quaternion.identity);
+        */
+
     }
 }
