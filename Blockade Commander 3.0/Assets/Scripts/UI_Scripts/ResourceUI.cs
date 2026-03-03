@@ -7,7 +7,7 @@ public class ResourceUI : MonoBehaviour
 
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private TMP_Text killsText;
-    private int gold = 0;
+    public int gold = 0;
     private int kills = 0;
 
     public static ResourceUI instance;
@@ -34,8 +34,7 @@ public class ResourceUI : MonoBehaviour
     // Call these functions when you want to update these resources.
     public void UpdateGold(int newGold)
     {
-        Debug.Log("Gold now equals: " + gold);
-        Debug.Log("Updating text object: " + goldText.gameObject.name);
+        
         gold += newGold;
         goldText.text = "Gold: " + gold;
     }
