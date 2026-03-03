@@ -25,7 +25,7 @@ public class TauntTower : MonoBehaviour
     {
         healthBar.UpdateHealthBar(health, maxLives);
     }
-    private void Update()
+    private void FixedUpdate()
     {
 
     }
@@ -70,6 +70,13 @@ public class TauntTower : MonoBehaviour
             //tauntRef.takeDamage();
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    //Deals damage based on if hit by a sloop
+    public void SloopDamage()
+    {
+        health = health - 5;
+        healthBar.UpdateHealthBar(health, maxLives);
     }
 
 }

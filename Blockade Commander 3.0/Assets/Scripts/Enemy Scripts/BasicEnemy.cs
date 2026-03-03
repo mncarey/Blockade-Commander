@@ -208,7 +208,17 @@ public class BasicEnemy : MonoBehaviour
             tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
             if (tauntRef != null && damageTauntRoutine == null /* && tower is within range of enemy*/)
             {
-                damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+                if (this.name == "Sloop Enemy")
+                {
+                    Debug.Log("SloopDamage");
+                    tauntRef.SloopDamage();
+                    lives = 0;
+                }
+                else
+                {
+                    damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+                }
+                    
             }
 
             //the enemy taking damage
@@ -220,6 +230,8 @@ public class BasicEnemy : MonoBehaviour
                 currentSpeed = attackSpeed;
                 
             }
+
+            
 
             //if the taunt tower is destroyed, stop the enemy from taking damage
             if (tauntRef.isDed == true)
