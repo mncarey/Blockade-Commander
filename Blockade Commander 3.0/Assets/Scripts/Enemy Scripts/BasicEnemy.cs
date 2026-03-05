@@ -16,18 +16,17 @@ public class BasicEnemy : MonoBehaviour
     private TauntTower tauntRef;
     private Wall wallRef;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
-    //public GameObject playerRef;
+    private PlayerFortress fortRef;
     
 
     //---- Enemy Basic Var ----//
     public float speed = 5;
     public float currentSpeed;
-    public float attackSpeed = 0f;
     public int lives = 5;
     public int maxLives = 5;
     public int dmg = 0;
-    public float reachDistance = 5;
-    private int goldValue = 10;
+    public float reachDistance = 5f;
+    public int goldValue = 10;
     private int killValue = 1;
     
     Rigidbody rb;
@@ -60,9 +59,9 @@ public class BasicEnemy : MonoBehaviour
     //This should keep going until enemies are defeated
     void Start()
     {
-        Debug.Log("Time scale: " + Time.timeScale);
+        
         healthBar.UpdateHealthBar(lives, maxLives);
-        currentSpeed = speed;
+        
         
         
         //---- Get Targets For Attack Info ----//
@@ -95,23 +94,24 @@ public class BasicEnemy : MonoBehaviour
         
         if (currentTarget == null)
         {
-            //If this is within taunt field - set that as current target
-
-            //If not, continue as normal
+            StopAllAttackCoroutines();
             rb.linearVelocity = Vector3.zero;
+            
             FindNewTarget();
 
         }
 
-        
+        //gets the distance
+        float sqrDistance = (transform.position - currentTarget.position).sqrMagnitude;
+
+        if (sqrDistance <= reachDistance * reachDistance)
+        {
+            HandleTargetInRange();
+        }
+
         else
         {
-            
-
-            Vector3 direction = (currentTarget.position - rb.position).normalized;           
-            Vector3 moveVelocity = direction * currentSpeed;            
-            rb.linearVelocity = new Vector3(moveVelocity.x,rb.linearVelocity.y,moveVelocity.z);
-            
+            MoveTowardsTarget();
         }
         
            
@@ -119,7 +119,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void FindNewTarget()
     {
-        currentSpeed = speed;
+        
         //remove all null references
         targets.RemoveAll(t => t == null);
 
@@ -131,7 +131,7 @@ public class BasicEnemy : MonoBehaviour
         {
             GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
             currentTarget = playerRef.transform;
-            speed = 0;
+            currentSpeed = speed;
             return;
         }
 
@@ -145,13 +145,13 @@ public class BasicEnemy : MonoBehaviour
         {
             //Set priority target to taunt tower
             currentTarget = tauntTowers.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).First().transform;
-            //Debug.Log(gameObject.name + " priority targeting Taunt Tower");
+            
         }
         else
         {
             //target closest target
             currentTarget = targetTag.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).First().transform;
-            Debug.Log(gameObject.name + " targeting closest fortification");
+            
         }
         
 
@@ -165,7 +165,7 @@ public class BasicEnemy : MonoBehaviour
         {
             Destroy(gameObject);
            
-           //Debug.Log("Enemy goldValue is: " + goldValue);
+           
            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
 
@@ -173,20 +173,23 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-   
+
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Triggered: " + other?.gameObject?.tag);
+
+
+
         //if this enters the taunt range of a taunt tower
         if (other.gameObject.CompareTag("Taunt Range"))
         {
-            if(other.transform.parent != null)
+            if (other.transform.parent != null)
             {
                 //set this game object as current target
                 currentTarget = other.transform;
-                Debug.Log("Within Taunt Range");
+                Debug.Log("setting target to taunt");
+
             }
-            
+
 
         }
         if (other.gameObject.tag == "Damage Range")
@@ -202,49 +205,43 @@ public class BasicEnemy : MonoBehaviour
         }
         if (other.gameObject.tag == "killZone")
         {
-
+            
             //taunt tower taking damage
             rb.linearVelocity = Vector3.zero;
+            
             tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
-            if (tauntRef != null && damageTauntRoutine == null /* && tower is within range of enemy*/)
+            
+            if (tauntRef != null && damageTauntRoutine == null)
             {
-                damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+                if (this.name == "Sloop Enemy")
+                {
+                    
+                    tauntRef.SloopDamage();
+                    lives = 0;
+                }
+                else
+                {
+                    damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+                }
+                    
             }
 
             //the enemy taking damage
             if(damageEnemyRoutine == null)
             {
-                Debug.Log("damage enemy");
+                
                 isTakingDamage = true;
                 damageEnemyRoutine = StartCoroutine(DamageOverTime());
-                currentSpeed = attackSpeed;
+                
                 
             }
 
-            //if the taunt tower is destroyed, stop the enemy from taking damage
-            if (tauntRef.isDed == true)
-            {
-                Debug.Log("EXIT kilLZone");
-                isTakingDamage = false;
-                StopCoroutine(damageEnemyRoutine);
-                damageEnemyRoutine = null;
-              
-            }
+            
+
+            
         }
 
-        //wall taking damage
-        if(other.gameObject.tag == "wallZone")
-        {
-            currentSpeed = attackSpeed;
-            wallRef = other.gameObject.GetComponentInParent<Wall>();
-
-            if (wallRef != null && damageWallRoutine == null)
-            {
-                
-                wallRef.takeDamage();
-                damageWallRoutine = StartCoroutine(DamageWallRoutine());
-            }
-        }
+        
         
 
         
@@ -265,8 +262,6 @@ public class BasicEnemy : MonoBehaviour
             {
                 StopCoroutine(damageTauntRoutine);
                 damageTauntRoutine = null;
-                
-
             }
 
             tauntRef = null;//reset variable
@@ -277,19 +272,77 @@ public class BasicEnemy : MonoBehaviour
             {
                 StopCoroutine(damageWallRoutine);
                 damageWallRoutine = null;
-                
-
             }
 
             wallRef = null;//reset variable 
         }
     }
 
+
+    private void MoveTowardsTarget()
+    {
+        // Stop any attack routines when moving again
+        StopAllAttackCoroutines();
+
+        Vector3 direction = (currentTarget.position - rb.position).normalized;
+        Vector3 moveVelocity = direction * speed;
+        rb.linearVelocity = new Vector3(moveVelocity.x, rb.linearVelocity.y, moveVelocity.z);
+    }
+
+    //Handles damaging target
+    private void HandleTargetInRange()
+    {
+        rb.linearVelocity = Vector3.zero;
+
+        // Try TauntTower
+        tauntRef = currentTarget.GetComponent<TauntTower>();
+        //if there there is a taunt tower set as the current target
+        if (tauntRef != null)
+        {
+            //if it is not already being damaged
+            if (damageTauntRoutine == null) /* Start damage */ damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+
+            return;
+        }
+
+        // Try Wall
+        wallRef = currentTarget.GetComponent<Wall>();
+        if (wallRef != null)
+        {
+            if (damageWallRoutine == null)
+                damageWallRoutine = StartCoroutine(DamageWallRoutine());
+
+            return;
+        }
+
+        //if the current target is the player fortress
+        if(currentTarget.tag == "Player")
+        {
+            fortRef = FindObjectOfType<PlayerFortress>();
+            fortRef.takeDamage();
+        }
+    }
+
+    //stops all damage routines if they are ongoing
+    private void StopAllAttackCoroutines()
+    {
+        if (damageTauntRoutine != null)
+        {
+            StopCoroutine(damageTauntRoutine);
+            damageTauntRoutine = null;
+        }
+
+        if (damageWallRoutine != null)
+        {
+            StopCoroutine(damageWallRoutine);
+            damageWallRoutine = null;
+        }
+    }
     private IEnumerator DamageOverTime()
     {
         while (isTakingDamage)
         {
-            Debug.Log("Damage enemy double");
+            
                 takeDamage();
                 yield return new WaitForSeconds(1f);
         }
@@ -315,5 +368,6 @@ public class BasicEnemy : MonoBehaviour
         }
         currentSpeed = speed;
         damageTauntRoutine = null;//damage taunt routine resets for the next tower to be damaged
+    
     }
-}
+    }

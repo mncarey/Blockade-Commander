@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1704483572353238615}
   - component: {fileID: 3811707760015097221}
   - component: {fileID: 330727711474806242}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Taunt Range
   m_TagString: Taunt Range
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 8240602116388656063}
   - component: {fileID: 9137562500050724768}
   - component: {fileID: 4703518979640001131}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Kill Zone (1)
   m_TagString: killZone
   m_Icon: {fileID: 0}
