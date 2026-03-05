@@ -11,7 +11,7 @@ public class Blinking : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InvokeRepeating("StartBlinking", bigRepeatTime, bigRepeatTime);
+        InvokeRepeating("StartBlinking", 1f, bigRepeatTime);
     }
 
     void ChangeStateofGameObject()

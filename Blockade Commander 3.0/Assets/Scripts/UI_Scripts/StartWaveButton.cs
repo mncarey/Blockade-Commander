@@ -18,7 +18,7 @@ public class StartWaveButton : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        placingScriptRef = FindObjectOfType<PlacingScript>();
+       // placingScriptRef = FindObjectOfType<PlacingScript>();
     }
 
     // Update is called once per frame
