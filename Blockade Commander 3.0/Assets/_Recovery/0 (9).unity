@@ -599,14 +599,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
-      propertyPath: enemyWinPopup
-      value: 
-      objectReference: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
-      propertyPath: enemyDefeatPopup
-      value: 
-      objectReference: {fileID: 7313325025782173084, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
     - target: {fileID: 4374299456252702303, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_Name
       value: Basic Enemy Wave Spawner
