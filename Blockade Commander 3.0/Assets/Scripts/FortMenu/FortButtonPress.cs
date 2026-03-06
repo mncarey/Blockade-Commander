@@ -10,6 +10,10 @@ public class FortButtonPress : MonoBehaviour
     public GameObject FortExitRef;
     public GameObject FortRemoveRef;
 
+    //---- UI Image ----//
+    public GameObject RemoveIcon;
+    public GameObject PlaceIcon;
+
     public PlacingScript placingScript;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,10 +60,14 @@ public class FortButtonPress : MonoBehaviour
         if(placingScript.removalToggle == false)
         {
             placingScript.removalToggle = true;
+            RemoveIcon.SetActive(false);
+            PlaceIcon.SetActive(true);
         }
         else
         {
             placingScript.removalToggle = false;
+            RemoveIcon.SetActive(true);
+            PlaceIcon.SetActive(false);
         }
     }
 }
