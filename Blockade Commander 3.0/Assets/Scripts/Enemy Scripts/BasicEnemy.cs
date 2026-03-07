@@ -132,6 +132,7 @@ public class BasicEnemy : MonoBehaviour
             GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
             currentTarget = playerRef.transform;
             currentSpeed = speed;
+            if (currentTarget == null) return;
             return;
         }
 
