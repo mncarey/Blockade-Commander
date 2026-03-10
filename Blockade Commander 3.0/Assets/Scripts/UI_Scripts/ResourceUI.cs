@@ -44,5 +44,13 @@ public class ResourceUI : MonoBehaviour
         killsText.text = "Kills: " + kills;
     }
 
+    public void ResetResources()
+    {
+        kills = 0;
+        gold = 0;
+        killsText.text = "Kills: " + kills;
+        goldText.text = "Gold: " + gold;
+    }
+
     
 }
