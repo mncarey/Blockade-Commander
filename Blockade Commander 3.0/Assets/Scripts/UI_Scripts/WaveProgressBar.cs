@@ -16,7 +16,7 @@ public class WaveProgressBar : MonoBehaviour
         camera = Camera.main;
 
     }
-    public void UpdateHealthBar(float currentvalue, float maxValue)
+    public void UpdateHealthBar()
     {
         slider.value = waveRef.enemiesAlive / startWaveButtonRef.maxEnemies;
     }

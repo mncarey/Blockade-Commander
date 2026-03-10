@@ -32,6 +32,7 @@ public class BasicEnemy : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
+    [SerializeField] WaveProgressBar waveProgressBar;
 
     //---- Coroutines ----//
     private Coroutine damageEnemyRoutine;
@@ -161,6 +162,7 @@ public class BasicEnemy : MonoBehaviour
     {
         lives--;
         healthBar.UpdateHealthBar(lives, maxLives);
+        waveProgressBar.UpdateHealthBar();
         if (lives <= 0)
         {
             Destroy(gameObject);
