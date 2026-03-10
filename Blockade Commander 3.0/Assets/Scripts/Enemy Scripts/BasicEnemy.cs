@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using static UnityEngine.GraphicsBuffer;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements.Experimental;
 using UnityEngine.InputSystem;
