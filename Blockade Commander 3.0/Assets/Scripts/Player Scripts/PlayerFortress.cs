@@ -9,6 +9,7 @@ public class PlayerFortress : MonoBehaviour
     public int maxLives = 10;
     public bool isDed = false;
 
+    public ResourceUI resourceRef;
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
@@ -19,6 +20,7 @@ public class PlayerFortress : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
+        resourceRef = FindObjectOfType<ResourceUI>();
     }
 
     void Start()
@@ -38,6 +40,7 @@ public class PlayerFortress : MonoBehaviour
         {
             if (gameObject != null)
             {
+                resourceRef.ResetResources();
                 Destroy(gameObject);
                 isDed = true;
             }

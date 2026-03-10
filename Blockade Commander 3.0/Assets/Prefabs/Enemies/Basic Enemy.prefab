@@ -445,14 +445,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
   waveSpawnerRef: {fileID: 0}
-  playerRef: {fileID: 2618640847772804475, guid: 51d01ff9fc6c65a4294eaa17d29969c1, type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   speed: 5
   currentSpeed: 0
-  attackSpeed: 0
   lives: 5
   maxLives: 5
   dmg: 0
   reachDistance: 5
+  goldValue: 10
   healthBar: {fileID: 0}
   targets: []
 --- !u!54 &-1295710016464887516
