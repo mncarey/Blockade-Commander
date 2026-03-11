@@ -37,7 +37,7 @@ public class BasicEnemy : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
-    [SerializeField] WaveProgressBar waveProgressBar;
+    [SerializeField] WaveProgressBar waveProgressBarRef;
 
     //---- Coroutines ----//
     private Coroutine damageEnemyRoutine;
@@ -48,6 +48,7 @@ public class BasicEnemy : MonoBehaviour
 
     
     
+    
     //List to hold the fortifications within the scene
     public List<GameObject> targets = new List<GameObject>();
 
@@ -55,6 +56,7 @@ public class BasicEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
+        waveProgressBarRef = FindObjectOfType<WaveProgressBar>();
     }
        
     //then if this enemy is within "range" of the fortification - set speed to 0 - execute damage towards the fortification
@@ -67,7 +69,7 @@ public class BasicEnemy : MonoBehaviour
     {
         unitPriority = Random.value;
         healthBar.UpdateHealthBar(lives, maxLives);
-        
+        waveProgressBarRef.UpdateHealthBar();
         
         
         //---- Get Targets For Attack Info ----//
@@ -209,7 +211,7 @@ public class BasicEnemy : MonoBehaviour
     {
         lives--;
         healthBar.UpdateHealthBar(lives, maxLives);
-        waveProgressBar.UpdateHealthBar();
+        waveProgressBarRef.UpdateHealthBar();
         if (lives <= 0)
         {
             Destroy(gameObject);
@@ -218,7 +220,7 @@ public class BasicEnemy : MonoBehaviour
            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
 
-            waveSpawnerRef.EnemyDied();
+           waveSpawnerRef.EnemyDied();
         }
     }
 
@@ -338,7 +340,7 @@ public class BasicEnemy : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
 
         // Try TauntTower
-        tauntRef = currentTarget.GetComponent<TauntTower>();
+        tauntRef = currentTarget.GetComponentInParent<TauntTower>();
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
         {
