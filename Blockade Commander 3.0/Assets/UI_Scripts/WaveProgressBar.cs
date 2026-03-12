@@ -19,8 +19,8 @@ public class WaveProgressBar : MonoBehaviour
     }
     public void UpdateHealthBar()
     {
-        enemiesAlive = waveRef.enemiesAlive;
-        enemiesSpawned = startWaveButtonRef.maxEnemies;
+        enemiesAlive = waveRef.enemiesAlive - 1;
+        enemiesSpawned = waveRef.enemiesTotalThisWave;
         slider.value = 1f- (float)enemiesAlive / enemiesSpawned;
     }
     // Update is called once per frame

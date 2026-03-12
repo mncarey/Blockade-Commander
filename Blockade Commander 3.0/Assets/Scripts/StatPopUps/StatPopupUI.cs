@@ -13,8 +13,16 @@ public class StatPopupUI : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform rectTransform;
 
-    public void ShowStats(string health, string range, string attack)
+    [SerializeField] TauntTower tauntRef;
+
+    public int health = 0;
+    public int range = 0;
+    public int attack = 0;
+    public void ShowStats()
     {
+        health = tauntRef.health;
+        range = tauntRef.range;
+        attack = tauntRef.dmg;
         healthText.text = "Health: " + health;
         rangeText.text = "Range: " + range;
         attackText.text = "Attack: " + attack;
