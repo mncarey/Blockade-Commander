@@ -41,7 +41,7 @@ public class PlayerFortress : MonoBehaviour
             if (gameObject != null)
             {
                 resourceRef.ResetResources();
-                Destroy(gameObject);
+                //Destroy(gameObject);
                 isDed = true;
             }
         }

@@ -10,6 +10,7 @@ public class StartWaveButton : MonoBehaviour
     public GameObject progressBarRef;
     public Wave_Spawner_BasicEnemy spawnEnemyRef;
     public PlacingScript placingScriptRef;
+    public IncreaseDifficulty increaseDiff;
     
     public GameObject player;
 
@@ -21,7 +22,9 @@ public class StartWaveButton : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-       // placingScriptRef = FindObjectOfType<PlacingScript>();
+        // placingScriptRef = FindObjectOfType<PlacingScript>();
+
+        increaseDiff = FindObjectOfType<IncreaseDifficulty>();
     }
 
     // Update is called once per frame
@@ -63,6 +66,9 @@ public class StartWaveButton : MonoBehaviour
         Debug.Log("spawning enemies");
         spawnEnemyRef.SpawnEnemy();
         maxEnemies = spawnEnemyRef.enemiesAlive;
+        // Increase difficulty
+        increaseDiff.IncreaseDiff();
+
 
         isClicked = true;
 
