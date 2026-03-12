@@ -65,8 +65,5 @@ public class StartWaveButton : MonoBehaviour
         maxEnemies = spawnEnemyRef.enemiesAlive;
 
         isClicked = true;
-
-        
-
     }
 }
