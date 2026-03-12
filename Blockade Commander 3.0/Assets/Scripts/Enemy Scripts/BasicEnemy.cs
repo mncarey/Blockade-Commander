@@ -191,7 +191,7 @@ public class BasicEnemy : MonoBehaviour
                 if (dist <= separationRadius)
                 {
                     Vector3 slideDir = Vector3.Cross(Vector3.up, pushDir);
-                    // The closer they are, the harder they push// normalized so speed is constant
+                    // The closer they are, the harder they push // normalized so speed is constant
                     totalPush += (pushDir.normalized + slideDir.normalized * 2f) / (pushDir.magnitude + 0.01f);
                 }
             }
@@ -336,12 +336,14 @@ public class BasicEnemy : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
 
         // Try TauntTower
-        tauntRef = currentTarget.GetComponent<TauntTower>();
+        tauntRef = currentTarget.GetComponentInParent<TauntTower>();
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
         {
+            
             //if it is not already being damaged
             if (damageTauntRoutine == null) /* Start damage */ damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+            
 
             return;
         }
