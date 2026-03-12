@@ -22,6 +22,7 @@ public class PlacingScript : MonoBehaviour
     public bool canPlace => currentPlaced < maxPlaced;
     public bool removalToggle = false;
     public bool startPlaceState = false;
+    public bool showStats = false;
 
     //---- Outline ----//
     private Outline currentOutline;
@@ -131,6 +132,8 @@ public class PlacingScript : MonoBehaviour
                     if (Time.time - lastClickTime <= doubleClickTime)
                     {
                         hit.transform.Rotate(0f, 90f, 0f);
+                        showStats = true;
+                        Debug.Log("your mom");
                     }
 
                     lastClickTime = Time.time;
