@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 public class PlacingScript : MonoBehaviour
 {
 
@@ -12,9 +13,10 @@ public class PlacingScript : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask placeableObjectsLayer;
 
-    
+    //---- Double click feature ----//
     public float doubleClickTime = 0.3f;
-    private float lastClickTime;
+    private float lastClickTime = -999f;
+    private Transform lastClickedRoot = null;
 
     //---- Fortification Placement Restriction ----//
     public int currentPlaced = 0;
@@ -128,15 +130,26 @@ public class PlacingScript : MonoBehaviour
                 // Check for Rotation/Interaction via the object layer
                 if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
                 {
-                    //Double Click to Rotate
-                    if (Time.time - lastClickTime <= doubleClickTime)
-                    {
-                        hit.transform.Rotate(0f, 90f, 0f);
-                        showStats = true;
-                        Debug.Log("your mom");
-                    }
+                    Transform clickedRoot = hit.collider.transform.root;
 
-                    lastClickTime = Time.time;
+                    bool withinTime = (Time.time - lastClickTime) <= doubleClickTime;
+                    bool sameTarget = (lastClickedRoot == clickedRoot);
+
+                    //Double Click to Rotate and Open Stats
+                    if (withinTime && sameTarget)
+                    {
+                        clickedRoot.Rotate(0f, 90f, 0f);
+                        showStats = true;
+
+                        //reseting variables
+                        lastClickTime = -999f;
+                        lastClickedRoot = null;
+                    }
+                    else
+                    {
+                        lastClickTime = Time.time;
+                        lastClickedRoot = clickedRoot;
+                    }
 
                     return;
                 }

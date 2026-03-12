@@ -71,8 +71,5 @@ public class StartWaveButton : MonoBehaviour
 
 
         isClicked = true;
-
-        
-
     }
 }

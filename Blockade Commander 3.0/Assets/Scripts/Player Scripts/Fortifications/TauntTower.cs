@@ -7,6 +7,8 @@ public class TauntTower : MonoBehaviour
 {
     public int health = 10;
     public int maxLives = 10;
+    public int range = 5;
+    public int dmg = 0;
     public bool isDed = false;
 
     Rigidbody rb;
@@ -27,7 +29,6 @@ public class TauntTower : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
     }
 
     public void takeDamage()
