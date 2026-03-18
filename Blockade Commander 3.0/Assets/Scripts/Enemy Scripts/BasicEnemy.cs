@@ -18,6 +18,9 @@ public class BasicEnemy : MonoBehaviour
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     private PlayerFortress fortRef;
 
+    public EnemyInfo enemyInfo;
+    public IncreaseDifficulty increaseDiff;
+
     //Enemy Layer//
     public LayerMask enemyLayer;
     
@@ -25,8 +28,8 @@ public class BasicEnemy : MonoBehaviour
     //---- Enemy Basic Var ----//
     public float speed = 5;
     public float currentSpeed;
-    public int lives = 5;
-    public int maxLives = 5;
+    public float lives = 5f;
+    public float maxLives = 5;
     public int dmg = 0;
     public float reachDistance = 5f;
     public int goldValue = 10;
@@ -56,7 +59,8 @@ public class BasicEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
-        waveProgressBarRef = FindObjectOfType<WaveProgressBar>();
+        waveProgressBarRef = FindObjectOfType<WaveProgressBar>(true);
+        increaseDiff = FindObjectOfType<IncreaseDifficulty>();
     }
        
     //then if this enemy is within "range" of the fortification - set speed to 0 - execute damage towards the fortification
@@ -68,8 +72,11 @@ public class BasicEnemy : MonoBehaviour
     void Start()
     {
         unitPriority = Random.value;
+        maxLives = lives * increaseDiff.Instance.multiplier;
+        lives = maxLives;
         healthBar.UpdateHealthBar(lives, maxLives);
         waveProgressBarRef.UpdateHealthBar();
+        Debug.Log("Increased Health to: " + maxLives);
         
         
         //---- Get Targets For Attack Info ----//
@@ -194,7 +201,7 @@ public class BasicEnemy : MonoBehaviour
                 if (dist <= separationRadius)
                 {
                     Vector3 slideDir = Vector3.Cross(Vector3.up, pushDir);
-                    // The closer they are, the harder they push// normalized so speed is constant
+                    // The closer they are, the harder they push // normalized so speed is constant
                     totalPush += (pushDir.normalized + slideDir.normalized * 2f) / (pushDir.magnitude + 0.01f);
                 }
             }
@@ -344,8 +351,10 @@ public class BasicEnemy : MonoBehaviour
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
         {
+            
             //if it is not already being damaged
             if (damageTauntRoutine == null) /* Start damage */ damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+            
 
             return;
         }
