@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 public class PlacingScript : MonoBehaviour
 {
 
+    public ResourceUI resourceRef;
     public StartWaveButton startWaveButton;
     public GameObject objectToPlace;
     public Camera mainCamera;
@@ -41,6 +42,9 @@ public class PlacingScript : MonoBehaviour
         //Input action link
         clickAction = playerInput.actions["Click"];
         pointAction = playerInput.actions["Point"];
+
+        resourceRef = FindObjectOfType<ResourceUI>();
+
     }
 
     private void OnEnable()
@@ -159,6 +163,7 @@ public class PlacingScript : MonoBehaviour
                 {
                     Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
                     currentPlaced++;
+                    UpdateFortNumber();
 
                 }
 
@@ -183,8 +188,10 @@ public class PlacingScript : MonoBehaviour
 
                         Destroy(objectToRemove);
                         currentPlaced--;
+                        //set the number in resource UI to the new value
 
-                        Debug.Log($"Removed {objectToRemove.name}. Remaining: {currentPlaced}");
+                        UpdateFortNumber();
+                        //Debug.Log($"Removed {objectToRemove.name}. Remaining: {currentPlaced}");
                     }
                     return;
                 }
@@ -192,6 +199,11 @@ public class PlacingScript : MonoBehaviour
             
         }
         
+    }
+    public void UpdateFortNumber()
+    {
+        
+        resourceRef.UpdateFortRef(currentPlaced);
     }
 
     public void SetCurrentFort(GameObject fort) => objectToPlace = fort;

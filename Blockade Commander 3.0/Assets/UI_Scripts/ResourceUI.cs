@@ -7,8 +7,10 @@ public class ResourceUI : MonoBehaviour
 
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private TMP_Text killsText;
+    [SerializeField] private TMP_Text fortNumberText;
     public int gold = 0;
     private int kills = 0;
+    public int fortNumber = 0;
 
     public static ResourceUI instance;
 
@@ -21,6 +23,7 @@ public class ResourceUI : MonoBehaviour
     {
         goldText.text = "Gold: " + gold;
         killsText.text = "Kills: " + kills;
+        fortNumberText.text = fortNumber + "/4";
        
     }
 
@@ -52,5 +55,8 @@ public class ResourceUI : MonoBehaviour
         goldText.text = "Gold: " + gold;
     }
 
-    
+    public void UpdateFortRef(int fortNum)
+    {
+        fortNumberText.text = fortNum + "/4";
+    }
 }
