@@ -1,10 +1,9 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Processors;
+using System.Collections;
 
-public class TauntTower : MonoBehaviour
+public class Cannon : MonoBehaviour
 {
+    //change these values
     public int health = 10;
     public int maxLives = 10;
     public int range = 5;
@@ -25,7 +24,7 @@ public class TauntTower : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
-    
+
         if (placingRef == null)
             placingRef = FindFirstObjectByType<PlacingScript>();
     }
@@ -35,11 +34,6 @@ public class TauntTower : MonoBehaviour
     {
         healthBar.UpdateHealthBar(health, maxLives);
     }
-    private void FixedUpdate()
-    {
-    }
-
-
 
     public void takeDamage()
     {
@@ -49,12 +43,11 @@ public class TauntTower : MonoBehaviour
         if (health <= 0)
         {
             isDed = true;
-            Debug.Log("this tower is dead");
             if (gameObject != null)
             {
-                
+
                 placingRef.currentPlaced--;
-                if(placingRef.currentPlaced == 0)
+                if (placingRef.currentPlaced == 0)
                 {
                     placingRef.enemiesWinPopupRef.gameObject.SetActive(true);
                 }
@@ -67,11 +60,11 @@ public class TauntTower : MonoBehaviour
     {
         if (other.gameObject.tag == "BasicEnemy")
         {
-            if(damageRoutine == null)
+            if (damageRoutine == null)
             {
-               damageRoutine = StartCoroutine(DamageOverTime());
+                damageRoutine = StartCoroutine(DamageOverTime());
             }
-           
+
         }
     }
 
@@ -79,11 +72,11 @@ public class TauntTower : MonoBehaviour
     {
         if (other.gameObject.tag == "BasicEnemy")
         {
-            if(damageRoutine != null)
+            if (damageRoutine != null)
             {
                 StopCoroutine(damageRoutine);
             }
-            
+
         }
     }
 
@@ -103,5 +96,4 @@ public class TauntTower : MonoBehaviour
         health = health - 5;
         healthBar.UpdateHealthBar(health, maxLives);
     }
-
 }

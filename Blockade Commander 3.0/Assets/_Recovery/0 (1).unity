@@ -180,25 +180,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 360933456}
     - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
-      propertyPath: enemeisWinPopup
-      value: 
-      objectReference: {fileID: 1816634870}
-    - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
       propertyPath: exitFortMenuRef
       value: 
       objectReference: {fileID: 1659584273}
     - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
-      propertyPath: waveProgressbar
-      value: 
-      objectReference: {fileID: 5695813000436578723}
-    - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
       propertyPath: placingScriptRef
       value: 
       objectReference: {fileID: 933443849}
-    - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
-      propertyPath: startWaveButtonRef
-      value: 
-      objectReference: {fileID: 1407063624}
     - target: {fileID: 7313325025782173084, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
       propertyPath: m_Name
       value: Enemies Defeated Popup
@@ -219,14 +207,6 @@ PrefabInstance:
       propertyPath: fortRemoveRef
       value: 
       objectReference: {fileID: 360933456}
-    - target: {fileID: 8349788969332893754, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
-      propertyPath: spawnEnemyRef
-      value: 
-      objectReference: {fileID: 307136712}
-    - target: {fileID: 8349788969332893754, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
-      propertyPath: progressBarRef
-      value: 
-      objectReference: {fileID: 5695813000436578723}
     - target: {fileID: 8349788969332893754, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
       propertyPath: exitFortMenuRef
       value: 
@@ -762,7 +742,7 @@ PrefabInstance:
       objectReference: {fileID: 41518694}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: spawnPoints.Array.size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: 'spawnPoints.Array.data[2]'
@@ -1185,25 +1165,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 360933456}
     - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: enemeisWinPopup
-      value: 
-      objectReference: {fileID: 1816634870}
-    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
       propertyPath: exitFortMenuRef
       value: 
       objectReference: {fileID: 1659584273}
     - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: waveProgressbar
-      value: 
-      objectReference: {fileID: 5695813000436578723}
-    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
       propertyPath: placingScriptRef
       value: 
       objectReference: {fileID: 933443849}
-    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: startWaveButtonRef
-      value: 
-      objectReference: {fileID: 1407063624}
     - target: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
       propertyPath: m_Name
       value: EnemiesWin
@@ -1216,34 +1184,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemiesWin
       objectReference: {fileID: 0}
-    - target: {fileID: 8349788969332893754, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: fortMenuRef
-      value: 
-      objectReference: {fileID: 746781879}
-    - target: {fileID: 8349788969332893754, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: fortButtonRef
-      value: 
-      objectReference: {fileID: 1798067610}
-    - target: {fileID: 8349788969332893754, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: fortRemoveRef
-      value: 
-      objectReference: {fileID: 360933456}
-    - target: {fileID: 8349788969332893754, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: spawnEnemyRef
-      value: 
-      objectReference: {fileID: 307136712}
-    - target: {fileID: 8349788969332893754, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: progressBarRef
-      value: 
-      objectReference: {fileID: 5695813000436578723}
-    - target: {fileID: 8349788969332893754, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: exitFortMenuRef
-      value: 
-      objectReference: {fileID: 1659584273}
-    - target: {fileID: 8349788969332893754, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: placingScriptRef
-      value: 
-      objectReference: {fileID: 933443849}
     - target: {fileID: 8551489041080344034, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
       propertyPath: m_TagString
       value: EnemiesWin
