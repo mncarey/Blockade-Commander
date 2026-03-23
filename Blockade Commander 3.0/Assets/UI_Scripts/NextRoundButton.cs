@@ -7,18 +7,20 @@ public class NextWaveButton : MonoBehaviour
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     public PlacingScript placingScriptRef;
     public StartWaveButton startWaveButtonRef;
-
-    public GameObject fortButtonRef;
-    public GameObject fortMenuRef;
-    public GameObject exitFortMenuRef;
-    public GameObject fortRemoveRef;
+    [SerializeField] public GameObject fortCanvasRef;
     public GameObject waveProgressbar;
-   
+    public GameObject fortButtonRef;
+     public GameObject fortMenuRef;
+     public GameObject exitFortMenuRef;
+     public GameObject fortRemoveRef;
+    public FortUIManager fortUIManagerRef;
 
+
+     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        fortUIManagerRef = FindObjectOfType<FortUIManager>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class NextWaveButton : MonoBehaviour
 
     public void IWasClicked()
     {
+        fortUIManagerRef.ResetForNextWave();
         Debug.Log("ButtonClicked");
         enemiesDefeatedPopup.SetActive(false);
         enemeisWinPopup.SetActive(false);
@@ -36,22 +39,11 @@ public class NextWaveButton : MonoBehaviour
         waveSpawnerRef.ClearFortifications();
         waveSpawnerRef.ClearEnemies();
 
-        fortButtonRef.SetActive(true);
-        
-        if (fortMenuRef != null)
-        {
-            fortMenuRef.SetActive(true);
-        }
-        
-        if (exitFortMenuRef != null)
-        {
-            exitFortMenuRef.SetActive(true);
-        }
-        if (fortRemoveRef != null)
-        {
-            fortRemoveRef.SetActive(true);
-        }
 
+        //fortCanvasRef.SetActive(true);
+        
+        
+        
         //reset fortifications to place
         placingScriptRef.currentPlaced = 0;
 

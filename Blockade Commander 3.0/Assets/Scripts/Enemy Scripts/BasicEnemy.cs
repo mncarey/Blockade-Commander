@@ -72,7 +72,7 @@ public class BasicEnemy : MonoBehaviour
     void Start()
     {
         unitPriority = Random.value;
-        maxLives = lives * increaseDiff.Instance.multiplier;
+        //maxLives = lives * increaseDiff.Instance.multiplier;
         lives = maxLives;
         healthBar.UpdateHealthBar(lives, maxLives);
         waveProgressBarRef.UpdateHealthBar();
@@ -113,6 +113,7 @@ public class BasicEnemy : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             
             FindNewTarget();
+            if (currentTarget == null) return;
 
         }
 
@@ -144,9 +145,9 @@ public class BasicEnemy : MonoBehaviour
         //If there are no targets left
         if (targetTag.Length == 0)
         {
-            GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
+            /*GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
             currentTarget = playerRef.transform;
-            currentSpeed = speed;
+            currentSpeed = speed;*/
             if (currentTarget == null) return;
             return;
         }

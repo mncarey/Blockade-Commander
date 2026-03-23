@@ -41,6 +41,11 @@ public class StartWaveButton : MonoBehaviour
             player.SetActive(true);
         }
         */
+
+        if(isClicked == true)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void IWasClicked()
@@ -68,7 +73,7 @@ public class StartWaveButton : MonoBehaviour
         spawnEnemyRef.SpawnEnemy();
         maxEnemies = spawnEnemyRef.enemiesAlive;
         // Increase difficulty
-        increaseDiff.IncreaseDiff();
+        //increaseDiff.IncreaseDiff();
 
 
         isClicked = true;
