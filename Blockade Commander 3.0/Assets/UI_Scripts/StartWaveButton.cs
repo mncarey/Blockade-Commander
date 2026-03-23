@@ -30,11 +30,12 @@ public class StartWaveButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (placingScriptRef.currentPlaced > 0)
         {
             gameObject.SetActive(true);
         }
-        /*
+        
         if(player == null)
         {
             player.SetActive(true);

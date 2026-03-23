@@ -7,6 +7,7 @@ public class PlacingScript : MonoBehaviour
 
     public ResourceUI resourceRef;
     public StartWaveButton startWaveButton;
+    public GameObject enemiesWinPopupRef;
     public GameObject objectToPlace;
     public Camera mainCamera;
 
@@ -69,7 +70,7 @@ public class PlacingScript : MonoBehaviour
         UpdateOutlineHover();
 
         //start wave
-        startWaveButton.gameObject.SetActive(!canPlace);
+        startWaveButton.gameObject.SetActive(currentPlaced > 0);
 
         if (startWaveButton.isClicked)
         {

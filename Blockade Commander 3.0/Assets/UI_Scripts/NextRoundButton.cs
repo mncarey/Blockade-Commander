@@ -3,14 +3,17 @@ using UnityEngine;
 public class NextWaveButton : MonoBehaviour
 {
     public GameObject enemiesDefeatedPopup;
-    public GameObject enemiesWinPopup;
+    public GameObject enemeisWinPopup;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
+    public PlacingScript placingScriptRef;
+    public StartWaveButton startWaveButtonRef;
+
     public GameObject fortButtonRef;
     public GameObject fortMenuRef;
     public GameObject exitFortMenuRef;
     public GameObject fortRemoveRef;
-
-    public PlacingScript placingScriptRef;
+    public GameObject waveProgressbar;
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,15 +31,18 @@ public class NextWaveButton : MonoBehaviour
     {
         Debug.Log("ButtonClicked");
         enemiesDefeatedPopup.SetActive(false);
-        enemiesWinPopup.SetActive(false);
+        enemeisWinPopup.SetActive(false);
 
         waveSpawnerRef.ClearFortifications();
+        waveSpawnerRef.ClearEnemies();
 
         fortButtonRef.SetActive(true);
+        
         if (fortMenuRef != null)
         {
             fortMenuRef.SetActive(true);
         }
+        
         if (exitFortMenuRef != null)
         {
             exitFortMenuRef.SetActive(true);
@@ -48,5 +54,11 @@ public class NextWaveButton : MonoBehaviour
 
         //reset fortifications to place
         placingScriptRef.currentPlaced = 0;
+
+        //reset this variable to make sure start wave appears on next round
+        startWaveButtonRef.isClicked = false;
+
+        //deactivate this game object
+        waveProgressbar.SetActive(false);
     }
 }
