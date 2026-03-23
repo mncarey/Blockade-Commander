@@ -180,6 +180,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 360933456}
     - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
+      propertyPath: enemiesWinPopup
+      value: 
+      objectReference: {fileID: 1404578129}
+    - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
       propertyPath: exitFortMenuRef
       value: 
       objectReference: {fileID: 1659584273}
@@ -1202,6 +1206,95 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1001 &968118812
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1286.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 820.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: fortMenuRef
+      value: 
+      objectReference: {fileID: 746781879}
+    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: fortButtonRef
+      value: 
+      objectReference: {fileID: 1798067610}
+    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: fortRemoveRef
+      value: 
+      objectReference: {fileID: 360933456}
+    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: enemiesWinPopup
+      value: 
+      objectReference: {fileID: 1404578129}
+    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: exitFortMenuRef
+      value: 
+      objectReference: {fileID: 1659584273}
+    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: placingScriptRef
+      value: 
+      objectReference: {fileID: 933443849}
+    - target: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_Name
+      value: EnemiesWin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: m_TagString
+      value: EnemiesWin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
 --- !u!224 &975833623 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4198995507385261601, guid: 225cc055a09445d49bcddfc0302a0c04, type: 3}
@@ -1668,6 +1761,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1404578129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+  m_PrefabInstance: {fileID: 968118812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1407063624 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
@@ -2942,3 +3040,4 @@ SceneRoots:
   - {fileID: 1028150109}
   - {fileID: 6990761095786731746}
   - {fileID: 6349405604361597523}
+  - {fileID: 968118812}

@@ -16,6 +16,7 @@ TagManager:
   - EnemiesDefeated
   - FortificationMenu
   - Damage Range
+  - EnemiesWin
   layers:
   - Default
   - TransparentFX

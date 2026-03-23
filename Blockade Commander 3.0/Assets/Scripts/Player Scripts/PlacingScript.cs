@@ -22,6 +22,7 @@ public class PlacingScript : MonoBehaviour
     //---- Fortification Placement Restriction ----//
     public int currentPlaced = 0;
     public int maxPlaced = 4;
+    public int fortsAilve = 0;
     public bool canPlace => currentPlaced < maxPlaced;
     public bool removalToggle = false;
     public bool startPlaceState = false;

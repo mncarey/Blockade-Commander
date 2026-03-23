@@ -3,6 +3,7 @@ using UnityEngine;
 public class NextWaveButton : MonoBehaviour
 {
     public GameObject enemiesDefeatedPopup;
+    public GameObject enemiesWinPopup;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     public GameObject fortButtonRef;
     public GameObject fortMenuRef;
@@ -27,6 +28,7 @@ public class NextWaveButton : MonoBehaviour
     {
         Debug.Log("ButtonClicked");
         enemiesDefeatedPopup.SetActive(false);
+        enemiesWinPopup.SetActive(false);
 
         waveSpawnerRef.ClearFortifications();
 
