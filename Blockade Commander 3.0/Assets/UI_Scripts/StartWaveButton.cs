@@ -68,6 +68,10 @@ public class StartWaveButton : MonoBehaviour
             progressBarRef.SetActive(true);
         }
 
+        //turn off the placement capability
+        //canPlace = false
+        placingScriptRef.TogglePlacementLock();
+
         //spawn the enemies!!!
         Debug.Log("spawning enemies");
         spawnEnemyRef.SpawnEnemy();

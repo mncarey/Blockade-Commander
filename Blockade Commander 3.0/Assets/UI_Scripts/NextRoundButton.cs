@@ -59,5 +59,7 @@ public class NextWaveButton : MonoBehaviour
 
         //reset player health bar
         playerFortRef.updateHealthBar();
+
+       placingScriptRef.TogglePlacementLock();
     }
 }

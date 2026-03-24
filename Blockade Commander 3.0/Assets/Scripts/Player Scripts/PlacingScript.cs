@@ -25,6 +25,7 @@ public class PlacingScript : MonoBehaviour
     public int maxPlaced = 4;
     public int fortsAilve = 0;
     public bool canPlace => currentPlaced < maxPlaced;
+    public bool placementEnable = true;
     public bool removalToggle = false;
     public bool startPlaceState = false;
     public bool showStats = false;
@@ -163,7 +164,7 @@ public class PlacingScript : MonoBehaviour
                 }
 
                 // Check for Placement on the ground layer
-                if (canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
+                if (placementEnable && canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
                 {
                     Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
                     currentPlaced++;
@@ -204,6 +205,12 @@ public class PlacingScript : MonoBehaviour
         }
         
     }
+
+    public void TogglePlacementLock()
+    {
+        placementEnable = !placementEnable;
+    }
+
     public void UpdateFortNumber()
     {
         
