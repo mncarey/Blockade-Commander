@@ -4,6 +4,8 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     [SerializeField] FloatingHealthBar healthBar;
+    [SerializeField] PlacingScript placingRef;
+    [SerializeField] PlayerFortress playerFortRef;
 
     public int lives = 10;
     public int maxLives = 10;
@@ -13,6 +15,12 @@ public class Wall : MonoBehaviour
     private void Awake()
     {
         healthBar = GetComponentInChildren<FloatingHealthBar>();
+
+        if (placingRef == null)
+            placingRef = FindFirstObjectByType<PlacingScript>();
+
+        if (playerFortRef == null)
+            playerFortRef = FindFirstObjectByType<PlayerFortress>();
     }
 
     private void Start()
@@ -30,6 +38,12 @@ public class Wall : MonoBehaviour
         healthBar.UpdateHealthBar(lives, maxLives);
         if (lives <= 0)
         {
+            placingRef.currentPlaced--;
+            if (placingRef.currentPlaced == 0 && playerFortRef.isDed)
+            {
+                placingRef.enemiesWinPopupRef.gameObject.SetActive(true);
+            }
+
             Destroy(gameObject);
         }
     }

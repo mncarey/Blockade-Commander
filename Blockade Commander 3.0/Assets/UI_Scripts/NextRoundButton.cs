@@ -13,6 +13,7 @@ public class NextWaveButton : MonoBehaviour
      public GameObject fortMenuRef;
      public GameObject exitFortMenuRef;
      public GameObject fortRemoveRef;
+     public PlayerFortress playerFortRef;
     public FortUIManager fortUIManagerRef;
 
 
@@ -52,5 +53,11 @@ public class NextWaveButton : MonoBehaviour
 
         //deactivate this game object
         waveProgressbar.SetActive(false);
+
+        //reset player health
+        playerFortRef.health = playerFortRef.maxLives;
+
+        //reset player health bar
+        playerFortRef.updateHealthBar();
     }
 }

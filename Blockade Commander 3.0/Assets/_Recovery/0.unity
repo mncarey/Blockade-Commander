@@ -139,10 +139,6 @@ PrefabInstance:
       propertyPath: startWaveRef
       value: 
       objectReference: {fileID: 2054984100}
-    - target: {fileID: 1763753074355973977, guid: 51d01ff9fc6c65a4294eaa17d29969c1, type: 3}
-      propertyPath: enemiesWinPopupRef
-      value: 
-      objectReference: {fileID: 1816634870}
     - target: {fileID: 2618640847772804475, guid: 51d01ff9fc6c65a4294eaa17d29969c1, type: 3}
       propertyPath: m_Name
       value: Player Fortress
@@ -284,10 +280,6 @@ PrefabInstance:
       propertyPath: fortRemoveRef
       value: 
       objectReference: {fileID: 360933456}
-    - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
-      propertyPath: playerFortRef
-      value: 
-      objectReference: {fileID: 1934153641}
     - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
       propertyPath: enemeisWinPopup
       value: 
@@ -1307,10 +1299,6 @@ PrefabInstance:
       propertyPath: fortRemoveRef
       value: 
       objectReference: {fileID: 360933456}
-    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
-      propertyPath: playerFortRef
-      value: 
-      objectReference: {fileID: 1934153641}
     - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
       propertyPath: enemeisWinPopup
       value: 
@@ -2335,17 +2323,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
   m_PrefabInstance: {fileID: 1013168678}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1934153641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1763753074355973977, guid: 51d01ff9fc6c65a4294eaa17d29969c1, type: 3}
-  m_PrefabInstance: {fileID: 36471348}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc25840056277f044b7793938923f24f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerFortress
 --- !u!1 &1970846517
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class TauntTower : MonoBehaviour
 
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] PlacingScript placingRef;
+    [SerializeField] PlayerFortress playerFortRef;
 
     public GameObject enemyWinPopup;
 
@@ -28,6 +29,9 @@ public class TauntTower : MonoBehaviour
     
         if (placingRef == null)
             placingRef = FindFirstObjectByType<PlacingScript>();
+
+        if (playerFortRef == null)
+            playerFortRef = FindFirstObjectByType<PlayerFortress>();
     }
 
 
@@ -52,12 +56,8 @@ public class TauntTower : MonoBehaviour
             
             if (gameObject != null)
             {
-                
                 placingRef.currentPlaced--;
-                if(placingRef.currentPlaced == 0)
-                {
-                    placingRef.enemiesWinPopupRef.gameObject.SetActive(true);
-                }
+
                 Destroy(gameObject);
             }
         }

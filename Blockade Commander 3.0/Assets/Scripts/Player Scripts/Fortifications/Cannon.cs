@@ -15,6 +15,7 @@ public class Cannon : MonoBehaviour
 
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] PlacingScript placingRef;
+    [SerializeField] PlayerFortress playerFortRef;
 
     public GameObject enemyWinPopup;
 
@@ -27,6 +28,9 @@ public class Cannon : MonoBehaviour
 
         if (placingRef == null)
             placingRef = FindFirstObjectByType<PlacingScript>();
+
+        if (playerFortRef == null)
+            playerFortRef = FindFirstObjectByType<PlayerFortress>();
     }
 
 
@@ -47,7 +51,7 @@ public class Cannon : MonoBehaviour
             {
 
                 placingRef.currentPlaced--;
-                if (placingRef.currentPlaced == 0)
+                if (placingRef.currentPlaced == 0 && playerFortRef.isDed)
                 {
                     placingRef.enemiesWinPopupRef.gameObject.SetActive(true);
                 }

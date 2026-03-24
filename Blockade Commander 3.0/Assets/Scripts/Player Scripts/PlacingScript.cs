@@ -76,6 +76,8 @@ public class PlacingScript : MonoBehaviour
         {
             startWaveButton.gameObject.SetActive(false);
         }
+
+        
     }
 
 
