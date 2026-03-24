@@ -8,74 +8,50 @@ using UnityEngine.InputSystem;
 
 public class CameraPanning : MonoBehaviour
 {
-    private Vector3 touchStart;
-    public Camera cam;
-    private bool isDragging;
+    public float moveSpeed = 5f;
+
+    public float minX = -5f;   // Left boundary
+    public float maxX = 5f;    // Right boundary
+
+    private bool moveLeft;
+    private bool moveRight;
 
     void Update()
     {
-        // PRIORITY: Touch first (covers mobile + touchscreen PCs)
-        if (Touchscreen.current != null)
-        {
-            var touch = Touchscreen.current.primaryTouch;
+        // moves the camera in the left direction 
+        if (moveLeft)
+            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 
-            if (touch.press.wasPressedThisFrame)
-            {
-                isDragging = true;
-                touchStart = GetWorldPosition(touch.position.ReadValue());
-            }
+        // moves the camera in the right direction
+        if (moveRight)
+            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
 
-            if (touch.press.isPressed && isDragging)
-            {
-                Vector3 direction = touchStart - GetWorldPosition(touch.position.ReadValue());
-                cam.transform.position += direction;
-            }
-
-            if (touch.press.wasReleasedThisFrame)
-            {
-                isDragging = false;
-            }
-
-            return; // Prevent mouse from also running
-        }
-
-        // Mouse fallback
-        if (Mouse.current != null)
-        {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                isDragging = true;
-                touchStart = GetWorldPosition(Mouse.current.position.ReadValue());
-            }
-
-            if (Mouse.current.leftButton.isPressed && isDragging)
-            {
-                Vector3 direction = touchStart - GetWorldPosition(Mouse.current.position.ReadValue());
-                cam.transform.position += direction;
-            }
-
-            if (Mouse.current.leftButton.wasReleasedThisFrame)
-            {
-                isDragging = false;
-            }
-        }
+        // clamp position so it stays within bounds and gets the position minX maxX and stops moving
+        float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
+        transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
     }
 
-    private Vector3 GetWorldPosition(Vector2 screenPos)
+    // starts moving left and makes it true
+    public void StartMoveLeft()
     {
-        // Prevent invalid screen positions
-        if (float.IsInfinity(screenPos.x) || float.IsInfinity(screenPos.y) ||
-            float.IsNaN(screenPos.x) || float.IsNaN(screenPos.y))
-        {
-            return cam.transform.position;
-        }
+        moveLeft = true;
+    }
 
-        Ray ray = cam.ScreenPointToRay(screenPos);
-        Plane plane = new Plane(Vector3.forward, Vector3.zero);
+     // stops moving left and makes it false
+    public void StopMoveLeft()
+    {
+        moveLeft = false;
+    }
 
-        if (plane.Raycast(ray, out float distance))
-            return ray.GetPoint(distance);
+    // starts moving right and makes it true
+    public void StartMoveRight()
+    {
+        moveRight = true;
+    }
 
-        return cam.transform.position;
+    // stops moving right and makes it false
+    public void StopMoveRight()
+    {
+        moveRight = false;
     }
 }

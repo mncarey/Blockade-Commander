@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: ed9e38ab3f4e0b24ab42dafdfa5287b5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - BasicEnemy: {instanceID: 0}
+  - Brigantine: {fileID: 2099700355507827545, guid: 52a9cd8b08062d84d9d2da0c68f6a0c8, type: 3}
+  - Galleon: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
+  - Sloop: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

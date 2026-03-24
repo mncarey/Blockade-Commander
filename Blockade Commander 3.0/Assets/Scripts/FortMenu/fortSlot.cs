@@ -18,14 +18,14 @@ public class fortSlot : MonoBehaviour
 
     public GameObject currentFort;
     [SerializeField] private GameObject lightHouse;
-    //[SerializeField] private GameObject cannon;
+    [SerializeField] private GameObject cannon;
     //[SerializeField] private GameObject mortar;
-    //[SerializeField] private GameObject wall;
+    [SerializeField] private GameObject wall;
 
     [SerializeField] private FortImageDisplay fortImageDisplay;
     [SerializeField] private Sprite newSprite;
 
-    private string lighthouseText = "A primarily defensive fortification that forces enemies to attack it if they are within range";
+    private string lighthouseText = "A primarily defensive fortification that forces enemies to attack it if they are within range. Cannot damage ranged enemies.";
     private string cannonText = "A medium range and damage fortification that assaults enemy ships with a quick rate of fire";
     private string mortarText = "A long range heavy damage fortification, which cannot attack enemies that get too close, low rate of fire";
     //private string wallText = "A wall, simple as";
@@ -63,7 +63,7 @@ public class fortSlot : MonoBehaviour
         if(fortName == "Cannon")
         {
             content = cannonText;
-            //currentFort = cannon;
+            currentFort = cannon;
             //Debug.Log(currentFort.name);
         }
         if(fortName == "Mortar")
@@ -75,8 +75,8 @@ public class fortSlot : MonoBehaviour
         if(fortName == "Wall")
         {
             //content = wallText;
-            //currentFort = wall;
-            //Debug.Log(currentFort.name);
+            currentFort = wall;
+            Debug.Log(currentFort.name);
         }
         
     }
@@ -128,7 +128,9 @@ public class fortSlot : MonoBehaviour
             fortImageDisplay.ChangeImage(newSprite, fortName, content);
             //set the display image to the image associated with this object
 
+            placeRef.startPlaceState = true;
             placeRef.SetCurrentFort(currentFort);
+
 
         }
 

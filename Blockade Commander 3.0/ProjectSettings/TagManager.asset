@@ -11,6 +11,12 @@ TagManager:
   - wall
   - PlaceableObject
   - wallZone
+  - Fortification
+  - Taunt Range
+  - EnemiesDefeated
+  - FortificationMenu
+  - Damage Range
+  - EnemiesWin
   layers:
   - Default
   - TransparentFX
@@ -20,8 +26,8 @@ TagManager:
   - UI
   - Ground
   - PlaceableObjects
-  - 
-  - 
+  - Enemy
+  - Range
   - 
   - 
   - 

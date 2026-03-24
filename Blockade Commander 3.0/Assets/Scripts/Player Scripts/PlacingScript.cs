@@ -1,126 +1,214 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 public class PlacingScript : MonoBehaviour
 {
-    public GameObject objectToPlace;//asigned in inspector? dont sign in inspector?
-    //want to create a bool that allows the player to even place an object or not
+
+    public ResourceUI resourceRef;
+    public StartWaveButton startWaveButton;
+    public GameObject enemiesWinPopupRef;
+    public GameObject objectToPlace;
     public Camera mainCamera;
 
+    //---- Layer Selections ----//
     public LayerMask groundLayer;
     public LayerMask placeableObjectsLayer;
 
-    private Vector3 placeToSpawn;
+    //---- Double click feature ----//
+    public float doubleClickTime = 0.3f;
+    private float lastClickTime = -999f;
+    private Transform lastClickedRoot = null;
 
-    //implementing double click/tap to rotate
-    private float doubleClickTime = 0.3f;
-    private float lastClickTime;
+    //---- Fortification Placement Restriction ----//
+    public int currentPlaced = 0;
+    public int maxPlaced = 4;
+    public int fortsAilve = 0;
+    public bool canPlace => currentPlaced < maxPlaced;
+    public bool removalToggle = false;
+    public bool startPlaceState = false;
+    public bool showStats = false;
 
-    //implementing outline feature
-    Outline outline;
+    //---- Outline ----//
+    private Outline currentOutline;
+    
+    //---- Input Action References ----//
+    private PlayerInput playerInput;
+    private InputAction clickAction;
+    private InputAction pointAction;
 
-    bool GetPointerDown(out Vector2 screenPosition)
+    private void Awake()
     {
-        screenPosition = default;
+        playerInput = GetComponent<PlayerInput>();
+        
+        //Input action link
+        clickAction = playerInput.actions["Click"];
+        pointAction = playerInput.actions["Point"];
 
-        //Mouse
-        if(Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            screenPosition = Mouse.current.position.ReadValue();
-            return true;
-        }
+        resourceRef = FindObjectOfType<ResourceUI>();
 
-        //Touch
-        if(Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
-        {
-            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            return true;
-        }
-
-        return false;
     }
-    public void SetCurrentFort(GameObject fort)
+
+    private void OnEnable()
     {
-        objectToPlace = fort;
+        
+        clickAction.performed += OnClickPerformed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-     
-        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        
+        clickAction.performed -= OnClickPerformed;
+    }
 
-        //touch screen
-        Ray touchRay = mainCamera.ScreenPointToRay(Touchscreen.current.position.ReadValue());
+    //Update checks for changes based on information received from the Input Action events
+    private void Update()
+    {
+        //Checks the position of the mouse
+        UpdatePreviewPosition();
+        //Checks the outline function if applicable
+        UpdateOutlineHover();
 
-        //touch screen
-        Vector2 screenPosition;
+        //start wave
+        startWaveButton.gameObject.SetActive(currentPlaced > 0);
 
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, groundLayer)){
-            transform.position = raycastHit.point;
-            placeToSpawn = transform.position;
+        if (startWaveButton.isClicked)
+        {
+            startWaveButton.gameObject.SetActive(false);
         }
 
-        //touch screen
-        if(Physics.Raycast(touchRay, out RaycastHit raycastHit1, float.MaxValue, groundLayer))
+        
+    }
+
+
+    private void UpdatePreviewPosition()
+    {
+        Vector2 mousePos = pointAction.ReadValue<Vector2>();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, groundLayer))
         {
-            transform.position = raycastHit1.point;
-            placeToSpawn = transform.position;
+            transform.position = hit.point;
         }
+    }
 
-        if (Physics.Raycast(ray, out RaycastHit placeableHit, float.MaxValue, placeableObjectsLayer) || Physics.Raycast(touchRay, out placeableHit, float.MaxValue, placeableObjectsLayer))
+    private void UpdateOutlineHover()
+    {
+        Vector2 mousePos = pointAction.ReadValue<Vector2>();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+
+        //If the preview is on the placable object layer
+        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame || Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+            if (hit.transform.TryGetComponent(out Outline foundOutline))
             {
-                //check to find a double click/tap first
-                if (Time.time - lastClickTime <= doubleClickTime)
+                if (currentOutline != foundOutline)
                 {
-                    placeableHit.transform.Rotate(0f, 90f, 0f); //rotate object 90 degrees on y
+                    
+                    currentOutline?.OutlineBoolFunc(false);
+                    currentOutline = foundOutline;
+                    currentOutline.OutlineBoolFunc(true);
                 }
-
-                lastClickTime = Time.time;//click time resets
-                return;//dont also place a new object
-            }
-
-            if(placeableHit.transform.TryGetComponent(out Outline outline))//trying to check whether or not it has the Outline component
-            {
-                if(this.outline != outline)
-                {
-                    this.outline?.OutlineBoolFunc(false);//disable outline on previous object, if it exists
-                }
-
-                //override old outline with current outline on object
-                this.outline = outline;
-                outline.OutlineBoolFunc(true);
-            }
-            else
-            {
-                this.outline?.OutlineBoolFunc(false);
-                this.outline = default;
             }
         }
         else
         {
-            //if there is no object to be outlined, disable outline
-            outline?.OutlineBoolFunc(false);
-            outline = default;
+            currentOutline?.OutlineBoolFunc(false);
+            currentOutline = null;
         }
+    }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+    // Listener which runs when you tap or click
+    private void OnClickPerformed(InputAction.CallbackContext context)
+    {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        Vector2 mousePos = pointAction.ReadValue<Vector2>();
+        Ray ray = mainCamera.ScreenPointToRay(mousePos);
+
+        if (!context.performed) return;
+
+        if(startPlaceState == false)
         {
-            Instantiate(objectToPlace, gameObject.transform.position, Quaternion.identity);
+            Debug.Log("can't place");
         }
-
-        if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+        else
         {
-            screenPosition = Touchscreen.current.primaryTouch.position.ReadValue();//set screenPosition
+            if (removalToggle == false)
+            {
+                // Check for Rotation/Interaction via the object layer
+                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+                {
+                    Transform clickedRoot = hit.collider.transform.root;
 
-            touchRay = mainCamera.ScreenPointToRay(screenPosition);// create a raycast for screenPosition
+                    bool withinTime = (Time.time - lastClickTime) <= doubleClickTime;
+                    bool sameTarget = (lastClickedRoot == clickedRoot);
 
-            Instantiate(objectToPlace, gameObject.transform.position, Quaternion.identity);//gotta change position
+                    //Double Click to Rotate and Open Stats
+                    if (withinTime && sameTarget)
+                    {
+                        clickedRoot.Rotate(0f, 90f, 0f);
+                        showStats = true;
+
+                        //reseting variables
+                        lastClickTime = -999f;
+                        lastClickedRoot = null;
+                    }
+                    else
+                    {
+                        lastClickTime = Time.time;
+                        lastClickedRoot = clickedRoot;
+                    }
+
+                    return;
+                }
+
+                // Check for Placement on the ground layer
+                if (canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
+                {
+                    Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
+                    currentPlaced++;
+                    UpdateFortNumber();
+
+                }
+
+                lastClickTime = Time.time;
+            }
+            else
+            {
+                if(Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+{
+                    // Find the highest object in the hierarchy that belongs to this prefab
+                    GameObject objectToRemove = hit.collider.transform.root.gameObject;
+
+                    
+                    //Check to make sure that it is what we want to remove using the tag "Fortification"
+                    if (objectToRemove.CompareTag("Fortification"))
+                    {
+                        // Disable all colliders on the object immediately to stop further raycasts
+                        foreach (var col in objectToRemove.GetComponentsInChildren<Collider>())
+                        {
+                            col.enabled = false;
+                        }
+
+                        Destroy(objectToRemove);
+                        currentPlaced--;
+                        //set the number in resource UI to the new value
+
+                        UpdateFortNumber();
+                        //Debug.Log($"Removed {objectToRemove.name}. Remaining: {currentPlaced}");
+                    }
+                    return;
+                }
+            }
+            
         }
+        
+    }
+    public void UpdateFortNumber()
+    {
+        
+        resourceRef.UpdateFortRef(currentPlaced);
+    }
 
-          
-    }   
-
+    public void SetCurrentFort(GameObject fort) => objectToPlace = fort;
 }
