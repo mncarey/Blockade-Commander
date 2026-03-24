@@ -23,6 +23,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     private Vector3 randomSpawn;
 
     public int enemiesAlive = 0;
+    public int enemiesTotalThisWave;
 
     private bool canSpawn = false;
 
@@ -59,6 +60,9 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        enemiesAlive = 0;
+        enemiesTotalThisWave = spawnPoints.Length;
+
         for(int i = 0; i< spawnPoints.Length; i++)
         {
             int randomIndex = Random.Range(0, enemyPrefabs.Length);
@@ -97,6 +101,19 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             Destroy(fort);
         }
 
-        Debug.Log("All fortifications destroyed.");
+        
+    }
+
+    public void ClearEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("BasicEnemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
+        enemiesAlive = 0;
+        Debug.Log("All enemies destroyed.");
     }
 }

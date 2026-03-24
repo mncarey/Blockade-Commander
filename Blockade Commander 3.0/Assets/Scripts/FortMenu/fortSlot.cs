@@ -25,7 +25,7 @@ public class fortSlot : MonoBehaviour
     [SerializeField] private FortImageDisplay fortImageDisplay;
     [SerializeField] private Sprite newSprite;
 
-    private string lighthouseText = "A primarily defensive fortification that forces enemies to attack it if they are within range";
+    private string lighthouseText = "A primarily defensive fortification that forces enemies to attack it if they are within range. Cannot damage ranged enemies.";
     private string cannonText = "A medium range and damage fortification that assaults enemy ships with a quick rate of fire";
     private string mortarText = "A long range heavy damage fortification, which cannot attack enemies that get too close, low rate of fire";
     //private string wallText = "A wall, simple as";

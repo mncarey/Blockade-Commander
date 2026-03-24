@@ -18,15 +18,18 @@ public class BasicEnemy : MonoBehaviour
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     private PlayerFortress fortRef;
 
+    public EnemyInfo enemyInfo;
+    public IncreaseDifficulty increaseDiff;
+
     //Enemy Layer//
     public LayerMask enemyLayer;
     
 
     //---- Enemy Basic Var ----//
-    public float speed = 5;
+    public float speed = 10;
     public float currentSpeed;
-    public int lives = 5;
-    public int maxLives = 5;
+    public float lives = 5f;
+    public float maxLives = 5;
     public int dmg = 0;
     public float reachDistance = 5f;
     public int goldValue = 10;
@@ -37,6 +40,7 @@ public class BasicEnemy : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
+    [SerializeField] WaveProgressBar waveProgressBarRef;
 
     //---- Coroutines ----//
     private Coroutine damageEnemyRoutine;
@@ -47,6 +51,7 @@ public class BasicEnemy : MonoBehaviour
 
     
     
+    
     //List to hold the fortifications within the scene
     public List<GameObject> targets = new List<GameObject>();
 
@@ -54,6 +59,8 @@ public class BasicEnemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
+        waveProgressBarRef = FindObjectOfType<WaveProgressBar>(true);
+        increaseDiff = FindObjectOfType<IncreaseDifficulty>();
     }
        
     //then if this enemy is within "range" of the fortification - set speed to 0 - execute damage towards the fortification
@@ -64,9 +71,34 @@ public class BasicEnemy : MonoBehaviour
     //This should keep going until enemies are defeated
     void Start()
     {
-        unitPriority = Random.value;
-        healthBar.UpdateHealthBar(lives, maxLives);
         
+        switch (true)
+        {
+            case bool when gameObject.name.Contains("Brigantine Enemy"):
+                unitPriority = Random.Range(0f, 100f);
+                Debug.Log("brig value: " + unitPriority);
+                break;
+
+            case bool when gameObject.name.Contains("Galleon Ranged Enemy"):
+                unitPriority = Random.Range(201f, 300f);
+                Debug.Log("brig value: " + unitPriority);
+                break;
+
+            case bool when gameObject.name.Contains("Sloop Enemy"):
+                unitPriority = Random.Range(101f, 200f);
+                Debug.Log("brig value: " + unitPriority);
+                break;
+
+            default:
+                break;
+            
+        }
+        
+        //maxLives = lives * increaseDiff.Instance.multiplier;
+        lives = maxLives;
+        healthBar.UpdateHealthBar(lives, maxLives);
+        waveProgressBarRef.UpdateHealthBar();
+        //Debug.Log("Increased Health to: " + maxLives);
         
         
         //---- Get Targets For Attack Info ----//
@@ -103,6 +135,9 @@ public class BasicEnemy : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             
             FindNewTarget();
+            if (currentTarget == null) StopAllAttackCoroutines();
+                
+                return;
 
         }
 
@@ -179,7 +214,7 @@ public class BasicEnemy : MonoBehaviour
             if (friend.gameObject == gameObject) continue;
 
             //if the friends priority is higher than this, move this
-            if(friendScript != null && friendScript.unitPriority > unitPriority)
+            if(friendScript != null && friendScript.unitPriority < unitPriority)
             {
                 //find the push direction
                 Vector3 pushDir = transform.position - friend.transform.position;
@@ -191,7 +226,7 @@ public class BasicEnemy : MonoBehaviour
                 if (dist <= separationRadius)
                 {
                     Vector3 slideDir = Vector3.Cross(Vector3.up, pushDir);
-                    // The closer they are, the harder they push// normalized so speed is constant
+                    // The closer they are, the harder they push // normalized so speed is constant
                     totalPush += (pushDir.normalized + slideDir.normalized * 2f) / (pushDir.magnitude + 0.01f);
                 }
             }
@@ -208,6 +243,7 @@ public class BasicEnemy : MonoBehaviour
     {
         lives--;
         healthBar.UpdateHealthBar(lives, maxLives);
+        waveProgressBarRef.UpdateHealthBar();
         if (lives <= 0)
         {
             Destroy(gameObject);
@@ -216,7 +252,7 @@ public class BasicEnemy : MonoBehaviour
            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
 
-            waveSpawnerRef.EnemyDied();
+           waveSpawnerRef.EnemyDied();
         }
     }
 
@@ -233,7 +269,7 @@ public class BasicEnemy : MonoBehaviour
             {
                 //set this game object as current target
                 currentTarget = other.transform;
-                Debug.Log("setting target to taunt");
+                //Debug.Log("setting target to taunt");
 
             }
 
@@ -336,12 +372,14 @@ public class BasicEnemy : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
 
         // Try TauntTower
-        tauntRef = currentTarget.GetComponent<TauntTower>();
+        tauntRef = currentTarget.GetComponentInParent<TauntTower>();
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
         {
+            
             //if it is not already being damaged
             if (damageTauntRoutine == null) /* Start damage */ damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
+            
 
             return;
         }

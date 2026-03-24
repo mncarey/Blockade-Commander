@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 public class PlacingScript : MonoBehaviour
 {
 
+    public ResourceUI resourceRef;
     public StartWaveButton startWaveButton;
+    public GameObject enemiesWinPopupRef;
     public GameObject objectToPlace;
     public Camera mainCamera;
 
@@ -12,16 +15,19 @@ public class PlacingScript : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask placeableObjectsLayer;
 
-    
+    //---- Double click feature ----//
     public float doubleClickTime = 0.3f;
-    private float lastClickTime;
+    private float lastClickTime = -999f;
+    private Transform lastClickedRoot = null;
 
     //---- Fortification Placement Restriction ----//
     public int currentPlaced = 0;
     public int maxPlaced = 4;
+    public int fortsAilve = 0;
     public bool canPlace => currentPlaced < maxPlaced;
     public bool removalToggle = false;
     public bool startPlaceState = false;
+    public bool showStats = false;
 
     //---- Outline ----//
     private Outline currentOutline;
@@ -38,6 +44,9 @@ public class PlacingScript : MonoBehaviour
         //Input action link
         clickAction = playerInput.actions["Click"];
         pointAction = playerInput.actions["Point"];
+
+        resourceRef = FindObjectOfType<ResourceUI>();
+
     }
 
     private void OnEnable()
@@ -61,12 +70,14 @@ public class PlacingScript : MonoBehaviour
         UpdateOutlineHover();
 
         //start wave
-        startWaveButton.gameObject.SetActive(!canPlace);
+        startWaveButton.gameObject.SetActive(currentPlaced > 0);
 
         if (startWaveButton.isClicked)
         {
             startWaveButton.gameObject.SetActive(false);
         }
+
+        
     }
 
 
@@ -127,13 +138,26 @@ public class PlacingScript : MonoBehaviour
                 // Check for Rotation/Interaction via the object layer
                 if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
                 {
-                    //Double Click to Rotate
-                    if (Time.time - lastClickTime <= doubleClickTime)
-                    {
-                        hit.transform.Rotate(0f, 90f, 0f);
-                    }
+                    Transform clickedRoot = hit.collider.transform.root;
 
-                    lastClickTime = Time.time;
+                    bool withinTime = (Time.time - lastClickTime) <= doubleClickTime;
+                    bool sameTarget = (lastClickedRoot == clickedRoot);
+
+                    //Double Click to Rotate and Open Stats
+                    if (withinTime && sameTarget)
+                    {
+                        clickedRoot.Rotate(0f, 90f, 0f);
+                        showStats = true;
+
+                        //reseting variables
+                        lastClickTime = -999f;
+                        lastClickedRoot = null;
+                    }
+                    else
+                    {
+                        lastClickTime = Time.time;
+                        lastClickedRoot = clickedRoot;
+                    }
 
                     return;
                 }
@@ -143,6 +167,7 @@ public class PlacingScript : MonoBehaviour
                 {
                     Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
                     currentPlaced++;
+                    UpdateFortNumber();
 
                 }
 
@@ -167,8 +192,10 @@ public class PlacingScript : MonoBehaviour
 
                         Destroy(objectToRemove);
                         currentPlaced--;
+                        //set the number in resource UI to the new value
 
-                        Debug.Log($"Removed {objectToRemove.name}. Remaining: {currentPlaced}");
+                        UpdateFortNumber();
+                        //Debug.Log($"Removed {objectToRemove.name}. Remaining: {currentPlaced}");
                     }
                     return;
                 }
@@ -176,6 +203,11 @@ public class PlacingScript : MonoBehaviour
             
         }
         
+    }
+    public void UpdateFortNumber()
+    {
+        
+        resourceRef.UpdateFortRef(currentPlaced);
     }
 
     public void SetCurrentFort(GameObject fort) => objectToPlace = fort;

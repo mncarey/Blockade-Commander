@@ -15,6 +15,7 @@ public class FortButtonPress : MonoBehaviour
     public GameObject PlaceIcon;
 
     public PlacingScript placingScript;
+    public FortUIManager fortUIManagerRef;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +26,7 @@ public class FortButtonPress : MonoBehaviour
         {
             placingScript = FindAnyObjectByType<PlacingScript>();
         }
+        fortUIManagerRef = FindObjectOfType<FortUIManager>();
     }
 
     // Update is called once per frame
@@ -38,10 +40,7 @@ public class FortButtonPress : MonoBehaviour
     public void IWasClicked()
     {
         
-        FortMenuRef.SetActive(true);
-        FortExitRef.SetActive(true);
-        FortRemoveRef.SetActive(true);
-        FortButtonRef.SetActive(false);
+        fortUIManagerRef.ShowFortMenu();
 
     }
 

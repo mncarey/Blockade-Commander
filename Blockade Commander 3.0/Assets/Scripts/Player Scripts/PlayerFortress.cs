@@ -5,6 +5,10 @@ using UnityEngine.InputSystem.Processors;
 
 public class PlayerFortress : MonoBehaviour
 {
+    public GameObject startWaveRef;
+    public GameObject nextWaveRef;
+    public GameObject enemiesWinPopupRef;
+
     public int health = 10;
     public int maxLives = 10;
     public bool isDed = false;
@@ -13,6 +17,7 @@ public class PlayerFortress : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
+    [SerializeField] PlacingScript placingRef;
 
     private Coroutine damageRoutine;
 
@@ -29,21 +34,42 @@ public class PlayerFortress : MonoBehaviour
     }
     private void Update()
     {
-
+        
     }
 
+    public void updateHealthBar()
+    {
+        healthBar.UpdateHealthBar(health, maxLives);
+    }
     public void takeDamage()
     {
+        if (isDed) return;
+
         health--;
-        healthBar.UpdateHealthBar(health, maxLives);
+        updateHealthBar();
         if (health <= 0)
         {
+            health = 0;
+            isDed = true;
+
             if (gameObject != null)
             {
+                
+                //show lose screen
+                startWaveRef.SetActive(true);
+                nextWaveRef.SetActive(true);
+                
                 resourceRef.ResetResources();
-                Destroy(gameObject);
-                isDed = true;
+                
             }
+            Debug.Log("player fort died");
+           
+
+            if(placingRef.currentPlaced == 0)
+            {
+                enemiesWinPopupRef.SetActive(true);
+            }
+            //Destroy(gameObject);
         }
     }
 
