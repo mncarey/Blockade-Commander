@@ -9010,7 +9010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
   _debugMode: 1
-  sceneName: CombinedScene
+  sceneName: _MadiTest
 --- !u!114 &1794451296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9077,7 +9077,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: CombinedScene
+          m_StringArgument: _MadiTest
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1794451298
@@ -9501,7 +9501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42375c28567577b468ab54612d3e0802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacingScript
+  resourceRef: {fileID: 0}
   startWaveButton: {fileID: 867397080}
+  enemiesWinPopupRef: {fileID: 0}
   objectToPlace: {fileID: 668786706655728692, guid: 51bde2604d821a34e97192407d93c93d, type: 3}
   mainCamera: {fileID: 2048995872}
   groundLayer:
@@ -9513,8 +9515,10 @@ MonoBehaviour:
   doubleClickTime: 0.3
   currentPlaced: 0
   maxPlaced: 4
+  fortsAilve: 0
   removalToggle: 0
   startPlaceState: 0
+  showStats: 0
 --- !u!114 &1974429997
 MonoBehaviour:
   m_ObjectHideFlags: 0

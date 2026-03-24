@@ -2874,6 +2874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Popup Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 5154850708443568256, guid: 225cc055a09445d49bcddfc0302a0c04, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6209454024426472309, guid: 225cc055a09445d49bcddfc0302a0c04, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1140
