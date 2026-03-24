@@ -9,8 +9,11 @@ public class StartWaveButton : MonoBehaviour
     public GameObject fortRemoveRef;
     public Wave_Spawner_BasicEnemy spawnEnemyRef;
     public PlacingScript placingScriptRef;
-
+    
     public GameObject player;
+
+    public int maxEnemies;
+    public Wave_Spawner_BasicEnemy waveRef;
 
     public bool isClicked = false;
 
@@ -55,6 +58,7 @@ public class StartWaveButton : MonoBehaviour
         //spawn the enemies!!!
         Debug.Log("spawning enemies");
         spawnEnemyRef.SpawnEnemy();
+        maxEnemies = waveRef.enemiesAlive;
 
         isClicked = true;
 

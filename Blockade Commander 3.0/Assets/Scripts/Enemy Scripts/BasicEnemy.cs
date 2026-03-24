@@ -17,6 +17,9 @@ public class BasicEnemy : MonoBehaviour
     private Wall wallRef;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     private PlayerFortress fortRef;
+
+    //Enemy Layer//
+    public LayerMask enemyLayer;
     
 
     //---- Enemy Basic Var ----//
@@ -28,6 +31,8 @@ public class BasicEnemy : MonoBehaviour
     public float reachDistance = 5f;
     public int goldValue = 10;
     private int killValue = 1;
+
+    private float unitPriority;
     
     Rigidbody rb;
 
@@ -59,7 +64,7 @@ public class BasicEnemy : MonoBehaviour
     //This should keep going until enemies are defeated
     void Start()
     {
-        
+        unitPriority = Random.value;
         healthBar.UpdateHealthBar(lives, maxLives);
         
         
@@ -114,7 +119,7 @@ public class BasicEnemy : MonoBehaviour
             MoveTowardsTarget();
         }
         
-           
+
     }
 
     private void FindNewTarget()
@@ -132,6 +137,7 @@ public class BasicEnemy : MonoBehaviour
             GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
             currentTarget = playerRef.transform;
             currentSpeed = speed;
+            if (currentTarget == null) return;
             return;
         }
 
@@ -150,10 +156,51 @@ public class BasicEnemy : MonoBehaviour
         else
         {
             //target closest target
-            currentTarget = targetTag.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).First().transform;
+            currentTarget = targetTag.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).First().transform;           
+        }        
+    }
+    
+    //Handles enemies "nudging" eachother
+
+    private Vector3 EnemyNudge()
+    {
+        float separationRadius = 4f;
+        Vector3 totalPush = Vector3.zero;
+
+        //Gets enemies within this range
+        Collider[] friends = Physics.OverlapSphere(transform.position, separationRadius, enemyLayer);
+
+        //foreach nearby enemy
+        foreach (var friend in friends)
+        {
+            //reference the friends script
+            BasicEnemy friendScript = friend.GetComponent<BasicEnemy>();
+            // dont nudge yourself
+            if (friend.gameObject == gameObject) continue;
+
+            //if the friends priority is higher than this, move this
+            if(friendScript != null && friendScript.unitPriority > unitPriority)
+            {
+                //find the push direction
+                Vector3 pushDir = transform.position - friend.transform.position;
+
+                pushDir.y = 0f;
+
+                float dist = pushDir.magnitude;
+
+                if (dist <= separationRadius)
+                {
+                    Vector3 slideDir = Vector3.Cross(Vector3.up, pushDir);
+                    // The closer they are, the harder they push// normalized so speed is constant
+                    totalPush += (pushDir.normalized + slideDir.normalized * 2f) / (pushDir.magnitude + 0.01f);
+                }
+            }
+           
             
+
+
         }
-        
+        return totalPush;
 
     }
 
@@ -234,17 +281,8 @@ public class BasicEnemy : MonoBehaviour
                 damageEnemyRoutine = StartCoroutine(DamageOverTime());
                 
                 
-            }
-
-            
-
-            
-        }
-
-        
-        
-
-        
+            }            
+        }        
     }
 
     private void OnTriggerExit(Collider other)
@@ -283,9 +321,12 @@ public class BasicEnemy : MonoBehaviour
     {
         // Stop any attack routines when moving again
         StopAllAttackCoroutines();
-
+        float nudgeStrength = 5f;
         Vector3 direction = (currentTarget.position - rb.position).normalized;
-        Vector3 moveVelocity = direction * speed;
+
+        Vector3 nudgeDir = EnemyNudge();
+        Vector3 finalDir = (direction + (nudgeDir * nudgeStrength)).normalized;
+        Vector3 moveVelocity = finalDir * speed;
         rb.linearVelocity = new Vector3(moveVelocity.x, rb.linearVelocity.y, moveVelocity.z);
     }
 
@@ -322,6 +363,8 @@ public class BasicEnemy : MonoBehaviour
             fortRef.takeDamage();
         }
     }
+
+    
 
     //stops all damage routines if they are ongoing
     private void StopAllAttackCoroutines()
@@ -370,4 +413,10 @@ public class BasicEnemy : MonoBehaviour
         damageTauntRoutine = null;//damage taunt routine resets for the next tower to be damaged
     
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 2.0f); // Match your separationRadius
     }
+}
