@@ -26,7 +26,7 @@ public class BasicEnemy : MonoBehaviour
     
 
     //---- Enemy Basic Var ----//
-    public float speed = 5;
+    public float speed = 10;
     public float currentSpeed;
     public float lives = 5f;
     public float maxLives = 5;
@@ -71,12 +71,34 @@ public class BasicEnemy : MonoBehaviour
     //This should keep going until enemies are defeated
     void Start()
     {
-        unitPriority = Random.value;
+        
+        switch (true)
+        {
+            case bool when gameObject.name.Contains("Brigantine Enemy"):
+                unitPriority = Random.Range(0f, 100f);
+                Debug.Log("brig value: " + unitPriority);
+                break;
+
+            case bool when gameObject.name.Contains("Galleon Ranged Enemy"):
+                unitPriority = Random.Range(201f, 300f);
+                Debug.Log("brig value: " + unitPriority);
+                break;
+
+            case bool when gameObject.name.Contains("Sloop Enemy"):
+                unitPriority = Random.Range(101f, 200f);
+                Debug.Log("brig value: " + unitPriority);
+                break;
+
+            default:
+                break;
+            
+        }
+        
         //maxLives = lives * increaseDiff.Instance.multiplier;
         lives = maxLives;
         healthBar.UpdateHealthBar(lives, maxLives);
         waveProgressBarRef.UpdateHealthBar();
-        Debug.Log("Increased Health to: " + maxLives);
+        //Debug.Log("Increased Health to: " + maxLives);
         
         
         //---- Get Targets For Attack Info ----//
@@ -113,7 +135,9 @@ public class BasicEnemy : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             
             FindNewTarget();
-            if (currentTarget == null) return;
+            if (currentTarget == null) StopAllAttackCoroutines();
+                
+                return;
 
         }
 
@@ -145,9 +169,9 @@ public class BasicEnemy : MonoBehaviour
         //If there are no targets left
         if (targetTag.Length == 0)
         {
-            /*GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
+            GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
             currentTarget = playerRef.transform;
-            currentSpeed = speed;*/
+            currentSpeed = speed;
             if (currentTarget == null) return;
             return;
         }
@@ -190,7 +214,7 @@ public class BasicEnemy : MonoBehaviour
             if (friend.gameObject == gameObject) continue;
 
             //if the friends priority is higher than this, move this
-            if(friendScript != null && friendScript.unitPriority > unitPriority)
+            if(friendScript != null && friendScript.unitPriority < unitPriority)
             {
                 //find the push direction
                 Vector3 pushDir = transform.position - friend.transform.position;
@@ -245,7 +269,7 @@ public class BasicEnemy : MonoBehaviour
             {
                 //set this game object as current target
                 currentTarget = other.transform;
-                Debug.Log("setting target to taunt");
+                //Debug.Log("setting target to taunt");
 
             }
 

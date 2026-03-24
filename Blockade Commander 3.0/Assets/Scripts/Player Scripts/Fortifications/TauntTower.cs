@@ -49,7 +49,7 @@ public class TauntTower : MonoBehaviour
         if (health <= 0)
         {
             isDed = true;
-            Debug.Log("this tower is dead");
+            
             if (gameObject != null)
             {
                 

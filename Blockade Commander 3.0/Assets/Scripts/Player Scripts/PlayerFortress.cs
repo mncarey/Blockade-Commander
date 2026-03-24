@@ -5,6 +5,9 @@ using UnityEngine.InputSystem.Processors;
 
 public class PlayerFortress : MonoBehaviour
 {
+    public GameObject startWaveRef;
+    public GameObject nextWaveRef;
+    
     public int health = 10;
     public int maxLives = 10;
     public bool isDed = false;
@@ -40,8 +43,12 @@ public class PlayerFortress : MonoBehaviour
         {
             if (gameObject != null)
             {
-                resourceRef.ResetResources();
+
+                //show lose screen
+                startWaveRef.SetActive(true);
+                nextWaveRef.SetActive(true);
                 //Destroy(gameObject);
+                resourceRef.ResetResources();
                 isDed = true;
             }
         }

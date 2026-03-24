@@ -714,6 +714,7 @@ MonoBehaviour:
   RemoveIcon: {fileID: 0}
   PlaceIcon: {fileID: 0}
   placingScript: {fileID: 0}
+  fortUIManagerRef: {fileID: 0}
 --- !u!1 &2064350574380687296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1075,7 @@ MonoBehaviour:
   RemoveIcon: {fileID: 8574722580775476178}
   PlaceIcon: {fileID: 7034984873781441031}
   placingScript: {fileID: 0}
+  fortUIManagerRef: {fileID: 0}
 --- !u!1 &3268718131585357722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,6 +1678,7 @@ MonoBehaviour:
   RemoveIcon: {fileID: 0}
   PlaceIcon: {fileID: 0}
   placingScript: {fileID: 0}
+  fortUIManagerRef: {fileID: 0}
 --- !u!1 &7034984873781441031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2033,7 +2036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999615548208718912, guid: 71959854879a74549972fcb779e26461, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 312.5
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 2999615548208718912, guid: 71959854879a74549972fcb779e26461, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2135,7 +2138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 318873802299334951, guid: b674de9a76dac1d468636f484a57f48b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 137.5
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 318873802299334951, guid: b674de9a76dac1d468636f484a57f48b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2237,7 +2240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400700967208524586, guid: 7cad10eb1e966eb4281bbf25be284938, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 662.5
+      value: 575
       objectReference: {fileID: 0}
     - target: {fileID: 400700967208524586, guid: 7cad10eb1e966eb4281bbf25be284938, type: 3}
       propertyPath: m_AnchoredPosition.y
