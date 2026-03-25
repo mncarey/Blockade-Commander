@@ -39,6 +39,11 @@ public class PlacingScript : MonoBehaviour
     private InputAction clickAction;
     private InputAction pointAction;
 
+    //---- Stats Popups ----//
+    public GameObject tauntStatsPopup;
+    public GameObject wallStatsPopup;
+    public GameObject cannonStatsPopup;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -149,7 +154,7 @@ public class PlacingScript : MonoBehaviour
 
                         if(clickedRoot.TryGetComponent(out TauntTower taunt))
                         {
-                            showStats = true;
+                            tauntStatsPopup.SetActive(true); //<---working here!!!!!
                         }
                         
 

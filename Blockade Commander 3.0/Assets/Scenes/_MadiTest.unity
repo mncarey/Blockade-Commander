@@ -3311,6 +3311,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1407063624}
     - target: {fileID: 2761594819811407208, guid: 890e4ad2421e23945a0ac5ccd2a79ed2, type: 3}
+      propertyPath: tauntStatsPopup
+      value: 
+      objectReference: {fileID: 468407356}
+    - target: {fileID: 2761594819811407208, guid: 890e4ad2421e23945a0ac5ccd2a79ed2, type: 3}
       propertyPath: enemiesWinPopupRef
       value: 
       objectReference: {fileID: 1816634870}
