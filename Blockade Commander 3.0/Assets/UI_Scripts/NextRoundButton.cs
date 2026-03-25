@@ -24,27 +24,14 @@ public class NextWaveButton : MonoBehaviour
         fortUIManagerRef = FindObjectOfType<FortUIManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void IWasClicked()
     {
-        fortUIManagerRef.ResetForNextWave();
-        Debug.Log("ButtonClicked");
+        fortUIManagerRef.ResetForNextWave();       
         enemiesDefeatedPopup.SetActive(false);
         enemeisWinPopup.SetActive(false);
-
         waveSpawnerRef.ClearFortifications();
         waveSpawnerRef.ClearEnemies();
-
-
-        //fortCanvasRef.SetActive(true);
-        
-        
-        
+   
         //reset fortifications to place
         placingScriptRef.currentPlaced = 0;
 

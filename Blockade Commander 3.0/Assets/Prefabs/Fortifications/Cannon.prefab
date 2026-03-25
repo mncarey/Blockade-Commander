@@ -137,6 +137,7 @@ MonoBehaviour:
   isDed: 0
   healthBar: {fileID: 0}
   placingRef: {fileID: 0}
+  playerFortRef: {fileID: 0}
   enemyWinPopup: {fileID: 0}
 --- !u!114 &-1953756310452950030
 MonoBehaviour:
@@ -154,10 +155,16 @@ MonoBehaviour:
   maxLives: 10
   range: 5
   dmg: 0
+  tickRate: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   isDed: 0
   healthBar: {fileID: 0}
   placingRef: {fileID: 0}
+  playerFortRef: {fileID: 0}
   enemyWinPopup: {fileID: 0}
+  targets: []
 --- !u!1 &1272214838274675648
 GameObject:
   m_ObjectHideFlags: 0
