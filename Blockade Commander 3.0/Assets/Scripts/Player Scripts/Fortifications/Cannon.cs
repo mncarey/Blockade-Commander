@@ -1,13 +1,19 @@
 using UnityEngine;
 using System.Collections;
+using static UnityEngine.GraphicsBuffer;
+using System.Linq;
+using System.Collections.Generic;
 
 public class Cannon : MonoBehaviour
 {
     //change these values
     public int health = 10;
     public int maxLives = 10;
-    public int range = 5;
-    public int dmg = 0;
+    private int range = 10;
+    public int dmg = 1;
+    public float tickRate = 1f;
+    private Coroutine damageRoutine;
+    public LayerMask enemyLayer;
 
     public bool isDed = false;
 
@@ -17,9 +23,12 @@ public class Cannon : MonoBehaviour
     [SerializeField] PlacingScript placingRef;
     [SerializeField] PlayerFortress playerFortRef;
 
+    private Transform currentTarget;
+
     public GameObject enemyWinPopup;
 
-    private Coroutine damageRoutine;
+    
+    public List<GameObject> targets = new List<GameObject>();
 
     private void Awake()
     {
@@ -37,6 +46,62 @@ public class Cannon : MonoBehaviour
     void Start()
     {
         healthBar.UpdateHealthBar(health, maxLives);
+        
+
+
+    }
+    private void FixedUpdate()
+    {
+        //Check if current target is still valid
+        if (currentTarget != null)
+        {
+            //find the distance
+            float sqrDist = (currentTarget.position - transform.position).sqrMagnitude;
+
+            //Target is out of range or destroyed
+            if (sqrDist > range * range || currentTarget == null)
+            {
+                currentTarget = null;
+            }
+        }
+
+        //Only find a new target if we don’t have one
+        if (currentTarget == null)
+        {
+            FindClosestTarget();
+        }
+
+        //Start/stop attacking
+        if (currentTarget != null && damageRoutine == null)
+        {
+            damageRoutine = StartCoroutine(DamageOverTime());
+        }
+        else if (currentTarget == null && damageRoutine != null)
+        {
+            StopCoroutine(damageRoutine);
+            damageRoutine = null;
+        }
+    }
+
+    private void FindClosestTarget()
+    {
+        Collider[] enemies = Physics.OverlapSphere(transform.position, range, enemyLayer);
+
+        float closestDist = Mathf.Infinity;
+        Transform closest = null;
+
+        foreach (var col in enemies)
+        {
+            float dist = (col.transform.position - transform.position).sqrMagnitude;
+
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                closest = col.transform;
+            }
+        }
+
+        currentTarget = closest;
     }
 
     public void takeDamage()
@@ -60,38 +125,35 @@ public class Cannon : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "BasicEnemy")
-        {
-            if (damageRoutine == null)
-            {
-                damageRoutine = StartCoroutine(DamageOverTime());
-            }
 
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "BasicEnemy")
-        {
-            if (damageRoutine != null)
-            {
-                StopCoroutine(damageRoutine);
-            }
-
-        }
-    }
 
     private IEnumerator DamageOverTime()
     {
-        while (true)
+        while (currentTarget != null)
         {
-            takeDamage();
-            //tauntRef.takeDamage();
-            yield return new WaitForSeconds(1f);
+            float sqrDist = (currentTarget.position - transform.position).sqrMagnitude;
+
+            // Stop if out of range
+            if (sqrDist > range * range)
+            {
+                currentTarget = null;
+                break;
+            }
+            BasicEnemy enemy = currentTarget.GetComponent<BasicEnemy>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(dmg);
+            }
+            else
+            {
+                currentTarget = null; // safety if object is destroyed
+            }
+
+            yield return new WaitForSeconds(tickRate);
         }
+
+        damageRoutine = null;
     }
 
     //Deals damage based on if hit by a sloop
@@ -100,4 +162,6 @@ public class Cannon : MonoBehaviour
         health = health - 5;
         healthBar.UpdateHealthBar(health, maxLives);
     }
+
+    
 }

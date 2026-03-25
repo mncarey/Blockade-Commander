@@ -22,25 +22,12 @@ public class StartWaveButton : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        // placingScriptRef = FindObjectOfType<PlacingScript>();
-
         increaseDiff = FindObjectOfType<IncreaseDifficulty>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (placingScriptRef.currentPlaced > 0)
-        {
-            gameObject.SetActive(true);
-        }
-        
-        if(player == null)
-        {
-            player.SetActive(true);
-        }
-        */
 
         if(isClicked == true)
         {
@@ -69,11 +56,11 @@ public class StartWaveButton : MonoBehaviour
         }
 
         //turn off the placement capability
-        //canPlace = false
+        
         placingScriptRef.TogglePlacementLock();
 
         //spawn the enemies!!!
-        Debug.Log("spawning enemies");
+        
         spawnEnemyRef.SpawnEnemy();
         maxEnemies = spawnEnemyRef.enemiesAlive;
         // Increase difficulty
