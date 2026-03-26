@@ -17,6 +17,7 @@ TagManager:
   - FortificationMenu
   - Damage Range
   - EnemiesWin
+  - CannonStatsPopup
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - PlaceableObjects
   - Enemy
   - Range
-  - 
+  - UIModelPreview
   - 
   - 
   - 
