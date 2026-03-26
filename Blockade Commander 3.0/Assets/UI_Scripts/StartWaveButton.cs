@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class StartWaveButton : MonoBehaviour
 {
+    public GameObject EnemyZoneRed;
+    public GameObject EnemyZoneBlue;
     public GameObject fortButtonRef;
     public GameObject fortMenuRef;
     public GameObject exitFortMenuRef;
@@ -22,25 +24,12 @@ public class StartWaveButton : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        // placingScriptRef = FindObjectOfType<PlacingScript>();
-
         increaseDiff = FindObjectOfType<IncreaseDifficulty>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (placingScriptRef.currentPlaced > 0)
-        {
-            gameObject.SetActive(true);
-        }
-        
-        if(player == null)
-        {
-            player.SetActive(true);
-        }
-        */
 
         if(isClicked == true)
         {
@@ -68,14 +57,23 @@ public class StartWaveButton : MonoBehaviour
             progressBarRef.SetActive(true);
         }
 
+        //turn off the placement capability
+        
+        placingScriptRef.TogglePlacementLock();
+
         //spawn the enemies!!!
-        Debug.Log("spawning enemies");
+        
         spawnEnemyRef.SpawnEnemy();
         maxEnemies = spawnEnemyRef.enemiesAlive;
         // Increase difficulty
         //increaseDiff.IncreaseDiff();
 
 
+        //MAKE SURE TO ASSIGN IN INSPECTOR
+        //activate enemy area in combat
+        //deactivate enemy area out combat
+        EnemyZoneRed.SetActive(false);
+        EnemyZoneBlue.SetActive(true);
         isClicked = true;
     }
 }

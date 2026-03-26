@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4198995507385261601
 RectTransform:
   m_ObjectHideFlags: 0
@@ -98,6 +98,10 @@ MonoBehaviour:
   attackText: {fileID: 8389501576633848635}
   canvasGroup: {fileID: 8428937850397071841}
   rectTransform: {fileID: 4198995507385261601}
+  tauntRef: {fileID: 0}
+  health: 0
+  range: 0
+  attack: 0
 --- !u!225 &8428937850397071841
 CanvasGroup:
   m_ObjectHideFlags: 0

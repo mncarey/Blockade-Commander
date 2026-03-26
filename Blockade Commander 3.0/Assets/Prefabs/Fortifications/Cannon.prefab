@@ -116,8 +116,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 6, z: 3}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!114 &-1661011353626702095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   isDed: 0
   healthBar: {fileID: 0}
   placingRef: {fileID: 0}
+  playerFortRef: {fileID: 0}
   enemyWinPopup: {fileID: 0}
 --- !u!114 &-1953756310452950030
 MonoBehaviour:
@@ -154,10 +155,16 @@ MonoBehaviour:
   maxLives: 10
   range: 5
   dmg: 0
+  tickRate: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   isDed: 0
   healthBar: {fileID: 0}
   placingRef: {fileID: 0}
+  playerFortRef: {fileID: 0}
   enemyWinPopup: {fileID: 0}
+  targets: []
 --- !u!1 &1272214838274675648
 GameObject:
   m_ObjectHideFlags: 0

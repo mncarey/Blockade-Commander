@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ExitButton : MonoBehaviour
 {
+    public bool isClicked;
     public GameObject statsPopupRef;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

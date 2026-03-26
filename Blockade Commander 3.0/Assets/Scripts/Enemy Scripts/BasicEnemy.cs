@@ -23,14 +23,15 @@ public class BasicEnemy : MonoBehaviour
 
     //Enemy Layer//
     public LayerMask enemyLayer;
-    
+
 
     //---- Enemy Basic Var ----//
+    public float startSpeed = 0f;
     public float speed = 10;
-    public float currentSpeed;
+    
     public float lives = 5f;
     public float maxLives = 5;
-    public int dmg = 0;
+   
     public float reachDistance = 5f;
     public int goldValue = 10;
     private int killValue = 1;
@@ -46,12 +47,7 @@ public class BasicEnemy : MonoBehaviour
     private Coroutine damageEnemyRoutine;
     private Coroutine damageWallRoutine;
     private Coroutine damageTauntRoutine;
-
-    private bool isTakingDamage;
-
-    
-    
-    
+  
     //List to hold the fortifications within the scene
     public List<GameObject> targets = new List<GameObject>();
 
@@ -62,43 +58,38 @@ public class BasicEnemy : MonoBehaviour
         waveProgressBarRef = FindObjectOfType<WaveProgressBar>(true);
         increaseDiff = FindObjectOfType<IncreaseDifficulty>();
     }
-       
-    //then if this enemy is within "range" of the fortification - set speed to 0 - execute damage towards the fortification
-
-    //when the fortification health reaches 0 set next target
-    //set speed back to default
-
-    //This should keep going until enemies are defeated
     void Start()
     {
         
+        //Assign unit priority for movement interactions
         switch (true)
         {
             case bool when gameObject.name.Contains("Brigantine Enemy"):
                 unitPriority = Random.Range(0f, 100f);
-                Debug.Log("brig value: " + unitPriority);
+                
                 break;
 
             case bool when gameObject.name.Contains("Galleon Ranged Enemy"):
                 unitPriority = Random.Range(201f, 300f);
-                Debug.Log("brig value: " + unitPriority);
+                
                 break;
 
             case bool when gameObject.name.Contains("Sloop Enemy"):
                 unitPriority = Random.Range(101f, 200f);
-                Debug.Log("brig value: " + unitPriority);
+                
                 break;
 
             default:
                 break;
             
         }
-        
+
         //maxLives = lives * increaseDiff.Instance.multiplier;
+        //Debug.Log("Increased Health to: " + maxLives);
         lives = maxLives;
         healthBar.UpdateHealthBar(lives, maxLives);
         waveProgressBarRef.UpdateHealthBar();
-        //Debug.Log("Increased Health to: " + maxLives);
+        
         
         
         //---- Get Targets For Attack Info ----//
@@ -111,18 +102,13 @@ public class BasicEnemy : MonoBehaviour
 
         targets = targets.OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position)).ToList();
 
-       
-        
 
         //---- Set Current Target to Closest ----//
         if(targets.Count > 0 && targets[0]  != null)
         {
             currentTarget = targets[0].transform;
             
-        }
-
-        
-        
+        }    
     }
 
     // Update is called once per 0.02 seconds or 50 per second
@@ -171,7 +157,7 @@ public class BasicEnemy : MonoBehaviour
         {
             GameObject playerRef = GameObject.FindGameObjectWithTag("Player");
             currentTarget = playerRef.transform;
-            currentSpeed = speed;
+            
             if (currentTarget == null) return;
             return;
         }
@@ -239,7 +225,7 @@ public class BasicEnemy : MonoBehaviour
 
     }
 
-    public void takeDamage()
+    public void TakeDamage(int dmg)
     {
         lives--;
         healthBar.UpdateHealthBar(lives, maxLives);
@@ -275,17 +261,7 @@ public class BasicEnemy : MonoBehaviour
 
 
         }
-        if (other.gameObject.tag == "Damage Range")
-        {
-            if (damageEnemyRoutine == null)
-            {
-                
-                isTakingDamage = true;
-                damageEnemyRoutine = StartCoroutine(DamageOverTime());
-                
-
-            }
-        }
+        
         if (other.gameObject.tag == "killZone")
         {
             
@@ -313,8 +289,8 @@ public class BasicEnemy : MonoBehaviour
             if(damageEnemyRoutine == null)
             {
                 
-                isTakingDamage = true;
-                damageEnemyRoutine = StartCoroutine(DamageOverTime());
+                
+               
                 
                 
             }            
@@ -326,13 +302,15 @@ public class BasicEnemy : MonoBehaviour
         if(other.gameObject.CompareTag("killZone"))
         {
             //if the taunt tower despawns before the enemy can leave the killZone, the coroutine can't stop
-                isTakingDamage = false;
+            if (damageEnemyRoutine != null)
+            {
                 StopCoroutine(damageEnemyRoutine);
                 damageEnemyRoutine = null;
-            
-            
+            }
 
-            if(damageTauntRoutine != null)
+
+
+            if (damageTauntRoutine != null)
             {
                 StopCoroutine(damageTauntRoutine);
                 damageTauntRoutine = null;
@@ -375,11 +353,9 @@ public class BasicEnemy : MonoBehaviour
         tauntRef = currentTarget.GetComponentInParent<TauntTower>();
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
-        {
-            
+        { 
             //if it is not already being damaged
-            if (damageTauntRoutine == null) /* Start damage */ damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
-            
+            if (damageTauntRoutine == null) /* Start damage */ damageTauntRoutine = StartCoroutine(DamageTauntRoutine()); 
 
             return;
         }
@@ -419,17 +395,7 @@ public class BasicEnemy : MonoBehaviour
             damageWallRoutine = null;
         }
     }
-    private IEnumerator DamageOverTime()
-    {
-        while (isTakingDamage)
-        {
-            
-                takeDamage();
-                yield return new WaitForSeconds(1f);
-        }
-        
-        damageEnemyRoutine = null;
-    }
+    
 
     private IEnumerator DamageWallRoutine()
     {
@@ -447,7 +413,7 @@ public class BasicEnemy : MonoBehaviour
             tauntRef.takeDamage();
             yield return new WaitForSeconds(1f);
         }
-        currentSpeed = speed;
+        
         damageTauntRoutine = null;//damage taunt routine resets for the next tower to be damaged
     
     }

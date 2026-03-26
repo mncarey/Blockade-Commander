@@ -57,26 +57,26 @@ public class fortSlot : MonoBehaviour
         {
             content = lighthouseText;
             currentFort = lightHouse;
-            Debug.Log("This is " + currentFort.name);
+            
 
         }
         if(fortName == "Cannon")
         {
             content = cannonText;
             currentFort = cannon;
-            //Debug.Log(currentFort.name);
+            
         }
         if(fortName == "Mortar")
         {
             content = mortarText;
             //currentFort = mortar;
-            //Debug.Log(currentFort.name);
+            
         }
         if(fortName == "Wall")
         {
             //content = wallText;
             currentFort = wall;
-            Debug.Log(currentFort.name);
+            
         }
         
     }
@@ -98,8 +98,6 @@ public class fortSlot : MonoBehaviour
     void Start()
     {
         Transform child = transform.Find("FortImage");
-        //Image childImage = child.GetComponent<Image>();
-        
 
     }
     
@@ -114,10 +112,7 @@ public class fortSlot : MonoBehaviour
     {
 
         if (isOn && !wasOn)
-        {
-            
-            //Debug.Log("Selected " + this.name);
-            //Debug.Log(toggle.group.name);
+        {           
            //turn off all toggles
             toggle.group.SetAllTogglesOff();
             

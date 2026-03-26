@@ -16,15 +16,17 @@ public class PlacingScript : MonoBehaviour
     public LayerMask placeableObjectsLayer;
 
     //---- Double click feature ----//
-    public float doubleClickTime = 0.3f;
+    public float doubleClickTime = 0.35f;
     private float lastClickTime = -999f;
+    public float minDoubleClickTime = 0.08f;
     private Transform lastClickedRoot = null;
 
     //---- Fortification Placement Restriction ----//
     public int currentPlaced = 0;
     public int maxPlaced = 4;
     public int fortsAilve = 0;
-    public bool canPlace => currentPlaced < maxPlaced;
+    public bool canPlace => currentPlaced < maxPlaced && !showStats && placementEnable;
+    public bool placementEnable = true;
     public bool removalToggle = false;
     public bool startPlaceState = false;
     public bool showStats = false;
@@ -77,7 +79,6 @@ public class PlacingScript : MonoBehaviour
             startWaveButton.gameObject.SetActive(false);
         }
 
-        
     }
 
 
@@ -127,10 +128,6 @@ public class PlacingScript : MonoBehaviour
 
         if (!context.performed) return;
 
-        if(startPlaceState == false)
-        {
-            Debug.Log("can't place");
-        }
         else
         {
             if (removalToggle == false)
@@ -140,14 +137,21 @@ public class PlacingScript : MonoBehaviour
                 {
                     Transform clickedRoot = hit.collider.transform.root;
 
-                    bool withinTime = (Time.time - lastClickTime) <= doubleClickTime;
+                    float timeSinceLastClick = Time.time - lastClickTime;
+                    bool withinTime = timeSinceLastClick >= minDoubleClickTime && timeSinceLastClick <= doubleClickTime;
                     bool sameTarget = (lastClickedRoot == clickedRoot);
 
                     //Double Click to Rotate and Open Stats
                     if (withinTime && sameTarget)
                     {
-                        clickedRoot.Rotate(0f, 90f, 0f);
-                        showStats = true;
+                        //idk if we want this feature implemented
+                        //clickedRoot.Rotate(0f, 90f, 0f);
+
+                        if(clickedRoot.TryGetComponent(out TauntTower taunt))
+                        {
+                            showStats = true;
+                        }
+                        
 
                         //reseting variables
                         lastClickTime = -999f;
@@ -155,6 +159,7 @@ public class PlacingScript : MonoBehaviour
                     }
                     else
                     {
+                        showStats = false;//hide stats on every unsuccessful double click
                         lastClickTime = Time.time;
                         lastClickedRoot = clickedRoot;
                     }
@@ -163,15 +168,21 @@ public class PlacingScript : MonoBehaviour
                 }
 
                 // Check for Placement on the ground layer
-                if (canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
+                if (placementEnable && canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
                 {
                     Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
                     currentPlaced++;
                     UpdateFortNumber();
 
+                    //dont open stats when placing
+                    showStats = false;
+
+                    //reset click time
+                    lastClickTime = -999f;
+                    lastClickedRoot = null;
                 }
 
-                lastClickTime = Time.time;
+                //lastClickTime = Time.time;
             }
             else
             {
@@ -204,6 +215,12 @@ public class PlacingScript : MonoBehaviour
         }
         
     }
+
+    public void TogglePlacementLock()
+    {
+        placementEnable = !placementEnable;
+    }
+
     public void UpdateFortNumber()
     {
         

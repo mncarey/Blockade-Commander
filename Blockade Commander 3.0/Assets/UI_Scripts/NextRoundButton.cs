@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class NextWaveButton : MonoBehaviour
 {
+    public GameObject EnemyZoneRed;
+    public GameObject EnemyZoneBlue;
+
     public GameObject enemiesDefeatedPopup;
     public GameObject enemeisWinPopup;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
@@ -24,27 +27,14 @@ public class NextWaveButton : MonoBehaviour
         fortUIManagerRef = FindObjectOfType<FortUIManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void IWasClicked()
     {
-        fortUIManagerRef.ResetForNextWave();
-        Debug.Log("ButtonClicked");
+        fortUIManagerRef.ResetForNextWave();       
         enemiesDefeatedPopup.SetActive(false);
         enemeisWinPopup.SetActive(false);
-
         waveSpawnerRef.ClearFortifications();
         waveSpawnerRef.ClearEnemies();
-
-
-        //fortCanvasRef.SetActive(true);
-        
-        
-        
+   
         //reset fortifications to place
         placingScriptRef.currentPlaced = 0;
 
@@ -59,5 +49,11 @@ public class NextWaveButton : MonoBehaviour
 
         //reset player health bar
         playerFortRef.updateHealthBar();
+
+       placingScriptRef.TogglePlacementLock();
+
+        //ASSIGN IN INSPECTOR!!!//
+        EnemyZoneBlue.SetActive(false);
+        EnemyZoneRed.SetActive(true);
     }
 }

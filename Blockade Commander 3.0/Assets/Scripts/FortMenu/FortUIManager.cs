@@ -34,6 +34,6 @@ public class FortUIManager : MonoBehaviour
         fortButton.SetActive(false);
         fortSelection.SetActive(true);
 
-        Debug.Log("fortSelection active? " + fortSelection.activeSelf);
+        
     }
 }
