@@ -6,11 +6,32 @@ public class Wall : MonoBehaviour
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] PlacingScript placingRef;
     [SerializeField] PlayerFortress playerFortRef;
+    [SerializeField] private StatPopupUI statPopupRef;
 
-    public int lives = 10;
+    public int health = 10;
     public int maxLives = 10;
+    public int range = 0;
+    public int dmg = 0;
 
     private Coroutine damageRoutine;
+
+    public void OpenStats()
+    {
+        if (statPopupRef != null)
+        {
+            statPopupRef.ShowStats(health, range, dmg);
+        }
+        else
+        {
+            Debug.LogWarning("StatPopupUI not assigned on Cannon!");
+        }
+
+    }
+
+    public void Initialize(StatPopupUI popup)
+    {
+        statPopupRef = popup;
+    }
 
     private void Awake()
     {
@@ -25,7 +46,7 @@ public class Wall : MonoBehaviour
 
     private void Start()
     {
-        healthBar.UpdateHealthBar(lives, maxLives);
+        healthBar.UpdateHealthBar(health, maxLives);
     }
     private void Update()
     {
@@ -34,9 +55,9 @@ public class Wall : MonoBehaviour
 
     public void takeDamage()
     {
-        lives--;
-        healthBar.UpdateHealthBar(lives, maxLives);
-        if (lives <= 0)
+        health--;
+        healthBar.UpdateHealthBar(health, maxLives);
+        if (health <= 0)
         {
             placingRef.currentPlaced--;
             if (placingRef.currentPlaced == 0 && playerFortRef.isDed)

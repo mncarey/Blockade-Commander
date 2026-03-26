@@ -205,11 +205,13 @@ public class PlacingScript : MonoBehaviour
                     }
                     else if (newFort.TryGetComponent(out Wall wall))
                     {
-                       // wall.Initialize(wallStatsPopup.GetComponentInChildren<StatPopupUI>());
+                       wall.Initialize(wallStatsPopup.GetComponentInChildren<StatPopupUI>());
+                       wall.OpenStats();
                     }
                     else if (newFort.TryGetComponent(out TauntTower taunt))
                     {
-                       // taunt.Initialize(tauntStatsPopup.GetComponentInChildren<StatPopupUI>());
+                       taunt.Initialize(tauntStatsPopup.GetComponentInChildren<StatPopupUI>());
+                       taunt.OpenStats();
                     }
 
                     currentPlaced++;
