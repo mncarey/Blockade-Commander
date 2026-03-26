@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class NextWaveButton : MonoBehaviour
 {
+    public GameObject EnemyZoneRed;
+    public GameObject EnemyZoneBlue;
+
     public GameObject enemiesDefeatedPopup;
     public GameObject enemeisWinPopup;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
@@ -48,5 +51,9 @@ public class NextWaveButton : MonoBehaviour
         playerFortRef.updateHealthBar();
 
        placingScriptRef.TogglePlacementLock();
+
+        //ASSIGN IN INSPECTOR!!!//
+        EnemyZoneBlue.SetActive(false);
+        EnemyZoneRed.SetActive(true);
     }
 }
