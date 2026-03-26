@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class StartWaveButton : MonoBehaviour
 {
+    public GameObject EnemyZoneRed;
+    public GameObject EnemyZoneBlue;
     public GameObject fortButtonRef;
     public GameObject fortMenuRef;
     public GameObject exitFortMenuRef;
@@ -67,6 +69,11 @@ public class StartWaveButton : MonoBehaviour
         //increaseDiff.IncreaseDiff();
 
 
+        //MAKE SURE TO ASSIGN IN INSPECTOR
+        //activate enemy area in combat
+        //deactivate enemy area out combat
+        EnemyZoneRed.SetActive(false);
+        EnemyZoneBlue.SetActive(true);
         isClicked = true;
     }
 }
