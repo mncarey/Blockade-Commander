@@ -22,16 +22,35 @@ public class Cannon : MonoBehaviour
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] PlacingScript placingRef;
     [SerializeField] PlayerFortress playerFortRef;
+    [SerializeField] private StatPopupUI statPopupRef;
 
     private Transform currentTarget;
 
     public GameObject enemyWinPopup;
 
-    
     public List<GameObject> targets = new List<GameObject>();
+
+    public void OpenStats()
+    {
+        if(statPopupRef != null)
+        {
+            statPopupRef.ShowStats(health, range, dmg);
+        }
+        else
+        {
+            Debug.LogWarning("StatPopupUI not assigned on Cannon!");
+        }
+
+    }
+
+    public void Initialize(StatPopupUI popup)
+    {
+        statPopupRef = popup;
+    }
 
     private void Awake()
     {
+        //setting variables in runtime
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
 
@@ -40,6 +59,7 @@ public class Cannon : MonoBehaviour
 
         if (playerFortRef == null)
             playerFortRef = FindFirstObjectByType<PlayerFortress>();
+
     }
 
 
@@ -81,6 +101,7 @@ public class Cannon : MonoBehaviour
             StopCoroutine(damageRoutine);
             damageRoutine = null;
         }
+
     }
 
     private void FindClosestTarget()

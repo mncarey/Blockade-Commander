@@ -71,8 +71,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd00aa9630844f74f90dea00d51ffb68, type: 2}
-  - {fileID: 2100000, guid: 2e85e0c1d7cf78f4b9442d867fb8f05e, type: 2}
+  - {fileID: 2100000, guid: 91152269c47fc3942b960e5dba58e2e8, type: 2}
+  - {fileID: 2100000, guid: 91152269c47fc3942b960e5dba58e2e8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   healthBar: {fileID: 0}
+  placingRef: {fileID: 0}
+  playerFortRef: {fileID: 0}
   lives: 10
   maxLives: 10
 --- !u!114 &-5263075808891839719

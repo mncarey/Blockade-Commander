@@ -25,11 +25,12 @@ public class PlacingScript : MonoBehaviour
     public int currentPlaced = 0;
     public int maxPlaced = 4;
     public int fortsAilve = 0;
-    public bool canPlace => currentPlaced < maxPlaced && !showStats && placementEnable;
+    public bool canPlace => currentPlaced < maxPlaced && !showStats && placementEnable && !blockPlacement;
     public bool placementEnable = true;
     public bool removalToggle = false;
     public bool startPlaceState = false;
     public bool showStats = false;
+    public bool blockPlacement = false;
 
     //---- Outline ----//
     private Outline currentOutline;
@@ -154,10 +155,27 @@ public class PlacingScript : MonoBehaviour
 
                         if(clickedRoot.TryGetComponent(out TauntTower taunt))
                         {
-                            tauntStatsPopup.SetActive(true); //<---working here!!!!!
-                          
+                            blockPlacement = true;
+                            tauntStatsPopup.SetActive(true);
+                            Time.timeScale = 0f;
                         }
-                        
+
+                        if (clickedRoot.TryGetComponent(out Cannon cannon))
+                        {
+                            blockPlacement = true;
+                            cannonStatsPopup.SetActive(true);
+                            tauntStatsPopup.SetActive(false);
+                            Time.timeScale = 0f;
+                        }
+
+                        if (clickedRoot.TryGetComponent(out Wall wall))
+                        {
+                            blockPlacement = true;
+                            wallStatsPopup.SetActive(true);
+                            Time.timeScale = 0f;
+                        }
+
+
 
                         //reseting variables
                         lastClickTime = -999f;
@@ -176,7 +194,26 @@ public class PlacingScript : MonoBehaviour
                 // Check for Placement on the ground layer
                 if (placementEnable && canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
                 {
-                    Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
+                    GameObject newFort = Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
+
+                    //assigning popups based on fortification
+                    // Assign popup references depending on type
+                    if (newFort.TryGetComponent(out Cannon cannon))
+                    {
+                        cannon.Initialize(cannonStatsPopup.GetComponentInChildren<StatPopupUI>());
+                        cannon.OpenStats();
+                    }
+                    else if (newFort.TryGetComponent(out Wall wall))
+                    {
+                       wall.Initialize(wallStatsPopup.GetComponentInChildren<StatPopupUI>());
+                       wall.OpenStats();
+                    }
+                    else if (newFort.TryGetComponent(out TauntTower taunt))
+                    {
+                       taunt.Initialize(tauntStatsPopup.GetComponentInChildren<StatPopupUI>());
+                       taunt.OpenStats();
+                    }
+
                     currentPlaced++;
                     UpdateFortNumber();
 
