@@ -155,6 +155,7 @@ public class PlacingScript : MonoBehaviour
                         if(clickedRoot.TryGetComponent(out TauntTower taunt))
                         {
                             tauntStatsPopup.SetActive(true); //<---working here!!!!!
+                          
                         }
                         
 
