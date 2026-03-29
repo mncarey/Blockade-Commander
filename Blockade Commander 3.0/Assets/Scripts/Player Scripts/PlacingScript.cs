@@ -63,7 +63,7 @@ public class PlacingScript : MonoBehaviour
     }
 
     //Update checks for changes based on information received from the Input Action events
-    private void Update()
+    private void FixedUpdate()
     {
         //Checks the position of the mouse
         UpdatePreviewPosition();
@@ -71,7 +71,15 @@ public class PlacingScript : MonoBehaviour
         UpdateOutlineHover();
 
         //start wave
-        startWaveButton.gameObject.SetActive(currentPlaced > 0);
+        if (currentPlaced == maxPlaced)
+        {
+            startWaveButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            startWaveButton.gameObject.SetActive(false);
+        }
+
 
         if (startWaveButton.isClicked)
         {
@@ -130,7 +138,7 @@ public class PlacingScript : MonoBehaviour
 
         if(startPlaceState == false)
         {
-            Debug.Log("can't place");
+            
         }
         else
         {

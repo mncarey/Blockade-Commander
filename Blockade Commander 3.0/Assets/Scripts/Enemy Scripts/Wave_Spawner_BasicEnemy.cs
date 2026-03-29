@@ -33,37 +33,20 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         enemyPrefabs[0] = sloopRef;
         enemyPrefabs[1] = brigRef;
         enemyPrefabs[2] = gallRef;
-        /*
-        Debug.Log("spawning wave");
-        SpawnEnemy();
-        */
+        
     }
 
     void Update()
     {
-        /*
-        if (Keyboard.current == null) return;
-
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)// <-- temporary trigger for spawning waves
-        {
-            Debug.Log("spawning wave");
-            SpawnEnemy();
-        }
-        
-        if (enemiesAlive <= 0)
-        {
-            Debug.Log("Wave Complete!");
-            enemyDefeatPopup.gameObject.SetActive(true);
-        }
-        */
+       
     }
 
     public void SpawnEnemy()
     {
         enemiesAlive = 0;
-        enemiesTotalThisWave = spawnPoints.Length;
+        
 
-        for(int i = 0; i< spawnPoints.Length; i++)
+        for(int i = 0; i< enemiesTotalThisWave; i++)
         {
             int randomIndex = Random.Range(0, enemyPrefabs.Length);
             GameObject randomEnemy = enemyPrefabs[randomIndex];

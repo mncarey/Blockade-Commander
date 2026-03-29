@@ -18,6 +18,7 @@ public class NextWaveButton : MonoBehaviour
      public GameObject fortRemoveRef;
      public PlayerFortress playerFortRef;
     public FortUIManager fortUIManagerRef;
+    public ResourceUI resourceRef;
 
 
      
@@ -25,6 +26,7 @@ public class NextWaveButton : MonoBehaviour
     void Start()
     {
         fortUIManagerRef = FindObjectOfType<FortUIManager>();
+        resourceRef = FindObjectOfType<ResourceUI>();
     }
 
     public void IWasClicked()
@@ -52,6 +54,8 @@ public class NextWaveButton : MonoBehaviour
 
        placingScriptRef.TogglePlacementLock();
 
+
+        resourceRef.UpdateFortRef(0);
         //ASSIGN IN INSPECTOR!!!//
         EnemyZoneBlue.SetActive(false);
         EnemyZoneRed.SetActive(true);
