@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class ExitButton : MonoBehaviour
 {
+    public bool isClicked;
     public GameObject statsPopupRef;
+    public PlacingScript placingRef;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,5 +21,10 @@ public class ExitButton : MonoBehaviour
     public void IWasClicked()
     {
         statsPopupRef.SetActive(false);
+        //unpause game
+        Time.timeScale = 1f;
+
+        //unblock placement
+        placingRef.blockPlacement = false;
     }
 }
