@@ -14,6 +14,7 @@ public class BasicEnemy : MonoBehaviour
     private Transform currentTarget;
 
     private TauntTower tauntRef;
+    private Cannon cannonRef;
     private Wall wallRef;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     private PlayerFortress fortRef;
@@ -47,6 +48,7 @@ public class BasicEnemy : MonoBehaviour
     private Coroutine damageEnemyRoutine;
     private Coroutine damageWallRoutine;
     private Coroutine damageTauntRoutine;
+    private Coroutine damageCannonRoutine;
   
     //List to hold the fortifications within the scene
     public List<GameObject> targets = new List<GameObject>();
@@ -243,93 +245,6 @@ public class BasicEnemy : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-
-
-        //if this enters the taunt range of a taunt tower
-        if (other.gameObject.CompareTag("Taunt Range"))
-        {
-            if (other.transform.parent != null)
-            {
-                //set this game object as current target
-                currentTarget = other.transform;
-                //Debug.Log("setting target to taunt");
-
-            }
-
-
-        }
-        
-        if (other.gameObject.tag == "killZone")
-        {
-            
-            //taunt tower taking damage
-            rb.linearVelocity = Vector3.zero;
-            
-            tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
-            
-            if (tauntRef != null && damageTauntRoutine == null)
-            {
-                if (this.name == "Sloop Enemy")
-                {
-                    
-                    tauntRef.SloopDamage();
-                    lives = 0;
-                }
-                else
-                {
-                    damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
-                }
-                    
-            }
-
-            //the enemy taking damage
-            if(damageEnemyRoutine == null)
-            {
-                
-                
-               
-                
-                
-            }            
-        }        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.CompareTag("killZone"))
-        {
-            //if the taunt tower despawns before the enemy can leave the killZone, the coroutine can't stop
-            if (damageEnemyRoutine != null)
-            {
-                StopCoroutine(damageEnemyRoutine);
-                damageEnemyRoutine = null;
-            }
-
-
-
-            if (damageTauntRoutine != null)
-            {
-                StopCoroutine(damageTauntRoutine);
-                damageTauntRoutine = null;
-            }
-
-            tauntRef = null;//reset variable
-        }
-        if (other.gameObject.CompareTag("wallZone"))
-        {
-            if(damageWallRoutine != null)
-            {
-                StopCoroutine(damageWallRoutine);
-                damageWallRoutine = null;
-            }
-
-            wallRef = null;//reset variable 
-        }
-    }
-
 
     private void MoveTowardsTarget()
     {
@@ -347,10 +262,18 @@ public class BasicEnemy : MonoBehaviour
     //Handles damaging target
     private void HandleTargetInRange()
     {
+
+        //Reset references
+
+        tauntRef = null;
+        cannonRef = null;
+        wallRef = null;
+
         rb.linearVelocity = Vector3.zero;
 
         // Try TauntTower
         tauntRef = currentTarget.GetComponentInParent<TauntTower>();
+        cannonRef = currentTarget.GetComponentInParent<Cannon>();
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
         { 
@@ -367,6 +290,13 @@ public class BasicEnemy : MonoBehaviour
             if (damageWallRoutine == null)
                 damageWallRoutine = StartCoroutine(DamageWallRoutine());
 
+            return;
+        }
+
+        //try cannon
+        if(cannonRef != null)
+        {
+            if(damageCannonRoutine == null) damageCannonRoutine = StartCoroutine(DamageCannonRoutine());
             return;
         }
 
@@ -394,6 +324,14 @@ public class BasicEnemy : MonoBehaviour
             StopCoroutine(damageWallRoutine);
             damageWallRoutine = null;
         }
+
+        if(damageCannonRoutine != null)
+        {
+            StopCoroutine(damageCannonRoutine);
+            damageCannonRoutine = null;
+        }
+
+        
     }
     
 
@@ -416,6 +354,18 @@ public class BasicEnemy : MonoBehaviour
         
         damageTauntRoutine = null;//damage taunt routine resets for the next tower to be damaged
     
+    }
+
+    private IEnumerator DamageCannonRoutine()
+    {
+        while (cannonRef != null)
+        {
+            cannonRef.takeDamage();
+            yield return new WaitForSeconds(1f);
+        }
+
+        damageCannonRoutine = null;//damage taunt routine resets for the next tower to be damaged
+
     }
 
     private void OnDrawGizmosSelected()

@@ -274,7 +274,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d203d49bcd309df4a879552918d8e248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExitButton
+  isClicked: 0
   statsPopupRef: {fileID: 42908023}
+  placingRef: {fileID: 0}
 --- !u!1 &163224947
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.72
+      value: 28.59
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.z

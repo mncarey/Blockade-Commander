@@ -9,7 +9,7 @@ public class ExitButton : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        placingRef = FindObjectOfType<PlacingScript>();
     }
 
     // Update is called once per frame
@@ -25,6 +25,6 @@ public class ExitButton : MonoBehaviour
         Time.timeScale = 1f;
 
         //unblock placement
-        placingRef.blockPlacement = false;
+        placingRef.placementEnable = false;
     }
 }

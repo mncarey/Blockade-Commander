@@ -53,7 +53,7 @@ public class NextWaveButton : MonoBehaviour
         playerFortRef.updateHealthBar();
 
        placingScriptRef.TogglePlacementLock();
-
+        placingScriptRef.placementEnable = true;
 
         resourceRef.UpdateFortRef(0);
         //ASSIGN IN INSPECTOR!!!//
