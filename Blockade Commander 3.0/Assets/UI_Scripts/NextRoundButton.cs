@@ -19,6 +19,7 @@ public class NextWaveButton : MonoBehaviour
      public PlayerFortress playerFortRef;
     public FortUIManager fortUIManagerRef;
     public ResourceUI resourceRef;
+    public int maxEnemies;
 
 
      
@@ -27,6 +28,7 @@ public class NextWaveButton : MonoBehaviour
     {
         fortUIManagerRef = FindObjectOfType<FortUIManager>();
         resourceRef = FindObjectOfType<ResourceUI>();
+        waveSpawnerRef = FindObjectOfType<Wave_Spawner_BasicEnemy>();
     }
 
     public void IWasClicked()
@@ -59,5 +61,10 @@ public class NextWaveButton : MonoBehaviour
         //ASSIGN IN INSPECTOR!!!//
         EnemyZoneBlue.SetActive(false);
         EnemyZoneRed.SetActive(true);
+
+        //Spawn Enemies
+        //call spawn enemies
+        waveSpawnerRef.SpawnEnemy();
+        maxEnemies = waveSpawnerRef.enemiesAlive;
     }
 }

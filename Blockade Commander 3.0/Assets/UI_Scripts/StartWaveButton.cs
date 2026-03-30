@@ -25,6 +25,7 @@ public class StartWaveButton : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         increaseDiff = FindObjectOfType<IncreaseDifficulty>();
+        
     }
 
     // Update is called once per frame
@@ -63,8 +64,14 @@ public class StartWaveButton : MonoBehaviour
 
         //spawn the enemies!!!
         
-        spawnEnemyRef.SpawnEnemy();
-        maxEnemies = spawnEnemyRef.enemiesAlive;
+       // spawnEnemyRef.SpawnEnemy();
+        //maxEnemies = spawnEnemyRef.enemiesAlive;
+
+        BasicEnemy enemies = FindObjectOfType<BasicEnemy>();
+        foreach (BasicEnemy enemy in BasicEnemy.AllEnemies)
+        {
+            enemy.SetMovement(true);
+        }
         // Increase difficulty
         //increaseDiff.IncreaseDiff();
 

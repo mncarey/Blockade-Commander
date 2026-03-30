@@ -11,6 +11,8 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public GameObject enemyDefeatPopup;
     public GameObject enemyWinPopup;
 
+    public BasicEnemy enemyRef;
+
 
     public GameObject sloopRef;
     public GameObject brigRef;
@@ -33,6 +35,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         enemyPrefabs[0] = sloopRef;
         enemyPrefabs[1] = brigRef;
         enemyPrefabs[2] = gallRef;
+        SpawnEnemy();
         
     }
 
@@ -54,6 +57,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             enemiesAlive++;
 
             enemy.GetComponent<BasicEnemy>().waveSpawnerRef = this;
+            
         }     
     }
 
@@ -64,7 +68,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
         if (enemiesAlive <= 0)
         {
-            Debug.Log("Wave Complete!");
+            
             enemyDefeatPopup.gameObject.SetActive(true);
         }
         

@@ -10,7 +10,9 @@ using UnityEngine.InputSystem;
 
 public class BasicEnemy : MonoBehaviour
 {
-    
+    //enemy tracker
+    public static List<BasicEnemy> AllEnemies = new List<BasicEnemy>();
+
     private Transform currentTarget;
 
     private TauntTower tauntRef;
@@ -37,15 +39,20 @@ public class BasicEnemy : MonoBehaviour
     public int goldValue = 10;
     private int killValue = 1;
 
+    public bool canMove = false;
+
     private float unitPriority;
-    
+
+    private float retargetTimer = 0f;
+    private float retargetInterval = 1f;
+
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] WaveProgressBar waveProgressBarRef;
 
     //---- Coroutines ----//
-    private Coroutine damageEnemyRoutine;
+ 
     private Coroutine damageWallRoutine;
     private Coroutine damageTauntRoutine;
     private Coroutine damageCannonRoutine;
@@ -59,6 +66,18 @@ public class BasicEnemy : MonoBehaviour
         healthBar = GetComponentInChildren<FloatingHealthBar>();
         waveProgressBarRef = FindObjectOfType<WaveProgressBar>(true);
         increaseDiff = FindObjectOfType<IncreaseDifficulty>();
+
+
+    }
+    private void OnEnable()
+    {
+        if(!AllEnemies.Contains(this))
+            AllEnemies.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        AllEnemies.Remove(this);
     }
     void Start()
     {
@@ -116,7 +135,14 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per 0.02 seconds or 50 per second
     void FixedUpdate()
     {
-        
+        retargetTimer += Time.deltaTime;
+
+        if (retargetTimer >= retargetInterval)
+        {
+            FindNewTarget();
+            retargetTimer = 0f;
+        }
+
         if (currentTarget == null)
         {
             StopAllAttackCoroutines();
@@ -248,6 +274,11 @@ public class BasicEnemy : MonoBehaviour
 
     private void MoveTowardsTarget()
     {
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
         // Stop any attack routines when moving again
         StopAllAttackCoroutines();
         float nudgeStrength = 5f;
@@ -257,6 +288,16 @@ public class BasicEnemy : MonoBehaviour
         Vector3 finalDir = (direction + (nudgeDir * nudgeStrength)).normalized;
         Vector3 moveVelocity = finalDir * speed;
         rb.linearVelocity = new Vector3(moveVelocity.x, rb.linearVelocity.y, moveVelocity.z);
+    }
+
+    public void SetMovement(bool enabled)
+    {
+        canMove = enabled;
+
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector3.zero; // immediately stop
+        }
     }
 
     //Handles damaging target
