@@ -111,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 3210962472567317898, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
       propertyPath: newSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7ba6f5e9d393c0a45ae6fe2a543d8f7f, type: 3}
+      objectReference: {fileID: 21300000, guid: a74495860f29a064fb675181469c2636, type: 3}
     - target: {fileID: 3210962472567317898, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
       propertyPath: currentFort
       value: 
