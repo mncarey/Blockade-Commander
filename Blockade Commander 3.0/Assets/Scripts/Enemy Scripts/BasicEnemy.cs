@@ -45,6 +45,9 @@ public class BasicEnemy : MonoBehaviour
 
     private float retargetTimer = 0f;
     private float retargetInterval = 1f;
+    private float rotationSpeed = 5f;
+
+    private Vector3 smoothNudge;
 
     Rigidbody rb;
 
@@ -213,7 +216,7 @@ public class BasicEnemy : MonoBehaviour
 
     private Vector3 EnemyNudge()
     {
-        float separationRadius = 4f;
+        float separationRadius = 6f;
         Vector3 totalPush = Vector3.zero;
 
         //Gets enemies within this range
@@ -227,29 +230,57 @@ public class BasicEnemy : MonoBehaviour
             // dont nudge yourself
             if (friend.gameObject == gameObject) continue;
 
-            //if the friends priority is higher than this, move this
-            if(friendScript != null && friendScript.unitPriority < unitPriority)
+            //if the friends priority is higher than this, react
+            if(friendScript != null && friendScript.unitPriority < unitPriority - 5f)
             {
-                //find the push direction
+                //find the other enemy relative to this
                 Vector3 pushDir = transform.position - friend.transform.position;
 
+                //keep everything flat
                 pushDir.y = 0f;
 
+                //distance between this enemy and the other one
                 float dist = pushDir.magnitude;
 
-                if (dist <= separationRadius)
+                //Only apply avoidance if not overlapping exactly or within the separation radius
+                if (dist > 0f && dist <= separationRadius)
                 {
                     Vector3 slideDir = Vector3.Cross(Vector3.up, pushDir);
-                    // The closer they are, the harder they push // normalized so speed is constant
-                    totalPush += (pushDir.normalized + slideDir.normalized * 2f) / (pushDir.magnitude + 0.01f);
+
+                    //create falloff, strength gets weaker or stronger depending upon the distance
+                    float pushStrength = Mathf.Clamp01((separationRadius - dist) / separationRadius);
+                    
+                    //set the magnitude of the target as 1 (normalized) , the direction you want to move
+                    Vector3 toTarget = (currentTarget.transform.position - transform.position).normalized;
+
+                    //cross is a perpendicular direction, the cross product, toTarget is forward direction, Vector3.up is the other part of the cross, resulting in a sideways vector
+                    Vector3 sideDir = Vector3.Cross(Vector3.up, toTarget);
+                    //decide which direction to go, left or right 
+                    //Dot shows how aligned the directions are, if same, if opposite, if perpendicular, is it on the right or left essentially
+                    //Sign returns if the value is positive negative or zero, so it returns left or right, -1 or 1, left or right
+                    float side = Mathf.Sign(Vector3.Dot(pushDir, sideDir));
+                    //no direct pushback
+                    Vector3 avoidance = sideDir * side;
+                    totalPush += avoidance * pushStrength;
                 }
+
+                
             }
            
             
 
 
         }
-        return totalPush;
+
+        //deadzone clamp, ignores jittery, tiny movements
+        if (totalPush.magnitude < 0.1f)
+        {
+            return Vector3.zero;
+        }
+        
+           //limit max strength so it doesn't rapidly change speed/direction
+            return Vector3.ClampMagnitude(totalPush, 1f);
+        
 
     }
 
@@ -279,13 +310,26 @@ public class BasicEnemy : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             return;
         }
+
+        
         // Stop any attack routines when moving again
         StopAllAttackCoroutines();
         float nudgeStrength = 5f;
         Vector3 direction = (currentTarget.position - rb.position).normalized;
 
         Vector3 nudgeDir = EnemyNudge();
-        Vector3 finalDir = (direction + (nudgeDir * nudgeStrength)).normalized;
+        smoothNudge = Vector3.Lerp(smoothNudge, nudgeDir, 5f * Time.deltaTime);
+       Vector3 finalDir = (direction + (smoothNudge * nudgeStrength)).normalized;
+
+        //Sets the rotation to look at the current target.
+        Vector3 lookDir = finalDir;
+        lookDir.y = 0f;
+        if (lookDir != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(lookDir) * Quaternion.Euler(0, 270, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
         Vector3 moveVelocity = finalDir * speed;
         rb.linearVelocity = new Vector3(moveVelocity.x, rb.linearVelocity.y, moveVelocity.z);
     }
