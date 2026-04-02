@@ -365,7 +365,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 680760503}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 591687589301179027, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_text
@@ -680,11 +680,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1992361764}
   m_SourcePrefab: {fileID: 100100000, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
---- !u!224 &77217054 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
-  m_PrefabInstance: {fileID: 77217053}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &77217055 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7205630642886506317, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -2048,7 +2043,6 @@ Transform:
   - {fileID: 673163825}
   - {fileID: 490060859}
   - {fileID: 2143173431}
-  - {fileID: 77217054}
   - {fileID: 4831276500585067317}
   - {fileID: 764777716}
   - {fileID: 1813514276}
@@ -7372,4 +7366,5 @@ SceneRoots:
   - {fileID: 36471348}
   - {fileID: 351166444}
   - {fileID: 456816046}
+  - {fileID: 77217053}
   - {fileID: 680760503}
