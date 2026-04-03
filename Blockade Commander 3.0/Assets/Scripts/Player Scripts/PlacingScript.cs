@@ -19,6 +19,7 @@ public class PlacingScript : MonoBehaviour
     public float doubleClickTime = 0.3f;
     private float lastClickTime = -999f;
     private Transform lastClickedRoot = null;
+    [HideInInspector] public GameObject clickedObject;
 
     //---- Fortification Placement Restriction ----//
     public int currentPlaced = 0;
@@ -155,8 +156,11 @@ public class PlacingScript : MonoBehaviour
                     //Double Click to Rotate and Open Stats
                     if (withinTime && sameTarget)
                     {
+                        clickedObject = clickedRoot.gameObject;
                         clickedRoot.Rotate(0f, 90f, 0f);
                         showStats = true;
+                        //block placement when stats are open
+                        placementEnable = false;
 
                         //reseting variables
                         lastClickTime = -999f;

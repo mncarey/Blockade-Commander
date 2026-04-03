@@ -11,20 +11,14 @@ public class ExitButton : MonoBehaviour
     {
         placingRef = FindObjectOfType<PlacingScript>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void IWasClicked()
     {
-        statsPopupRef.SetActive(false);
+        transform.root.gameObject.SetActive(false);
+
         //unpause game
         Time.timeScale = 1f;
 
         //unblock placement
-        placingRef.placementEnable = false;
+        placingRef.placementEnable = true;
     }
 }
