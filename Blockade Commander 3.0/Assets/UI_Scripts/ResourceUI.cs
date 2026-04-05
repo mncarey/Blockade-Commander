@@ -9,7 +9,7 @@ public class ResourceUI : MonoBehaviour
     [SerializeField] private TMP_Text killsText;
     [SerializeField] private TMP_Text fortNumberText;
     public int gold = 0;
-    private int kills = 0;
+    public int kills = 0;
     public int fortNumber = 0;
 
     public static ResourceUI instance;

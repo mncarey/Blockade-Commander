@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   health: 10
   maxLives: 10
-  dmg: 1
+  dmg: 6
   tickRate: 1
   enemyLayer:
     serializedVersion: 2
