@@ -11,12 +11,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CombinedScene.unity
     guid: 44399c781adc4ec489c4d38be42ffcf7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/_MadiTest.unity
     guid: de1705c14181eca44b07488b5ca8d04a
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: abe8287f10e7b294ab03463de25a770a
+  - enabled: 1
+    path: Assets/Scenes/_MadiTestPart2.unity
+    guid: d925fb58db86c484ca01e0c7e4d6c059
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
