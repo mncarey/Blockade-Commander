@@ -6,6 +6,7 @@ public class AscensionManager : MonoBehaviour
     private bool ascensionUIOn = false;
 
     [SerializeField] GameObject AscensionUIRef;
+    [SerializeField] GameObject AscendTextRef;
     private ResourceUI KillsRef;
     private int killNum;
 
@@ -45,9 +46,9 @@ public class AscensionManager : MonoBehaviour
 
     //Unlock fortification
     //Input kill number, if greater than minimum threshold but less than next threshold, unlock fort 1, repeat for next fort
-    protected void Ascend(int kills)
+    protected void Ascend()
     {
-        if(kills >= 2)
+        if(killNum >= 2)
         {
             
             //Unlock Mortar
@@ -58,13 +59,20 @@ public class AscensionManager : MonoBehaviour
     public void ClickedIcon()
     {
         ToggleUI();
-
+        AscendInfo();
 
     }
     //when ascend clicks
     public void AscendClicked()
     {
-
+        AscendTextRef.SetActive(false);
+        Ascend();
     }
 
+    //Display the ascension view menu
+    //It is mostly text, saying explaining that you will unlock the mortar, but reset your gold and enemies
+    private void AscendInfo()
+    {
+        AscendTextRef.SetActive(true);
+    }
 }
