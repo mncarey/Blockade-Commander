@@ -286,7 +286,7 @@ public class BasicEnemy : MonoBehaviour
 
     public void TakeDamage(int dmg)
     {
-        lives--;
+        lives = lives - dmg;
         healthBar.UpdateHealthBar(lives, maxLives);
         waveProgressBarRef.UpdateHealthBar();
         if (lives <= 0)

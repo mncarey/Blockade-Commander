@@ -21,6 +21,8 @@ public class NextWaveButton : MonoBehaviour
     public ResourceUI resourceRef;
     public int maxEnemies;
 
+    private AscensionManager ascensionManagerRef;
+
 
      
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +31,7 @@ public class NextWaveButton : MonoBehaviour
         fortUIManagerRef = FindObjectOfType<FortUIManager>();
         resourceRef = FindObjectOfType<ResourceUI>();
         waveSpawnerRef = FindObjectOfType<Wave_Spawner_BasicEnemy>();
+        ascensionManagerRef = FindObjectOfType<AscensionManager>();
     }
 
     public void IWasClicked()
@@ -66,5 +69,8 @@ public class NextWaveButton : MonoBehaviour
         //call spawn enemies
         waveSpawnerRef.SpawnEnemy();
         maxEnemies = waveSpawnerRef.enemiesAlive;
+
+        //Check if Ascension is possible
+        ascensionManagerRef.ToggleUI();
     }
 }

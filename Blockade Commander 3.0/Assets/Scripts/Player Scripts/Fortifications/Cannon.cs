@@ -10,7 +10,7 @@ public class Cannon : MonoBehaviour
     public int health = 10;
     public int maxLives = 10;
     private int range = 10;
-    public int dmg = 4;
+    public int dmg = 20;
     public float tickRate = 1f;
     private Coroutine damageRoutine;
     public LayerMask enemyLayer;
