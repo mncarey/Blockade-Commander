@@ -28,7 +28,8 @@ public class fortSlot : MonoBehaviour
     private string lighthouseText = "A primarily defensive fortification that forces enemies to attack it if they are within range. Cannot damage ranged enemies.";
     private string cannonText = "A medium range and damage fortification that assaults enemy ships with a quick rate of fire";
     private string mortarText = "A long range heavy damage fortification, which cannot attack enemies that get too close, low rate of fire";
-    //private string wallText = "A wall, simple as";
+    private string wallText = "A wall, simple as";
+    private string lockedText = "Ascend to unlock.";
 
     private string fortName;
 
@@ -74,9 +75,13 @@ public class fortSlot : MonoBehaviour
         }
         if(fortName == "Wall")
         {
-            //content = wallText;
+            content = wallText;
             currentFort = wall;
             
+        }
+        if(fortName == "LockedSlot")
+        {
+            content = lockedText;
         }
         
     }
