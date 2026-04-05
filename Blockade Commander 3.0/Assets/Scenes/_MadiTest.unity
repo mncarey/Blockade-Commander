@@ -1047,6 +1047,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27a96231b4f436d4b8f446e5c770a444, type: 3}
+--- !u!1 &190994297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4152121523868055655, guid: 27a96231b4f436d4b8f446e5c770a444, type: 3}
+  m_PrefabInstance: {fileID: 190994296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &190994298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 800773293831959119, guid: 27a96231b4f436d4b8f446e5c770a444, type: 3}
+  m_PrefabInstance: {fileID: 190994296}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &241027904 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7205630642886506317, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -3468,6 +3478,14 @@ PrefabInstance:
       propertyPath: fortMenuRef
       value: 
       objectReference: {fileID: 746781879}
+    - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
+      propertyPath: EnemyZoneRed
+      value: 
+      objectReference: {fileID: 190994298}
+    - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
+      propertyPath: EnemyZoneBlue
+      value: 
+      objectReference: {fileID: 190994297}
     - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: fortButtonRef
       value: 
