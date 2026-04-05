@@ -33,20 +33,34 @@ public class PopupManager : MonoBehaviour
             return;
         }
 
+        StatPopupUI popupUI = null;
+
         if (clicked.GetComponent<TauntTower>() != null)
         {
-            tauntTowerPopup.SetActive(true);
             currentPopup = tauntTowerPopup;
+            popupUI = tauntTowerPopup.GetComponent<StatPopupUI>();
+
+            //show correct stats based on taunt tower's script
+            var tower = clicked.GetComponent<TauntTower>();
+            popupUI.ShowStats(tower.health, tower.range, 0);
         }
         else if (clicked.GetComponent<Cannon>() != null)
         {
-            cannonPopup.SetActive(true);
             currentPopup = cannonPopup;
+            popupUI = cannonPopup.GetComponent<StatPopupUI>();
+
+            //show correct stats based on taunt tower's script
+            var cannon = clicked.GetComponent<Cannon>();
+            popupUI.ShowStats(cannon.health, cannon.range, cannon.dmg);
         }
         else if (clicked.GetComponent<Wall>() != null)
         {
-            wallPopup.SetActive(true);
             currentPopup = wallPopup;
+            popupUI = wallPopup.GetComponent<StatPopupUI>();
+
+            //show correct stats based on taunt tower's script
+            var wall = clicked.GetComponent<Wall>();
+            popupUI.ShowStats(wall.health, wall.range, wall.dmg);
         }
         else
         {
