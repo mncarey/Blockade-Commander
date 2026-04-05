@@ -8,15 +8,18 @@ public class PopupManager : MonoBehaviour
     public GameObject wallPopup;
     public GameObject cannonPopup;
 
+    public GameObject currentPopup;
+
     // Update is called once per frame
     void Update()
     {
         if (placingScriptRef.showStats == true)
         {
+            ShowCorrectPopup();
             placingScriptRef.showStats = false;
         }
 
-        ShowCorrectPopup();
+        
     }
 
     private void ShowCorrectPopup()
@@ -33,18 +36,27 @@ public class PopupManager : MonoBehaviour
         if (clicked.GetComponent<TauntTower>() != null)
         {
             tauntTowerPopup.SetActive(true);
+            currentPopup = tauntTowerPopup;
         }
         else if (clicked.GetComponent<Cannon>() != null)
         {
             cannonPopup.SetActive(true);
+            currentPopup = cannonPopup;
         }
         else if (clicked.GetComponent<Wall>() != null)
         {
             wallPopup.SetActive(true);
+            currentPopup = wallPopup;
         }
         else
         {
             Debug.LogWarning("No matching script found on clicked object.");
         }
+    }
+
+    public void CloseCurrentPopup()
+    {
+        currentPopup.SetActive(false);
+        currentPopup = null;
     }
 }

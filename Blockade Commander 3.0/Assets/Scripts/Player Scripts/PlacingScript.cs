@@ -159,8 +159,10 @@ public class PlacingScript : MonoBehaviour
                         clickedObject = clickedRoot.gameObject;
                         clickedRoot.Rotate(0f, 90f, 0f);
                         showStats = true;
+
                         //block placement when stats are open
-                        placementEnable = false;
+                         placementEnable = false;
+                        
 
                         //reseting variables
                         lastClickTime = -999f;
