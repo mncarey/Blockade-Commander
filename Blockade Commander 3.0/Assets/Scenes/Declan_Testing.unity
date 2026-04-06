@@ -2896,6 +2896,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593687700}
   m_CullTransparentMesh: 1
+--- !u!1 &594891216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9175880597861207321, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+  m_PrefabInstance: {fileID: 833200767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &629339216
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,6 +4048,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7304187632862020810, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304187632862020810, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304187632862020810, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304187632862020810, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304187632862020810, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304187632862020810, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7626544323749343370, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4400,6 +4429,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 863978429}
   m_CullTransparentMesh: 1
+--- !u!1 &865067326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 522894414244803277, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+  m_PrefabInstance: {fileID: 833200767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &868734812
 GameObject:
   m_ObjectHideFlags: 0
@@ -5739,6 +5773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AscensionManager
   AscensionUIRef: {fileID: 1967832705}
   AscendTextRef: {fileID: 1265533455}
+  LockedIcon: {fileID: 865067326}
+  MortarSelection: {fileID: 594891216}
 --- !u!4 &1249547426
 Transform:
   m_ObjectHideFlags: 0

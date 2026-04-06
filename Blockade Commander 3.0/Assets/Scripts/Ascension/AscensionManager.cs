@@ -7,6 +7,8 @@ public class AscensionManager : MonoBehaviour
 
     [SerializeField] GameObject AscensionUIRef;
     [SerializeField] GameObject AscendTextRef;
+    [SerializeField] GameObject LockedIcon;
+    [SerializeField] GameObject MortarSelection;
     private ResourceUI KillsRef;
     private int killNum;
 
@@ -50,7 +52,10 @@ public class AscensionManager : MonoBehaviour
     {
         if(killNum >= 2)
         {
-            
+            //turn off lockedFort
+            LockedIcon.SetActive(false);
+            //turn on Mortar Icon
+            MortarSelection.SetActive(true);
             //Unlock Mortar
             Debug.Log("Ascend");
         }
