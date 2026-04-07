@@ -11,6 +11,7 @@ public class ExitButton : MonoBehaviour
     void Start()
     {
         placingRef = FindObjectOfType<PlacingScript>();
+        popupManagerRef = FindObjectOfType<PopupManager>();
     }
     public void IWasClicked()
     {

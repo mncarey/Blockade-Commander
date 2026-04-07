@@ -18,6 +18,7 @@ TagManager:
   - Damage Range
   - EnemiesWin
   - CannonStatsPopup
+  - UpgradeMenu
   layers:
   - Default
   - TransparentFX

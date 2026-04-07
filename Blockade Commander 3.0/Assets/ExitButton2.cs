@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class UpgradeButton : MonoBehaviour
+public class ExitButton2 : MonoBehaviour
 {
-    public GameObject UpgradeMenuRef;
+    public GameObject objectToDeactivate;
     public PlacingScript placingScriptRef;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +19,11 @@ public class UpgradeButton : MonoBehaviour
 
     public void IWasClicked()
     {
-        UpgradeMenuRef.SetActive(true);
-        placingScriptRef.showStats = true;
+        objectToDeactivate.SetActive(false);
+        if(placingScriptRef != null)
+        {
+            placingScriptRef.showStats = false;
+        }
+        
     }
 }
