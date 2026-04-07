@@ -66,6 +66,8 @@ public class AscensionManager : MonoBehaviour
             //unlock upgrade cap to lvl 10
             //increase threshold for next ascension and reset gold
             killThreshold = killThreshold * 2;
+            // Increase upgrade capacity
+            //After 3rd ascension increase number of fortifications able to be placed
 
         }
     }

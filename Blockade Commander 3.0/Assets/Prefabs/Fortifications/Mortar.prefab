@@ -377,14 +377,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d4f8bd89fabf6047869ad97a79da19f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mortar
-  health: 10
+  health: 5
   maxLives: 10
   dmg: 2
   tickRate: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  splashRadius: 3
+  splashRadius: 4
   isDed: 0
   healthBar: {fileID: 0}
   placingRef: {fileID: 0}
