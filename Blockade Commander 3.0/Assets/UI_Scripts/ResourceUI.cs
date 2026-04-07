@@ -55,6 +55,12 @@ public class ResourceUI : MonoBehaviour
         goldText.text = "Gold: " + gold;
     }
 
+    public void AscendResetResource()
+    {
+        gold = 0;
+        goldText.text = "Gold: " + gold;
+    }
+
     public void UpdateFortRef(int fortNum)
     {
         fortNumberText.text = fortNum + "/4";

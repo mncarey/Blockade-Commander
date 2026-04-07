@@ -18,6 +18,7 @@ public class BasicEnemy : MonoBehaviour
     private TauntTower tauntRef;
     private Cannon cannonRef;
     private Wall wallRef;
+    private Mortar mortarRef;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     private PlayerFortress fortRef;
 
@@ -59,6 +60,7 @@ public class BasicEnemy : MonoBehaviour
     private Coroutine damageWallRoutine;
     private Coroutine damageTauntRoutine;
     private Coroutine damageCannonRoutine;
+    private Coroutine damageMortarRoutine;
   
     //List to hold the fortifications within the scene
     public List<GameObject> targets = new List<GameObject>();
@@ -353,12 +355,14 @@ public class BasicEnemy : MonoBehaviour
         tauntRef = null;
         cannonRef = null;
         wallRef = null;
+        mortarRef = null;
 
         rb.linearVelocity = Vector3.zero;
 
         // Try TauntTower
         tauntRef = currentTarget.GetComponentInParent<TauntTower>();
         cannonRef = currentTarget.GetComponentInParent<Cannon>();
+        mortarRef = currentTarget.GetComponentInParent<Mortar>();
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
         { 
@@ -385,6 +389,12 @@ public class BasicEnemy : MonoBehaviour
             return;
         }
 
+        //try mortar
+        if (mortarRef != null)
+        {
+            if (damageMortarRoutine == null) damageMortarRoutine = StartCoroutine(DamageMortarRoutine());
+            return;
+        }
         //if the current target is the player fortress
         if(currentTarget.tag == "Player")
         {
@@ -414,6 +424,12 @@ public class BasicEnemy : MonoBehaviour
         {
             StopCoroutine(damageCannonRoutine);
             damageCannonRoutine = null;
+        }
+
+        if(damageMortarRoutine != null)
+        {
+            StopCoroutine(damageMortarRoutine);
+            damageMortarRoutine = null;
         }
 
         
@@ -451,6 +467,17 @@ public class BasicEnemy : MonoBehaviour
 
         damageCannonRoutine = null;//damage taunt routine resets for the next tower to be damaged
 
+    }
+
+    private IEnumerator DamageMortarRoutine()
+    {
+        while (mortarRef != null)
+        {
+            mortarRef.takeDamage();
+            yield return new WaitForSeconds(1f);
+        }
+
+        damageMortarRoutine = null;
     }
 
     private void OnDrawGizmosSelected()

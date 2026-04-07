@@ -186,7 +186,7 @@ public class PlacingScript : MonoBehaviour
 
                 }
 
-                lastClickTime = Time.time;
+                
             }
             else
             {
