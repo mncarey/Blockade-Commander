@@ -7,8 +7,12 @@ public class AscensionManager : MonoBehaviour
 
     [SerializeField] GameObject AscensionUIRef;
     [SerializeField] GameObject AscendTextRef;
+    [SerializeField] GameObject LockedIcon;
+    [SerializeField] GameObject MortarSelection;
+   
     private ResourceUI KillsRef;
     private int killNum;
+    private int killThreshold;
 
 
 
@@ -19,6 +23,7 @@ public class AscensionManager : MonoBehaviour
     {
         KillsRef = FindObjectOfType<ResourceUI>();
         AscensionUIRef.SetActive(false);
+        killThreshold = 5;
     }
 
     private void FixedUpdate()
@@ -34,12 +39,15 @@ public class AscensionManager : MonoBehaviour
     //Toggle UI asset
     public void ToggleUI()
     {
-        if(killNum >= 2)
+        if(killNum >= killThreshold)
         {
             ascensionUIOn = !ascensionUIOn;
             //if true, turn on the UI else turn it off
             if (ascensionUIOn) AscensionUIRef.SetActive(true);
             else AscensionUIRef.SetActive(false);
+
+            
+            
         }
         
     }
@@ -48,11 +56,17 @@ public class AscensionManager : MonoBehaviour
     //Input kill number, if greater than minimum threshold but less than next threshold, unlock fort 1, repeat for next fort
     protected void Ascend()
     {
-        if(killNum >= 2)
+        if(killNum >= killThreshold)
         {
-            
-            //Unlock Mortar
-            Debug.Log("Ascend");
+            //turn off lockedFort
+            LockedIcon.SetActive(false);
+            //turn on Mortar Icon
+            MortarSelection.SetActive(true);
+            KillsRef.AscendResetResource();
+            //unlock upgrade cap to lvl 10
+            //increase threshold for next ascension and reset gold
+            killThreshold = killThreshold * 2;
+
         }
     }
 
