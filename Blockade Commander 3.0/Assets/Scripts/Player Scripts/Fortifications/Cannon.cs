@@ -7,10 +7,10 @@ using System.Collections.Generic;
 public class Cannon : MonoBehaviour
 {
     //change these values
-    public int health = 10;
+    public int health = 6;
     public int maxLives = 10;
     public int range = 10;
-    public int dmg = 20;
+    public int dmg = 3;
     public float tickRate = 1f;
     private Coroutine damageRoutine;
     public LayerMask enemyLayer;

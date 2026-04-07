@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class Mortar : MonoBehaviour
 {
     //change these values
-    public int health = 10;
+    public int health = 5;
     public int maxLives = 10;
     private int maxRange = 20;
     private int minRange = 5;
