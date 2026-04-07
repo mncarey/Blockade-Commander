@@ -1,4 +1,8 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using Unity.VisualScripting;
+using System.Collections;
 
 public class PopupManager : MonoBehaviour
 {
@@ -17,6 +21,8 @@ public class PopupManager : MonoBehaviour
         {
             ShowCorrectPopup();
             placingScriptRef.showStats = false;
+
+            
         }
 
         
@@ -48,9 +54,15 @@ public class PopupManager : MonoBehaviour
             wallPopup.SetActive(true);
             currentPopup = wallPopup;
         }
+        else if (clicked.GetComponent<Mortar>() != null)
+        {
+            placingScriptRef.placementEnable = true;
+            Debug.Log("Clicked on Mortar");
+        }
         else
         {
             Debug.LogWarning("No matching script found on clicked object.");
+            placingScriptRef.placementEnable = true;
         }
     }
 
@@ -58,5 +70,13 @@ public class PopupManager : MonoBehaviour
     {
         currentPopup.SetActive(false);
         currentPopup = null;
+        StartCoroutine(ReenaablePlacementNextFrame());
+
+    }
+
+    private IEnumerator ReenaablePlacementNextFrame()
+    {
+        yield return null;
+        placingScriptRef.placementEnable = true;
     }
 }

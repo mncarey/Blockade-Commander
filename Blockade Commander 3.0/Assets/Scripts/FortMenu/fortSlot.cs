@@ -19,7 +19,7 @@ public class fortSlot : MonoBehaviour
     public GameObject currentFort;
     [SerializeField] private GameObject lightHouse;
     [SerializeField] private GameObject cannon;
-    //[SerializeField] private GameObject mortar;
+    [SerializeField] private GameObject mortar;
     [SerializeField] private GameObject wall;
 
     [SerializeField] private FortImageDisplay fortImageDisplay;
@@ -70,7 +70,7 @@ public class fortSlot : MonoBehaviour
         if(fortName == "Mortar")
         {
             content = mortarText;
-            //currentFort = mortar;
+            currentFort = mortar;
             
         }
         if(fortName == "Wall")

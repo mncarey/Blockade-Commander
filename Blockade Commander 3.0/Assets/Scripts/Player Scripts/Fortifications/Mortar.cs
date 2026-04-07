@@ -1,0 +1,207 @@
+using UnityEngine;
+using System.Collections;
+using static UnityEngine.GraphicsBuffer;
+using System.Linq;
+using System.Collections.Generic;
+
+public class Mortar : MonoBehaviour
+{
+    //change these values
+    public int health = 10;
+    public int maxLives = 10;
+    private int maxRange = 20;
+    private int minRange = 2;
+    public int dmg = 10;
+    public float tickRate = 1f;
+    private Coroutine damageRoutine;
+    public LayerMask enemyLayer;
+
+    public float splashRadius = 3f;
+
+    public bool isDed = false;
+
+    Rigidbody rb;
+
+    [SerializeField] FloatingHealthBar healthBar;
+    [SerializeField] PlacingScript placingRef;
+    [SerializeField] PlayerFortress playerFortRef;
+    [SerializeField] private StatPopupUI statPopupRef;
+
+    private Transform currentTarget;
+
+    public GameObject enemyWinPopup;
+
+    public List<GameObject> targets = new List<GameObject>();
+
+    public void OpenStats()
+    {
+        if (statPopupRef != null)
+        {
+            statPopupRef.ShowStats(health, maxRange, dmg);
+        }
+        else
+        {
+            Debug.LogWarning("StatPopupUI not assigned on Cannon!");
+        }
+
+    }
+
+    public void Initialize(StatPopupUI popup)
+    {
+        statPopupRef = popup;
+    }
+
+    private void Awake()
+    {
+        //setting variables in runtime
+        rb = GetComponent<Rigidbody>();
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+
+        if (placingRef == null)
+            placingRef = FindFirstObjectByType<PlacingScript>();
+
+        if (playerFortRef == null)
+            playerFortRef = FindFirstObjectByType<PlayerFortress>();
+
+    }
+
+
+    void Start()
+    {
+        healthBar.UpdateHealthBar(health, maxLives);
+
+
+
+    }
+    private void FixedUpdate()
+    {
+
+        // Check if current target is still valid
+        if (currentTarget != null)
+        {
+            float sqrDist = (currentTarget.position - transform.position).sqrMagnitude;
+
+            // Drop target if too far or too close
+            if (sqrDist > maxRange * maxRange || sqrDist < minRange * minRange)
+            {
+                currentTarget = null;
+            }
+        }
+
+        // Only find a new target if we don’t have one
+        if (currentTarget == null)
+        {
+            FindClosestTarget();
+        }
+
+        // Start/stop attacking
+        if (currentTarget != null && damageRoutine == null)
+        {
+            damageRoutine = StartCoroutine(DamageOverTime());
+        }
+        else if (currentTarget == null && damageRoutine != null)
+        {
+            StopCoroutine(damageRoutine);
+            damageRoutine = null;
+        }
+
+    }
+
+    private void FindClosestTarget()
+    {
+        Collider[] enemies = Physics.OverlapSphere(transform.position, maxRange, enemyLayer);
+
+        float closestDist = Mathf.Infinity;
+        Transform closest = null;
+
+        foreach (var col in enemies)
+        {
+            float dist = (col.transform.position - transform.position).sqrMagnitude;
+
+            if (dist >= minRange * minRange && dist <= maxRange * maxRange && dist < closestDist)
+            {
+                closestDist = dist;
+                closest = col.transform;
+            }
+        }
+
+        currentTarget = closest;
+    }
+
+    public void takeDamage()
+    {
+        if (isDed) return;
+        health--;
+        healthBar.UpdateHealthBar(health, maxLives);
+        if (health <= 0)
+        {
+            isDed = true;
+            if (gameObject != null)
+            {
+
+                placingRef.currentPlaced--;
+                if (placingRef.currentPlaced == 0 && playerFortRef.isDed)
+                {
+                    placingRef.enemiesWinPopupRef.gameObject.SetActive(true);
+                }
+                Destroy(gameObject);
+            }
+        }
+    }
+
+
+
+    private IEnumerator DamageOverTime()
+    {
+        
+        while (currentTarget != null)
+        {
+            float sqrDist = (currentTarget.position - transform.position).sqrMagnitude;
+
+            // Stop if out of range
+            if (sqrDist > maxRange * maxRange || sqrDist < minRange * minRange)
+            {
+                currentTarget = null;
+                break;
+            }
+
+            Collider[] enemiesInRange = Physics.OverlapSphere(currentTarget.position, splashRadius, enemyLayer);
+
+            foreach (Collider col in enemiesInRange) {
+
+                BasicEnemy enemy = col.GetComponentInParent<BasicEnemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(dmg);
+                }
+                else
+                {
+                    currentTarget = null; // safety if object is destroyed
+                }
+            }
+            
+            
+
+            yield return new WaitForSeconds(tickRate);
+        }
+
+        damageRoutine = null;
+    }
+
+    //Deals damage based on if hit by a sloop
+    public void SloopDamage()
+    {
+        health = health - 5;
+        healthBar.UpdateHealthBar(health, maxLives);
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (currentTarget != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(currentTarget.position, splashRadius);
+        }
+    }
+
+
+}
