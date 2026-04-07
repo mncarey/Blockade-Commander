@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278bf870501369b499e59df4a9739e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TauntTower
-  health: 10
-  maxLives: 10
+  health: 20
+  maxLives: 20
   range: 5
   dmg: 0
   isDed: 0

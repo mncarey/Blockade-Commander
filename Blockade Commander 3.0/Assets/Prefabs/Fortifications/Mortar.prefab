@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mortar
   health: 5
-  maxLives: 10
-  dmg: 2
+  maxLives: 5
+  dmg: 1
   tickRate: 1
   enemyLayer:
     serializedVersion: 2

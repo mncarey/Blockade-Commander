@@ -12,7 +12,7 @@ public class Mortar : MonoBehaviour
     private int maxRange = 20;
     private int minRange = 5;
     public int dmg = 5;
-    public float tickRate = 1f;
+    public float tickRate = 2f;
     private Coroutine damageRoutine;
     public LayerMask enemyLayer;
 
