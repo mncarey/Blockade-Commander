@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 876259449634325287}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.22809, y: -1.4964999, z: 1.4030304}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1210059572528604413}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.05191, y: -1.4964999, z: -7.02833}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 1918992381675819126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.7519097, y: -1.4964999, z: 1.4030304}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -149,12 +149,14 @@ MonoBehaviour:
   - {fileID: 3340374652752288087}
   startWaveRef: {fileID: 0}
   enemyDefeatPopup: {fileID: 0}
+  enemyWinPopup: {fileID: 0}
   sloopRef: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
   brigRef: {fileID: 2099700355507827545, guid: 52a9cd8b08062d84d9d2da0c68f6a0c8, type: 3}
   gallRef: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
   spawnAreaMin: {x: 2, y: 2}
   spawnAreaMax: {x: 4, y: 4}
   enemiesAlive: 0
+  enemiesTotalThisWave: 0
 --- !u!1 &7633278426375279458
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 7633278426375279458}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.056410313, y: -1.4964999, z: 5.87167}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

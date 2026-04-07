@@ -13,22 +13,20 @@ public class StatPopupUI : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform rectTransform;
 
-    [SerializeField] TauntTower tauntRef;
+    private Coroutine currentRoutine;
 
-    public int health = 0;
-    public int range = 0;
-    public int attack = 0;
-    public void ShowStats()
+    public void ShowStats(int health, int range, int attack)
     {
-        health = tauntRef.health;
-        range = tauntRef.range;
-        attack = tauntRef.dmg;
         healthText.text = "Health: " + health;
         rangeText.text = "Range: " + range;
         attackText.text = "Attack: " + attack;
 
         gameObject.SetActive(true);
-        StartCoroutine(FadeAndMove());
+
+        if (currentRoutine != null)
+            StopCoroutine(currentRoutine);
+
+       // currentRoutine = StartCoroutine(FadeAndMove());
     }
 
     private IEnumerator FadeAndMove()

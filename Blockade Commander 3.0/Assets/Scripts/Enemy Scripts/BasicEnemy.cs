@@ -10,10 +10,13 @@ using UnityEngine.InputSystem;
 
 public class BasicEnemy : MonoBehaviour
 {
-    
+    //enemy tracker
+    public static List<BasicEnemy> AllEnemies = new List<BasicEnemy>();
+
     private Transform currentTarget;
 
     private TauntTower tauntRef;
+    private Cannon cannonRef;
     private Wall wallRef;
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     private PlayerFortress fortRef;
@@ -36,17 +39,26 @@ public class BasicEnemy : MonoBehaviour
     public int goldValue = 10;
     private int killValue = 1;
 
+    public bool canMove = false;
+
     private float unitPriority;
-    
+
+    private float retargetTimer = 0f;
+    private float retargetInterval = 1f;
+    private float rotationSpeed = 5f;
+
+    private Vector3 smoothNudge;
+
     Rigidbody rb;
 
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] WaveProgressBar waveProgressBarRef;
 
     //---- Coroutines ----//
-    private Coroutine damageEnemyRoutine;
+ 
     private Coroutine damageWallRoutine;
     private Coroutine damageTauntRoutine;
+    private Coroutine damageCannonRoutine;
   
     //List to hold the fortifications within the scene
     public List<GameObject> targets = new List<GameObject>();
@@ -57,6 +69,18 @@ public class BasicEnemy : MonoBehaviour
         healthBar = GetComponentInChildren<FloatingHealthBar>();
         waveProgressBarRef = FindObjectOfType<WaveProgressBar>(true);
         increaseDiff = FindObjectOfType<IncreaseDifficulty>();
+
+
+    }
+    private void OnEnable()
+    {
+        if(!AllEnemies.Contains(this))
+            AllEnemies.Add(this);
+    }
+
+    private void OnDisable()
+    {
+        AllEnemies.Remove(this);
     }
     void Start()
     {
@@ -114,7 +138,14 @@ public class BasicEnemy : MonoBehaviour
     // Update is called once per 0.02 seconds or 50 per second
     void FixedUpdate()
     {
-        
+        retargetTimer += Time.deltaTime;
+
+        if (retargetTimer >= retargetInterval)
+        {
+            FindNewTarget();
+            retargetTimer = 0f;
+        }
+
         if (currentTarget == null)
         {
             StopAllAttackCoroutines();
@@ -185,7 +216,7 @@ public class BasicEnemy : MonoBehaviour
 
     private Vector3 EnemyNudge()
     {
-        float separationRadius = 4f;
+        float separationRadius = 6f;
         Vector3 totalPush = Vector3.zero;
 
         //Gets enemies within this range
@@ -199,35 +230,63 @@ public class BasicEnemy : MonoBehaviour
             // dont nudge yourself
             if (friend.gameObject == gameObject) continue;
 
-            //if the friends priority is higher than this, move this
-            if(friendScript != null && friendScript.unitPriority < unitPriority)
+            //if the friends priority is higher than this, react
+            if(friendScript != null && friendScript.unitPriority < unitPriority - 5f)
             {
-                //find the push direction
+                //find the other enemy relative to this
                 Vector3 pushDir = transform.position - friend.transform.position;
 
+                //keep everything flat
                 pushDir.y = 0f;
 
+                //distance between this enemy and the other one
                 float dist = pushDir.magnitude;
 
-                if (dist <= separationRadius)
+                //Only apply avoidance if not overlapping exactly or within the separation radius
+                if (dist > 0f && dist <= separationRadius)
                 {
                     Vector3 slideDir = Vector3.Cross(Vector3.up, pushDir);
-                    // The closer they are, the harder they push // normalized so speed is constant
-                    totalPush += (pushDir.normalized + slideDir.normalized * 2f) / (pushDir.magnitude + 0.01f);
+
+                    //create falloff, strength gets weaker or stronger depending upon the distance
+                    float pushStrength = Mathf.Clamp01((separationRadius - dist) / separationRadius);
+                    
+                    //set the magnitude of the target as 1 (normalized) , the direction you want to move
+                    Vector3 toTarget = (currentTarget.transform.position - transform.position).normalized;
+
+                    //cross is a perpendicular direction, the cross product, toTarget is forward direction, Vector3.up is the other part of the cross, resulting in a sideways vector
+                    Vector3 sideDir = Vector3.Cross(Vector3.up, toTarget);
+                    //decide which direction to go, left or right 
+                    //Dot shows how aligned the directions are, if same, if opposite, if perpendicular, is it on the right or left essentially
+                    //Sign returns if the value is positive negative or zero, so it returns left or right, -1 or 1, left or right
+                    float side = Mathf.Sign(Vector3.Dot(pushDir, sideDir));
+                    //no direct pushback
+                    Vector3 avoidance = sideDir * side;
+                    totalPush += avoidance * pushStrength;
                 }
+
+                
             }
            
             
 
 
         }
-        return totalPush;
+
+        //deadzone clamp, ignores jittery, tiny movements
+        if (totalPush.magnitude < 0.1f)
+        {
+            return Vector3.zero;
+        }
+        
+           //limit max strength so it doesn't rapidly change speed/direction
+            return Vector3.ClampMagnitude(totalPush, 1f);
+        
 
     }
 
     public void TakeDamage(int dmg)
     {
-        lives--;
+        lives = lives - dmg;
         healthBar.UpdateHealthBar(lives, maxLives);
         waveProgressBarRef.UpdateHealthBar();
         if (lives <= 0)
@@ -243,114 +302,63 @@ public class BasicEnemy : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-
-
-        //if this enters the taunt range of a taunt tower
-        if (other.gameObject.CompareTag("Taunt Range"))
-        {
-            if (other.transform.parent != null)
-            {
-                //set this game object as current target
-                currentTarget = other.transform;
-                //Debug.Log("setting target to taunt");
-
-            }
-
-
-        }
-        
-        if (other.gameObject.tag == "killZone")
-        {
-            
-            //taunt tower taking damage
-            rb.linearVelocity = Vector3.zero;
-            
-            tauntRef = other.gameObject.GetComponentInParent<TauntTower>();
-            
-            if (tauntRef != null && damageTauntRoutine == null)
-            {
-                if (this.name == "Sloop Enemy")
-                {
-                    
-                    tauntRef.SloopDamage();
-                    lives = 0;
-                }
-                else
-                {
-                    damageTauntRoutine = StartCoroutine(DamageTauntRoutine());
-                }
-                    
-            }
-
-            //the enemy taking damage
-            if(damageEnemyRoutine == null)
-            {
-                
-                
-               
-                
-                
-            }            
-        }        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.CompareTag("killZone"))
-        {
-            //if the taunt tower despawns before the enemy can leave the killZone, the coroutine can't stop
-            if (damageEnemyRoutine != null)
-            {
-                StopCoroutine(damageEnemyRoutine);
-                damageEnemyRoutine = null;
-            }
-
-
-
-            if (damageTauntRoutine != null)
-            {
-                StopCoroutine(damageTauntRoutine);
-                damageTauntRoutine = null;
-            }
-
-            tauntRef = null;//reset variable
-        }
-        if (other.gameObject.CompareTag("wallZone"))
-        {
-            if(damageWallRoutine != null)
-            {
-                StopCoroutine(damageWallRoutine);
-                damageWallRoutine = null;
-            }
-
-            wallRef = null;//reset variable 
-        }
-    }
-
 
     private void MoveTowardsTarget()
     {
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
+        
         // Stop any attack routines when moving again
         StopAllAttackCoroutines();
         float nudgeStrength = 5f;
         Vector3 direction = (currentTarget.position - rb.position).normalized;
 
         Vector3 nudgeDir = EnemyNudge();
-        Vector3 finalDir = (direction + (nudgeDir * nudgeStrength)).normalized;
+        smoothNudge = Vector3.Lerp(smoothNudge, nudgeDir, 5f * Time.deltaTime);
+       Vector3 finalDir = (direction + (smoothNudge * nudgeStrength)).normalized;
+
+        //Sets the rotation to look at the current target.
+        Vector3 lookDir = finalDir;
+        lookDir.y = 0f;
+        if (lookDir != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(lookDir) * Quaternion.Euler(0, 270, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+
         Vector3 moveVelocity = finalDir * speed;
         rb.linearVelocity = new Vector3(moveVelocity.x, rb.linearVelocity.y, moveVelocity.z);
+    }
+
+    public void SetMovement(bool enabled)
+    {
+        canMove = enabled;
+
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector3.zero; // immediately stop
+        }
     }
 
     //Handles damaging target
     private void HandleTargetInRange()
     {
+
+        //Reset references
+
+        tauntRef = null;
+        cannonRef = null;
+        wallRef = null;
+
         rb.linearVelocity = Vector3.zero;
 
         // Try TauntTower
         tauntRef = currentTarget.GetComponentInParent<TauntTower>();
+        cannonRef = currentTarget.GetComponentInParent<Cannon>();
         //if there there is a taunt tower set as the current target
         if (tauntRef != null)
         { 
@@ -367,6 +375,13 @@ public class BasicEnemy : MonoBehaviour
             if (damageWallRoutine == null)
                 damageWallRoutine = StartCoroutine(DamageWallRoutine());
 
+            return;
+        }
+
+        //try cannon
+        if(cannonRef != null)
+        {
+            if(damageCannonRoutine == null) damageCannonRoutine = StartCoroutine(DamageCannonRoutine());
             return;
         }
 
@@ -394,6 +409,14 @@ public class BasicEnemy : MonoBehaviour
             StopCoroutine(damageWallRoutine);
             damageWallRoutine = null;
         }
+
+        if(damageCannonRoutine != null)
+        {
+            StopCoroutine(damageCannonRoutine);
+            damageCannonRoutine = null;
+        }
+
+        
     }
     
 
@@ -416,6 +439,18 @@ public class BasicEnemy : MonoBehaviour
         
         damageTauntRoutine = null;//damage taunt routine resets for the next tower to be damaged
     
+    }
+
+    private IEnumerator DamageCannonRoutine()
+    {
+        while (cannonRef != null)
+        {
+            cannonRef.takeDamage();
+            yield return new WaitForSeconds(1f);
+        }
+
+        damageCannonRoutine = null;//damage taunt routine resets for the next tower to be damaged
+
     }
 
     private void OnDrawGizmosSelected()

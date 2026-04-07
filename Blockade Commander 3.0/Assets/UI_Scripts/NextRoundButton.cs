@@ -18,6 +18,10 @@ public class NextWaveButton : MonoBehaviour
      public GameObject fortRemoveRef;
      public PlayerFortress playerFortRef;
     public FortUIManager fortUIManagerRef;
+    public ResourceUI resourceRef;
+    public int maxEnemies;
+
+    private AscensionManager ascensionManagerRef;
 
 
      
@@ -25,6 +29,9 @@ public class NextWaveButton : MonoBehaviour
     void Start()
     {
         fortUIManagerRef = FindObjectOfType<FortUIManager>();
+        resourceRef = FindObjectOfType<ResourceUI>();
+        waveSpawnerRef = FindObjectOfType<Wave_Spawner_BasicEnemy>();
+        ascensionManagerRef = FindObjectOfType<AscensionManager>();
     }
 
     public void IWasClicked()
@@ -51,9 +58,19 @@ public class NextWaveButton : MonoBehaviour
         playerFortRef.updateHealthBar();
 
        placingScriptRef.TogglePlacementLock();
+        placingScriptRef.placementEnable = true;
 
+        resourceRef.UpdateFortRef(0);
         //ASSIGN IN INSPECTOR!!!//
         EnemyZoneBlue.SetActive(false);
         EnemyZoneRed.SetActive(true);
+
+        //Spawn Enemies
+        //call spawn enemies
+        waveSpawnerRef.SpawnEnemy();
+        maxEnemies = waveSpawnerRef.enemiesAlive;
+
+        //Check if Ascension is possible
+        ascensionManagerRef.ToggleUI();
     }
 }

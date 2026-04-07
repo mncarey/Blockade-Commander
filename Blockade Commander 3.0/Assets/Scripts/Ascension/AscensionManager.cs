@@ -1,0 +1,78 @@
+using UnityEngine;
+
+public class AscensionManager : MonoBehaviour
+{
+    //Declarations
+    private bool ascensionUIOn = false;
+
+    [SerializeField] GameObject AscensionUIRef;
+    [SerializeField] GameObject AscendTextRef;
+    private ResourceUI KillsRef;
+    private int killNum;
+
+
+
+
+
+
+    private void Start()
+    {
+        KillsRef = FindObjectOfType<ResourceUI>();
+        AscensionUIRef.SetActive(false);
+    }
+
+    private void FixedUpdate()
+    {
+       killNum = KillsRef.kills;
+        
+    }
+
+
+
+
+
+    //Toggle UI asset
+    public void ToggleUI()
+    {
+        if(killNum >= 2)
+        {
+            ascensionUIOn = !ascensionUIOn;
+            //if true, turn on the UI else turn it off
+            if (ascensionUIOn) AscensionUIRef.SetActive(true);
+            else AscensionUIRef.SetActive(false);
+        }
+        
+    }
+
+    //Unlock fortification
+    //Input kill number, if greater than minimum threshold but less than next threshold, unlock fort 1, repeat for next fort
+    protected void Ascend()
+    {
+        if(killNum >= 2)
+        {
+            
+            //Unlock Mortar
+            Debug.Log("Ascend");
+        }
+    }
+
+    public void ClickedIcon()
+    {
+        ToggleUI();
+        AscendInfo();
+
+    }
+    //when ascend clicks
+    public void AscendClicked()
+    {
+        AscendTextRef.SetActive(false);
+        Ascend();
+    }
+
+    //Display the ascension view menu
+    //It is mostly text, saying explaining that you will unlock the mortar, but reset your gold and enemies
+    private void AscendInfo()
+    {
+        AscendTextRef.SetActive(true);
+    }
+}

@@ -16,16 +16,16 @@ public class PlacingScript : MonoBehaviour
     public LayerMask placeableObjectsLayer;
 
     //---- Double click feature ----//
-    public float doubleClickTime = 0.35f;
+    public float doubleClickTime = 0.3f;
     private float lastClickTime = -999f;
-    public float minDoubleClickTime = 0.08f;
     private Transform lastClickedRoot = null;
+    [HideInInspector] public GameObject clickedObject;
 
     //---- Fortification Placement Restriction ----//
     public int currentPlaced = 0;
     public int maxPlaced = 4;
     public int fortsAilve = 0;
-    public bool canPlace => currentPlaced < maxPlaced && !showStats && placementEnable;
+    public bool canPlace => currentPlaced < maxPlaced;
     public bool placementEnable = true;
     public bool removalToggle = false;
     public bool startPlaceState = false;
@@ -38,11 +38,6 @@ public class PlacingScript : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction clickAction;
     private InputAction pointAction;
-
-    //---- Stats Popups ----//
-    public GameObject tauntStatsPopup;
-    public GameObject wallStatsPopup;
-    public GameObject cannonStatsPopup;
 
     private void Awake()
     {
@@ -69,7 +64,7 @@ public class PlacingScript : MonoBehaviour
     }
 
     //Update checks for changes based on information received from the Input Action events
-    private void Update()
+    private void FixedUpdate()
     {
         //Checks the position of the mouse
         UpdatePreviewPosition();
@@ -77,13 +72,22 @@ public class PlacingScript : MonoBehaviour
         UpdateOutlineHover();
 
         //start wave
-        startWaveButton.gameObject.SetActive(currentPlaced > 0);
+        if (currentPlaced == maxPlaced)
+        {
+            startWaveButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            startWaveButton.gameObject.SetActive(false);
+        }
+
 
         if (startWaveButton.isClicked)
         {
             startWaveButton.gameObject.SetActive(false);
         }
 
+        
     }
 
 
@@ -133,6 +137,10 @@ public class PlacingScript : MonoBehaviour
 
         if (!context.performed) return;
 
+        if(startPlaceState == false)
+        {
+            
+        }
         else
         {
             if (removalToggle == false)
@@ -142,21 +150,18 @@ public class PlacingScript : MonoBehaviour
                 {
                     Transform clickedRoot = hit.collider.transform.root;
 
-                    float timeSinceLastClick = Time.time - lastClickTime;
-                    bool withinTime = timeSinceLastClick >= minDoubleClickTime && timeSinceLastClick <= doubleClickTime;
+                    bool withinTime = (Time.time - lastClickTime) <= doubleClickTime;
                     bool sameTarget = (lastClickedRoot == clickedRoot);
 
                     //Double Click to Rotate and Open Stats
                     if (withinTime && sameTarget)
                     {
-                        //idk if we want this feature implemented
-                        //clickedRoot.Rotate(0f, 90f, 0f);
+                        clickedObject = clickedRoot.gameObject;
+                        clickedRoot.Rotate(0f, 90f, 0f);
+                        showStats = true;
 
-                        if(clickedRoot.TryGetComponent(out TauntTower taunt))
-                        {
-                            tauntStatsPopup.SetActive(true); //<---working here!!!!!
-                          
-                        }
+                        //block placement when stats are open
+                         placementEnable = false;
                         
 
                         //reseting variables
@@ -165,7 +170,6 @@ public class PlacingScript : MonoBehaviour
                     }
                     else
                     {
-                        showStats = false;//hide stats on every unsuccessful double click
                         lastClickTime = Time.time;
                         lastClickedRoot = clickedRoot;
                     }
@@ -180,15 +184,9 @@ public class PlacingScript : MonoBehaviour
                     currentPlaced++;
                     UpdateFortNumber();
 
-                    //dont open stats when placing
-                    showStats = false;
-
-                    //reset click time
-                    lastClickTime = -999f;
-                    lastClickedRoot = null;
                 }
 
-                //lastClickTime = Time.time;
+                lastClickTime = Time.time;
             }
             else
             {

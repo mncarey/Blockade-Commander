@@ -17,6 +17,7 @@ public class TauntTower : MonoBehaviour
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] PlacingScript placingRef;
     [SerializeField] PlayerFortress playerFortRef;
+    [SerializeField] private StatPopupUI statPopupRef;
 
     public GameObject enemyWinPopup;
 
@@ -33,7 +34,25 @@ public class TauntTower : MonoBehaviour
         if (playerFortRef == null)
             playerFortRef = FindFirstObjectByType<PlayerFortress>();
     }
+    
+    public void OpenStats()
+    {
+        if (statPopupRef != null)
+        {
+            statPopupRef.ShowStats(health, range, dmg);
+        }
+        else
+        {
+            Debug.LogWarning("StatPopupUI not assigned on Cannon!");
+        }
 
+    }
+
+    public void Initialize(StatPopupUI popup)
+    {
+        statPopupRef = popup;
+    }
+    
 
     void Start()
     {
