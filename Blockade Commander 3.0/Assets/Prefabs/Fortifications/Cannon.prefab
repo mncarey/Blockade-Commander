@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   health: 10
   maxLives: 10
-  dmg: 6
+  dmg: 3
   tickRate: 1
   enemyLayer:
     serializedVersion: 2
@@ -459,7 +459,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &409830640101930655
 Transform:
   m_ObjectHideFlags: 0

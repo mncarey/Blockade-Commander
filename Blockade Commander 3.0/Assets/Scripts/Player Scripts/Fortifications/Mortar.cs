@@ -10,13 +10,13 @@ public class Mortar : MonoBehaviour
     public int health = 10;
     public int maxLives = 10;
     private int maxRange = 20;
-    private int minRange = 2;
-    public int dmg = 10;
+    private int minRange = 5;
+    public int dmg = 5;
     public float tickRate = 1f;
     private Coroutine damageRoutine;
     public LayerMask enemyLayer;
 
-    public float splashRadius = 3f;
+    public float splashRadius = 4f;
 
     public bool isDed = false;
 

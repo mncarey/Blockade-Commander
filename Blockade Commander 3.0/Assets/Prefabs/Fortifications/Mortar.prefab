@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Mortar
   health: 10
   maxLives: 10
-  dmg: 20
+  dmg: 2
   tickRate: 1
   enemyLayer:
     serializedVersion: 2
@@ -623,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2717731450265927418
 Transform:
   m_ObjectHideFlags: 0
