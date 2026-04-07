@@ -21,11 +21,7 @@ public class PopupManager : MonoBehaviour
         {
             ShowCorrectPopup();
             placingScriptRef.showStats = false;
-
-            
         }
-
-        
     }
 
     private void ShowCorrectPopup()
@@ -82,10 +78,13 @@ public class PopupManager : MonoBehaviour
 
     public void CloseCurrentPopup()
     {
-        currentPopup.SetActive(false);
-        currentPopup = null;
-        StartCoroutine(ReenaablePlacementNextFrame());
+        if (currentPopup != null)
+        {
+            currentPopup.SetActive(false);
+        }
 
+        currentPopup = null;
+        placingScriptRef.placementEnable = true;
     }
 
     private IEnumerator ReenaablePlacementNextFrame()

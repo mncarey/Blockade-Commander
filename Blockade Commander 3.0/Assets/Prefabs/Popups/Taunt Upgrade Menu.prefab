@@ -1197,10 +1197,10 @@ GameObject:
   - component: {fileID: 18514686133768866}
   - component: {fileID: 6736520513249414394}
   - component: {fileID: 1777409907794413009}
-  - component: {fileID: 7274398584407535680}
   - component: {fileID: 6293514819638886228}
   - component: {fileID: 4027704682095041437}
   - component: {fileID: 8915143124438737555}
+  - component: {fileID: 3032989999540917597}
   m_Layer: 0
   m_Name: Taunt Upgrade Menu
   m_TagString: Untagged
@@ -1291,21 +1291,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7274398584407535680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5019350730458322759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d203d49bcd309df4a879552918d8e248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ExitButton
-  isClicked: 0
-  statsPopupRef: {fileID: 5019350730458322759}
-  placingRef: {fileID: 0}
 --- !u!114 &6293514819638886228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,6 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131db94d0b2514a41bc75f6847ac92ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgradeButton
+  towerUpgradeMenu: {fileID: 0}
 --- !u!114 &4027704682095041437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,6 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0429a7f4a41e0734592fd8fd92d41cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallUpgradeButton
+  wallUpgradeMenuRef: {fileID: 0}
 --- !u!114 &8915143124438737555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1342,6 +1329,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de960d69dbebd147b42799267ea3118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CannonUpgradeButton
+  cannonUpgradeMenuRef: {fileID: 0}
+--- !u!114 &3032989999540917597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5019350730458322759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12eece232befb444294c1c3980c38cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  objectToDeactivate: {fileID: 5019350730458322759}
 --- !u!1 &5812718355444728802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2036,10 +2037,14 @@ PrefabInstance:
     - target: {fileID: 551458757072145526, guid: 1718d74b20274364f90c181acaf8e227, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7274398584407535680}
+      objectReference: {fileID: 3032989999540917597}
     - target: {fileID: 551458757072145526, guid: 1718d74b20274364f90c181acaf8e227, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: IWasClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 551458757072145526, guid: 1718d74b20274364f90c181acaf8e227, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ExitButton2, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1159156916766543524, guid: 1718d74b20274364f90c181acaf8e227, type: 3}
       propertyPath: m_Name

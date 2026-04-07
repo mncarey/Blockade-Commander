@@ -9,6 +9,7 @@ public class PlacingScript : MonoBehaviour
     public StartWaveButton startWaveButton;
     public GameObject enemiesWinPopupRef;
     public GameObject objectToPlace;
+    public GameObject upgradeMenuRef;
     public Camera mainCamera;
 
     //---- Layer Selections ----//
@@ -48,7 +49,6 @@ public class PlacingScript : MonoBehaviour
         pointAction = playerInput.actions["Point"];
 
         resourceRef = FindObjectOfType<ResourceUI>();
-
     }
 
     private void OnEnable()
