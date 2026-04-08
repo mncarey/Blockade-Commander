@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2456244173300756582}
   - component: {fileID: 2283612086169663102}
   - component: {fileID: -5263075808891839719}
+  - component: {fileID: 7961573802470943515}
   m_Layer: 7
   m_Name: Wall
   m_TagString: Fortification
@@ -132,8 +133,11 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   placingRef: {fileID: 0}
   playerFortRef: {fileID: 0}
-  lives: 10
+  statPopupRef: {fileID: 0}
+  health: 10
   maxLives: 10
+  range: 0
+  dmg: 0
 --- !u!114 &-5263075808891839719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +152,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Outline
   mat: {fileID: 2100000, guid: 2e85e0c1d7cf78f4b9442d867fb8f05e, type: 2}
   indexOfMat: 1
+--- !u!114 &7961573802470943515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668786706655728692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3eebc7eb1a9494391e9ac366e71252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FortData
+  fortType: 2
 --- !u!1 &2093260582511742570
 GameObject:
   m_ObjectHideFlags: 0

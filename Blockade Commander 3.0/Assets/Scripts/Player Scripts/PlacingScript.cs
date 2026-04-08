@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using Unity.VisualScripting;
+using static FortData;
+
 public class PlacingScript : MonoBehaviour
 {
 
@@ -11,6 +13,7 @@ public class PlacingScript : MonoBehaviour
     public GameObject objectToPlace;
     public GameObject upgradeMenuRef;
     public Camera mainCamera;
+    
 
     //---- Layer Selections ----//
     public LayerMask groundLayer;
@@ -26,6 +29,16 @@ public class PlacingScript : MonoBehaviour
     public int currentPlaced = 0;
     public int maxPlaced = 4;
     public int fortsAilve = 0;
+
+    //Set up for fortification specific limit
+    public int numCannon = 0;
+    public int numMortar = 0;
+    public int numWall = 0;
+    public int numLighthouse = 0;
+    //if any of these exceed 3, set placementEnable to false
+    public int maxPerType = 3;
+    //Enum attached to each fortification prefab, designates what type they are
+    private FortType currentFortType;
     public bool canPlace => currentPlaced < maxPlaced;
     public bool placementEnable = true;
     public bool removalToggle = false;
@@ -90,7 +103,12 @@ public class PlacingScript : MonoBehaviour
         
     }
 
-
+    public void SetCurrentFort(GameObject fort)
+    {
+        objectToPlace = fort;
+        // Read the type directly from the prefab
+        currentFortType = fort.GetComponent<FortData>().fortType;
+    }
     private void UpdatePreviewPosition()
     {
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
@@ -180,13 +198,22 @@ public class PlacingScript : MonoBehaviour
                 // Check for Placement on the ground layer
                 if (placementEnable && canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
                 {
-                    Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
-                    currentPlaced++;
-                    UpdateFortNumber();
-
+                    //if you have hit the max type, tell the player
+                    if (!CanPlaceType(currentFortType))
+                    {
+                        Debug.Log("Max placement for " + currentFortType + " reached!");
+                    }
+                    //else place it
+                    else
+                    {
+                        Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
+                        currentPlaced++;
+                        ModifyFortCount(currentFortType, +1);
+                        UpdateFortNumber();
+                    }
                 }
 
-                
+
             }
             else
             {
@@ -195,22 +222,20 @@ public class PlacingScript : MonoBehaviour
                     // Find the highest object in the hierarchy that belongs to this prefab
                     GameObject objectToRemove = hit.collider.transform.root.gameObject;
 
-                    
+
                     //Check to make sure that it is what we want to remove using the tag "Fortification"
                     if (objectToRemove.CompareTag("Fortification"))
                     {
-                        // Disable all colliders on the object immediately to stop further raycasts
                         foreach (var col in objectToRemove.GetComponentsInChildren<Collider>())
-                        {
                             col.enabled = false;
-                        }
+
+                        FortType removedType = objectToRemove.GetComponent<FortData>().fortType;
 
                         Destroy(objectToRemove);
                         currentPlaced--;
-                        //set the number in resource UI to the new value
-
+                        //subtract from that types value so you can place more later
+                        ModifyFortCount(removedType, -1);
                         UpdateFortNumber();
-                        //Debug.Log($"Removed {objectToRemove.name}. Remaining: {currentPlaced}");
                     }
                     return;
                 }
@@ -231,5 +256,30 @@ public class PlacingScript : MonoBehaviour
         resourceRef.UpdateFortRef(currentPlaced);
     }
 
-    public void SetCurrentFort(GameObject fort) => objectToPlace = fort;
+    //Checks that each type is under the maximum alotted number.
+    private bool CanPlaceType(FortType type)
+    {
+        return type switch
+        {
+            FortType.Cannon => numCannon < maxPerType,
+            FortType.Mortar => numMortar < maxPerType,
+            FortType.Wall => numWall < maxPerType,
+            FortType.Lighthouse => numLighthouse < maxPerType,
+            _ => true
+        };
+    }
+
+    //take the FortType enum, goes through and will add to the individual number for that
+    //specific type.
+    private void ModifyFortCount(FortType type, int delta)
+    {
+        switch (type)
+        {
+            case FortType.Cannon: numCannon += delta; break;
+            case FortType.Mortar: numMortar += delta; break;
+            case FortType.Wall: numWall += delta; break;
+            case FortType.Lighthouse: numLighthouse += delta; break;
+        }
+    }
+
 }
