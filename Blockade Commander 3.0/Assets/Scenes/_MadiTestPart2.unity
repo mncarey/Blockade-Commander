@@ -2227,6 +2227,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: rangeGallRef
+      value: 
+      objectReference: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: startWaveRef
       value: 
       objectReference: {fileID: 565224063}
@@ -2284,7 +2288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 57
+      value: 40.3
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.y

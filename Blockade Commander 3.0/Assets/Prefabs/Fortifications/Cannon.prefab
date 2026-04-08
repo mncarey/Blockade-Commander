@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf3ef0a67f117a459601cd77aee265c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 10
-  maxLives: 10
-  range: 25
+  health: 8
+  maxLives: 8
+  range: 20
   dmg: 2
   tickRate: 1
   enemyLayer:

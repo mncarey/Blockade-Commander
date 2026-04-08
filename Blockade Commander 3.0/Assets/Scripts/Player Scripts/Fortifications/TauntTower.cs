@@ -9,7 +9,7 @@ public class TauntTower : MonoBehaviour
     public int maxLives = 10;
     public int range = 5;
     public int dmg = 0;
-
+    public float tauntDetectionRange = 25f;
     public bool isDed = false;
 
     Rigidbody rb;
@@ -121,6 +121,16 @@ public class TauntTower : MonoBehaviour
     {
         health = health - 5;
         healthBar.UpdateHealthBar(health, maxLives);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 2.0f);
+
+        // Taunt detection range
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, tauntDetectionRange);
     }
 
 }

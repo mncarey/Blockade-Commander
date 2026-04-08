@@ -17,6 +17,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public GameObject sloopRef;
     public GameObject brigRef;
     public GameObject gallRef;
+    public GameObject rangeGallRef;
     private GameObject[] enemyPrefabs;
 
     //random points
@@ -31,10 +32,11 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
     private void Start()
     {
-        enemyPrefabs = new GameObject[3];
+        enemyPrefabs = new GameObject[4];
         enemyPrefabs[0] = sloopRef;
         enemyPrefabs[1] = brigRef;
         enemyPrefabs[2] = gallRef;
+        enemyPrefabs[3] = rangeGallRef;
         SpawnEnemy();
         
     }

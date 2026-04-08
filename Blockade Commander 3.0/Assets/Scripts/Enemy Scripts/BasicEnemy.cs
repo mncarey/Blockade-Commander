@@ -52,6 +52,8 @@ public class BasicEnemy : MonoBehaviour
 
     Rigidbody rb;
 
+
+    public float tauntDetectionRange = 27f;
     [SerializeField] FloatingHealthBar healthBar;
     [SerializeField] WaveProgressBar waveProgressBarRef;
 
@@ -198,7 +200,9 @@ public class BasicEnemy : MonoBehaviour
         //Collect a collection of targetTag, for each object within targetTag and checks all not null
         //Checks if there is a taunt tower component attached
         //Adds to a list
-        var tauntTowers = targetTag.Where(obj => obj != null && obj.GetComponent<TauntTower>() != null).ToList();
+
+        
+        var tauntTowers = targetTag.Where(obj => obj != null && obj.GetComponent<TauntTower>() != null && Vector3.Distance(transform.position, obj.transform.position) <= tauntDetectionRange).ToList();
 
         //If there are taunt towers
         if (tauntTowers.Count > 0)
@@ -480,9 +484,5 @@ public class BasicEnemy : MonoBehaviour
         damageMortarRoutine = null;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 2.0f); // Match your separationRadius
-    }
+    
 }
