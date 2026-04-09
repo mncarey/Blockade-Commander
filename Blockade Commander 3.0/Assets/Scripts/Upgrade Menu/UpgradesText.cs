@@ -11,13 +11,15 @@ public class UpgradesText : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform rectTransform;
 
+    [SerializeField] private ResourceUI resourceRef;
+
     private Coroutine currentRoutine;
 
-    public void ShowStats(int health, int range, int attack)
+    public void ShowUpgrades(int goldCost)
     {
-        healthText.text = "Health: " + health;
-        rangeText.text = "Range: " + range;
-        attackText.text = "Attack: " + attack;
+        healthText.text = "Health + 1: " + goldCost + " gold";
+        rangeText.text = "Range + 1: " + goldCost + " gold";
+        attackText.text = "Attack + 1: " + goldCost + " gold";
 
         gameObject.SetActive(true);
 

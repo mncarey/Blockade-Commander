@@ -3,6 +3,8 @@ using UnityEngine;
 public class CannonUpgradeButton : MonoBehaviour
 {
     public GameObject cannonUpgradeMenuRef;
+    [SerializeField] private UpgradesText upgradesTextRef;
+    [SerializeField] private ResourceUI resourceUIRef;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,5 +20,6 @@ public class CannonUpgradeButton : MonoBehaviour
     public void IWasClicked()
     {
         cannonUpgradeMenuRef.SetActive(true);
+        upgradesTextRef.ShowUpgrades(resourceUIRef.goldCost1);
     }
 }

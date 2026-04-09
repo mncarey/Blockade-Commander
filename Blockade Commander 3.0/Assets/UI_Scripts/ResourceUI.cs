@@ -8,9 +8,34 @@ public class ResourceUI : MonoBehaviour
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private TMP_Text killsText;
     [SerializeField] private TMP_Text fortNumberText;
+    [SerializeField] private UpgradesText upgradesTextRef;
+
     public int gold = 0;
     public int kills = 0;
     public int fortNumber = 0;
+
+    public int goldCost1 = 30;
+    public int goldCost2 = 60;
+
+    //Taunt tower upgrades//
+    public int tauntHealthUpgrade = 0;
+    public int tauntRangeUpgrade = 0;
+    public int tauntDmgUpgrade = 0;
+
+    //Wall upgrades//
+    public int wallHealthUpgrade = 0;
+    public int wallRangeUpgrade = 0;
+    public int wallDmgUpgrade = 0;
+
+    //Cannon upgrades//
+    public int cannonHealthUpgrade = 0;
+    public int cannonRangeUpgrade = 0;
+    public int cannonDmgUpgrade = 0;
+
+    //Motar upgrades//
+    public int motarHealthUpgrade = 0;
+    public int mortarRangeUpgrade = 0;
+    public int mortarDmgUpgrade = 0;
 
     public static ResourceUI instance;
 

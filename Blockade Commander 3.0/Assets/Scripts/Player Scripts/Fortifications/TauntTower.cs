@@ -5,11 +5,17 @@ using UnityEngine.InputSystem.Processors;
 
 public class TauntTower : MonoBehaviour
 {
+    //Base Stats//
+    [SerializeField] private int baseMaxLives = 10;
+    [SerializeField] private int baseRange = 5;
+    [SerializeField] private int baseDmg = 0;
+    public float tauntDetectionRange = 25f;
+
+    //Runtime Stats//
     public int health = 10;
     public int maxLives = 10;
     public int range = 5;
     public int dmg = 0;
-    public float tauntDetectionRange = 25f;
     public bool isDed = false;
 
     Rigidbody rb;
@@ -56,13 +62,42 @@ public class TauntTower : MonoBehaviour
 
     void Start()
     {
+        ResourceUI resourceRef = FindFirstObjectByType<ResourceUI>();
+
+        if(resourceRef != null)
+        {
+            //handling upgrades for health, attack, and range
+
+            maxLives += resourceRef.tauntHealthUpgrade;
+            health = maxLives;
+
+            range += resourceRef.tauntRangeUpgrade;
+
+            dmg += resourceRef.tauntDmgUpgrade;
+        }
+
         healthBar.UpdateHealthBar(health, maxLives);
     }
-    private void FixedUpdate()
+
+    //this function handles applying the health upgrade to towers already in the scene
+    public void ApplyHealthUpgrade(int amount)
     {
+        maxLives += amount;
+        health += amount;
+        healthBar.UpdateHealthBar(health, maxLives);
     }
 
+    //this function handles applying the attack upgrade to towers already in the scene
+    public void ApplyDmgUpgrade(int amount)
+    {
+        dmg += amount;
+    }
 
+    //this function handles applying the range upgrade to towers already in the scene
+    public void ApplyRangeUpgrade(int amount)
+    {
+        range += amount;
+    }
 
     public void takeDamage()
     {

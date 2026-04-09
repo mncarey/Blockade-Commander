@@ -10,9 +10,11 @@ public class StartWaveButton : MonoBehaviour
     public GameObject exitFortMenuRef;
     public GameObject fortRemoveRef;
     public GameObject progressBarRef;
+
     public Wave_Spawner_BasicEnemy spawnEnemyRef;
     public PlacingScript placingScriptRef;
     public IncreaseDifficulty increaseDiff;
+    public UpgradeButton upgradeButtonRef;
     
     public GameObject player;
 
@@ -82,5 +84,8 @@ public class StartWaveButton : MonoBehaviour
         EnemyZoneRed.SetActive(false);
         EnemyZoneBlue.SetActive(true);
         isClicked = true;
+
+        //deactivate upgrade button
+        upgradeButtonRef.buttonObject.SetActive(false);
     }
 }

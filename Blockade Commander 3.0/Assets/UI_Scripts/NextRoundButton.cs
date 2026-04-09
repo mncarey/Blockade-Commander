@@ -7,18 +7,23 @@ public class NextWaveButton : MonoBehaviour
 
     public GameObject enemiesDefeatedPopup;
     public GameObject enemeisWinPopup;
+
     public Wave_Spawner_BasicEnemy waveSpawnerRef;
     public PlacingScript placingScriptRef;
     public StartWaveButton startWaveButtonRef;
+
     [SerializeField] public GameObject fortCanvasRef;
+
     public GameObject waveProgressbar;
     public GameObject fortButtonRef;
-     public GameObject fortMenuRef;
-     public GameObject exitFortMenuRef;
-     public GameObject fortRemoveRef;
-     public PlayerFortress playerFortRef;
+    public GameObject fortMenuRef;
+    public GameObject exitFortMenuRef;
+    public GameObject fortRemoveRef;
+    public PlayerFortress playerFortRef;
+
     public FortUIManager fortUIManagerRef;
     public ResourceUI resourceRef;
+    public UpgradeButton upgradeButtonRef;
     public int maxEnemies;
 
     private AscensionManager ascensionManagerRef;
@@ -57,7 +62,7 @@ public class NextWaveButton : MonoBehaviour
         //reset player health bar
         playerFortRef.updateHealthBar();
 
-       placingScriptRef.TogglePlacementLock();
+        placingScriptRef.TogglePlacementLock();
         placingScriptRef.placementEnable = true;
 
         resourceRef.UpdateFortRef(0);
@@ -72,5 +77,9 @@ public class NextWaveButton : MonoBehaviour
 
         //Check if Ascension is possible
         ascensionManagerRef.ToggleUI();
+
+        //Show upgrade button
+        bool canUpgrade = upgradeButtonRef.CanUpgrade();
+        upgradeButtonRef.ShowUpgradeButton(canUpgrade);
     }
 }
