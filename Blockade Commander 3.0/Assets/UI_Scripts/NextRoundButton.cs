@@ -81,5 +81,8 @@ public class NextWaveButton : MonoBehaviour
         //Show upgrade button
         bool canUpgrade = upgradeButtonRef.CanUpgrade();
         upgradeButtonRef.ShowUpgradeButton(canUpgrade);
+
+        //Reset the fortification type limit to 0
+        placingScriptRef.ResetFortTypePlacement();
     }
 }

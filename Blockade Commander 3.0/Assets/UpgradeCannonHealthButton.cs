@@ -23,6 +23,7 @@ public class UpgradeCannonHealthButton : MonoBehaviour
             resourceUIRef.cannonHealthUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded cannon health + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade cannons already in the scene
@@ -31,6 +32,7 @@ public class UpgradeCannonHealthButton : MonoBehaviour
             {
                 cannon.ApplyHealthUpgrade(resourceUIRef.cannonHealthUpgrade);
             }
+
         }
         else
         {

@@ -282,4 +282,13 @@ public class PlacingScript : MonoBehaviour
         }
     }
 
+    public void ResetFortTypePlacement()
+    {
+        numCannon = 0;
+        numMortar = 0;
+        numWall = 0;
+        numLighthouse = 0;
+
+    }
+
 }

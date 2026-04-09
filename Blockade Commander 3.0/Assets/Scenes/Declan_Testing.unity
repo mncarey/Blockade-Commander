@@ -609,6 +609,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240431532}
   m_CullTransparentMesh: 1
+--- !u!1 &253043852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4311135283886021989, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
+  m_PrefabInstance: {fileID: 2075836886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &253745503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2816,6 +2821,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 59.737, y: 0, z: 0}
+--- !u!114 &776001773 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2368254605499283701, guid: 78eaf1b850333f847b793cf35898954f, type: 3}
+  m_PrefabInstance: {fileID: 305868106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47de260e2f729b049bc8cabdf94dc38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceUI
 --- !u!1 &803813724
 GameObject:
   m_ObjectHideFlags: 0
@@ -3536,6 +3552,10 @@ PrefabInstance:
       propertyPath: placingScriptRef
       value: 
       objectReference: {fileID: 1719622960}
+    - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
+      propertyPath: upgradeButtonRef
+      value: 
+      objectReference: {fileID: 2075836889}
     - target: {fileID: 5695813001159842128, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: m_Name
       value: Start Wave
@@ -5394,6 +5414,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1719622960}
     - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+      propertyPath: upgradeButtonRef
+      value: 
+      objectReference: {fileID: 2075836889}
+    - target: {fileID: 6986028404589104351, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
       propertyPath: startWaveButtonRef
       value: 
       objectReference: {fileID: 1034095263}
@@ -5887,6 +5911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CannonUpgradeButton
   cannonUpgradeMenuRef: {fileID: 270881641}
+  upgradesTextRef: {fileID: 0}
+  resourceUIRef: {fileID: 0}
 --- !u!114 &1388863010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5900,6 +5926,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallUpgradeButton
   wallUpgradeMenuRef: {fileID: 1581792570}
+  upgradesTextRef: {fileID: 0}
+  resourceUIRef: {fileID: 0}
 --- !u!114 &1388863011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5913,6 +5941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerUpgradeButton
   towerUpgradeMenu: {fileID: 1211469355}
+  upgradesTextRef: {fileID: 0}
+  resourceUIRef: {fileID: 0}
 --- !u!1 &1396079277
 GameObject:
   m_ObjectHideFlags: 0
@@ -8442,6 +8472,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1719622960}
     - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
+      propertyPath: upgradeButtonRef
+      value: 
+      objectReference: {fileID: 2075836889}
+    - target: {fileID: 6986028404589104351, guid: 7df8f2e02e672d34eb01494aaa0f7249, type: 3}
       propertyPath: startWaveButtonRef
       value: 
       objectReference: {fileID: 1034095263}
@@ -8830,6 +8864,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Upgrade Button Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4311135283886021989, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: fortMenuRef
       value: 
@@ -9017,8 +9055,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66599dafbc190124f923437b8cdcce40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeButton
-  UpgradeMenuRef: {fileID: 1388863006}
+  upgradeMenuRef: {fileID: 1388863006}
+  buttonObject: {fileID: 253043852}
   placingScriptRef: {fileID: 1719622960}
+  resourceRef: {fileID: 776001773}
+  upgradeLvl: 0
 --- !u!1001 &2111399408
 PrefabInstance:
   m_ObjectHideFlags: 0
