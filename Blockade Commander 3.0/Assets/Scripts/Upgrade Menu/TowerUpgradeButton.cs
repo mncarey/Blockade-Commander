@@ -3,6 +3,8 @@ using UnityEngine;
 public class TowerUpgradeButton : MonoBehaviour
 {
     public GameObject towerUpgradeMenu;
+    [SerializeField] private UpgradesText upgradesTextRef;
+    [SerializeField] private ResourceUI resourceUIRef;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +21,7 @@ public class TowerUpgradeButton : MonoBehaviour
     public void IWasClicked()
     {
         towerUpgradeMenu.SetActive(true);
+        upgradesTextRef.ShowUpgrades(resourceUIRef.goldCost1);
     }
 
 

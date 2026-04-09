@@ -19,8 +19,19 @@ public class ExitButton2 : MonoBehaviour
 
     public void IWasClicked()
     {
+        //re-enable placement if the object to close was the update menu
+        if (objectToDeactivate.CompareTag("UpgradeMenu"))
+        {
+            if (placingScriptRef != null)
+            {
+                placingScriptRef.placementEnable = true;
+            }
+        }
+
+        //deactivate popup
         objectToDeactivate.SetActive(false);
-        if(placingScriptRef != null)
+
+        if (placingScriptRef != null)
         {
             placingScriptRef.showStats = false;
         }

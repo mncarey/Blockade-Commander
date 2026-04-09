@@ -46,8 +46,43 @@ public class Wall : MonoBehaviour
 
     private void Start()
     {
+        ResourceUI resourceRef = FindFirstObjectByType<ResourceUI>();
+
+        if (resourceRef != null)
+        {
+            //handling upgrades for health, attack, and range
+
+            maxLives += resourceRef.wallHealthUpgrade;
+            health = maxLives;
+
+            range += resourceRef.wallRangeUpgrade;
+
+            dmg += resourceRef.wallDmgUpgrade;
+        }
+
         healthBar.UpdateHealthBar(health, maxLives);
     }
+
+    //this function handles applying the health upgrade to walls already in the scene
+    public void ApplyHealthUpgrade(int amount)
+    {
+        maxLives += amount;
+        health += amount;
+        healthBar.UpdateHealthBar(health, maxLives);
+    }
+
+    //this function handles applying the attack upgrade to walls already in the scene
+    public void ApplyDmgUpgrade(int amount)
+    {
+        dmg += amount;
+    }
+
+    //this function handles applying the range upgrade to walls already in the scene
+    public void ApplyRangeUpgrade(int amount)
+    {
+        range += amount;
+    }
+
     private void Update()
     {
 

@@ -1197,9 +1197,6 @@ GameObject:
   - component: {fileID: 18514686133768866}
   - component: {fileID: 6736520513249414394}
   - component: {fileID: 1777409907794413009}
-  - component: {fileID: 6293514819638886228}
-  - component: {fileID: 4027704682095041437}
-  - component: {fileID: 8915143124438737555}
   - component: {fileID: 3032989999540917597}
   m_Layer: 0
   m_Name: Taunt Upgrade Menu
@@ -1291,45 +1288,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6293514819638886228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5019350730458322759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 131db94d0b2514a41bc75f6847ac92ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TowerUpgradeButton
-  towerUpgradeMenu: {fileID: 0}
---- !u!114 &4027704682095041437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5019350730458322759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0429a7f4a41e0734592fd8fd92d41cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WallUpgradeButton
-  wallUpgradeMenuRef: {fileID: 0}
---- !u!114 &8915143124438737555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5019350730458322759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8de960d69dbebd147b42799267ea3118, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CannonUpgradeButton
-  cannonUpgradeMenuRef: {fileID: 0}
 --- !u!114 &3032989999540917597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,6 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   objectToDeactivate: {fileID: 5019350730458322759}
+  placingScriptRef: {fileID: 0}
 --- !u!1 &5812718355444728802
 GameObject:
   m_ObjectHideFlags: 0
@@ -1840,8 +1799,8 @@ GameObject:
   - component: {fileID: 5110934534455834325}
   - component: {fileID: 1749752738961567178}
   - component: {fileID: 6461283236032848288}
-  - component: {fileID: 8541239951819741981}
   - component: {fileID: 1444514839566462999}
+  - component: {fileID: 759413748755177755}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -1917,23 +1876,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8541239951819741981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8131138074302351435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b773eede85f265e4086319ed9d2d3148, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StatPopupUI
-  healthText: {fileID: 3812866875017139928}
-  rangeText: {fileID: 8799621930074420342}
-  attackText: {fileID: 3394726662385862842}
-  canvasGroup: {fileID: 1444514839566462999}
-  rectTransform: {fileID: 5110934534455834325}
 --- !u!225 &1444514839566462999
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1946,6 +1888,23 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &759413748755177755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131138074302351435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843b91677fffafd44b54cfab570c50b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradesText
+  healthText: {fileID: 3812866875017139928}
+  rangeText: {fileID: 8799621930074420342}
+  attackText: {fileID: 3394726662385862842}
+  canvasGroup: {fileID: 1444514839566462999}
+  rectTransform: {fileID: 5110934534455834325}
 --- !u!1001 &3871136284908079557
 PrefabInstance:
   m_ObjectHideFlags: 0
