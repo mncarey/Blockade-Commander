@@ -35,6 +35,14 @@ public class ResourceUI : MonoBehaviour
 
 
     // Call these functions when you want to update these resources.
+
+    //CALL THIS WHEN BUYING UPGRADES!!!!//
+    public void UpdateResourceUI()
+    {
+        goldText.text = "Gold: " + gold;
+        killsText.text = "Kills: " + kills;
+
+    }
     public void UpdateGold(int newGold)
     {
         

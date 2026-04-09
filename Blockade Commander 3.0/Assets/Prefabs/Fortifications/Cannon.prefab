@@ -133,7 +133,7 @@ MonoBehaviour:
   health: 8
   maxLives: 8
   range: 20
-  dmg: 2
+  dmg: 20
   tickRate: 1
   enemyLayer:
     serializedVersion: 2
@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc3eebc7eb1a9494391e9ac366e71252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FortData
+  fortType: 0
 --- !u!1 &1272214838274675648
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,5 +72,7 @@ public class NextWaveButton : MonoBehaviour
 
         //Check if Ascension is possible
         ascensionManagerRef.ToggleUI();
+
+       
     }
 }
