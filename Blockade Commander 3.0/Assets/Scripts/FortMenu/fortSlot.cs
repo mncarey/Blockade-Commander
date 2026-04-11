@@ -118,6 +118,7 @@ public class fortSlot : MonoBehaviour
 
         if (isOn && !wasOn)
         {           
+
            //turn off all toggles
             toggle.group.SetAllTogglesOff();
             

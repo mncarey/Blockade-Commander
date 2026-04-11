@@ -1,13 +1,18 @@
 using UnityEngine;
 
+
 public class FortUIManager : MonoBehaviour
 {
+    
+    
     public GameObject fortMenu;
     public GameObject fortButton;
     public GameObject fortExit;
     public GameObject fortRemove;
     public GameObject fortSelection;
 
+
+    
     public void ShowFortMenu()
     {
         fortMenu.SetActive(true);

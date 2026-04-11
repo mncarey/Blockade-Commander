@@ -13,8 +13,8 @@ public class PlacingScript : MonoBehaviour
     public GameObject objectToPlace;
     public GameObject upgradeMenuRef;
     public Camera mainCamera;
-    
 
+    private bool validFortSelected = false;
     //---- Layer Selections ----//
     public LayerMask groundLayer;
     public LayerMask placeableObjectsLayer;
@@ -105,9 +105,23 @@ public class PlacingScript : MonoBehaviour
 
     public void SetCurrentFort(GameObject fort)
     {
+        if (fort == null)
+        {
+            validFortSelected = false;
+            return;
+        }
+        
+
+        FortData fortData = fort.GetComponent<FortData>();
+        if(fortData == null)
+        {
+            validFortSelected = false;
+            return;
+        }
         objectToPlace = fort;
         // Read the type directly from the prefab
-        currentFortType = fort.GetComponent<FortData>().fortType;
+        currentFortType = fortData.fortType;
+        validFortSelected = true;
     }
     private void UpdatePreviewPosition()
     {
@@ -196,7 +210,7 @@ public class PlacingScript : MonoBehaviour
                 }
 
                 // Check for Placement on the ground layer
-                if (placementEnable && canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
+                if (validFortSelected && placementEnable && canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
                 {
                     //if you have hit the max type, tell the player
                     if (!CanPlaceType(currentFortType))
@@ -206,7 +220,7 @@ public class PlacingScript : MonoBehaviour
                     //else place it
                     else
                     {
-                        Instantiate(objectToPlace, groundHit.point, Quaternion.identity);
+                        Instantiate(objectToPlace, groundHit.point, objectToPlace.transform.rotation);
                         currentPlaced++;
                         ModifyFortCount(currentFortType, +1);
                         UpdateFortNumber();
@@ -289,6 +303,18 @@ public class PlacingScript : MonoBehaviour
         numWall = 0;
         numLighthouse = 0;
 
+    }
+
+    public int GetFortCount(FortType type)
+    {
+        return type switch
+        {
+            FortType.Cannon => numCannon,
+           FortType.Mortar => numMortar,
+            FortType.Wall => numWall,
+            FortType.Lighthouse => numLighthouse,
+            _ => 0
+        };
     }
 
 }
