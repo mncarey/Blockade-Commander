@@ -23,6 +23,7 @@ public class UpgradeWallHealthButton : MonoBehaviour
             resourceUIRef.wallHealthUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded wall health + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade walls already in the scene

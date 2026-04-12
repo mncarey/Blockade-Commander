@@ -23,6 +23,7 @@ public class UpgradeWallAttackButton : MonoBehaviour
             resourceUIRef.wallDmgUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded wall attack + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade walls already in the scene

@@ -23,6 +23,7 @@ public class UpgradeTauntAttackButton : MonoBehaviour
             resourceUIRef.tauntDmgUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded Taunt Attack + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade towers already in the scene

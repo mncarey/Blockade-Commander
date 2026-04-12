@@ -23,6 +23,7 @@ public class UpgradeWallRangeButton : MonoBehaviour
             resourceUIRef.wallRangeUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded wall range + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade walls already in the scene

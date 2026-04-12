@@ -23,6 +23,7 @@ public class UpgradeCannonRangeButton : MonoBehaviour
             resourceUIRef.cannonRangeUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded cannon range + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade cannons already in the scene

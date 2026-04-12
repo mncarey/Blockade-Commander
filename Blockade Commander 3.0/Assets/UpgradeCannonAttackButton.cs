@@ -23,6 +23,7 @@ public class UpgradeCannonAttackButton : MonoBehaviour
             resourceUIRef.cannonDmgUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded cannon Attack + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade cannons already in the scene

@@ -23,6 +23,7 @@ public class UpgradeTauntRangeButton : MonoBehaviour
             resourceUIRef.tauntRangeUpgrade++;
             //subtract gold
             resourceUIRef.gold -= resourceUIRef.goldCost1;
+            resourceUIRef.UpdateResourceUI();
             Debug.Log("Upgraded Taunt Range + 1 for " + resourceUIRef.goldCost1 + " gold");
 
             //upgrade towers already in the scene
