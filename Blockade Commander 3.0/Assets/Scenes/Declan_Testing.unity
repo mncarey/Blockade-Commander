@@ -1060,6 +1060,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4666323281428200392, guid: 32fd0a54c8c3ee14eb1bef6989da19b6, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: TankWaveRef
+      value: 
+      objectReference: {fileID: 1945061706029731668, guid: 69c4ebeec42b3ce4586782124fe1c0d6, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: rangeGallRef
       value: 
       objectReference: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}

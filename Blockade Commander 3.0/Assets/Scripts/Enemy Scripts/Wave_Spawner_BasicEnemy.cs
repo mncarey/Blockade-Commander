@@ -50,7 +50,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         enemiesAlive = 0;
 
         
-        GameObject wave = Instantiate(FastWaveRef, spawnPoints[1].position, Quaternion.identity);
+        GameObject wave = Instantiate(TankWaveRef, spawnPoints[1].position, Quaternion.identity);
         //finds enemies within the wave/fastwave ref and assigns them to the enemies array
         BasicEnemy[] enemies = wave.GetComponentsInChildren<BasicEnemy>();
         //sets the current enemeis alive and total enemies to however many there are

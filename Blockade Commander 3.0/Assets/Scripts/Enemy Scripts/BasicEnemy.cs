@@ -42,11 +42,13 @@ public class BasicEnemy : MonoBehaviour
 
     public bool canMove = false;
 
-    private float unitPriority;
+    public float unitPriority;
 
     private float retargetTimer = 0f;
     private float retargetInterval = 1f;
     private float rotationSpeed = 5f;
+
+    
 
     private Vector3 smoothNudge;
 
@@ -89,7 +91,7 @@ public class BasicEnemy : MonoBehaviour
     void Start()
     {
         
-        //Assign unit priority for movement interactions
+        /*Assign unit priority for movement interactions
         switch (true)
         {
             case bool when gameObject.name.Contains("Brigantine Enemy"):
@@ -110,7 +112,7 @@ public class BasicEnemy : MonoBehaviour
             default:
                 break;
             
-        }
+        }*/
 
         //maxLives = lives * increaseDiff.Instance.multiplier;
         //Debug.Log("Increased Health to: " + maxLives);
@@ -222,7 +224,7 @@ public class BasicEnemy : MonoBehaviour
 
     private Vector3 EnemyNudge()
     {
-        float separationRadius = 6f;
+        float separationRadius = 6.5f;
         Vector3 totalPush = Vector3.zero;
 
         //Gets enemies within this range
@@ -237,7 +239,7 @@ public class BasicEnemy : MonoBehaviour
             if (friend.gameObject == gameObject) continue;
 
             //if the friends priority is higher than this, react
-            if(friendScript != null && friendScript.unitPriority < unitPriority - 5f)
+            if(friendScript != null && friendScript.unitPriority < unitPriority)
             {
                 //find the other enemy relative to this
                 Vector3 pushDir = transform.position - friend.transform.position;
