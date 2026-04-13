@@ -18,6 +18,9 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public GameObject brigRef;
     public GameObject gallRef;
     public GameObject rangeGallRef;
+
+    public GameObject FastWaveRef;
+    public GameObject TankWaveRef;
     private GameObject[] enemyPrefabs;
 
     //random points
@@ -32,11 +35,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
     private void Start()
     {
-        enemyPrefabs = new GameObject[4];
-        enemyPrefabs[0] = sloopRef;
-        enemyPrefabs[1] = brigRef;
-        enemyPrefabs[2] = gallRef;
-        enemyPrefabs[3] = rangeGallRef;
+        
         SpawnEnemy();
         
     }
@@ -49,18 +48,22 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public void SpawnEnemy()
     {
         enemiesAlive = 0;
+
+        
+        GameObject wave = Instantiate(FastWaveRef, spawnPoints[1].position, Quaternion.identity);
+        //finds enemies within the wave/fastwave ref and assigns them to the enemies array
+        BasicEnemy[] enemies = wave.GetComponentsInChildren<BasicEnemy>();
+        //sets the current enemeis alive and total enemies to however many there are
+        enemiesAlive = enemies.Length;
+        enemiesTotalThisWave = enemies.Length;
+
+        foreach(BasicEnemy enemy in enemies)
+        {
+            enemy.waveSpawnerRef = this;
+        }
         
 
-        for(int i = 0; i< enemiesTotalThisWave; i++)
-        {
-            int randomIndex = Random.Range(0, enemyPrefabs.Length);
-            GameObject randomEnemy = enemyPrefabs[randomIndex];
-            GameObject enemy = Instantiate(randomEnemy, spawnPoints[i].position, Quaternion.identity);
-            enemiesAlive++;
-
-            enemy.GetComponent<BasicEnemy>().waveSpawnerRef = this;
-            
-        }     
+        
     }
 
     public void EnemyDied()

@@ -133,7 +133,7 @@ MonoBehaviour:
   health: 8
   maxLives: 8
   range: 20
-  dmg: 20
+  dmg: 3
   tickRate: 1
   enemyLayer:
     serializedVersion: 2
