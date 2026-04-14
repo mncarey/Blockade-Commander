@@ -20,7 +20,14 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public GameObject rangeGallRef;
 
     public GameObject FastWaveRef;
+    public GameObject FastSmallRef;
+    public GameObject FastLargeRef;
     public GameObject TankWaveRef;
+    public GameObject TankSmallRef;
+    public GameObject TankLargeRef;
+    public GameObject HybridWaveRef;
+    public GameObject HybridSmallRef;
+    public GameObject HybridLargeRef;
     private GameObject[] enemyPrefabs;
 
     //random points
@@ -44,13 +51,14 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     {
        
     }
-
+    //Set a function for the specific wave numbers
+    //Ensure that
     public void SpawnEnemy()
     {
         enemiesAlive = 0;
 
         
-        GameObject wave = Instantiate(TankWaveRef, spawnPoints[1].position, Quaternion.identity);
+        GameObject wave = Instantiate(FastLargeRef, spawnPoints[1].position, Quaternion.identity);
         //finds enemies within the wave/fastwave ref and assigns them to the enemies array
         BasicEnemy[] enemies = wave.GetComponentsInChildren<BasicEnemy>();
         //sets the current enemeis alive and total enemies to however many there are

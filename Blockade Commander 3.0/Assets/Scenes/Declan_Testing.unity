@@ -1064,6 +1064,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1945061706029731668, guid: 69c4ebeec42b3ce4586782124fe1c0d6, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: FastLargeRef
+      value: 
+      objectReference: {fileID: 2671462335808678033, guid: 89d960b58179a8d4ead5da3762b0c7e4, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: FastSmallRef
+      value: 
+      objectReference: {fileID: 5699122135921452052, guid: 4992d939f9999cc4a949a1a1b0ae2fff, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: TankLargeRef
+      value: 
+      objectReference: {fileID: 4270758880584036791, guid: 7e7efb42ee8ba5845a0478e90335aa5b, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: TankSmallRef
+      value: 
+      objectReference: {fileID: 6332659350504808638, guid: 1299bce9277cc8a4ab00530b4b60b393, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: rangeGallRef
       value: 
       objectReference: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
