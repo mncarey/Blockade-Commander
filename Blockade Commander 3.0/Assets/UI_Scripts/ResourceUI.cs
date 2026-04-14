@@ -16,6 +16,9 @@ public class ResourceUI : MonoBehaviour
 
     public int goldCost1 = 30;
     public int goldCost2 = 60;
+    public int goldCost3 = 90;
+    public int goldCost4 = 120;
+    public int goldCost5 = 150;
 
     //Taunt tower upgrades//
     public int tauntHealthUpgrade = 0;

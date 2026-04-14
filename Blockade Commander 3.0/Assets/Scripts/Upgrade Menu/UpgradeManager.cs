@@ -2,7 +2,14 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public int upgradeLvl = 1;
+    public int upgradeLvlTaunt = 0;
+    public int upgradeLvlCannon = 0;
+    public int upgradeLvlWall = 0;
+
+    public int maxUpgradeLvl1 = 3;
+    public int maxUpgradeLvl2 = 5;
+    public int maxUpgradeLvl3 = 7;
+    public int maxUpgradeLvl4 = 10;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
