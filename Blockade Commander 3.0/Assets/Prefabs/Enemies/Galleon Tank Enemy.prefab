@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6251001642291643144, guid: 7eb78eebed848a148b79e891727c765d, type: 3}
       propertyPath: reachDistance
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6675815945920939828, guid: 7eb78eebed848a148b79e891727c765d, type: 3}
       propertyPath: m_Name
