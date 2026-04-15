@@ -1088,9 +1088,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1034095263}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: HybridWaveRef
+      value: 
+      objectReference: {fileID: 8002475741825988151, guid: 5026da0ccee736046b3a09edafa917ad, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: enemyWinPopup
       value: 
       objectReference: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: HybridLargeRef
+      value: 
+      objectReference: {fileID: 1618041846346238162, guid: 8e87c7ec31173d34e8a5365528631bb9, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: HybridSmallRef
+      value: 
+      objectReference: {fileID: 7955493427873625775, guid: 54f1267574f943b4da205b6e7fd8e710, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: enemyDefeatPopup
       value: 
