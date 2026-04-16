@@ -4,7 +4,9 @@ public class UpgradeCannonAttackButton : MonoBehaviour
 {
     private ResourceUI resourceUIRef;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private UpgradeManager upgradeManagerRef;
+    public UpgradesText upgradesTextRef;
+
     void Start()
     {
         resourceUIRef = FindFirstObjectByType<ResourceUI>();
@@ -18,26 +20,47 @@ public class UpgradeCannonAttackButton : MonoBehaviour
 
     public void IWasClicked()
     {
-        if (resourceUIRef.gold >= resourceUIRef.goldCost1)
-        {
-            resourceUIRef.cannonDmgUpgrade++;
-            //subtract gold
-            resourceUIRef.gold -= resourceUIRef.goldCost1;
-            resourceUIRef.UpdateResourceUI();
-            Debug.Log("Upgraded cannon Attack + 1 for " + resourceUIRef.goldCost1 + " gold");
+        int currentLevel = upgradeManagerRef.upgradeLvlCannon;
 
-            //upgrade cannons already in the scene
-            Cannon[] cannons = FindObjectsByType<Cannon>(FindObjectsSortMode.None);
-            foreach (Cannon cannon in cannons)
-            {
-                cannon.ApplyDmgUpgrade(resourceUIRef.cannonDmgUpgrade);
-            }
-        }
-        else
+        int cost = GetCostForLevel(currentLevel);
+
+        if (resourceUIRef.gold < cost)
         {
-            Debug.Log("Not enough gold to upgrade cannon attack:(");
+            Debug.Log("not enough gold to upgrade cannon health :( ");
+            return;
         }
 
+        //subtract gold
+        resourceUIRef.gold -= cost;
+        //update health
+        resourceUIRef.cannonDmgUpgrade++;
+        //update upgrade level
+        upgradeManagerRef.upgradeLvlCannon++;
 
+        //display correct text
+        resourceUIRef.UpdateResourceUI();
+        upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlCannon);
+
+        Debug.Log($"Upgrade cannon health +1 for {cost} gold (now level {upgradeManagerRef.upgradeLvlCannon})");
+
+        //upgrade cannons already in the scene
+        Cannon[] cannons = FindObjectsByType<Cannon>(FindObjectsSortMode.None);
+        foreach (Cannon cannon in cannons)
+        {
+            cannon.ApplyHealthUpgrade(resourceUIRef.cannonDmgUpgrade);
+        }
+    }
+
+    private int GetCostForLevel(int level)
+    {
+        return level switch
+        {
+            0 => resourceUIRef.goldCost1,
+            1 => resourceUIRef.goldCost2,
+            2 => resourceUIRef.goldCost3,
+            3 => resourceUIRef.goldCost4,
+            4 => resourceUIRef.goldCost5,
+            _ => int.MaxValue
+        };
     }
 }

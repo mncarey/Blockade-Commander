@@ -50,8 +50,6 @@ public class UpgradeCannonHealthButton : MonoBehaviour
         {
            cannon.ApplyHealthUpgrade(resourceUIRef.cannonHealthUpgrade);
         }
-
-
     }
 
     private int GetCostForLevel(int level)
