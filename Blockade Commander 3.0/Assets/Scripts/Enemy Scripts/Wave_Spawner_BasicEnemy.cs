@@ -66,8 +66,8 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         waves[3] = TankWaveRef;
         waves[4] = TankSmallRef;
         waves[5] = TankLargeRef;
-        waves[6] = HybridWaveRef;
-        waves[7] = HybridSmallRef;
+        waves[6] = HybridSmallRef;
+        waves[7] = HybridWaveRef;      
         waves[8] = HybridLargeRef;
 
         
