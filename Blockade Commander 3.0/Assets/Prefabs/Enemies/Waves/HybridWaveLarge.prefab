@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1822615734900194612, guid: 5026da0ccee736046b3a09edafa917ad, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822615734900194612, guid: 5026da0ccee736046b3a09edafa917ad, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7644109746917265435, guid: 5026da0ccee736046b3a09edafa917ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8002475741825988151, guid: 5026da0ccee736046b3a09edafa917ad, type: 3}
       propertyPath: m_Name
-      value: HybridWave
+      value: HybridWaveLarge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

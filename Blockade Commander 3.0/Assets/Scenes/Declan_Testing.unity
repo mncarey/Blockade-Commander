@@ -1116,6 +1116,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: meleePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: rangedPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: 'spawnPoints.Array.data[2]'
       value: 
       objectReference: {fileID: 708547758}
@@ -1147,6 +1155,22 @@ PrefabInstance:
       propertyPath: 'spawnPoints.Array.data[9]'
       value: 
       objectReference: {fileID: 862161979}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'meleePrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'meleePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2099700355507827545, guid: 52a9cd8b08062d84d9d2da0c68f6a0c8, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'meleePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3849121720609991490, guid: bea88bdfb01b6f64781cb9f92dd111a8, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'rangedPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
     - target: {fileID: 4374299456252702303, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_Name
       value: Basic Enemy Wave Spawner
