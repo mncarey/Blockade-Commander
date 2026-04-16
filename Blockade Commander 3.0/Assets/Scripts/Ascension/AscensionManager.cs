@@ -7,14 +7,16 @@ public class AscensionManager : MonoBehaviour
 
     [SerializeField] GameObject AscensionUIRef;
     [SerializeField] GameObject AscendTextRef;
-    [SerializeField] GameObject LockedIcon;
+    [SerializeField] GameObject LockedIcon1;
+    [SerializeField] GameObject LockedIcon2;
     [SerializeField] GameObject MortarSelection;
+    [SerializeField] GameObject LighthouseSelection;
    
     private ResourceUI KillsRef;
     private int killNum;
     private int killThreshold;
 
-
+    private int ascensionTracker = 0;
 
 
 
@@ -56,20 +58,47 @@ public class AscensionManager : MonoBehaviour
     //Input kill number, if greater than minimum threshold but less than next threshold, unlock fort 1, repeat for next fort
     protected void Ascend()
     {
-        if(killNum >= killThreshold)
+        if(ascensionTracker == 0)
+        {
+            if (killNum >= killThreshold)
+            {
+                //turn off lockedFort
+                LockedIcon1.SetActive(false);
+                //turn on Mortar Icon
+                MortarSelection.SetActive(true);
+                KillsRef.AscendResetResource();
+                //unlock upgrade cap to lvl 10
+                //increase threshold for next ascension and reset gold
+                killThreshold = killThreshold * 2;
+                // Increase upgrade capacity
+                //After 3rd ascension increase number of fortifications able to be placed
+                
+
+            }
+        }
+
+        if (ascensionTracker == 1)
+        {
+            
+            KillsRef.AscendResetResource();
+            
+            killThreshold = killThreshold * 2;
+
+        }
+        if (ascensionTracker == 2)
         {
             //turn off lockedFort
-            LockedIcon.SetActive(false);
-            //turn on Mortar Icon
-            MortarSelection.SetActive(true);
+            LockedIcon2.SetActive(false);
+            //turn on Lighthouse Icon
+            LighthouseSelection.SetActive(true);
             KillsRef.AscendResetResource();
             //unlock upgrade cap to lvl 10
             //increase threshold for next ascension and reset gold
             killThreshold = killThreshold * 2;
-            // Increase upgrade capacity
-            //After 3rd ascension increase number of fortifications able to be placed
-
+            
         }
+        ascensionTracker++;
+
     }
 
     public void ClickedIcon()

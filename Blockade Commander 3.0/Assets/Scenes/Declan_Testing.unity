@@ -843,8 +843,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AscensionManager
   AscensionUIRef: {fileID: 1440810269}
   AscendTextRef: {fileID: 585696974}
-  LockedIcon: {fileID: 1055965529}
+  LockedIcon1: {fileID: 1059913872}
+  LockedIcon2: {fileID: 1055965529}
   MortarSelection: {fileID: 1055965530}
+  LighthouseSelection: {fileID: 761165998}
 --- !u!4 &273645855
 Transform:
   m_ObjectHideFlags: 0
@@ -2744,6 +2746,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rotate
   rotationSpeed: 40
+--- !u!1 &761165998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8152431187046917206, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+  m_PrefabInstance: {fileID: 1055965524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &766564034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3914,6 +3921,11 @@ GameObject:
 --- !u!1 &1055965532 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6941962669237740630, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+  m_PrefabInstance: {fileID: 1055965524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1059913872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8860381844795868092, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
   m_PrefabInstance: {fileID: 1055965524}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1061270026
