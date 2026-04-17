@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: ad608f8cfbfe0ec46a98d19cda7b7d10
+guid: 30ef7a2931ff31f4cb0576010f69f059
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV1_LightHouse
+    second: {fileID: 2100000, guid: 62c3a9d81808acb47b178d47d2808fbc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
