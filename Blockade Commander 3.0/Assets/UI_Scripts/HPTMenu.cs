@@ -31,7 +31,7 @@ public class HPTMenu : MonoBehaviour
     public void HowToPlayInActive()
     {
         instructionsMenu.SetActive(false);
-        mainMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     // ---- these functions handle turning on and off each instruction image when the player hits next and turns it back on when the player hits back ---- \\
@@ -42,6 +42,7 @@ public class HPTMenu : MonoBehaviour
     {
         instructionsOne.SetActive(true);
         instructionsMenu.SetActive(false);
+        mainMenu.SetActive(false);
     }
     // -* inactive *-
     public void OneInstructionsInActive()
