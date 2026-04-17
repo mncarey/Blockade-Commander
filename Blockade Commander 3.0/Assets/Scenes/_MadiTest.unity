@@ -281,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 13496047}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1000, y: 1000, z: 1000}
+  m_LocalPosition: {x: 912.42694, y: 973.5, z: 971.7489}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -291,7 +291,7 @@ Transform:
   - {fileID: 903676019}
   - {fileID: 1618478200}
   - {fileID: 140403942}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 759077602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &39592789 stripped
 GameObject:
@@ -548,12 +548,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125778412}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 947.9193, y: 914.6017, z: 1222.5121}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 860.34625, y: 888.1017, z: 1194.261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 759077602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &133803266 stripped
 GameObject:
@@ -1366,6 +1366,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!224 &245980829 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
+  m_PrefabInstance: {fileID: 808604849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &253825678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,7 +2424,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668266014}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 2.32
@@ -2471,7 +2476,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -3326,6 +3331,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -3444,9 +3450,13 @@ Transform:
   - {fileID: 646532237}
   - {fileID: 1236830748}
   - {fileID: 565224067}
-  - {fileID: 194057920}
   - {fileID: 1590250914}
   - {fileID: 1027563499}
+  - {fileID: 194057920}
+  - {fileID: 13496048}
+  - {fileID: 125778414}
+  - {fileID: 245980829}
+  - {fileID: 1862642615}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &766361394
@@ -3729,7 +3739,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 759077602}
     m_Modifications:
     - target: {fileID: 591687589301179027, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_text
@@ -6830,6 +6840,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -9051,12 +9062,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862642613}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 805.2077, y: 0.00002, z: 3264.4219}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 717.63464, y: -26.49998, z: 3236.171}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 759077602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865852399
 GameObject:
@@ -10074,8 +10085,4 @@ SceneRoots:
   - {fileID: 758323523}
   - {fileID: 1462984604}
   - {fileID: 759077602}
-  - {fileID: 13496048}
-  - {fileID: 125778414}
-  - {fileID: 808604849}
-  - {fileID: 1862642615}
   - {fileID: 731420967}
