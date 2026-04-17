@@ -1898,7 +1898,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2788,7 +2787,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -3514,7 +3512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66599dafbc190124f923437b8cdcce40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeButton
-  upgradeMenuRef: {fileID: 0}
+  upgradeMenuRef: {fileID: 2145860633}
   buttonObject: {fileID: 594820660}
   placingScriptRef: {fileID: 2059478631}
   resourceRef: {fileID: 2034591737}
@@ -7514,7 +7512,7 @@ PrefabInstance:
     - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: upgradeButtonRef
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 862023184}
     - target: {fileID: 5695813001159842128, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: m_Name
       value: Start Wave
@@ -8173,7 +8171,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973846644}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 2.32
@@ -8225,7 +8223,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 0
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1

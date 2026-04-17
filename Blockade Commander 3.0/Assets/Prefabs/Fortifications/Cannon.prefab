@@ -134,7 +134,7 @@ MonoBehaviour:
   maxLives: 8
   range: 20
   dmg: 3
-  tickRate: 1
+  tickRate: 1.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
