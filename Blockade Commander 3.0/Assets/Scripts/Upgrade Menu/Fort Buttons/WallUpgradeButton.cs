@@ -6,6 +6,7 @@ public class WallUpgradeButton : MonoBehaviour
     [SerializeField] private UpgradesText upgradesTextRef;
     [SerializeField] private ResourceUI resourceUIRef;
     [SerializeField] private UpgradeManager upgradeManagerRef;
+    [SerializeField] private UpgradeWallHealthButton healthRef;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +25,7 @@ public class WallUpgradeButton : MonoBehaviour
         wallUpgradeMenuRef.SetActive(true);
 
         //display the upgrade and cost
-        upgradesTextRef.ShowUpgrades(resourceUIRef.goldCost1);
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.wallPrice);
 
         //display upgrade level
         upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlWall);

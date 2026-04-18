@@ -4,6 +4,11 @@ public class UpgradeWallAttackButton : MonoBehaviour
 {
     private ResourceUI resourceUIRef;
 
+    [SerializeField] private UpgradeManager upgradeManagerRef;
+    public UpgradesText upgradesTextRef;
+
+    public int cost;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,26 +23,39 @@ public class UpgradeWallAttackButton : MonoBehaviour
 
     public void IWasClicked()
     {
-        if (resourceUIRef.gold >= resourceUIRef.goldCost1)
-        {
-            resourceUIRef.wallDmgUpgrade++;
-            //subtract gold
-            resourceUIRef.gold -= resourceUIRef.goldCost1;
-            resourceUIRef.UpdateResourceUI();
-            Debug.Log("Upgraded wall attack + 1 for " + resourceUIRef.goldCost1 + " gold");
+        int currentLevel = upgradeManagerRef.upgradeLvlWall;
 
-            //upgrade walls already in the scene
-            Wall[] walls = FindObjectsByType<Wall>(FindObjectsSortMode.None);
-            foreach (Wall wall in walls)
-            {
-                wall.ApplyDmgUpgrade(resourceUIRef.wallDmgUpgrade);
-            }
-        }
-        else
+
+        if (resourceUIRef.gold < upgradeManagerRef.wallPrice)
         {
-            Debug.Log("Not enough gold to upgrade wall attack:(");
+            Debug.Log("not enough gold to upgrade wall dmg :( ");
+            return;
         }
 
+        //subtract gold
+        resourceUIRef.gold -= upgradeManagerRef.wallPrice;
+        //update health
+        resourceUIRef.wallDmgUpgrade++;
+        //update upgrade level
+        upgradeManagerRef.upgradeLvlWall++;
+        //update upgrade price
+        upgradeManagerRef.wallPrice = upgradeManagerRef.wallPrice + 30;
 
+        //display correct text
+        resourceUIRef.UpdateResourceUI();
+        upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlWall);
+
+        //display correct price
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.wallPrice);
+
+        Debug.Log($"Upgrade wall dmg +1 for {upgradeManagerRef.wallPrice} gold (now level {upgradeManagerRef.upgradeLvlWall})");
+
+        //upgrade walls already in the scene
+        Wall[] walls = FindObjectsByType<Wall>(FindObjectsSortMode.None);
+        foreach (Wall wall in walls)
+        {
+            wall.ApplyDmgUpgrade(resourceUIRef.wallDmgUpgrade);
+        }
     }
+
 }

@@ -21,17 +21,14 @@ public class UpgradesText : MonoBehaviour
 
     public void ShowUpgrades(int goldCost)
     {
-        healthText.text = "Health + 1: " + goldCost + " gold";
-        rangeText.text = "Range + 1: " + goldCost + " gold";
-        attackText.text = "Attack + 1: " + goldCost + " gold";
-
+        healthText.text = "Health + 1: " + (goldCost) + " gold";
+        rangeText.text = "Range + 1: " + (goldCost) + " gold";
+        attackText.text = "Attack + 1: " + (goldCost) + " gold";
 
         gameObject.SetActive(true);
 
         if (currentRoutine != null)
             StopCoroutine(currentRoutine);
-
-        // currentRoutine = StartCoroutine(FadeAndMove());
     }
 
     public void ShowUpgradeLvl(int upgradeLvl)

@@ -5,6 +5,10 @@ public class TowerUpgradeButton : MonoBehaviour
     public GameObject towerUpgradeMenu;
     [SerializeField] private UpgradesText upgradesTextRef;
     [SerializeField] private ResourceUI resourceUIRef;
+    [SerializeField] private UpgradeManager upgradeManagerRef;
+    [SerializeField] private UpgradeTauntHealthButton healthRef;
+    [SerializeField] private UpgradeTauntAttackButton attackRef;
+    [SerializeField] private UpgradeTauntRangeButton rangeRef;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +25,13 @@ public class TowerUpgradeButton : MonoBehaviour
     public void IWasClicked()
     {
         towerUpgradeMenu.SetActive(true);
-        upgradesTextRef.ShowUpgrades(resourceUIRef.goldCost1);
+
+        //display the upgrade and cost
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.tauntPrice);
+        
+
+        //display upgrade level
+        upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlTaunt);
     }
 
 

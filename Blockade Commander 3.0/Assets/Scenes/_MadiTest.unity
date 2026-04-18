@@ -256,6 +256,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368637}
   m_CullTransparentMesh: 1
+--- !u!114 &8624763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6874559345578700546, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 903676018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &13496047
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +304,17 @@ Transform:
   - {fileID: 140403942}
   m_Father: {fileID: 759077602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &21921363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 140403940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &39592789 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 800773293831959119, guid: 27a96231b4f436d4b8f446e5c770a444, type: 3}
@@ -597,6 +619,18 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: rangeText
+      value: 
+      objectReference: {fileID: 21921363}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: attackText
+      value: 
+      objectReference: {fileID: 1260631597}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 987425328}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
       propertyPath: resourceRef
       value: 
       objectReference: {fileID: 1974473092}
@@ -616,6 +650,10 @@ PrefabInstance:
       propertyPath: placingScriptRef
       value: 
       objectReference: {fileID: 1754516697}
+    - target: {fileID: 3058336608451292848, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Name
+      value: Range Text(Cannon)
+      objectReference: {fileID: 0}
     - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -728,6 +766,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4013851049377235212, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Name
+      value: Health Text(Cannon)
+      objectReference: {fileID: 0}
     - target: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
       propertyPath: m_Name
       value: Cannon Upgrade Menu
@@ -824,6 +866,14 @@ PrefabInstance:
       propertyPath: placingRef
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7413515109939732405, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Name
+      value: Attack Text(Cannon)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131138074302351435, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Name
+      value: Panel(Cannon)
+      objectReference: {fileID: 0}
     - target: {fileID: 8618662159309475621, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
       propertyPath: m_text
       value: CANNON
@@ -897,6 +947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 125650629}
+  cost: 0
 --- !u!114 &140403948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,6 +976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 125650629}
+  cost: 0
 --- !u!1 &163224947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,9 +4161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CannonUpgradeButton
   cannonUpgradeMenuRef: {fileID: 140403941}
-  upgradesTextRef: {fileID: 1028448638}
+  upgradesTextRef: {fileID: 125650629}
   resourceUIRef: {fileID: 1974473092}
   upgradeManagerRef: {fileID: 1862642614}
+  healthRef: {fileID: 140403949}
 --- !u!114 &808604853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4128,6 +4181,7 @@ MonoBehaviour:
   upgradesTextRef: {fileID: 1028448638}
   resourceUIRef: {fileID: 1974473092}
   upgradeManagerRef: {fileID: 1862642614}
+  healthRef: {fileID: 1618478211}
 --- !u!114 &808604854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4143,6 +4197,10 @@ MonoBehaviour:
   towerUpgradeMenu: {fileID: 903676020}
   upgradesTextRef: {fileID: 992819659}
   resourceUIRef: {fileID: 1974473092}
+  upgradeManagerRef: {fileID: 1862642614}
+  healthRef: {fileID: 903676028}
+  attackRef: {fileID: 903676030}
+  rangeRef: {fileID: 903676029}
 --- !u!114 &808604860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4534,6 +4592,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35
       objectReference: {fileID: 0}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: resourceRef
+      value: 
+      objectReference: {fileID: 1974473092}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: rangeLvlText
+      value: 
+      objectReference: {fileID: 1199998411}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: attackLvlText
+      value: 
+      objectReference: {fileID: 8624763}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: healthLvlText
+      value: 
+      objectReference: {fileID: 2095204992}
     - target: {fileID: 2142886675770715916, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
       propertyPath: m_Name
       value: Upgrade Taunt Attack Button
@@ -4762,6 +4836,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35
       objectReference: {fileID: 0}
+    - target: {fileID: 8131138074302351435, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Name
+      value: Panel(Taunt)
+      objectReference: {fileID: 0}
     - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
       propertyPath: m_fontSize
       value: 30
@@ -4826,7 +4904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c33640c596147428ea2e9deab65a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tauntTowerStatsPopup: {fileID: 742752270}
+  upgradeManagerRef: {fileID: 1862642614}
+  upgradesTextRef: {fileID: 992819659}
+  cost: 0
 --- !u!114 &903676029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4839,6 +4919,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcad6ae6d827c547b0ecab95b432677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 1862642614}
+  upgradesTextRef: {fileID: 992819659}
+  cost: 0
 --- !u!114 &903676030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4851,6 +4934,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae70037502fdd847b095f56c20502ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 1862642614}
+  upgradesTextRef: {fileID: 992819659}
+  cost: 0
 --- !u!114 &924648412 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 754189902417996437, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -5249,6 +5335,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952734703}
   m_CullTransparentMesh: 1
+--- !u!114 &987425328 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 140403940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &992819659 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
@@ -5851,6 +5948,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199579861}
   m_CullTransparentMesh: 1
+--- !u!114 &1199998411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6323356926607756245, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 903676018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1207674863
 GameObject:
   m_ObjectHideFlags: 0
@@ -6758,6 +6866,17 @@ Transform:
   - {fileID: 2059413688}
   m_Father: {fileID: 759077602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1260631597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 140403940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!225 &1276093372 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 3881885313631815946, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -7761,6 +7880,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8131138074302351435, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Name
+      value: Panel(Wall)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131138074302351435, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -7832,6 +7955,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32222edb928f043408144b11b35c6d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 1862642614}
+  upgradesTextRef: {fileID: 1028448638}
 --- !u!114 &1618478210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7844,6 +7969,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1e988740d931343a50a4094aca984e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 1862642614}
+  upgradesTextRef: {fileID: 1028448638}
+  cost: 0
 --- !u!114 &1618478211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7858,6 +7986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 1028448638}
+  cost: 0
 --- !u!114 &1629175208 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 754189902417996437, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -9932,6 +10061,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6463400058209844155, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
   m_PrefabInstance: {fileID: 2059413684}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2095204992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3910702804025036203, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 903676018}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &2098673038
 GameObject:
   m_ObjectHideFlags: 0

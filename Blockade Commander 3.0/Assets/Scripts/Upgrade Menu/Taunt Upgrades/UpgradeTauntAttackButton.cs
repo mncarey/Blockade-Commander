@@ -4,6 +4,12 @@ public class UpgradeTauntAttackButton : MonoBehaviour
 {
     private ResourceUI resourceUIRef;
 
+    [SerializeField] private UpgradeManager upgradeManagerRef;
+    public UpgradesText upgradesTextRef;
+
+    public int cost;
+    public int nextCost;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,26 +24,53 @@ public class UpgradeTauntAttackButton : MonoBehaviour
 
     public void IWasClicked()
     {
-        if (resourceUIRef.gold >= resourceUIRef.goldCost1)
-        {
-            resourceUIRef.tauntDmgUpgrade++;
-            //subtract gold
-            resourceUIRef.gold -= resourceUIRef.goldCost1;
-            resourceUIRef.UpdateResourceUI();
-            Debug.Log("Upgraded Taunt Attack + 1 for " + resourceUIRef.goldCost1 + " gold");
+        int currentLevel = upgradeManagerRef.upgradeLvlTaunt;
 
-            //upgrade towers already in the scene
-            TauntTower[] towers = FindObjectsByType<TauntTower>(FindObjectsSortMode.None);
-            foreach (TauntTower tower in towers)
-            {
-                tower.ApplyDmgUpgrade(resourceUIRef.tauntDmgUpgrade);
-            }
-        }
-        else
+        if (resourceUIRef.gold < upgradeManagerRef.tauntPrice)
         {
-            Debug.Log("Not enough gold to upgrade taunt attack:(");
+            Debug.Log("not enough gold to upgrade taunt dmg :( ");
+            return;
         }
 
+        //subtract gold
+        resourceUIRef.gold -= upgradeManagerRef.tauntPrice;
+        //update dmg
+        resourceUIRef.tauntDmgUpgrade++;
+        //update upgrade level
+        upgradeManagerRef.upgradeLvlTaunt++;
+        //update upgrade price
+        upgradeManagerRef.tauntPrice = upgradeManagerRef.tauntPrice + 30;
+        
 
+        //display correct text
+        resourceUIRef.UpdateResourceUI();
+        upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlTaunt);
+
+        //display correct price
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.tauntPrice);
+        //*good stuff**//
+
+        Debug.Log($"Upgrade taunt dmg +1 for {upgradeManagerRef.tauntPrice} gold (now level {upgradeManagerRef.upgradeLvlTaunt})");
+
+        //upgrade walls already in the scene
+        TauntTower[] taunts = FindObjectsByType<TauntTower>(FindObjectsSortMode.None);
+        foreach (TauntTower taunt in taunts)
+        {
+            taunt.ApplyDmgUpgrade(resourceUIRef.tauntDmgUpgrade);
+        }
     }
+    /*
+       private int GetCostForLevel(int level)
+       {
+           return level switch
+           {
+               0 => resourceUIRef.goldCost1,
+               1 => resourceUIRef.goldCost2,
+               2 => resourceUIRef.goldCost3,
+               3 => resourceUIRef.goldCost4,
+               4 => resourceUIRef.goldCost5,
+               _ => int.MaxValue
+           };
+       }
+       */
 }

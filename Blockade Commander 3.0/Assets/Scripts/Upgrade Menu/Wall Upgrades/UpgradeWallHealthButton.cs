@@ -7,6 +7,8 @@ public class UpgradeWallHealthButton : MonoBehaviour
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
 
+    public int cost;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,47 +23,37 @@ public class UpgradeWallHealthButton : MonoBehaviour
 
     public void IWasClicked()
     {
-        int currentLevel = upgradeManagerRef.upgradeLvlCannon;
+        int currentLevel = upgradeManagerRef.upgradeLvlWall;
 
-        int cost = GetCostForLevel(currentLevel);
-
-        if (resourceUIRef.gold < cost)
+        if (resourceUIRef.gold < upgradeManagerRef.wallPrice)
         {
             Debug.Log("not enough gold to upgrade wall health :( ");
             return;
         }
 
         //subtract gold
-        resourceUIRef.gold -= cost;
+        resourceUIRef.gold -= upgradeManagerRef.wallPrice;
         //update health
         resourceUIRef.wallHealthUpgrade++;
         //update upgrade level
-        upgradeManagerRef.upgradeLvlCannon++;
+        upgradeManagerRef.upgradeLvlWall++;
+        //update upgrade price
+        upgradeManagerRef.wallPrice = upgradeManagerRef.wallPrice + 30;
 
         //display correct text
         resourceUIRef.UpdateResourceUI();
-        upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlCannon);
+        upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlWall);
 
-        Debug.Log($"Upgrade wall health +1 for {cost} gold (now level {upgradeManagerRef.upgradeLvlCannon})");
+        //display correct price
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.wallPrice);
 
-        //upgrade cannons already in the scene
-        Cannon[] cannons = FindObjectsByType<Cannon>(FindObjectsSortMode.None);
-        foreach (Cannon cannon in cannons)
+        Debug.Log($"Upgrade wall health +1 for {upgradeManagerRef.wallPrice} gold (now level {upgradeManagerRef.upgradeLvlWall})");
+
+        //upgrade walls already in the scene
+        Wall[] walls = FindObjectsByType<Wall>(FindObjectsSortMode.None);
+        foreach (Wall wall in walls)
         {
-            cannon.ApplyHealthUpgrade(resourceUIRef.wallHealthUpgrade);
+            wall.ApplyHealthUpgrade(resourceUIRef.wallHealthUpgrade);
         }
-    }
-
-    private int GetCostForLevel(int level)
-    {
-        return level switch
-        {
-            0 => resourceUIRef.goldCost1,
-            1 => resourceUIRef.goldCost2,
-            2 => resourceUIRef.goldCost3,
-            3 => resourceUIRef.goldCost4,
-            4 => resourceUIRef.goldCost5,
-            _ => int.MaxValue
-        };
     }
 }
