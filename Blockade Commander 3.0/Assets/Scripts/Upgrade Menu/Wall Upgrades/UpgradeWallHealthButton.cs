@@ -6,6 +6,7 @@ public class UpgradeWallHealthButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
 
     public int cost;
 
@@ -28,6 +29,7 @@ public class UpgradeWallHealthButton : MonoBehaviour
         if (resourceUIRef.gold < upgradeManagerRef.wallPrice)
         {
             Debug.Log("not enough gold to upgrade wall health :( ");
+            noMoneyPopup.gameObject.SetActive(true);
             return;
         }
 

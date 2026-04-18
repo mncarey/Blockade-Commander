@@ -6,6 +6,7 @@ public class UpgradeCannonAttackButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class UpgradeCannonAttackButton : MonoBehaviour
         if (resourceUIRef.gold < upgradeManagerRef.cannonPrice)
         {
             Debug.Log("not enough gold to upgrade cannon dmg :( ");
+            noMoneyPopup.gameObject.SetActive(true);
+            
             return;
         }
 

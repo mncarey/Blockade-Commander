@@ -6,6 +6,7 @@ public class UpgradeCannonHealthButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +27,8 @@ public class UpgradeCannonHealthButton : MonoBehaviour
         if(resourceUIRef.gold < upgradeManagerRef.cannonPrice)
         {
             Debug.Log("not enough gold to upgrade cannon health :( ");
+            noMoneyPopup.gameObject.SetActive(true);
+
             return;
         }
 

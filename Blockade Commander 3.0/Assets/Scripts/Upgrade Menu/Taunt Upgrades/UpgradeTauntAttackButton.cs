@@ -6,6 +6,7 @@ public class UpgradeTauntAttackButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
 
     public int cost;
     public int nextCost;
@@ -29,6 +30,8 @@ public class UpgradeTauntAttackButton : MonoBehaviour
         if (resourceUIRef.gold < upgradeManagerRef.tauntPrice)
         {
             Debug.Log("not enough gold to upgrade taunt dmg :( ");
+            noMoneyPopup.gameObject.SetActive(true);
+
             return;
         }
 

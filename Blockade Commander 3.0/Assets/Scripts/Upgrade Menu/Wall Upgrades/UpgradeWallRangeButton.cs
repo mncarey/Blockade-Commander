@@ -6,6 +6,7 @@ public class UpgradeWallRangeButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
 
     public int cost; 
 
@@ -28,6 +29,7 @@ public class UpgradeWallRangeButton : MonoBehaviour
         if (resourceUIRef.gold < upgradeManagerRef.wallPrice)
         {
             Debug.Log("not enough gold to upgrade wall range :( ");
+            noMoneyPopup.gameObject.SetActive(true);
             return;
         }
 

@@ -7,6 +7,8 @@ public class UpgradeTauntHealthButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,6 +28,7 @@ public class UpgradeTauntHealthButton : MonoBehaviour
         if (resourceUIRef.gold < upgradeManagerRef.tauntPrice)
         {
             Debug.Log("not enough gold to upgrade taunt health :( ");
+            noMoneyPopup.gameObject.SetActive(true);
             return;
         }
 

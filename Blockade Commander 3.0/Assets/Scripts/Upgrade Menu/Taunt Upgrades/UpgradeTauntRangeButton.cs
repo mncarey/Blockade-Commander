@@ -6,9 +6,7 @@ public class UpgradeTauntRangeButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
-
-    public int cost;
-    public int nextCost;
+    public GameObject noMoneyPopup;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +27,8 @@ public class UpgradeTauntRangeButton : MonoBehaviour
         if (resourceUIRef.gold < upgradeManagerRef.tauntPrice)
         {
             Debug.Log("not enough gold to upgrade taunt range :( ");
+            noMoneyPopup.gameObject.SetActive(true);
+
             return;
         }
 
