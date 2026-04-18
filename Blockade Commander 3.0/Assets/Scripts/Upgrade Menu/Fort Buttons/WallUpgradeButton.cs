@@ -6,7 +6,6 @@ public class WallUpgradeButton : MonoBehaviour
     [SerializeField] private UpgradesText upgradesTextRef;
     [SerializeField] private ResourceUI resourceUIRef;
     [SerializeField] private UpgradeManager upgradeManagerRef;
-    [SerializeField] private UpgradeWallHealthButton healthRef;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

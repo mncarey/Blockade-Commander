@@ -1898,6 +1898,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2123,6 +2124,9 @@ MonoBehaviour:
   maxUpgradeLvl2: 5
   maxUpgradeLvl3: 7
   maxUpgradeLvl4: 10
+  tauntPrice: 30
+  wallPrice: 30
+  cannonPrice: 30
 --- !u!4 &622085157
 Transform:
   m_ObjectHideFlags: 0
@@ -2254,6 +2258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32222edb928f043408144b11b35c6d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 0}
+  upgradesTextRef: {fileID: 0}
+  cost: 0
 --- !u!114 &627932168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2266,6 +2273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1e988740d931343a50a4094aca984e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 0}
+  upgradesTextRef: {fileID: 0}
+  cost: 0
 --- !u!114 &627932169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2280,6 +2290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 812207490}
+  cost: 0
 --- !u!224 &648065475 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7205630642886506317, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -2787,6 +2798,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -3544,6 +3556,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae70037502fdd847b095f56c20502ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 0}
+  upgradesTextRef: {fileID: 0}
+  cost: 0
+  nextCost: 0
 --- !u!114 &881563594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3556,6 +3572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcad6ae6d827c547b0ecab95b432677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  upgradeManagerRef: {fileID: 0}
+  upgradesTextRef: {fileID: 0}
+  cost: 0
+  nextCost: 0
 --- !u!114 &881563595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3568,7 +3588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c33640c596147428ea2e9deab65a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tauntTowerStatsPopup: {fileID: 2065311051}
+  upgradeManagerRef: {fileID: 0}
+  upgradesTextRef: {fileID: 0}
 --- !u!1 &900343585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5311,7 +5332,6 @@ Transform:
   - {fileID: 1789384454}
   - {fileID: 2034591736}
   - {fileID: 1239189846}
-  - {fileID: 2145860642}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1275782407
@@ -6537,6 +6557,7 @@ Transform:
   - {fileID: 881563591}
   - {fileID: 627932166}
   - {fileID: 1115844215}
+  - {fileID: 2145860642}
   m_Father: {fileID: 1275176196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1589916391
@@ -8171,7 +8192,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973846644}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 2.32
@@ -8223,7 +8244,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -9731,7 +9752,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1275176196}
+    m_TransformParent: {fileID: 1588251540}
     m_Modifications:
     - target: {fileID: 591687589301179027, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_text
@@ -9891,7 +9912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -33.97712
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9899,23 +9920,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -11.8769
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -21.35099
       objectReference: {fileID: 0}
     - target: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10161,6 +10182,7 @@ MonoBehaviour:
   towerUpgradeMenu: {fileID: 881563590}
   upgradesTextRef: {fileID: 843318479}
   resourceUIRef: {fileID: 2034591737}
+  upgradeManagerRef: {fileID: 622085156}
 --- !u!224 &2145860642 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4831276500148860576, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}

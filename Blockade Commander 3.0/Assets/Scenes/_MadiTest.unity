@@ -947,7 +947,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 125650629}
-  cost: 0
 --- !u!114 &140403948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,7 +975,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 125650629}
-  cost: 0
 --- !u!1 &163224947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4039,7 +4037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611818454687052019, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7611818454687052019, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
       propertyPath: m_TagString
@@ -4906,7 +4904,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 992819659}
-  cost: 0
 --- !u!114 &903676029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4922,6 +4919,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 992819659}
   cost: 0
+  nextCost: 0
 --- !u!114 &903676030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4937,6 +4935,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 992819659}
   cost: 0
+  nextCost: 0
 --- !u!114 &924648412 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 754189902417996437, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -7957,6 +7956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 1862642614}
   upgradesTextRef: {fileID: 1028448638}
+  cost: 0
 --- !u!114 &1618478210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9183,6 +9183,9 @@ MonoBehaviour:
   maxUpgradeLvl2: 5
   maxUpgradeLvl3: 7
   maxUpgradeLvl4: 10
+  tauntPrice: 30
+  wallPrice: 30
+  cannonPrice: 30
 --- !u!4 &1862642615
 Transform:
   m_ObjectHideFlags: 0
