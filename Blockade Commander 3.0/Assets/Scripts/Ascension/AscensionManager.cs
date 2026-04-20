@@ -19,13 +19,14 @@ public class AscensionManager : MonoBehaviour
     private int ascensionTracker = 0;
 
 
-
+    public TextFader textFader;
 
     private void Start()
     {
         KillsRef = FindObjectOfType<ResourceUI>();
         AscensionUIRef.SetActive(false);
         killThreshold = 5;
+        textFader = FindObjectOfType<TextFader>();
     }
 
     private void FixedUpdate()
@@ -79,7 +80,7 @@ public class AscensionManager : MonoBehaviour
 
         if (ascensionTracker == 1)
         {
-            
+            textFader.FadeInThenOut(holdTime: 2f);
             KillsRef.AscendResetResource();
             
             killThreshold = killThreshold * 2;
