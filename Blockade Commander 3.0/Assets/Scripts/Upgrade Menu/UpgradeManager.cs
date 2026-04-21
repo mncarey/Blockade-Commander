@@ -15,6 +15,8 @@ public class UpgradeManager : MonoBehaviour
     public int wallPrice = 30;//base price
     public int cannonPrice = 30;//base price
 
+    public AscensionManager ascensionRef;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
