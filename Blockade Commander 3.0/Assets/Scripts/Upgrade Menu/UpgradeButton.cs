@@ -19,7 +19,7 @@ public class UpgradeButton : MonoBehaviour
     // Update is called once per frame
     public bool CanUpgrade()
     {
-        if(resourceRef.gold >= resourceRef.goldCost1)
+        if(resourceRef.gold >= 30)
         {
             return true;
         }
@@ -40,7 +40,7 @@ public class UpgradeButton : MonoBehaviour
         placingScriptRef.showStats = true;
 
         //dont nessesarily want the button to deactivate if the player still has gold to use
-        if(resourceRef.gold < resourceRef.goldCost1)
+        if(resourceRef.gold < 30)
         {
            buttonObject.SetActive(false);
         }

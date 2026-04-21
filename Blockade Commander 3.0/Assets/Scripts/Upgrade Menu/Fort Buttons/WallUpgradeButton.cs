@@ -24,7 +24,7 @@ public class WallUpgradeButton : MonoBehaviour
         wallUpgradeMenuRef.SetActive(true);
 
         //display the upgrade and cost
-        upgradesTextRef.ShowUpgrades(resourceUIRef.goldCost1);
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.wallPrice);
 
         //display upgrade level
         upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlWall);

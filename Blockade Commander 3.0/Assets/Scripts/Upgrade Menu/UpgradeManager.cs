@@ -11,6 +11,10 @@ public class UpgradeManager : MonoBehaviour
     public int maxUpgradeLvl3 = 7;
     public int maxUpgradeLvl4 = 10;
 
+    public int tauntPrice = 30;//base price
+    public int wallPrice = 30;//base price
+    public int cannonPrice = 30;//base price
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

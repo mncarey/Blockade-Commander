@@ -21,10 +21,14 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
 
     public int enemiesAlive = 0;
+    private int smallWaveEnemyCount = 4;
+    private int mediumWaveEnemyCount = 6;
+    private int largeWaveEnemyCount = 8;
     public int enemiesTotalThisWave;
 
     public int currentWaveNumber = 1;
 
+    private float priorityCount = 0f;
 
     private void Start()
     {
@@ -46,25 +50,25 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         switch (waveType)
         {
             case WaveType.fastSmall:
-                SpawnFromPool(fastPrefabs, 4); Debug.Log("Current Wave Set: Fast/Small");  break;
+                SpawnFromPool(fastPrefabs, smallWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Small");  break;
             case WaveType.fastMedium:
-                SpawnFromPool(fastPrefabs, 6); Debug.Log("Current Wave Set: Fast/Medium"); break;
+                SpawnFromPool(fastPrefabs, mediumWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Medium"); break;
             case WaveType.fastLarge:
-                SpawnFromPool(fastPrefabs, 8); Debug.Log("Current Wave Set: Fast/Large"); break;
+                SpawnFromPool(fastPrefabs, largeWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Large"); break;
 
             case WaveType.tankSmall:
-                SpawnFromPool(tankPrefabs, 4); Debug.Log("Current Wave Set: Tank/Small"); break;
+                SpawnFromPool(tankPrefabs, smallWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Small"); break;
             case WaveType.tankMedium:
-                SpawnFromPool(tankPrefabs, 6); Debug.Log("Current Wave Set: Tank/Medium"); break;
+                SpawnFromPool(tankPrefabs, mediumWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Medium"); break;
             case WaveType.tankLarge:
-                SpawnFromPool(tankPrefabs, 8); Debug.Log("Current Wave Set: Tank/Large"); break;
+                SpawnFromPool(tankPrefabs, largeWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Large"); break;
                 
             case WaveType.hybridSmall:
-                SpawnHybrid(4); Debug.Log("Current Wave Set: Hybrid/Small"); break;  
+                SpawnHybrid(smallWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Small"); break;  
             case WaveType.hybridMedium:
-                SpawnHybrid(6); Debug.Log("Current Wave Set: Hybrid/Medium"); break;
+                SpawnHybrid(mediumWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Medium"); break;
             case WaveType.hybridLarge:
-                SpawnHybrid(8); Debug.Log("Current Wave Set: Hybrid/Large"); break;
+                SpawnHybrid(largeWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Large"); break;
                 
         }
         currentWaveNumber++;
@@ -135,6 +139,8 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             if (enemyComponent != null)
             {
                 enemyComponent.waveSpawnerRef = this;
+                enemyComponent.unitPriority = priorityCount;
+                priorityCount++;
                 spawnedEnemies.Add(enemyComponent);
             }
             
@@ -175,6 +181,8 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             if (enemyComponent != null)
             {
                 enemyComponent.waveSpawnerRef = this;
+                enemyComponent.unitPriority = priorityCount;
+                priorityCount++;
                 spawnedEnemies.Add(enemyComponent);
             }
         }
@@ -189,17 +197,34 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         //if within a certain range, set the integer pool to the specified wave indices, then return a random index of that wave between a random value within that indices
         if(currentWaveNumber >= 1 && currentWaveNumber <= 10)
         {
+            //increases number of enemies in small wave if divisible by 5
+            if(currentWaveNumber % 5 == 0)
+            {
+                smallWaveEnemyCount++;
+                Debug.Log(smallWaveEnemyCount);
+            }
             //small waves only
             WaveType[] smallPool = { WaveType.fastSmall, WaveType.tankSmall, WaveType.hybridSmall };
             return smallPool[Random.Range(0, smallPool.Length)];
         }
         else if(currentWaveNumber >= 11 && currentWaveNumber <= 20)
         {
+            //increases number of enemies in medium wave if divisible by 5
+            if (currentWaveNumber % 5 == 0)
+            {
+                
+                mediumWaveEnemyCount++;
+            }
             WaveType[] mediumPool = { WaveType.fastMedium, WaveType.tankMedium, WaveType.hybridMedium };
             return mediumPool[Random.Range(0, mediumPool.Length)];
         }
         else if(currentWaveNumber >= 21 && currentWaveNumber <= 50)
         {
+            //increases number of enemies in large wave if divisible by 5
+            if (currentWaveNumber % 5 == 0)
+            {
+                largeWaveEnemyCount++;
+            }
             WaveType[] largePool = { WaveType.fastLarge, WaveType.tankLarge, WaveType.hybridLarge };
             return largePool[Random.Range(0, largePool.Length)];
         }

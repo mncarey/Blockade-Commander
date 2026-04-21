@@ -6,7 +6,6 @@ public class CannonUpgradeButton : MonoBehaviour
     [SerializeField] private UpgradesText upgradesTextRef;
     [SerializeField] private ResourceUI resourceUIRef;
     [SerializeField] private UpgradeManager upgradeManagerRef;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,7 +23,7 @@ public class CannonUpgradeButton : MonoBehaviour
         cannonUpgradeMenuRef.SetActive(true);
 
         //display the upgrade and cost
-        upgradesTextRef.ShowUpgrades(resourceUIRef.goldCost1);
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.cannonPrice); ;
 
         //display upgrade level
         upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlCannon);

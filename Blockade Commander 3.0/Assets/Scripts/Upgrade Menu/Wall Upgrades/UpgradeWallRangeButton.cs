@@ -4,6 +4,12 @@ public class UpgradeWallRangeButton : MonoBehaviour
 {
     private ResourceUI resourceUIRef;
 
+    [SerializeField] private UpgradeManager upgradeManagerRef;
+    public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
+
+    public int cost; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,26 +24,39 @@ public class UpgradeWallRangeButton : MonoBehaviour
 
     public void IWasClicked()
     {
-        if (resourceUIRef.gold >= resourceUIRef.goldCost1)
-        {
-            resourceUIRef.wallRangeUpgrade++;
-            //subtract gold
-            resourceUIRef.gold -= resourceUIRef.goldCost1;
-            resourceUIRef.UpdateResourceUI();
-            Debug.Log("Upgraded wall range + 1 for " + resourceUIRef.goldCost1 + " gold");
+        int currentLevel = upgradeManagerRef.upgradeLvlWall;
 
-            //upgrade walls already in the scene
-            Wall[] walls = FindObjectsByType<Wall>(FindObjectsSortMode.None);
-            foreach (Wall wall in walls)
-            {
-                wall.ApplyRangeUpgrade(resourceUIRef.wallRangeUpgrade);
-            }
-        }
-        else
+        if (resourceUIRef.gold < upgradeManagerRef.wallPrice)
         {
-            Debug.Log("Not enough gold to upgrade wall range:(");
+            Debug.Log("not enough gold to upgrade wall range :( ");
+            noMoneyPopup.gameObject.SetActive(true);
+            return;
         }
 
+        //subtract gold
+        resourceUIRef.gold -= upgradeManagerRef.wallPrice;
+        //update health
+        resourceUIRef.wallRangeUpgrade++;
+        //update upgrade level
+        upgradeManagerRef.upgradeLvlWall++;
+        //update upgrade price
+        upgradeManagerRef.wallPrice = upgradeManagerRef.wallPrice + 30;
 
+
+        //display correct text
+        resourceUIRef.UpdateResourceUI();
+        upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlWall);
+
+        //display correct price
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.wallPrice);
+
+        Debug.Log($"Upgrade wall range +1 for {upgradeManagerRef.wallPrice} gold (now level {upgradeManagerRef.upgradeLvlWall})");
+
+        //upgrade walls already in the scene
+        Wall[] walls = FindObjectsByType<Wall>(FindObjectsSortMode.None);
+        foreach (Wall wall in walls)
+        {
+            wall.ApplyRangeUpgrade(resourceUIRef.wallRangeUpgrade);
+        }
     }
 }

@@ -6,6 +6,7 @@ public class UpgradeCannonHealthButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public GameObject noMoneyPopup;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,26 +24,33 @@ public class UpgradeCannonHealthButton : MonoBehaviour
     {
         int currentLevel = upgradeManagerRef.upgradeLvlCannon;
 
-        int cost = GetCostForLevel(currentLevel);
-
-        if(resourceUIRef.gold < cost)
+        if(resourceUIRef.gold < upgradeManagerRef.cannonPrice)
         {
             Debug.Log("not enough gold to upgrade cannon health :( ");
+            noMoneyPopup.gameObject.SetActive(true);
+
             return;
         }
 
         //subtract gold
-        resourceUIRef.gold -= cost;
+        resourceUIRef.gold -= upgradeManagerRef.cannonPrice;
         //update health
         resourceUIRef.cannonHealthUpgrade++;
         //update upgrade level
         upgradeManagerRef.upgradeLvlCannon++;
+        //update upgrade price
+        upgradeManagerRef.cannonPrice = upgradeManagerRef.cannonPrice + 30;
+
 
         //display correct text
         resourceUIRef.UpdateResourceUI();
+        //display upgrade level
         upgradesTextRef.ShowUpgradeLvl(upgradeManagerRef.upgradeLvlCannon);
 
-        Debug.Log($"Upgrade cannon health +1 for {cost} gold (now level {upgradeManagerRef.upgradeLvlCannon})");
+        //display correct price
+        upgradesTextRef.ShowUpgrades(upgradeManagerRef.cannonPrice);
+
+        Debug.Log($"Upgrade cannon health +1 for {upgradeManagerRef.cannonPrice} gold (now level {upgradeManagerRef.upgradeLvlCannon})");
        
         //upgrade cannons already in the scene
         Cannon[] cannons = FindObjectsByType<Cannon>(FindObjectsSortMode.None);
@@ -50,18 +58,5 @@ public class UpgradeCannonHealthButton : MonoBehaviour
         {
            cannon.ApplyHealthUpgrade(resourceUIRef.cannonHealthUpgrade);
         }
-    }
-
-    private int GetCostForLevel(int level)
-    {
-        return level switch
-        {
-            0 => resourceUIRef.goldCost1,
-            1 => resourceUIRef.goldCost2,
-            2 => resourceUIRef.goldCost3,
-            3 => resourceUIRef.goldCost4,
-            4 => resourceUIRef.goldCost5,
-            _ => int.MaxValue
-        };
     }
 }
