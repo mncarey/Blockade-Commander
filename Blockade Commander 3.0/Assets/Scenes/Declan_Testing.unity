@@ -843,8 +843,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AscensionManager
   AscensionUIRef: {fileID: 1440810269}
   AscendTextRef: {fileID: 585696974}
-  LockedIcon: {fileID: 1055965529}
+  LockedIcon1: {fileID: 1059913872}
+  LockedIcon2: {fileID: 1055965529}
   MortarSelection: {fileID: 1055965530}
+  LighthouseSelection: {fileID: 761165998}
 --- !u!4 &273645855
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,6 +1066,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1945061706029731668, guid: 69c4ebeec42b3ce4586782124fe1c0d6, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: FastLargeRef
+      value: 
+      objectReference: {fileID: 2671462335808678033, guid: 89d960b58179a8d4ead5da3762b0c7e4, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: FastSmallRef
+      value: 
+      objectReference: {fileID: 5699122135921452052, guid: 4992d939f9999cc4a949a1a1b0ae2fff, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: TankLargeRef
+      value: 
+      objectReference: {fileID: 4270758880584036791, guid: 7e7efb42ee8ba5845a0478e90335aa5b, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: TankSmallRef
+      value: 
+      objectReference: {fileID: 6332659350504808638, guid: 1299bce9277cc8a4ab00530b4b60b393, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: rangeGallRef
       value: 
       objectReference: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
@@ -1072,9 +1090,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1034095263}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: HybridWaveRef
+      value: 
+      objectReference: {fileID: 8002475741825988151, guid: 5026da0ccee736046b3a09edafa917ad, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: enemyWinPopup
       value: 
       objectReference: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: HybridLargeRef
+      value: 
+      objectReference: {fileID: 1618041846346238162, guid: 8e87c7ec31173d34e8a5365528631bb9, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: HybridSmallRef
+      value: 
+      objectReference: {fileID: 7955493427873625775, guid: 54f1267574f943b4da205b6e7fd8e710, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: enemyDefeatPopup
       value: 
@@ -1084,9 +1114,29 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: fastPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: tankPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: meleePrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: rangedPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'fastPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: 'spawnPoints.Array.data[2]'
       value: 
@@ -1119,6 +1169,26 @@ PrefabInstance:
       propertyPath: 'spawnPoints.Array.data[9]'
       value: 
       objectReference: {fileID: 862161979}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'tankPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3849121720609991490, guid: bea88bdfb01b6f64781cb9f92dd111a8, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'meleePrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4058314528988109196, guid: b89c0950eb20ab34e86ae8432a385741, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'meleePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2099700355507827545, guid: 52a9cd8b08062d84d9d2da0c68f6a0c8, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'meleePrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3849121720609991490, guid: bea88bdfb01b6f64781cb9f92dd111a8, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: 'rangedPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 615702714247657115, guid: 61cba4f0e49886f4984dd4e582ed5972, type: 3}
     - target: {fileID: 4374299456252702303, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_Name
       value: Basic Enemy Wave Spawner
@@ -2692,6 +2762,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rotate
   rotationSpeed: 40
+--- !u!1 &761165998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8152431187046917206, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+  m_PrefabInstance: {fileID: 1055965524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &766564034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3862,6 +3937,11 @@ GameObject:
 --- !u!1 &1055965532 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6941962669237740630, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+  m_PrefabInstance: {fileID: 1055965524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1059913872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8860381844795868092, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
   m_PrefabInstance: {fileID: 1055965524}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1061270026

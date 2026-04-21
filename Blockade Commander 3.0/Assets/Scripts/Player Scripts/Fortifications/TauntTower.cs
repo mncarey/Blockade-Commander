@@ -73,7 +73,7 @@ public class TauntTower : MonoBehaviour
 
             range += resourceRef.tauntRangeUpgrade;
 
-            dmg += resourceRef.tauntDmgUpgrade;
+            dmg += resourceRef.tauntRangeUpgrade;
         }
 
         healthBar.UpdateHealthBar(health, maxLives);

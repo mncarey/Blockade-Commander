@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI_Scenes/MainMenu.unity
     guid: edcbc0f452be3f84987e5faf8ee2ef90
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/CombinedScene.unity
     guid: 44399c781adc4ec489c4d38be42ffcf7
   - enabled: 0
     path: Assets/Scenes/_MadiTest.unity
-    guid: de1705c14181eca44b07488b5ca8d04a
+    guid: 263b335becbe83e46b175b91a262cfbe
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: abe8287f10e7b294ab03463de25a770a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/_MadiTestPart2.unity
     guid: d925fb58db86c484ca01e0c7e4d6c059
   m_configObjects:

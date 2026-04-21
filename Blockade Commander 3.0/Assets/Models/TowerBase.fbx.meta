@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 634f00ac20e0fd54c8af6097b3adb8eb
+guid: 1b5e3ffb403f6e04eaf02b41d9b0bfa6
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UV2_Tower
+    second: {fileID: 2100000, guid: 1af39492927f8244aa7e481adb21ec87, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
