@@ -390,8 +390,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Gold:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -579,7 +579,22 @@ MonoBehaviour:
   goldText: {fileID: 1485861511615540265}
   killsText: {fileID: 4090087481999790442}
   fortNumberText: {fileID: 6801526234129863189}
+  upgradesTextRef: {fileID: 0}
   gold: 0
+  kills: 0
+  fortNumber: 0
+  tauntHealthUpgrade: 0
+  tauntRangeUpgrade: 0
+  tauntDmgUpgrade: 0
+  wallHealthUpgrade: 0
+  wallRangeUpgrade: 0
+  wallDmgUpgrade: 0
+  cannonHealthUpgrade: 0
+  cannonRangeUpgrade: 0
+  cannonDmgUpgrade: 0
+  motarHealthUpgrade: 0
+  mortarRangeUpgrade: 0
+  mortarDmgUpgrade: 0
 --- !u!1 &7100757615962519307
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,8 +662,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Kills:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
