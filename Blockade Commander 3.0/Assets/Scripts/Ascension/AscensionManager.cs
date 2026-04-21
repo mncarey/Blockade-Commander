@@ -62,9 +62,10 @@ public class AscensionManager : MonoBehaviour
     {
         if(ascensionTracker == 0)
         {
-            upgradeRef.upgradeLvl = 3;
+            
             if (killNum >= killThreshold)
             {
+                upgradeRef.upgradeLvl = 3;
                 //turn off lockedFort
                 LockedIcon1.SetActive(false);
                 //turn on Mortar Icon

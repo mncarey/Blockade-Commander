@@ -305,10 +305,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc25840056277f044b7793938923f24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFortress
+  startWaveRef: {fileID: 0}
+  nextWaveRef: {fileID: 0}
+  enemiesWinPopupRef: {fileID: 0}
   health: 10
   maxLives: 10
   isDed: 0
+  resourceRef: {fileID: 0}
   healthBar: {fileID: 0}
+  placingRef: {fileID: 0}
 --- !u!1 &5680053292330803345
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +401,7 @@ GameObject:
   - component: {fileID: 518991456837456307}
   - component: {fileID: 5855760522722572495}
   - component: {fileID: 1087555411352539770}
+  - component: {fileID: 1046688254588671649}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -486,6 +492,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1046688254588671649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6831737360308592185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa13d30681f8d44d8c699db70bac3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FaceCamera
+  camera: {fileID: 0}
 --- !u!1 &7585040589187549078
 GameObject:
   m_ObjectHideFlags: 0
