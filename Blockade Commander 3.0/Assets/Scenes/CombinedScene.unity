@@ -488,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4311135283886021989, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: fortMenuRef
@@ -1625,7 +1625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.3
+      value: 48.8
       objectReference: {fileID: 0}
     - target: {fileID: 6395411977911939599, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2009,7 +2009,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -2231,10 +2230,7 @@ MonoBehaviour:
   upgradeLvlTaunt: 0
   upgradeLvlCannon: 0
   upgradeLvlWall: 0
-  maxUpgradeLvl1: 3
-  maxUpgradeLvl2: 5
-  maxUpgradeLvl3: 7
-  maxUpgradeLvl4: 10
+  upgradeLvl: 3
   tauntPrice: 30
   wallPrice: 30
   cannonPrice: 30
@@ -2798,6 +2794,8 @@ MonoBehaviour:
   LockedIcon2: {fileID: 1239189850}
   MortarSelection: {fileID: 1239189853}
   LighthouseSelection: {fileID: 1239189852}
+  ascensionTracker: 0
+  textFader: {fileID: 0}
 --- !u!4 &755136195
 Transform:
   m_ObjectHideFlags: 0
@@ -2912,7 +2910,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -8349,7 +8346,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973846644}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 2.32
@@ -8401,7 +8398,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 0
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1

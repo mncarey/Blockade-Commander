@@ -229,6 +229,18 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Cannon '
       objectReference: {fileID: 0}
+    - target: {fileID: 473407639864515143, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
+    - target: {fileID: 473407639864515143, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
+    - target: {fileID: 473407639864515143, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1942754150996152669, guid: 466e7d836b72bd74fbf365a363505bbe, type: 3}
       propertyPath: m_Name
       value: Cannon

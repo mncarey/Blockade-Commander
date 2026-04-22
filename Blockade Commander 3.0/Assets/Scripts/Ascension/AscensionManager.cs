@@ -16,9 +16,9 @@ public class AscensionManager : MonoBehaviour
     private int killNum;
     private int killThreshold;
 
-    private int ascensionTracker = 0;
+    public int ascensionTracker = 0;
 
-
+    UpgradeManager upgradeRef;
     public TextFader textFader;
 
     private void Start()
@@ -27,6 +27,7 @@ public class AscensionManager : MonoBehaviour
         AscensionUIRef.SetActive(false);
         killThreshold = 5;
         textFader = FindObjectOfType<TextFader>();
+        upgradeRef = FindObjectOfType<UpgradeManager>();
     }
 
     private void FixedUpdate()
@@ -61,8 +62,10 @@ public class AscensionManager : MonoBehaviour
     {
         if(ascensionTracker == 0)
         {
+            
             if (killNum >= killThreshold)
             {
+                upgradeRef.upgradeLvl = 3;
                 //turn off lockedFort
                 LockedIcon1.SetActive(false);
                 //turn on Mortar Icon
@@ -80,6 +83,7 @@ public class AscensionManager : MonoBehaviour
 
         if (ascensionTracker == 1)
         {
+            upgradeRef.upgradeLvl = 5;
             textFader.FadeInThenOut(holdTime: 2f);
             KillsRef.AscendResetResource();
             
@@ -88,6 +92,7 @@ public class AscensionManager : MonoBehaviour
         }
         if (ascensionTracker == 2)
         {
+            upgradeRef.upgradeLvl = 7;
             //turn off lockedFort
             LockedIcon2.SetActive(false);
             //turn on Lighthouse Icon
