@@ -7,6 +7,7 @@ public class UpgradeCannonAttackButton : MonoBehaviour
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
     public GameObject noMoneyPopup;
+    public GameObject noLvlsPopup;
 
     void Start()
     {
@@ -22,6 +23,14 @@ public class UpgradeCannonAttackButton : MonoBehaviour
     public void IWasClicked()
     {
         int currentLevel = upgradeManagerRef.upgradeLvlCannon;
+
+        if (currentLevel >= upgradeManagerRef.maxUpgradeLvl)
+        {
+            Debug.Log("not high enough level to upgrade");
+            noLvlsPopup.gameObject.SetActive(true);
+            return;
+
+        }
 
         if (resourceUIRef.gold < upgradeManagerRef.cannonPrice)
         {

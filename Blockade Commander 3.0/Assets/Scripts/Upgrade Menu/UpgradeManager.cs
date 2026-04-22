@@ -8,7 +8,7 @@ public class UpgradeManager : MonoBehaviour
     public int upgradeLvlCannon = 0;
     public int upgradeLvlWall = 0;
 
-    public int upgradeLvl = 3;
+    public int maxUpgradeLvl = 3;
     
 
     public int tauntPrice = 30;//base price

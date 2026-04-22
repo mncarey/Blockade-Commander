@@ -65,7 +65,7 @@ public class AscensionManager : MonoBehaviour
             
             if (killNum >= killThreshold)
             {
-                upgradeRef.upgradeLvl = 3;
+                upgradeRef.maxUpgradeLvl = 3;
                 //turn off lockedFort
                 LockedIcon1.SetActive(false);
                 //turn on Mortar Icon
@@ -83,7 +83,7 @@ public class AscensionManager : MonoBehaviour
 
         if (ascensionTracker == 1)
         {
-            upgradeRef.upgradeLvl = 5;
+            upgradeRef.maxUpgradeLvl = 5;
             textFader.FadeInThenOut(holdTime: 2f);
             KillsRef.AscendResetResource();
             
@@ -92,7 +92,7 @@ public class AscensionManager : MonoBehaviour
         }
         if (ascensionTracker == 2)
         {
-            upgradeRef.upgradeLvl = 7;
+            upgradeRef.maxUpgradeLvl = 7;
             //turn off lockedFort
             LockedIcon2.SetActive(false);
             //turn on Lighthouse Icon

@@ -7,6 +7,7 @@ public class UpgradeTauntRangeButton : MonoBehaviour
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
     public GameObject noMoneyPopup;
+    public GameObject noLvlsPopup;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +24,14 @@ public class UpgradeTauntRangeButton : MonoBehaviour
     public void IWasClicked()
     {
         int currentLevel = upgradeManagerRef.upgradeLvlTaunt;
+
+        if (currentLevel >= upgradeManagerRef.maxUpgradeLvl)
+        {
+            Debug.Log("not high enough level to upgrade");
+            noLvlsPopup.gameObject.SetActive(true);
+            return;
+
+        }
 
         if (resourceUIRef.gold < upgradeManagerRef.tauntPrice)
         {
