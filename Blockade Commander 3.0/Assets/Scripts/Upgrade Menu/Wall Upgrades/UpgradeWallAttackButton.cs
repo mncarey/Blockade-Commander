@@ -7,6 +7,7 @@ public class UpgradeWallAttackButton : MonoBehaviour
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
     public GameObject noMoneyPopup;
+    public GameObject noLvlsPopup;
 
     public int cost;
 
@@ -26,6 +27,13 @@ public class UpgradeWallAttackButton : MonoBehaviour
     {
         int currentLevel = upgradeManagerRef.upgradeLvlWall;
 
+        if (currentLevel >= upgradeManagerRef.maxUpgradeLvl)
+        {
+            Debug.Log("not high enough level to upgrade");
+            noLvlsPopup.gameObject.SetActive(true);
+            return;
+
+        }
 
         if (resourceUIRef.gold < upgradeManagerRef.wallPrice)
         {

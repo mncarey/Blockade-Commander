@@ -488,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4311135283886021989, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4655742203017167658, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
       propertyPath: fortMenuRef

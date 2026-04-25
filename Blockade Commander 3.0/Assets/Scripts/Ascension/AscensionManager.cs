@@ -5,7 +5,6 @@ public class AscensionManager : MonoBehaviour
     //Declarations
     private bool ascensionUIOn = false;
 
-    public TutorialSequence tutorialRef;
     [SerializeField] GameObject AscensionUIRef;
     [SerializeField] GameObject AscendTextRef;
     [SerializeField] GameObject LockedIcon1;
@@ -29,7 +28,6 @@ public class AscensionManager : MonoBehaviour
         killThreshold = 5;
         textFader = FindObjectOfType<TextFader>();
         upgradeRef = FindObjectOfType<UpgradeManager>();
-        tutorialRef = FindObjectOfType<TutorialSequence>();
     }
 
     private void FixedUpdate()
@@ -47,7 +45,6 @@ public class AscensionManager : MonoBehaviour
     {
         if(killNum >= killThreshold)
         {
-            tutorialRef.UnlockCondition("ascensionUnlocked");
             ascensionUIOn = !ascensionUIOn;
             //if true, turn on the UI else turn it off
             if (ascensionUIOn) AscensionUIRef.SetActive(true);
@@ -68,8 +65,7 @@ public class AscensionManager : MonoBehaviour
             
             if (killNum >= killThreshold)
             {
-                
-                upgradeRef.upgradeLvl = 3;
+                upgradeRef.maxUpgradeLvl = 3;
                 //turn off lockedFort
                 LockedIcon1.SetActive(false);
                 //turn on Mortar Icon
@@ -87,7 +83,7 @@ public class AscensionManager : MonoBehaviour
 
         if (ascensionTracker == 1)
         {
-            upgradeRef.upgradeLvl = 5;
+            upgradeRef.maxUpgradeLvl = 5;
             textFader.FadeInThenOut(holdTime: 2f);
             KillsRef.AscendResetResource();
             
@@ -96,7 +92,7 @@ public class AscensionManager : MonoBehaviour
         }
         if (ascensionTracker == 2)
         {
-            upgradeRef.upgradeLvl = 7;
+            upgradeRef.maxUpgradeLvl = 7;
             //turn off lockedFort
             LockedIcon2.SetActive(false);
             //turn on Lighthouse Icon
