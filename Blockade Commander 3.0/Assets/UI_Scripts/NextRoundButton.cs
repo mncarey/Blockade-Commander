@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class NextWaveButton : MonoBehaviour
 {
+    
     public GameObject EnemyZoneRed;
     public GameObject EnemyZoneBlue;
 
@@ -37,6 +38,7 @@ public class NextWaveButton : MonoBehaviour
         resourceRef = FindObjectOfType<ResourceUI>();
         waveSpawnerRef = FindObjectOfType<Wave_Spawner_BasicEnemy>();
         ascensionManagerRef = FindObjectOfType<AscensionManager>();
+        
     }
 
     public void IWasClicked()

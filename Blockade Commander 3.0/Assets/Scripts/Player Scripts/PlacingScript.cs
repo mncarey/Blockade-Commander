@@ -6,7 +6,7 @@ using static FortData;
 
 public class PlacingScript : MonoBehaviour
 {
-
+    public TutorialSequence tutorialRef;
     public ResourceUI resourceRef;
     public StartWaveButton startWaveButton;
     public GameObject enemiesWinPopupRef;
@@ -62,6 +62,11 @@ public class PlacingScript : MonoBehaviour
         pointAction = playerInput.actions["Point"];
 
         resourceRef = FindObjectOfType<ResourceUI>();
+    }
+
+    void Start()
+    {
+        tutorialRef = FindObjectOfType<TutorialSequence>();
     }
 
     private void OnEnable()
@@ -163,6 +168,7 @@ public class PlacingScript : MonoBehaviour
     // Listener which runs when you tap or click
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
+        tutorialRef.Advance();
         if (EventSystem.current.IsPointerOverGameObject()) return;
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
@@ -224,6 +230,13 @@ public class PlacingScript : MonoBehaviour
                         currentPlaced++;
                         ModifyFortCount(currentFortType, +1);
                         UpdateFortNumber();
+
+                        if (currentPlaced == maxPlaced)
+                        {
+                            //unlock text
+                            tutorialRef.UnlockCondition("placedFourUnits");
+                            
+                        }
                     }
                 }
 
@@ -254,6 +267,8 @@ public class PlacingScript : MonoBehaviour
                     return;
                 }
             }
+
+            
             
         }
         

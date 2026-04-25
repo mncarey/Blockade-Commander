@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class FortButtonPress : MonoBehaviour
 {
-
+    public TutorialSequence tutorialRef;
     public GameObject FortMenuRef;
     public GameObject FortButtonRef;
     public GameObject FortExitRef;
@@ -16,7 +16,7 @@ public class FortButtonPress : MonoBehaviour
 
     public PlacingScript placingScript;
     public FortUIManager fortUIManagerRef;
-
+    private bool firstTimeClick = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +27,7 @@ public class FortButtonPress : MonoBehaviour
             placingScript = FindAnyObjectByType<PlacingScript>();
         }
         fortUIManagerRef = FindObjectOfType<FortUIManager>();
+        tutorialRef = FindObjectOfType<TutorialSequence>();
     }
 
     // Update is called once per frame
@@ -39,8 +40,21 @@ public class FortButtonPress : MonoBehaviour
 
     public void IWasClicked()
     {
-        
-        fortUIManagerRef.ShowFortMenu();
+        if (firstTimeClick)
+        {
+            //unlock the tutorial text
+             
+            tutorialRef.UnlockCondition("tappedMenu");
+            
+            fortUIManagerRef.ShowFortMenu();
+            firstTimeClick = false;
+        }
+        else
+        {
+
+            fortUIManagerRef.ShowFortMenu();
+        }
+            
 
     }
 
