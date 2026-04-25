@@ -20,7 +20,7 @@ public class AscensionManager : MonoBehaviour
 
     UpgradeManager upgradeRef;
     public TextFader textFader;
-
+    public TutorialSequence tutorialRef;
     private void Start()
     {
         KillsRef = FindObjectOfType<ResourceUI>();
@@ -28,6 +28,7 @@ public class AscensionManager : MonoBehaviour
         killThreshold = 5;
         textFader = FindObjectOfType<TextFader>();
         upgradeRef = FindObjectOfType<UpgradeManager>();
+        tutorialRef = FindObjectOfType<TutorialSequence>();
     }
 
     private void FixedUpdate()
@@ -45,6 +46,7 @@ public class AscensionManager : MonoBehaviour
     {
         if(killNum >= killThreshold)
         {
+            tutorialRef.UnlockCondition("ascensionUnlocked");
             ascensionUIOn = !ascensionUIOn;
             //if true, turn on the UI else turn it off
             if (ascensionUIOn) AscensionUIRef.SetActive(true);
