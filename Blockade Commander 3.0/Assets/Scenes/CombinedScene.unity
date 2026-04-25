@@ -1528,6 +1528,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: tutorialGroup
+      value: 
+      objectReference: {fileID: 4666323281428200392, guid: 32fd0a54c8c3ee14eb1bef6989da19b6, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: HybridLargeRef
       value: 
       objectReference: {fileID: 1618041846346238162, guid: 8e87c7ec31173d34e8a5365528631bb9, type: 3}
@@ -2230,10 +2234,11 @@ MonoBehaviour:
   upgradeLvlTaunt: 0
   upgradeLvlCannon: 0
   upgradeLvlWall: 0
-  upgradeLvl: 3
+  maxUpgradeLvl: 3
   tauntPrice: 30
   wallPrice: 30
   cannonPrice: 30
+  ascensionRef: {fileID: 0}
 --- !u!4 &622085157
 Transform:
   m_ObjectHideFlags: 0
@@ -2368,6 +2373,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 812207490}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
   cost: 0
 --- !u!114 &627932168
 MonoBehaviour:
@@ -2384,6 +2390,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 812207490}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
   cost: 0
 --- !u!114 &627932169
 MonoBehaviour:
@@ -2400,6 +2407,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 812207490}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
   cost: 0
 --- !u!224 &648065475 stripped
 RectTransform:
@@ -2788,7 +2796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6f6f6658af1164082699e89cce7856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AscensionManager
-  tutorialRef: {fileID: 0}
   AscensionUIRef: {fileID: 2130370535}
   AscendTextRef: {fileID: 1861154861}
   LockedIcon1: {fileID: 1239189851}
@@ -2797,6 +2804,7 @@ MonoBehaviour:
   LighthouseSelection: {fileID: 1239189852}
   ascensionTracker: 0
   textFader: {fileID: 0}
+  tutorialRef: {fileID: 0}
 --- !u!4 &755136195
 Transform:
   m_ObjectHideFlags: 0
@@ -3784,6 +3792,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 843318479}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
   cost: 0
   nextCost: 0
 --- !u!114 &881563594
@@ -3801,6 +3810,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 843318479}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
 --- !u!114 &881563595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3816,6 +3826,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 843318479}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
 --- !u!1 &900343585
 GameObject:
   m_ObjectHideFlags: 0
@@ -4587,6 +4598,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 1809501599}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
 --- !u!114 &1115844218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4602,6 +4614,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 1809501599}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
 --- !u!114 &1115844219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4617,6 +4630,7 @@ MonoBehaviour:
   upgradeManagerRef: {fileID: 622085156}
   upgradesTextRef: {fileID: 1809501599}
   noMoneyPopup: {fileID: 65180796}
+  noLvlsPopup: {fileID: 0}
 --- !u!1 &1128759615
 GameObject:
   m_ObjectHideFlags: 0
