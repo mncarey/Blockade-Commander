@@ -334,6 +334,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -375,6 +376,11 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 803552388}
   instructionsMenu: {fileID: 507541528}
   pauseButton: {fileID: 1405408804}
+  instructionsOne: {fileID: 0}
+  instructionsTwo: {fileID: 0}
+  instructionsThree: {fileID: 0}
+  instructionsFour: {fileID: 0}
+  instructionsFive: {fileID: 0}
 --- !u!1 &453929683
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +555,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -768,6 +775,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1551,6 +1559,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1582,7 +1591,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817530112}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -1634,7 +1643,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -2580,7 +2589,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec209eb9f5749fa44a28e8086afd0d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraPanning
-  cam: {fileID: 545818508}
+  moveSpeed: 5
+  minX: -5
+  maxX: 5
 --- !u!1 &2039256223
 GameObject:
   m_ObjectHideFlags: 0

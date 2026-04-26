@@ -17,6 +17,6 @@ public class CannonRotate : MonoBehaviour
 
         Vector3 direction = cannonRef.currentTarget.position - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 150f * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 300f * Time.deltaTime);
     }
 }

@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 public class Cannon : MonoBehaviour
 {
+
+    //particle
+
+    [SerializeField] private ParticleSystem smokeParticle;
     //change these values
     public int health = 4;
     public int maxLives = 10;
@@ -65,6 +69,7 @@ public class Cannon : MonoBehaviour
 
     void Start()
     {
+        smokeParticle.Stop();
         ResourceUI resourceRef = FindFirstObjectByType<ResourceUI>();
 
         if (resourceRef != null)
@@ -197,6 +202,11 @@ public class Cannon : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(dmg);
+                if(smokeParticle != null)
+                {
+                    smokeParticle.Stop();
+                    smokeParticle.Play();
+                }
             }
             else
             {
