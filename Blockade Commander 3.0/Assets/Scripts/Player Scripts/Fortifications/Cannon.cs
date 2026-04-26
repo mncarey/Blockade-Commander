@@ -24,7 +24,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] PlayerFortress playerFortRef;
     [SerializeField] private StatPopupUI statPopupRef;
 
-    private Transform currentTarget;
+    public Transform currentTarget;
 
     public GameObject enemyWinPopup;
 
