@@ -56,8 +56,7 @@ public class Cannon : MonoBehaviour
 
     private void Awake()
     {
-        smokeParticle.Stop();
-        cannonFire.Stop();
+        
         //setting variables in runtime
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
