@@ -1955,6 +1955,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397872684}
   m_CullTransparentMesh: 1
+--- !u!114 &416581617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6323356926607756245, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 866177065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &431259916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2239,8 +2250,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2145860636}
-        m_TargetAssemblyTypeName: CannonUpgradeButton, Assembly-CSharp
+      - m_Target: {fileID: 2145860643}
+        m_TargetAssemblyTypeName: MortarUpgradeButton, Assembly-CSharp
         m_MethodName: IWasClicked
         m_Mode: 1
         m_Arguments:
@@ -2485,10 +2496,12 @@ MonoBehaviour:
   upgradeLvlTaunt: 0
   upgradeLvlCannon: 0
   upgradeLvlWall: 0
+  upgradeLvlMortar: 0
   maxUpgradeLvl: 3
   tauntPrice: 30
   wallPrice: 30
   cannonPrice: 30
+  mortarPrice: 30
   ascensionRef: {fileID: 0}
 --- !u!4 &622085157
 Transform:
@@ -3584,6 +3597,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843b91677fffafd44b54cfab570c50b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradesText
+--- !u!114 &817740587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 866177065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843b91677fffafd44b54cfab570c50b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradesText
 --- !u!1001 &818921889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4559,6 +4583,319 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7875378831904609304, guid: 4003bc65ac6cbc0459cd9cb9d0063a32, type: 3}
   m_PrefabInstance: {fileID: 154548255}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &866177065
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1588251540}
+    m_Modifications:
+    - target: {fileID: 96879940004644383, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 96879940004644383, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 96879940004644383, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1798046292}
+    - target: {fileID: 96879940004644383, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 96879940004644383, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IWasClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 96879940004644383, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeMortarAttack, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 96879940004644383, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: resourceRef
+      value: 
+      objectReference: {fileID: 2034591737}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: rangeLvlText
+      value: 
+      objectReference: {fileID: 416581617}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: attackLvlText
+      value: 
+      objectReference: {fileID: 1233425752}
+    - target: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: healthLvlText
+      value: 
+      objectReference: {fileID: 1433048175}
+    - target: {fileID: 3032989999540917597, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: placingScriptRef
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1798046291}
+    - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IWasClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeMortarHealth, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3204929615374120465, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211433637086116312, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211433637086116312, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211433637086116312, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1798046290}
+    - target: {fileID: 3211433637086116312, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211433637086116312, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IWasClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211433637086116312, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpgradeMortarRange, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211433637086116312, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.w
+      value: -15.930256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.x
+      value: -6.454239
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.y
+      value: -33.317936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.z
+      value: 95.66227
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3394726662385862842, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.w
+      value: -14.826017
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.x
+      value: -6.1789017
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.y
+      value: -30.92672
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.z
+      value: 94.467995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812866875017139928, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Name
+      value: Mortar Upgrade Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637174996577559857, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_text
+      value: MORTAR
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -9.186
+      objectReference: {fileID: 0}
+    - target: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7274398584407535680, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: placingRef
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618662159309475621, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_text
+      value: MORTAR
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.w
+      value: -16.071383
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.x
+      value: -11.575203
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.y
+      value: -34.290108
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_margin.z
+      value: 100.485054
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799621930074420342, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6293514819638886228, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+    - {fileID: 4027704682095041437, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+    - {fileID: 8915143124438737555, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1798046292}
+    - targetCorrespondingSourceObject: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1798046291}
+    - targetCorrespondingSourceObject: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1798046290}
+  m_SourcePrefab: {fileID: 100100000, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
 --- !u!1 &881563590 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
@@ -6187,6 +6524,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8551489041080344034, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
   m_PrefabInstance: {fileID: 1227863642}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1233425752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6874559345578700546, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 866177065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1239189845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7277,6 +7625,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2008344520}
   m_SourcePrefab: {fileID: 100100000, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
+--- !u!114 &1433048175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3910702804025036203, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 866177065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1434493697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8215,6 +8574,7 @@ Transform:
   - {fileID: 881563591}
   - {fileID: 627932166}
   - {fileID: 1115844215}
+  - {fileID: 1798046282}
   - {fileID: 714341784}
   - {fileID: 1286153234}
   - {fileID: 2145860642}
@@ -9509,6 +9869,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d30c662dd0d4414bbdb799da58dbc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartWaveButton
+--- !u!1 &1798046281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5019350730458322759, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 866177065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1798046282 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6767032742361796706, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
+  m_PrefabInstance: {fileID: 866177065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1798046290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798046281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b22ae959692ead4987d1b8ae58d1737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeMortarRange
+  upgradeManagerRef: {fileID: 622085156}
+  upgradesTextRef: {fileID: 817740587}
+  noMoneyPopup: {fileID: 714341786}
+  noLvlsPopup: {fileID: 1286153229}
+--- !u!114 &1798046291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798046281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b19aed89c9d7484db611fb4d7cd7715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeMortarHealth
+  upgradeManagerRef: {fileID: 622085156}
+  upgradesTextRef: {fileID: 817740587}
+  noMoneyPopup: {fileID: 714341786}
+  noLvlsPopup: {fileID: 1286153229}
+--- !u!114 &1798046292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798046281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddff64167612c8e4d9c06b8973eefd3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeMortarAttack
+  upgradeManagerRef: {fileID: 622085156}
+  upgradesTextRef: {fileID: 817740587}
+  noMoneyPopup: {fileID: 714341786}
+  noLvlsPopup: {fileID: 1286153229}
 --- !u!114 &1809501599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 759413748755177755, guid: a6e7b9fe5ec313148888bc30eaaeef57, type: 3}
@@ -12245,6 +12663,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfabe9fecc60e204eb833dbe02dbd34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MortarUpgradeButton
+  mortarUpgradeMenuRef: {fileID: 1798046281}
+  upgradesTextRef: {fileID: 817740587}
+  resourceUIRef: {fileID: 2034591737}
+  upgradeManagerRef: {fileID: 622085156}
 --- !u!1001 &9180561590115533217
 PrefabInstance:
   m_ObjectHideFlags: 0

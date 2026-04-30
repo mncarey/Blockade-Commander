@@ -7,6 +7,7 @@ public class UpgradeManager : MonoBehaviour
     public int upgradeLvlTaunt = 0;
     public int upgradeLvlCannon = 0;
     public int upgradeLvlWall = 0;
+    public int upgradeLvlMortar = 0;
 
     public int maxUpgradeLvl = 3;
     
@@ -14,6 +15,7 @@ public class UpgradeManager : MonoBehaviour
     public int tauntPrice = 30;//base price
     public int wallPrice = 30;//base price
     public int cannonPrice = 30;//base price
+    public int mortarPrice = 30;//base price
 
     public AscensionManager ascensionRef;
 

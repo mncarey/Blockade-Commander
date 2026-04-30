@@ -69,10 +69,27 @@ public class Mortar : MonoBehaviour
     void Start()
     {
         healthBar.UpdateHealthBar(health, maxLives);
-
-
-
     }
+    //this function handles applying the health upgrade to mortars already in the scene
+    public void ApplyHealthUpgrade(int amount)
+    {
+        maxLives += amount;
+        health += amount;
+        healthBar.UpdateHealthBar(health, maxLives);
+    }
+
+    //this function handles applying the attack upgrade to mortars already in the scene
+    public void ApplyDmgUpgrade(int amount)
+    {
+        dmg += amount;
+    }
+
+    //this function handles applying the range upgrade to mortars already in the scene
+    public void ApplyRangeUpgrade(int amount)
+    {
+        maxRange += amount;
+    }
+
     private void FixedUpdate()
     {
 
