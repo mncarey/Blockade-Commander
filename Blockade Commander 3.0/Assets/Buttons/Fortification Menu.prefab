@@ -388,7 +388,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -494,7 +494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1222.5, y: -113.6019}
+  m_AnchoredPosition: {x: 1222.5, y: -124.73685}
   m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5842464397025149678
@@ -707,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d969549691c9454fa24cc8f83d58d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FortButtonPress
+  tutorialRef: {fileID: 0}
   FortMenuRef: {fileID: 2064350574380687296}
   FortButtonRef: {fileID: 6941962669237740630}
   FortExitRef: {fileID: 2060539224058718831}
@@ -1068,6 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d969549691c9454fa24cc8f83d58d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FortButtonPress
+  tutorialRef: {fileID: 0}
   FortMenuRef: {fileID: 2435557486292430530}
   FortButtonRef: {fileID: 6941962669237740630}
   FortExitRef: {fileID: 2060539224058718831}
@@ -1235,7 +1237,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 1260715531048141648, guid: 9a14a8a1184c5f14fbce3338ea4d7a35, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1346,7 +1348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 497.5, y: -113.6019}
+  m_AnchoredPosition: {x: 497.5, y: -124.73685}
   m_SizeDelta: {x: 800, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4579074213701214350
@@ -1674,6 +1676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d969549691c9454fa24cc8f83d58d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FortButtonPress
+  tutorialRef: {fileID: 0}
   FortMenuRef: {fileID: 2064350574380687296}
   FortButtonRef: {fileID: 6941962669237740630}
   FortExitRef: {fileID: 2060539224058718831}
@@ -2043,7 +2046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1239240740464407821, guid: 96e97fd015633cf499f69c6db1b04756, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 662.5
+      value: 487.5
       objectReference: {fileID: 0}
     - target: {fileID: 1239240740464407821, guid: 96e97fd015633cf499f69c6db1b04756, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2255,7 +2258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3469035321864730354, guid: 072da3c62005e884c9cce329533c8605, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 662.5
+      value: 487.5
       objectReference: {fileID: 0}
     - target: {fileID: 3469035321864730354, guid: 072da3c62005e884c9cce329533c8605, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2561,7 +2564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1239240740464407821, guid: 96e97fd015633cf499f69c6db1b04756, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 487.5
+      value: 662.5
       objectReference: {fileID: 0}
     - target: {fileID: 1239240740464407821, guid: 96e97fd015633cf499f69c6db1b04756, type: 3}
       propertyPath: m_AnchoredPosition.y
