@@ -13,6 +13,8 @@ public class BasicEnemy : MonoBehaviour
     //enemy tracker
     public static List<BasicEnemy> AllEnemies = new List<BasicEnemy>();
 
+    [SerializeField] AudioSource sinkingAudio;
+
     private Transform currentTarget;
 
     private TauntTower tauntRef;
@@ -91,31 +93,7 @@ public class BasicEnemy : MonoBehaviour
     void Start()
     {
         
-        /*Assign unit priority for movement interactions
-        switch (true)
-        {
-            case bool when gameObject.name.Contains("Brigantine Enemy"):
-                unitPriority = Random.Range(0f, 100f);
-                
-                break;
-
-            case bool when gameObject.name.Contains("Galleon Ranged Enemy"):
-                unitPriority = Random.Range(201f, 300f);
-                
-                break;
-
-            case bool when gameObject.name.Contains("Sloop Enemy"):
-                unitPriority = Random.Range(101f, 200f);
-                
-                break;
-
-            default:
-                break;
-            
-        }*/
-
-        //maxLives = lives * increaseDiff.Instance.multiplier;
-        //Debug.Log("Increased Health to: " + maxLives);
+        
         lives = maxLives;
         healthBar.UpdateHealthBar(lives, maxLives);
         waveProgressBarRef.UpdateHealthBar();
@@ -299,10 +277,15 @@ public class BasicEnemy : MonoBehaviour
         waveProgressBarRef.UpdateHealthBar();
         if (lives <= 0)
         {
+            speed = 0;
+
+            sinkingAudio.Stop();
+            sinkingAudio.Play();
+
+
             Destroy(gameObject);
-           
-           
-           ResourceUI.instance.UpdateGold(goldValue);
+
+            ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
 
            waveSpawnerRef.EnemyDied();
@@ -485,6 +468,8 @@ public class BasicEnemy : MonoBehaviour
 
         damageMortarRoutine = null;
     }
+
+    
 
     
 }

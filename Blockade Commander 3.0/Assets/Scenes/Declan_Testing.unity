@@ -842,7 +842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6f6f6658af1164082699e89cce7856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AscensionManager
-  tutorialRef: {fileID: 0}
   AscensionUIRef: {fileID: 1440810269}
   AscendTextRef: {fileID: 585696974}
   LockedIcon1: {fileID: 1059913872}
@@ -851,6 +850,7 @@ MonoBehaviour:
   LighthouseSelection: {fileID: 761165998}
   ascensionTracker: 0
   textFader: {fileID: 0}
+  tutorialRef: {fileID: 0}
 --- !u!4 &273645855
 Transform:
   m_ObjectHideFlags: 0
@@ -1115,6 +1115,10 @@ PrefabInstance:
       propertyPath: enemyWinPopup
       value: 
       objectReference: {fileID: 7313325025782173084, guid: 79908d751b7948549a7bc7d28a570800, type: 3}
+    - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
+      propertyPath: tutorialGroup
+      value: 
+      objectReference: {fileID: 4666323281428200392, guid: 32fd0a54c8c3ee14eb1bef6989da19b6, type: 3}
     - target: {fileID: 2739413565939816982, guid: 78db68ab8f9862d4a8524081eea3ef72, type: 3}
       propertyPath: HybridLargeRef
       value: 
