@@ -20,8 +20,9 @@ public class NextWaveButton : MonoBehaviour
     public GameObject fortMenuRef;
     public GameObject exitFortMenuRef;
     public GameObject fortRemoveRef;
-    public PlayerFortress playerFortRef;
+    public GameObject fortNumberHolderRef;
 
+    public PlayerFortress playerFortRef;
     public FortUIManager fortUIManagerRef;
     public ResourceUI resourceRef;
     public UpgradeButton upgradeButtonRef;
@@ -86,5 +87,8 @@ public class NextWaveButton : MonoBehaviour
 
         //Reset the fortification type limit to 0
         placingScriptRef.ResetFortTypePlacement();
+
+        //activate FortNumberHolder
+        fortNumberHolderRef.SetActive(true);
     }
 }
