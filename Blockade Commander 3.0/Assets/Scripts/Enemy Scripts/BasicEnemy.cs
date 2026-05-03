@@ -283,12 +283,14 @@ public class BasicEnemy : MonoBehaviour
             sinkingAudio.Play();
 
 
-            Destroy(gameObject);
+            
 
             ResourceUI.instance.UpdateGold(goldValue);
            ResourceUI.instance.UpdateKills(killValue);
-
+            //play audio
+            EnemyDeathAudio.Instance.PlayEnemyDeath();
            waveSpawnerRef.EnemyDied();
+            Destroy(gameObject);
         }
     }
 
