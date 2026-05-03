@@ -11,6 +11,7 @@ public class PopupManager : MonoBehaviour
     public GameObject tauntTowerPopup;
     public GameObject wallPopup;
     public GameObject cannonPopup;
+    public GameObject mortarPopup;
 
     public GameObject currentPopup;
 
@@ -68,6 +69,13 @@ public class PopupManager : MonoBehaviour
         {
             placingScriptRef.placementEnable = true;
             Debug.Log("Clicked on Mortar");
+
+            currentPopup = mortarPopup;
+            popupUI = mortarPopup.GetComponent<StatPopupUI>();
+
+            //show correct stats based on taunt tower's script
+            var mortar = clicked.GetComponent<Mortar>();
+            popupUI.ShowStats(mortar.health, mortar.maxRange, mortar.dmg);
         }
         else
         {

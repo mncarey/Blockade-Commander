@@ -9,7 +9,7 @@ public class Mortar : MonoBehaviour
     //change these values
     public int health = 5;
     public int maxLives = 10;
-    private int maxRange = 20;
+    public int maxRange = 20;
     private int minRange = 5;
     public int dmg = 5;
     public float tickRate = 2f;
