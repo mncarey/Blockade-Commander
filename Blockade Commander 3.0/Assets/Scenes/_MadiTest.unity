@@ -2185,7 +2185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &469969038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3429,6 +3429,10 @@ MonoBehaviour:
   LockedIcon2: {fileID: 1239189850}
   MortarSelection: {fileID: 1239189853}
   LighthouseSelection: {fileID: 1239189852}
+  MortarUpgradeButton: {fileID: 469969037}
+  LighthouseUpgradeButton: {fileID: 1671375634}
+  LockedIcon3: {fileID: 358853805}
+  LockedIcon4: {fileID: 679273012}
   ascensionTracker: 0
   textFader: {fileID: 0}
   tutorialRef: {fileID: 0}
@@ -9137,7 +9141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1671375635
 RectTransform:
   m_ObjectHideFlags: 0
