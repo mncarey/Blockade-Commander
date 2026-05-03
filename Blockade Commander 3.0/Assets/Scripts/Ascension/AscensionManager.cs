@@ -21,7 +21,7 @@ public class AscensionManager : MonoBehaviour
     private int killThreshold;
 
     public int ascensionTracker = 0;
-
+    PlacingScript placingScriptRef;
     UpgradeManager upgradeRef;
     public TextFader textFader;
     public TutorialSequence tutorialRef;
@@ -34,6 +34,7 @@ public class AscensionManager : MonoBehaviour
         textFader = FindObjectOfType<TextFader>(true);
         upgradeRef = FindObjectOfType<UpgradeManager>();
         tutorialRef = FindObjectOfType<TutorialSequence>();
+        placingScriptRef = FindObjectOfType<PlacingScript>();
     }
 
     private void FixedUpdate()
@@ -122,7 +123,18 @@ public class AscensionManager : MonoBehaviour
             //unlock upgrade cap to lvl 10
             //increase threshold for next ascension and reset gold
             killThreshold = killThreshold * 2;
+
+        }
+        if (ascensionTracker >= 3 && ascensionTracker <= 10)
+
+        {
             
+            KillsRef.AscendResetResource();
+            //unlock upgrade cap to lvl 10
+            //increase threshold for next ascension and reset gold
+            killThreshold = killThreshold * 2;
+            placingScriptRef.IncreasePlacementCap();
+
         }
         ascensionTracker++;
 

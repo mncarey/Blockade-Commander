@@ -297,4 +297,10 @@ public class PlacingScript : MonoBehaviour
             _ => 0
         };
     }
+
+    //increase maximum placed
+    public void IncreasePlacementCap()
+    {
+        maxPlaced++;
+    }
 }
