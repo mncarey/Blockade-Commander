@@ -3951,8 +3951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatPopupUI
   healthText: {fileID: 1877835926}
-  rangeText: {fileID: 0}
-  attackText: {fileID: 0}
+  rangeText: {fileID: 1877835926}
+  attackText: {fileID: 1877835926}
   canvasGroup: {fileID: 199317828}
   rectTransform: {fileID: 199317827}
 --- !u!1 &692404240
