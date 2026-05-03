@@ -7,6 +7,7 @@ public class UpgradeTauntAttackButton : MonoBehaviour
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
     public GameObject noMoneyPopup;
+    public GameObject noLvlsPopup;
 
     public int cost;
     public int nextCost;
@@ -26,6 +27,14 @@ public class UpgradeTauntAttackButton : MonoBehaviour
     public void IWasClicked()
     {
         int currentLevel = upgradeManagerRef.upgradeLvlTaunt;
+
+        if (currentLevel >= upgradeManagerRef.maxUpgradeLvl)
+        {
+            Debug.Log("not high enough level to upgrade");
+            noLvlsPopup.gameObject.SetActive(true);
+            return;
+
+        }
 
         if (resourceUIRef.gold < upgradeManagerRef.tauntPrice)
         {

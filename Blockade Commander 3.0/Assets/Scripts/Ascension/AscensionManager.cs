@@ -11,23 +11,30 @@ public class AscensionManager : MonoBehaviour
     [SerializeField] GameObject LockedIcon2;
     [SerializeField] GameObject MortarSelection;
     [SerializeField] GameObject LighthouseSelection;
+    [SerializeField] GameObject MortarUpgradeButton;
+    [SerializeField] GameObject LighthouseUpgradeButton;
+    [SerializeField] GameObject LockedIcon3;
+    [SerializeField] GameObject LockedIcon4;
    
     private ResourceUI KillsRef;
     private int killNum;
     private int killThreshold;
 
     public int ascensionTracker = 0;
-
+    PlacingScript placingScriptRef;
     UpgradeManager upgradeRef;
     public TextFader textFader;
-
+    public TutorialSequence tutorialRef;
     private void Start()
     {
         KillsRef = FindObjectOfType<ResourceUI>();
         AscensionUIRef.SetActive(false);
-        killThreshold = 5;
-        textFader = FindObjectOfType<TextFader>();
+        killThreshold = 1;
+        
+        textFader = FindObjectOfType<TextFader>(true);
         upgradeRef = FindObjectOfType<UpgradeManager>();
+        tutorialRef = FindObjectOfType<TutorialSequence>();
+        placingScriptRef = FindObjectOfType<PlacingScript>();
     }
 
     private void FixedUpdate()
@@ -45,6 +52,7 @@ public class AscensionManager : MonoBehaviour
     {
         if(killNum >= killThreshold)
         {
+            tutorialRef.UnlockCondition("ascensionUnlocked");
             ascensionUIOn = !ascensionUIOn;
             //if true, turn on the UI else turn it off
             if (ascensionUIOn) AscensionUIRef.SetActive(true);
@@ -65,11 +73,18 @@ public class AscensionManager : MonoBehaviour
             
             if (killNum >= killThreshold)
             {
-                upgradeRef.upgradeLvl = 3;
+                upgradeRef.maxUpgradeLvl = 3;
                 //turn off lockedFort
                 LockedIcon1.SetActive(false);
                 //turn on Mortar Icon
                 MortarSelection.SetActive(true);
+
+                //Upgrade Menu//
+                //turn off lockedFort
+                LockedIcon3.SetActive(false);
+                //show upgrade button
+                MortarUpgradeButton.SetActive(true);
+
                 KillsRef.AscendResetResource();
                 //unlock upgrade cap to lvl 10
                 //increase threshold for next ascension and reset gold
@@ -83,7 +98,7 @@ public class AscensionManager : MonoBehaviour
 
         if (ascensionTracker == 1)
         {
-            upgradeRef.upgradeLvl = 5;
+            upgradeRef.maxUpgradeLvl = 5;
             textFader.FadeInThenOut(holdTime: 2f);
             KillsRef.AscendResetResource();
             
@@ -92,16 +107,34 @@ public class AscensionManager : MonoBehaviour
         }
         if (ascensionTracker == 2)
         {
-            upgradeRef.upgradeLvl = 7;
+            upgradeRef.maxUpgradeLvl = 7;
             //turn off lockedFort
             LockedIcon2.SetActive(false);
             //turn on Lighthouse Icon
             LighthouseSelection.SetActive(true);
+
+            //Upgrade Menu//
+            //turn off lockedFort
+            LockedIcon4.SetActive(false);
+            //show upgrade button
+            LighthouseUpgradeButton.SetActive(true);
+
             KillsRef.AscendResetResource();
             //unlock upgrade cap to lvl 10
             //increase threshold for next ascension and reset gold
             killThreshold = killThreshold * 2;
+
+        }
+        if (ascensionTracker >= 3 && ascensionTracker <= 10)
+
+        {
             
+            KillsRef.AscendResetResource();
+            //unlock upgrade cap to lvl 10
+            //increase threshold for next ascension and reset gold
+            killThreshold = killThreshold * 2;
+            placingScriptRef.IncreasePlacementCap();
+
         }
         ascensionTracker++;
 

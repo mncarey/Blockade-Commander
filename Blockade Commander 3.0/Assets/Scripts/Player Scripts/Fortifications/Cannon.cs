@@ -6,6 +6,12 @@ using System.Collections.Generic;
 
 public class Cannon : MonoBehaviour
 {
+
+    //particle
+
+    [SerializeField] private ParticleSystem smokeParticle;
+    [SerializeField] private AudioSource cannonFire;
+    [SerializeField] private AudioSource damageTaken;
     //change these values
     public int health = 4;
     public int maxLives = 10;
@@ -24,7 +30,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] PlayerFortress playerFortRef;
     [SerializeField] private StatPopupUI statPopupRef;
 
-    private Transform currentTarget;
+    public Transform currentTarget;
 
     public GameObject enemyWinPopup;
 
@@ -50,6 +56,7 @@ public class Cannon : MonoBehaviour
 
     private void Awake()
     {
+        
         //setting variables in runtime
         rb = GetComponent<Rigidbody>();
         healthBar = GetComponentInChildren<FloatingHealthBar>();
@@ -65,6 +72,8 @@ public class Cannon : MonoBehaviour
 
     void Start()
     {
+        smokeParticle.Stop();
+        cannonFire.Stop();
         ResourceUI resourceRef = FindFirstObjectByType<ResourceUI>();
 
         if (resourceRef != null)
@@ -162,6 +171,8 @@ public class Cannon : MonoBehaviour
         if (isDed) return;
         health--;
         healthBar.UpdateHealthBar(health, maxLives);
+        damageTaken.Stop();
+        damageTaken.Play();
         if (health <= 0)
         {
             isDed = true;
@@ -197,6 +208,13 @@ public class Cannon : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(dmg);
+                if(smokeParticle != null)
+                {
+                    smokeParticle.Stop();
+                    smokeParticle.Play();
+                    cannonFire.Stop();
+                    cannonFire.Play();
+                }
             }
             else
             {

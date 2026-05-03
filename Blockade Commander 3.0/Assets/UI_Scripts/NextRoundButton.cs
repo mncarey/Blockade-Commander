@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class NextWaveButton : MonoBehaviour
 {
+    
     public GameObject EnemyZoneRed;
     public GameObject EnemyZoneBlue;
 
@@ -19,8 +20,9 @@ public class NextWaveButton : MonoBehaviour
     public GameObject fortMenuRef;
     public GameObject exitFortMenuRef;
     public GameObject fortRemoveRef;
-    public PlayerFortress playerFortRef;
+    public GameObject fortNumberHolderRef;
 
+    public PlayerFortress playerFortRef;
     public FortUIManager fortUIManagerRef;
     public ResourceUI resourceRef;
     public UpgradeButton upgradeButtonRef;
@@ -37,6 +39,7 @@ public class NextWaveButton : MonoBehaviour
         resourceRef = FindObjectOfType<ResourceUI>();
         waveSpawnerRef = FindObjectOfType<Wave_Spawner_BasicEnemy>();
         ascensionManagerRef = FindObjectOfType<AscensionManager>();
+        
     }
 
     public void IWasClicked()
@@ -84,5 +87,8 @@ public class NextWaveButton : MonoBehaviour
 
         //Reset the fortification type limit to 0
         placingScriptRef.ResetFortTypePlacement();
+
+        //activate FortNumberHolder
+        fortNumberHolderRef.SetActive(true);
     }
 }

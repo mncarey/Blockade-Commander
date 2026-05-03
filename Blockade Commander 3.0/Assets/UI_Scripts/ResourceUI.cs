@@ -29,7 +29,7 @@ public class ResourceUI : MonoBehaviour
     public int cannonDmgUpgrade = 0;
 
     //Motar upgrades//
-    public int motarHealthUpgrade = 0;
+    public int mortarHealthUpgrade = 0;
     public int mortarRangeUpgrade = 0;
     public int mortarDmgUpgrade = 0;
 

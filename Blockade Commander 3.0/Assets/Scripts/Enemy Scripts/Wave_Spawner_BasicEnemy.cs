@@ -19,6 +19,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public GameObject[] tankPrefabs;
     public GameObject[] fastPrefabs;
 
+    public GameObject tutorialGroup;
 
     public int enemiesAlive = 0;
     private int smallWaveEnemyCount = 4;
@@ -42,37 +43,67 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     public void SpawnEnemy()
     {
         enemiesAlive = 0;
+        //if first wave, spawn prefab group, else do other waves
 
-        //gets the wavetype generated
-        WaveType waveType = GetWaveType();
-
-        //gets the wavetype, goes through the switch until it is the correct one
-        switch (waveType)
+        if (currentWaveNumber == 1)
         {
-            case WaveType.fastSmall:
-                SpawnFromPool(fastPrefabs, smallWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Small");  break;
-            case WaveType.fastMedium:
-                SpawnFromPool(fastPrefabs, mediumWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Medium"); break;
-            case WaveType.fastLarge:
-                SpawnFromPool(fastPrefabs, largeWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Large"); break;
+            //creates a list of basic enemies
+            List<BasicEnemy> spawnedEnemies = new List<BasicEnemy>();
 
-            case WaveType.tankSmall:
-                SpawnFromPool(tankPrefabs, smallWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Small"); break;
-            case WaveType.tankMedium:
-                SpawnFromPool(tankPrefabs, mediumWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Medium"); break;
-            case WaveType.tankLarge:
-                SpawnFromPool(tankPrefabs, largeWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Large"); break;
-                
-            case WaveType.hybridSmall:
-                SpawnHybrid(smallWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Small"); break;  
-            case WaveType.hybridMedium:
-                SpawnHybrid(mediumWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Medium"); break;
-            case WaveType.hybridLarge:
-                SpawnHybrid(largeWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Large"); break;
-                
+            //spawns the enemeis and increases the wave number
+            GameObject spawned = Instantiate(tutorialGroup, spawnPoints[0].position, Quaternion.identity);
+            currentWaveNumber++;
+
+            //gets the components inside the enemies
+            BasicEnemy[] enemyComponents = spawned.GetComponentsInChildren<BasicEnemy>();
+
+            //foreach enemy component, set the references
+            foreach (BasicEnemy enemyComponent in enemyComponents)
+            {
+                enemyComponent.waveSpawnerRef = this;
+                enemyComponent.unitPriority = priorityCount;
+                priorityCount++;
+                spawnedEnemies.Add(enemyComponent);
+            }
+
+            enemiesAlive = spawnedEnemies.Count;
+            enemiesTotalThisWave = spawnedEnemies.Count;
         }
-        currentWaveNumber++;
+        else
+        {
 
+
+            //gets the wavetype generated
+
+            WaveType waveType = GetWaveType();
+
+            //gets the wavetype, goes through the switch until it is the correct one
+            switch (waveType)
+            {
+                case WaveType.fastSmall:
+                    SpawnFromPool(fastPrefabs, smallWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Small"); break;
+                case WaveType.fastMedium:
+                    SpawnFromPool(fastPrefabs, mediumWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Medium"); break;
+                case WaveType.fastLarge:
+                    SpawnFromPool(fastPrefabs, largeWaveEnemyCount); Debug.Log("Current Wave Set: Fast/Large"); break;
+
+                case WaveType.tankSmall:
+                    SpawnFromPool(tankPrefabs, smallWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Small"); break;
+                case WaveType.tankMedium:
+                    SpawnFromPool(tankPrefabs, mediumWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Medium"); break;
+                case WaveType.tankLarge:
+                    SpawnFromPool(tankPrefabs, largeWaveEnemyCount); Debug.Log("Current Wave Set: Tank/Large"); break;
+
+                case WaveType.hybridSmall:
+                    SpawnHybrid(smallWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Small"); break;
+                case WaveType.hybridMedium:
+                    SpawnHybrid(mediumWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Medium"); break;
+                case WaveType.hybridLarge:
+                    SpawnHybrid(largeWaveEnemyCount); Debug.Log("Current Wave Set: Hybrid/Large"); break;
+
+            }
+            currentWaveNumber++;
+        }
     }
 
     public void EnemyDied()
@@ -195,7 +226,9 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
     private WaveType GetWaveType()
     {
         //if within a certain range, set the integer pool to the specified wave indices, then return a random index of that wave between a random value within that indices
-        if(currentWaveNumber >= 1 && currentWaveNumber <= 10)
+
+        
+        if(currentWaveNumber >= 2 && currentWaveNumber <= 10)
         {
             //increases number of enemies in small wave if divisible by 5
             if(currentWaveNumber % 5 == 0)

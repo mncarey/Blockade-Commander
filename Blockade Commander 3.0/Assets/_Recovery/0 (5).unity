@@ -2419,7 +2419,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668266014}
   m_Enabled: 1
-  serializedVersion: 13
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 2.32
@@ -2471,7 +2471,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShapeRadius: 0
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -2894,10 +2894,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AscensionManager
   AscensionUIRef: {fileID: 952734703}
   AscendTextRef: {fileID: 239925317}
-  LockedIcon1: {fileID: 0}
-  LockedIcon2: {fileID: 0}
+  LockedIcon: {fileID: 1922599136}
   MortarSelection: {fileID: 1922599135}
-  LighthouseSelection: {fileID: 0}
 --- !u!4 &731420967
 Transform:
   m_ObjectHideFlags: 0
@@ -3326,7 +3324,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -6831,7 +6828,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -9368,6 +9364,11 @@ CanvasRenderer:
 --- !u!1 &1922599135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9175880597861207321, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
+  m_PrefabInstance: {fileID: 1740472716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1922599136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 522894414244803277, guid: 6da0ccfda4af65542a8ed186a7563fbf, type: 3}
   m_PrefabInstance: {fileID: 1740472716}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1960396418 stripped

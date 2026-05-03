@@ -6,7 +6,7 @@ using static FortData;
 
 public class PlacingScript : MonoBehaviour
 {
-
+    public TutorialSequence tutorialRef;
     public ResourceUI resourceRef;
     public StartWaveButton startWaveButton;
     public GameObject enemiesWinPopupRef;
@@ -47,7 +47,7 @@ public class PlacingScript : MonoBehaviour
 
     //---- Outline ----//
     private Outline currentOutline;
-    
+
     //---- Input Action References ----//
     private PlayerInput playerInput;
     private InputAction clickAction;
@@ -56,7 +56,7 @@ public class PlacingScript : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        
+
         //Input action link
         clickAction = playerInput.actions["Click"];
         pointAction = playerInput.actions["Point"];
@@ -64,27 +64,26 @@ public class PlacingScript : MonoBehaviour
         resourceRef = FindObjectOfType<ResourceUI>();
     }
 
+    void Start()
+    {
+        tutorialRef = FindObjectOfType<TutorialSequence>();
+    }
+
     private void OnEnable()
     {
-        
         clickAction.performed += OnClickPerformed;
     }
 
     private void OnDisable()
     {
-        
         clickAction.performed -= OnClickPerformed;
     }
 
-    //Update checks for changes based on information received from the Input Action events
     private void FixedUpdate()
     {
-        //Checks the position of the mouse
         UpdatePreviewPosition();
-        //Checks the outline function if applicable
         UpdateOutlineHover();
 
-        //start wave
         if (currentPlaced == maxPlaced)
         {
             startWaveButton.gameObject.SetActive(true);
@@ -94,13 +93,10 @@ public class PlacingScript : MonoBehaviour
             startWaveButton.gameObject.SetActive(false);
         }
 
-
         if (startWaveButton.isClicked)
         {
             startWaveButton.gameObject.SetActive(false);
         }
-
-        
     }
 
     public void SetCurrentFort(GameObject fort)
@@ -110,19 +106,18 @@ public class PlacingScript : MonoBehaviour
             validFortSelected = false;
             return;
         }
-        
 
         FortData fortData = fort.GetComponent<FortData>();
-        if(fortData == null)
+        if (fortData == null)
         {
             validFortSelected = false;
             return;
         }
         objectToPlace = fort;
-        // Read the type directly from the prefab
         currentFortType = fortData.fortType;
         validFortSelected = true;
     }
+
     private void UpdatePreviewPosition()
     {
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
@@ -139,14 +134,12 @@ public class PlacingScript : MonoBehaviour
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
 
-        //If the preview is on the placable object layer
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
         {
             if (hit.transform.TryGetComponent(out Outline foundOutline))
             {
                 if (currentOutline != foundOutline)
                 {
-                    
                     currentOutline?.OutlineBoolFunc(false);
                     currentOutline = foundOutline;
                     currentOutline.OutlineBoolFunc(true);
@@ -160,24 +153,23 @@ public class PlacingScript : MonoBehaviour
         }
     }
 
-    // Listener which runs when you tap or click
     private void OnClickPerformed(InputAction.CallbackContext context)
     {
+        tutorialRef.Advance();
         if (EventSystem.current.IsPointerOverGameObject()) return;
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
 
         if (!context.performed) return;
 
-        if(startPlaceState == false)
+        if (startPlaceState == false)
         {
-            
+
         }
         else
         {
             if (removalToggle == false)
             {
-                // Check for Rotation/Interaction via the object layer
                 if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
                 {
                     Transform clickedRoot = hit.collider.transform.root;
@@ -185,18 +177,11 @@ public class PlacingScript : MonoBehaviour
                     bool withinTime = (Time.time - lastClickTime) <= doubleClickTime;
                     bool sameTarget = (lastClickedRoot == clickedRoot);
 
-                    //Double Click to Rotate and Open Stats
                     if (withinTime && sameTarget)
                     {
                         clickedObject = clickedRoot.gameObject;
-                        //clickedRoot.Rotate(0f, 90f, 0f);
                         showStats = true;
-
-                        //block placement when stats are open
-                         placementEnable = false;
-                        
-
-                        //reseting variables
+                        placementEnable = false;
                         lastClickTime = -999f;
                         lastClickedRoot = null;
                     }
@@ -209,35 +194,39 @@ public class PlacingScript : MonoBehaviour
                     return;
                 }
 
-                // Check for Placement on the ground layer
                 if (validFortSelected && placementEnable && canPlace && Physics.Raycast(ray, out RaycastHit groundHit, float.MaxValue, groundLayer))
                 {
-                    //if you have hit the max type, tell the player
                     if (!CanPlaceType(currentFortType))
                     {
                         Debug.Log("Max placement for " + currentFortType + " reached!");
                     }
-                    //else place it
                     else
                     {
-                        Instantiate(objectToPlace, groundHit.point, objectToPlace.transform.rotation);
+                        GameObject placedObject = Instantiate(objectToPlace, groundHit.point, objectToPlace.transform.rotation);
                         currentPlaced++;
                         ModifyFortCount(currentFortType, +1);
                         UpdateFortNumber();
+
+                        // Hook up CannonRotate if this is a cannon
+                        Cannon cannonScript = placedObject.GetComponent<Cannon>();
+                        CannonRotate rotateScript = placedObject.GetComponentInChildren<CannonRotate>();
+
+                        if (cannonScript != null && rotateScript != null)
+                            rotateScript.Initialize(cannonScript);
+
+                        if (currentPlaced == maxPlaced)
+                        {
+                            tutorialRef.UnlockCondition("placedFourUnits");
+                        }
                     }
                 }
-
-
             }
             else
             {
-                if(Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
-{
-                    // Find the highest object in the hierarchy that belongs to this prefab
+                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, placeableObjectsLayer))
+                {
                     GameObject objectToRemove = hit.collider.transform.root.gameObject;
 
-
-                    //Check to make sure that it is what we want to remove using the tag "Fortification"
                     if (objectToRemove.CompareTag("Fortification"))
                     {
                         foreach (var col in objectToRemove.GetComponentsInChildren<Collider>())
@@ -247,16 +236,13 @@ public class PlacingScript : MonoBehaviour
 
                         Destroy(objectToRemove);
                         currentPlaced--;
-                        //subtract from that types value so you can place more later
                         ModifyFortCount(removedType, -1);
                         UpdateFortNumber();
                     }
                     return;
                 }
             }
-            
         }
-        
     }
 
     public void TogglePlacementLock()
@@ -266,11 +252,9 @@ public class PlacingScript : MonoBehaviour
 
     public void UpdateFortNumber()
     {
-        
         resourceRef.UpdateFortRef(currentPlaced);
     }
 
-    //Checks that each type is under the maximum alotted number.
     private bool CanPlaceType(FortType type)
     {
         return type switch
@@ -283,8 +267,6 @@ public class PlacingScript : MonoBehaviour
         };
     }
 
-    //take the FortType enum, goes through and will add to the individual number for that
-    //specific type.
     private void ModifyFortCount(FortType type, int delta)
     {
         switch (type)
@@ -302,7 +284,6 @@ public class PlacingScript : MonoBehaviour
         numMortar = 0;
         numWall = 0;
         numLighthouse = 0;
-
     }
 
     public int GetFortCount(FortType type)
@@ -310,11 +291,16 @@ public class PlacingScript : MonoBehaviour
         return type switch
         {
             FortType.Cannon => numCannon,
-           FortType.Mortar => numMortar,
+            FortType.Mortar => numMortar,
             FortType.Wall => numWall,
             FortType.Lighthouse => numLighthouse,
             _ => 0
         };
     }
 
+    //increase maximum placed
+    public void IncreasePlacementCap()
+    {
+        maxPlaced++;
+    }
 }

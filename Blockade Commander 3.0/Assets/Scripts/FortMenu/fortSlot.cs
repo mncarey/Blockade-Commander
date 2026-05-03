@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class fortSlot : MonoBehaviour
 {
-    
+
+    public TutorialSequence tutorialRef;
     //====== FORT SLOT ======//
     public GameObject selectedShader;
     public bool thisFortSelected;
@@ -13,6 +14,8 @@ public class fortSlot : MonoBehaviour
     private Toggle toggle;
     
     private bool wasOn = false;
+
+    private bool firstFortSelected = true;
 
     public string content;
 
@@ -29,7 +32,7 @@ public class fortSlot : MonoBehaviour
     private string cannonText = "A medium range and damage fortification that assaults enemy ships with a quick rate of fire";
     private string mortarText = "A long range heavy damage fortification, which cannot attack enemies that get too close, low rate of fire";
     private string wallText = "A wall, simple as";
-    private string lockedText = "Ascend to unlock.";
+    private string lockedText = "Unlocks next fortification after ascending.";
 
     private string fortName;
 
@@ -94,7 +97,7 @@ public class fortSlot : MonoBehaviour
         //if wasOn is false, it does not attempt this again.
         if (wasOn && !toggle.isOn)
         {
-            //Debug.Log("Deselected " + this.name);
+            
             selectedShader.SetActive(false);
             wasOn = false;
         }
@@ -103,6 +106,7 @@ public class fortSlot : MonoBehaviour
     void Start()
     {
         Transform child = transform.Find("FortImage");
+        tutorialRef = FindObjectOfType<TutorialSequence>();
 
     }
     
@@ -117,10 +121,20 @@ public class fortSlot : MonoBehaviour
     {
 
         if (isOn && !wasOn)
-        {           
+        {
+            if (firstFortSelected)
+            {
+                //toggle text
+                tutorialRef.UnlockCondition("tappedFortButton");
+            }
+            else
+            {
+               
 
-           //turn off all toggles
-            toggle.group.SetAllTogglesOff();
+                
+            }
+                 //turn off all toggles
+                toggle.group.SetAllTogglesOff();
             
             selectedShader.SetActive(true);
             wasOn = true;
