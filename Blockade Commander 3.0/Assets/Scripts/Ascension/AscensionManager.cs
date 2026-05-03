@@ -29,8 +29,9 @@ public class AscensionManager : MonoBehaviour
     {
         KillsRef = FindObjectOfType<ResourceUI>();
         AscensionUIRef.SetActive(false);
-        killThreshold = 5;
-        textFader = FindObjectOfType<TextFader>();
+        killThreshold = 1;
+        
+        textFader = FindObjectOfType<TextFader>(true);
         upgradeRef = FindObjectOfType<UpgradeManager>();
         tutorialRef = FindObjectOfType<TutorialSequence>();
     }
