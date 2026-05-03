@@ -11,6 +11,10 @@ public class AscensionManager : MonoBehaviour
     [SerializeField] GameObject LockedIcon2;
     [SerializeField] GameObject MortarSelection;
     [SerializeField] GameObject LighthouseSelection;
+    [SerializeField] GameObject MortarUpgradeButton;
+    [SerializeField] GameObject LighthouseUpgradeButton;
+    [SerializeField] GameObject LockedIcon3;
+    [SerializeField] GameObject LockedIcon4;
    
     private ResourceUI KillsRef;
     private int killNum;
@@ -72,6 +76,13 @@ public class AscensionManager : MonoBehaviour
                 LockedIcon1.SetActive(false);
                 //turn on Mortar Icon
                 MortarSelection.SetActive(true);
+
+                //Upgrade Menu//
+                //turn off lockedFort
+                LockedIcon3.SetActive(false);
+                //show upgrade button
+                MortarUpgradeButton.SetActive(true);
+
                 KillsRef.AscendResetResource();
                 //unlock upgrade cap to lvl 10
                 //increase threshold for next ascension and reset gold
@@ -99,6 +110,13 @@ public class AscensionManager : MonoBehaviour
             LockedIcon2.SetActive(false);
             //turn on Lighthouse Icon
             LighthouseSelection.SetActive(true);
+
+            //Upgrade Menu//
+            //turn off lockedFort
+            LockedIcon4.SetActive(false);
+            //show upgrade button
+            LighthouseUpgradeButton.SetActive(true);
+
             KillsRef.AscendResetResource();
             //unlock upgrade cap to lvl 10
             //increase threshold for next ascension and reset gold
