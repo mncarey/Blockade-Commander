@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public enum WaveType { fastSmall, fastMedium, fastLarge, tankSmall, tankMedium, tankLarge, hybridSmall, hybridMedium, hybridLarge }
 public class Wave_Spawner_BasicEnemy : MonoBehaviour
 {
-
+    
     public Transform[] spawnPoints; //<- for setting specific spawn points
     public StartWaveButton startWaveRef;
     public GameObject enemyDefeatPopup;
@@ -33,7 +33,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
     private void Start()
     {
-        
+
         
         SpawnEnemy();
         
@@ -103,6 +103,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
 
             }
             currentWaveNumber++;
+            Debug.Log(currentWaveNumber);
         }
     }
 
@@ -268,6 +269,11 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
         }
  
         return WaveType.fastSmall;
+    }
+
+    public void ResetWave()
+    {
+        currentWaveNumber = 0;
     }
 
    

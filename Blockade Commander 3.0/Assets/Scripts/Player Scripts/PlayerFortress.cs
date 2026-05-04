@@ -8,6 +8,7 @@ public class PlayerFortress : MonoBehaviour
     public GameObject startWaveRef;
     public GameObject nextWaveRef;
     public GameObject enemiesWinPopupRef;
+    Wave_Spawner_BasicEnemy waveSpawnerRef;
 
     public int health = 10;
     public int maxLives = 10;
@@ -31,11 +32,10 @@ public class PlayerFortress : MonoBehaviour
     void Start()
     {
         healthBar.UpdateHealthBar(health, maxLives);
+        waveSpawnerRef = FindObjectOfType<Wave_Spawner_BasicEnemy>();
     }
-    private void Update()
-    {
-        
-    }
+    
+    
 
     public void updateHealthBar()
     {
@@ -69,7 +69,8 @@ public class PlayerFortress : MonoBehaviour
             {
                 enemiesWinPopupRef.SetActive(true);
             }
-            //Destroy(gameObject);
+            //reset wave number
+            waveSpawnerRef.ResetWave();
         }
     }
 
