@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class TutorialSequence : MonoBehaviour
 {
     
+    
     private float lastAdvanceTime = -999f;
     public float advanceCooldown = 0.2f;
     [System.Serializable]
@@ -16,6 +17,7 @@ public class TutorialSequence : MonoBehaviour
         public string conditionKey;
     }
 
+    public GameObject fortMenuRef;
     [SerializeField] private GameObject tutorialPanel;
     [SerializeField] private TutorialStep[] steps;
     private int currentIndex = 0;
@@ -27,6 +29,9 @@ public class TutorialSequence : MonoBehaviour
             step.text.gameObject.SetActive(false);
 
         ShowStep(0);
+        //turn off fort button
+        fortMenuRef.SetActive(false);
+
     }
 
     void Update()
@@ -64,7 +69,8 @@ public class TutorialSequence : MonoBehaviour
             UpdatePanelVisibility();
             return; // don't call ShowStep
         }
-
+        
+        
         currentIndex = next;
         ShowStep(currentIndex);
         UpdatePanelVisibility();
@@ -74,7 +80,11 @@ public class TutorialSequence : MonoBehaviour
     {
         if (index < steps.Length)
             steps[index].text.gameObject.SetActive(true);
-
+        if (currentIndex == 2)
+        {
+            //turn on the fort button
+            fortMenuRef.SetActive(true);
+        }
         UpdatePanelVisibility();
     }
 
