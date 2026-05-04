@@ -9,6 +9,7 @@ public class ResourceUI : MonoBehaviour
     [SerializeField] private TMP_Text killsText;
     [SerializeField] private TMP_Text fortNumberText;
     [SerializeField] private UpgradesText upgradesTextRef;
+    PlacingScript placingRef;
 
     public int gold = 0;
     public int kills = 0;
@@ -42,9 +43,10 @@ public class ResourceUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        placingRef = FindAnyObjectByType<PlacingScript>();
         goldText.text = "Gold: " + gold;
         killsText.text = "Kills: " + kills;
-        fortNumberText.text = fortNumber + "/4";
+        fortNumberText.text = fortNumber + "/" + placingRef.maxPlaced;
        
     }
 
@@ -88,6 +90,8 @@ public class ResourceUI : MonoBehaviour
     {
         gold = 0;
         goldText.text = "Gold: " + gold;
+        fortNumberText.text = fortNumber + "/" + placingRef.maxPlaced;
+
     }
 
     public void UpdateFortRef(int fortNum)
