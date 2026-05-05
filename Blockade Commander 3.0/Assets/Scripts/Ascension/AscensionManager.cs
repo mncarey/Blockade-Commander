@@ -131,6 +131,7 @@ public class AscensionManager : MonoBehaviour
             
             KillsRef.AscendResetResource();
             //unlock upgrade cap to lvl 10
+            textFader.FadeInThenOut(holdTime: 2f);
             //increase threshold for next ascension and reset gold
             killThreshold = killThreshold * 2;
             placingScriptRef.IncreasePlacementCap();

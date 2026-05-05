@@ -96,6 +96,6 @@ public class ResourceUI : MonoBehaviour
 
     public void UpdateFortRef(int fortNum)
     {
-        fortNumberText.text = fortNum + "/4";
+        fortNumberText.text = fortNum + "/" + placingRef.maxPlaced;
     }
 }
