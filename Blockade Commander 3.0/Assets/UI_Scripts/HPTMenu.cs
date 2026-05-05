@@ -9,7 +9,6 @@ public class HPTMenu : MonoBehaviour
 {
     // -* game objects for the how to play menu *- \\
     public GameObject mainMenu;
-    public GameObject instructionsMenu;
 
     // -* game objects for each instructions menu *- \\
     public GameObject instructionsOne;
@@ -18,21 +17,8 @@ public class HPTMenu : MonoBehaviour
     public GameObject instructionsFour;
     public GameObject instructionsFive;
 
-    // ---- these functions handle the active and inactive for the how to play menu after the player hits said button from the main menu canvas ---- \\
+    public GameObject mainMenuButton;
 
-    // this function activates the how to play menu when the player presses the button assigned for it
-    public void HowtoPlayMenuActive()
-    {
-        instructionsMenu.SetActive(true);
-        mainMenu.SetActive(false);
-    }
-
-    // this function deactivates the menu when the player goes back to the main menu
-    public void HowToPlayInActive()
-    {
-        instructionsMenu.SetActive(false);
-        mainMenu.SetActive(true);
-    }
 
     // ---- these functions handle turning on and off each instruction image when the player hits next and turns it back on when the player hits back ---- \\
 
@@ -41,13 +27,15 @@ public class HPTMenu : MonoBehaviour
     public void OneInstructionsActive()
     {
         instructionsOne.SetActive(true);
-        instructionsMenu.SetActive(false);
         mainMenu.SetActive(false);
+        mainMenuButton.SetActive(true);
     }
     // -* inactive *-
     public void OneInstructionsInActive()
     {
         instructionsOne.SetActive(false);
+        mainMenu.SetActive(true);
+        mainMenuButton.SetActive(false);
     }
     
     // second instructions
@@ -55,11 +43,13 @@ public class HPTMenu : MonoBehaviour
     public void TwoInstructionsActive()
     {
         instructionsTwo.SetActive(true);
+        mainMenuButton.SetActive(true);
     }
     // -* inactive *-
     public void TwoInstructionsInActive()
     {
         instructionsTwo.SetActive(false);
+        mainMenuButton.SetActive(true);
     }
 
     // third instructions
@@ -67,11 +57,13 @@ public class HPTMenu : MonoBehaviour
     public void ThreeInstructionsActive()
     {
         instructionsThree.SetActive(true);
+        mainMenuButton.SetActive(true);
     }
     // -* inactive *-
     public void ThreeInstructionsInActive()
     {
         instructionsThree.SetActive(false);
+        mainMenuButton.SetActive(true);
     }
 
     // fourth instructions
@@ -79,11 +71,13 @@ public class HPTMenu : MonoBehaviour
     public void FourInstructionsActive()
     {
         instructionsFour.SetActive(true);
+        mainMenuButton.SetActive(true);
     }
     // -* inactive *-
     public void FourInstructionsInActive()
     {
         instructionsFour.SetActive(false);
+        mainMenuButton.SetActive(true);
     }
 
     // fifth instructions
@@ -91,10 +85,12 @@ public class HPTMenu : MonoBehaviour
     public void FiveInstructionsActive()
     {
         instructionsFive.SetActive(true);
+        mainMenuButton.SetActive(true);
     }
     // -* inactive *-
     public void FiveInstructionsInActive()
     {
         instructionsFive.SetActive(false);
+
     }
 }
