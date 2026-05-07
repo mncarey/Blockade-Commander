@@ -6,6 +6,7 @@ public class UpgradeWallHealthButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public AudioSource audioRef;
     public GameObject noMoneyPopup;
     public GameObject noLvlsPopup;
 
@@ -41,6 +42,9 @@ public class UpgradeWallHealthButton : MonoBehaviour
             noMoneyPopup.gameObject.SetActive(true);
             return;
         }
+
+        //play coin sound
+        audioRef.Play();
 
         //subtract gold
         resourceUIRef.gold -= upgradeManagerRef.wallPrice;
