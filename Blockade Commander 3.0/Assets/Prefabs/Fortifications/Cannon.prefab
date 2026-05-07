@@ -138,7 +138,7 @@ MonoBehaviour:
   damageTaken: {fileID: 3613257828516605587}
   health: 8
   maxLives: 8
-  range: 23
+  range: 25
   dmg: 3
   tickRate: 1.5
   enemyLayer:

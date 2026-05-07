@@ -5233,6 +5233,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1275176196}
     m_Modifications:
+    - target: {fileID: 843114262540947434, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321990231515846380, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
+      propertyPath: m_text
+      value: "Thank goodness you\u2019re here commander! We need your help setting
+        up the defensive fortifications. The government is here to take our riches
+        from us!\r\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 1687325770052188481, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5313,6 +5323,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2593307141976680800, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
+      propertyPath: m_text
+      value: "You\u2019ve defeated a number of foes! Now you can ascend, spend all
+        your resources and unlock the next fortification! Be sure to spend all your
+        money on upgrades though! Now you can start again with a new variety in your
+        arsenal."
+      objectReference: {fileID: 0}
     - target: {fileID: 3296824959830063499, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5328,6 +5345,12 @@ PrefabInstance:
     - target: {fileID: 4680441131415635456, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699509311413797439, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
+      propertyPath: m_text
+      value: "Here are your current options. Walls and Cannons. Walls are good for
+        stalling enemies but don\u2019t do damage. Cannons are a great way to whittle
+        them down, but have low health."
       objectReference: {fileID: 0}
     - target: {fileID: 6005862561600866285, guid: 541154ea7c83e4a47badc6d3314a536a, type: 3}
       propertyPath: fortMenuRef
@@ -11033,7 +11056,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 2.32
+  m_Intensity: 2.45
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -11075,8 +11098,8 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 4906
+  m_BounceIntensity: 137.94
+  m_ColorTemperature: 4653
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -11095,13 +11118,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973846644}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5917267, y: -0.20456865, z: 0.15855268, w: 0.7634607}
+  m_LocalRotation: {x: 0.37973383, y: 0.51888275, z: -0.61874056, w: 0.45135695}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 75.556, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 80.03, y: -360.5, z: 251.8}
 --- !u!1 &1986022019
 GameObject:
   m_ObjectHideFlags: 0

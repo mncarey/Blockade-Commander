@@ -62,6 +62,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             {
                 enemyComponent.waveSpawnerRef = this;
                 enemyComponent.unitPriority = priorityCount;
+                enemyComponent.lives = enemyComponent.lives * Mathf.Pow(1.1f, currentWaveNumber - 1);
                 priorityCount++;
                 spawnedEnemies.Add(enemyComponent);
             }
@@ -214,6 +215,7 @@ public class Wave_Spawner_BasicEnemy : MonoBehaviour
             {
                 enemyComponent.waveSpawnerRef = this;
                 enemyComponent.unitPriority = priorityCount;
+                enemyComponent.lives = enemyComponent.lives * Mathf.Pow(1.1f, currentWaveNumber - 1);
                 priorityCount++;
                 spawnedEnemies.Add(enemyComponent);
             }
