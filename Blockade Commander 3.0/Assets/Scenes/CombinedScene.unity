@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96cc6aefea7a44fab7796c4fafc153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
-  dayLengthInMinutes: 0.5
+  dayLengthInMinutes: 2.3
   currentTime: 0
   sunLight: {fileID: 82600545}
   moonLight: {fileID: 82600545}
@@ -11471,7 +11471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e96cc6aefea7a44fab7796c4fafc153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
-  dayLengthInMinutes: 0.5
+  dayLengthInMinutes: 2
   currentTime: 0.4
   sunLight: {fileID: 1973846646}
   moonLight: {fileID: 0}
