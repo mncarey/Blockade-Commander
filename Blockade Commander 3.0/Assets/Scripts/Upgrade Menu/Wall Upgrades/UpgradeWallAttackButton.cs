@@ -6,6 +6,7 @@ public class UpgradeWallAttackButton : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public AudioSource audioRef;
     public GameObject noMoneyPopup;
     public GameObject noLvlsPopup;
 

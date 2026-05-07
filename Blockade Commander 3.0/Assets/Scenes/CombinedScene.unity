@@ -294,6 +294,181 @@ Transform:
   - {fileID: 1227863644}
   m_Father: {fileID: 1275176196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &82600542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82600546}
+  - component: {fileID: 82600545}
+  - component: {fileID: 82600544}
+  - component: {fileID: 82600543}
+  m_Layer: 0
+  m_Name: Moon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &82600543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82600542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e96cc6aefea7a44fab7796c4fafc153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
+  dayLengthInMinutes: 0.5
+  currentTime: 0
+  sunLight: {fileID: 82600545}
+  moonLight: {fileID: 82600545}
+  sunRotationOffset: {x: -90, y: 0, z: 0}
+  ambientColor:
+    serializedVersion: 2
+    key0: {r: 0.6179246, g: 0.80237484, b: 1, a: 1}
+    key1: {r: 0.4481132, g: 0.5054801, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+--- !u!114 &82600544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82600542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!108 &82600545
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82600542}
+  m_Enabled: 1
+  serializedVersion: 13
+  m_Type: 1
+  m_Color: {r: 0.8392157, g: 0.9665895, b: 1, a: 1}
+  m_Intensity: 2
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 137.94
+  m_ColorTemperature: 19849
+  m_UseColorTemperature: 1
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShapeRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &82600546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82600542}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.62533057, y: 0.46042243, z: 0.3687813, w: -0.5108554}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 258.097, y: -357.444, z: 285.199}
 --- !u!1 &122839695
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +1080,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1218260740}
+  - {fileID: 927205650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &175737600
@@ -3182,6 +3358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 507679955}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
   cost: 0
@@ -3200,6 +3377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 507679955}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!114 &447164113
@@ -3216,6 +3394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 507679955}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!1 &457896011
@@ -3295,6 +3474,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -5073,6 +5253,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -5632,6 +5813,149 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900343585}
   m_CullTransparentMesh: 1
+--- !u!1 &927205649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927205650}
+  - component: {fileID: 927205652}
+  - component: {fileID: 927205651}
+  m_Layer: 0
+  m_Name: Coin Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &927205650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927205649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 167174007}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &927205651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927205649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206ba6fafa6deaf45b00f3b01fb47bd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundEffectPlayer
+  audioSource: {fileID: 927205652}
+--- !u!82 &927205652
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927205649}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 84827987601f7e9469ad2894f7e0acbe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &950735520 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 754189902417996437, guid: 442a6c9faad69564f9e3d8194f9da27d, type: 3}
@@ -6219,6 +6543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 1282479760}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!114 &1098531578
@@ -6235,6 +6560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 1282479760}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!114 &1098531579
@@ -6251,6 +6577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 1282479760}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!1 &1108967801
@@ -7647,6 +7974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeMortarAttack
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 1873403331}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!114 &1252445158
@@ -7663,6 +7991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeMortarRange
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 1873403331}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!114 &1252445159
@@ -7679,6 +8008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeMortarHealth
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 1873403331}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
 --- !u!1 &1258394803
@@ -10943,6 +11273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 2146419309}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
   cost: 0
@@ -10960,6 +11291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 2146419309}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
   cost: 0
@@ -10977,6 +11309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   upgradeManagerRef: {fileID: 122839696}
   upgradesTextRef: {fileID: 2146419309}
+  audioRef: {fileID: 927205652}
   noMoneyPopup: {fileID: 2084553536}
   noLvlsPopup: {fileID: 1657826498}
   cost: 0
@@ -11009,8 +11342,9 @@ GameObject:
   - component: {fileID: 1973846647}
   - component: {fileID: 1973846646}
   - component: {fileID: 1973846645}
+  - component: {fileID: 1973846648}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Sun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11053,10 +11387,10 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973846644}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 2.45
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -11099,13 +11433,13 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 137.94
-  m_ColorTemperature: 4653
+  m_ColorTemperature: 3610
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -11118,13 +11452,60 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973846644}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.37973383, y: 0.51888275, z: -0.61874056, w: 0.45135695}
+  m_LocalRotation: {x: 0.22931197, y: 0.5482737, z: -0.6179908, w: 0.51468384}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 80.03, y: -360.5, z: 251.8}
+  m_LocalEulerAnglesHint: {x: 66.022, y: -676.264, z: -71.194}
+--- !u!114 &1973846648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973846644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e96cc6aefea7a44fab7796c4fafc153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
+  dayLengthInMinutes: 0.5
+  currentTime: 0.4
+  sunLight: {fileID: 1973846646}
+  moonLight: {fileID: 0}
+  sunRotationOffset: {x: -90, y: 0, z: 0}
+  ambientColor:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.8070326, b: 0.6462264, a: 1}
+    key1: {r: 0.82317376, g: 0.7971698, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &1986022019
 GameObject:
   m_ObjectHideFlags: 0
@@ -12889,6 +13270,7 @@ SceneRoots:
   - {fileID: 1152650238}
   - {fileID: 457896015}
   - {fileID: 1973846647}
+  - {fileID: 82600546}
   - {fileID: 1763026935}
   - {fileID: 1167398954}
   - {fileID: 701935399}

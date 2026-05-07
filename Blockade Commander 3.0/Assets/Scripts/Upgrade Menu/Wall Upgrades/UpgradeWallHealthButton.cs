@@ -45,7 +45,6 @@ public class UpgradeWallHealthButton : MonoBehaviour
 
         //play coin sound
         audioRef.Play();
-
         //subtract gold
         resourceUIRef.gold -= upgradeManagerRef.wallPrice;
         //update health

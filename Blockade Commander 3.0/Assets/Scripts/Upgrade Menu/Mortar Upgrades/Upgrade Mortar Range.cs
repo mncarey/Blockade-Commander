@@ -6,6 +6,7 @@ public class UpgradeMortarRange : MonoBehaviour
 
     [SerializeField] private UpgradeManager upgradeManagerRef;
     public UpgradesText upgradesTextRef;
+    public AudioSource audioRef;
     public GameObject noMoneyPopup;
     public GameObject noLvlsPopup;
 
@@ -34,6 +35,8 @@ public class UpgradeMortarRange : MonoBehaviour
             return;
         }
 
+        //play coin sound
+        audioRef.Play();
         //subtract gold
         resourceUIRef.gold -= upgradeManagerRef.mortarPrice;
         //update health
