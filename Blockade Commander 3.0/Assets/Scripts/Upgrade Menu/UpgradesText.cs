@@ -22,8 +22,16 @@ public class UpgradesText : MonoBehaviour
     public void ShowUpgrades(int goldCost)
     {
         healthText.text = "Health + 1: " + (goldCost) + " gold";
-        rangeText.text = "Range + 1: " + (goldCost) + " gold";
-        attackText.text = "Attack + 1: " + (goldCost) + " gold";
+        if(rangeText.text != null)
+        {
+            rangeText.text = "Range + 1: " + (goldCost) + " gold";
+        }
+        
+        if(attackText.text != null)
+        {
+            attackText.text = "Attack + 1: " + (goldCost) + " gold";
+        }
+       
 
         gameObject.SetActive(true);
 
@@ -34,7 +42,15 @@ public class UpgradesText : MonoBehaviour
     public void ShowUpgradeLvl(int upgradeLvl)
     {
         healthLvlText.text = "Lvl " + upgradeLvl;
-        rangeLvlText.text = "Lvl " + upgradeLvl;
-        attackLvlText.text = "Lvl " + upgradeLvl;
+        if(rangeLvlText != null)
+        {
+            rangeLvlText.text = "Lvl " + upgradeLvl;
+        }
+
+        if (attackLvlText.text != null)
+        {
+            attackLvlText.text = "Lvl " + upgradeLvl;
+        }
+       
     }
 }
